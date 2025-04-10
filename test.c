@@ -1,20 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:49:07 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/10/31 14:56:02 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/10 17:47:07 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/10 17:47:08 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <stdlib.h>
+#include "parsing.h"
 
-int	ft_toupper(int c)
+
+char    check(char *line)
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 32;
-	return (c);
+
+}
+
+t_line  *list()
+{
+    
+}
+
+int	main(void)
+{
+	char *input;
+
+	while (1)
+	{
+		input = readline("minishell$ ");
+		if (!input)
+			break;
+		if (*input)
+			add_history(input);
+		check(input);
+		free(input);
+	}
+	printf("exit\n");
+	return (0);
 }

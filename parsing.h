@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:49:07 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/10/31 14:56:02 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/10 16:30:17 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/10 16:34:34 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSING_H
+#define PARSING_H
 
-int	ft_toupper(int c)
-{
-	if (c >= 'a' && c <= 'z')
-		c = c - 32;
-	return (c);
-}
+typedef struct s_line {
+    void            *cmd;
+    struct s_line   *next;
+}   t_line;
+
+#endif

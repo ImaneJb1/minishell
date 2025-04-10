@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 23:48:43 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/12 14:19:10 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/27 20:36:09 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/15 01:30:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,24 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*arr;
-	char	*p;
-	size_t	i;
-	size_t	o;
+	void	*s;
+	size_t	res;
 
-	o = count * size;
-	if (size && o / size != count)
+	res = count * size;
+	if (count != 0 && res / count != size)
 		return (NULL);
-	arr = malloc(count * size);
-	if (!arr)
+	s = malloc(count * size);
+	if (!s)
 		return (NULL);
-	p = (char *)arr;
-	i = 0;
-	while (i < count * size)
-	{
-		p[i] = 0;
-		i++;
-	}
-	return (arr);
+	ft_memset(s, 0, count * size);
+	return (s);
 }
-/*
-#include <stdio.h>
+// int main()
+// {
+//    int i = 0;
+//    int *ptr;
+//    size_t x = 9223372036854775807;
 
-int	main(void)
-{
-	printf("%d", *(int*) ft_calloc(1, 1));
-}
-*/
+//     printf("%s\n", ft_calloc(x, 2));
+//     printf("%s\n", calloc(x, 2));
+// }

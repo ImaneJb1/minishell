@@ -3,46 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 22:37:57 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/12 14:15:35 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/23 21:45:43 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/14 23:22:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int	ft_atoi(const char *str)
 {
+	int	s;
 	int	i;
-	int	result;
-	int	sign;
+	int	c;
 
-	result = 0;
-	sign = 1;
 	i = 0;
+	c = 0;
+	s = 1;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sign = -sign;
+			s = -1;
 		i++;
 	}
-	while (ft_isdigit(str[i]))
+	while ((str[i] >= '0' && str[i] <= '9'))
 	{
-		result = (result * 10) + str[i] - 48;
+		c = c * 10 + (str[i] - 48);
 		i++;
 	}
-	return (result * sign);
+	return (s * c);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	printf("Got: %d\n", ft_atoi("\t\n\r\v\f  469 \n"));
-	printf("expected: %d", atoi("\t\n\r\v\f  469 \n"));
-}
-*/
