@@ -1,81 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 21:39:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 18:23:00 by ijoubair         ###   ########.fr       */
+/*   Created: 2025/04/10 18:56:01 by ijoubair          #+#    #+#             */
+/*   Updated: 2025/04/10 19:00:03 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "header.h"
 
-static int	ft_count(char const *s, char c)
+void	check_quotes(char letter, char delimeter)
 {
-	size_t	i;
-	size_t	count;
-	int		check;
-
-	count = 0;
-	i = 0;
-	check = 0;
-	while (s && s[i])
+	static int flag;
+	if(letter == '\"')
 	{
-		if (s[i] != c && check == 0)
+		if(flag == 0)
 		{
-			check = 1;
-			count++;
+			flag = 1;
+			delimeter = letter;
 		}
-		if (s[i] == c)
-			check = 0;
-		i++;
+		else
+		{
+			
+		}
 	}
-	return (count);
-}
 
-static size_t	ft_countlen(char const *s, char c, size_t i)
-{
-	size_t	count;
-
-	count = 0;
-	while (s[i] && s[i] != c)
-	{
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-void	*free_2d_arry(char **ptr)
-{
-	size_t	i;
-
-	i = 0;
-	while (ptr[i] != NULL)
-	{
-		free(ptr[i]);
-		i++;
-	}
-	free(ptr);
-	return (NULL);
-}
-int check(char const *str)
-{
-	int i;
-	i = 0;
-	while(str[i])
-	{
-		if(str[i] == '\'')
-			return 1;
-		i++;
-	}
-	return 0;
 }
 
 
-char	**ft_split(char const *s, char c)
+char	**my_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	j;

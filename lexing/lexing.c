@@ -3,44 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:47:07 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 17:47:08 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:52:28 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
-#include "parsing.h"
 
+#include "Header.h"
 
-char    check(char *line)
+char    **splitting(char *line)
 {
+	char **result;
 
+	result = ft_split(line, ' ');
+	
+	return(result);
 }
 
-t_line  *list()
+t_struct	*new_node(char *value, t_type type)
 {
-    
+	t_struct	*elem;
+
+	elem = malloc(sizeof(t_struct));
+	if (!elem)
+		return (NULL);
+	elem->value = value;
+	elem->type = type;
+	elem->next = NULL;
+	return (elem);
 }
 
-int	main(void)
+void 	reading_from_input(void)
 {
 	char *input;
 
-	while (1)
+	while(1)
 	{
-		input = readline("minishell$ ");
+		input = readline("minishell>> ");
 		if (!input)
 			break;
 		if (*input)
 			add_history(input);
-		check(input);
 		free(input);
 	}
-	printf("exit\n");
+}
+
+int	main(void)
+{
+	char **input = splitting("echo"" \"hello world\"");
+	for(int i = 0; input[i]; i++)
+		printf("%s\n", input[i]);
 	return (0);
 }
