@@ -6,55 +6,57 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:56:01 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/10 19:00:03 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/10 23:26:39 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "Header.h"
 
-void	check_quotes(char letter, char delimeter)
+char	check_flag(int *flag, char c, int *i, char const *s)
 {
-	static int flag;
-	if(letter == '\"')
+	if (*flag == 1)
 	{
-		if(flag == 0)
+		c = ' ';
+		*flag = 0;
+		(*i)++;
+	}
+	if (s[*i] == '\"' || s[*i] == '\'')
+	{
+		if (*flag == 0)
 		{
-			flag = 1;
-			delimeter = letter;
-		}
-		else
-		{
-			
+			*flag = 1;
+			c = s[*i];
+			(*i)++;
 		}
 	}
-
+	return (c);
 }
 
-
-char	**my_split(char const *s, char c)
+char	**super_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
 	char	**ptr;
 
+	int (i), (j), (flag);
+	flag = 0;
 	i = 0;
 	j = 0;
-	ptr = malloc(sizeof(char *) * (ft_count(s, c) + 1));
+	ptr = malloc(sizeof(char *) * (super_count(s, c) + 1));
 	if (!ptr)
 		return (NULL);
 	while (s && s[i])
 	{
+		c = check_flag(&flag, c, &i, s);
 		while (s[i] == c)
 			i++;
 		if (s[i] == '\0')
 			break ;
-		ptr[j] = ft_substr(s, i, ft_countlen(s, c, i));
+		c = check_flag(&flag, c, &i, s);
+		ptr[j] = ft_substr(s, i, super_countlen(s, c, i));
 		if (ptr[j] == NULL)
-			return (free_2d_arry(ptr));
+			return (super_free_2d_arry(ptr));
 		j++;
 		while (s[i] && s[i] != c)
 			i++;
 	}
-	ptr[j] = NULL;
-	return (ptr);
+	return ((ptr[j] = NULL), ptr);
 }
