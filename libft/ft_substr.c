@@ -3,47 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 21:03:38 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/05 14:44:54 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/28 14:09:04 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/09 23:30:30 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static char	*ft_allocat(char const *s, unsigned char start, size_t len)
 {
-	char			*sub;
-	unsigned int	i;
+	size_t	i;
+	char	*mal;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(&s[start]))
-		len = ft_strlen(&s[start]);
-	sub = malloc(len + 1);
-	if (!sub)
+	mal = malloc(len + 1);
+	if (mal == NULL)
 		return (NULL);
 	while (i < len)
 	{
-		sub[i] = s[start];
+		mal[i] = s[start + i];
 		i++;
-		start++;
 	}
-	sub[i] = '\0';
-	return (sub);
+	mal[i] = '\0';
+	return (mal);
 }
-/*
-int	main(void)
-{
-	char	*s;
 
-	s = ft_substr("JOUBAIR", -1, 3);
-	printf("[%s]\n", s);
-	free(s);
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	str_len;
+	char	*mal;
+
+	if (s == NULL)
+		return (NULL);
+	str_len = ft_strlen(s);
+	if (start >= str_len)
+	{
+		mal = malloc(1);
+		if (!mal)
+			return (NULL);
+		mal[0] = '\0';
+		return (mal);
+	}
+	if (start + len > str_len)
+		len = str_len - start;
+	mal = ft_allocat(s, start, len);
+	return (mal);
 }
-*/

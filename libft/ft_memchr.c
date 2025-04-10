@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 12:57:44 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/02 22:34:55 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/26 16:17:26 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/09 21:41:59 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,18 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*tmp;
+	unsigned const char	*haystack;
+	unsigned char		needle;
+	size_t				i;
 
-	tmp = (unsigned char *)s;
-	while (n > 0)
+	i = 0;
+	haystack = (unsigned const char *)s;
+	needle = (unsigned char)c;
+	while (i < n)
 	{
-		if (*tmp == (unsigned char)c)
-			return (tmp);
-		tmp++;
-		n--;
+		if (haystack[i] == needle)
+			return ((void *)&haystack[i]);
+		i++;
 	}
 	return (NULL);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	int	s[4] = {1,8,5,5};
-	int	c;
-	int	*arr;
-	int	i;
-
-	c = 8;
-	arr = ft_memchr(s, c, 8);
-	i = 0;
-	if (arr == NULL)
-	{
-		printf("NULL");
-		return (0);
-	}
-	//printf("%s", arr);
-	while(i <= 4)
-	{
-	printf("%d ", arr[i]);
-	i++;
-	}
-}
-*/

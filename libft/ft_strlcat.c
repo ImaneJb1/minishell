@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 17:28:07 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/12 14:48:06 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/26 19:09:32 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/16 14:13:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	j;
-	size_t	lendst;
+	size_t	dstlen;
+	size_t	srclen;
+	size_t	dst_index;
+	size_t	i;
 
-	if (dstsize == 0 || ft_strlen(dst) >= dstsize)
-		return (dstsize + ft_strlen(src));
-	lendst = ft_strlen(dst);
-	j = 0;
-	while (j < dstsize - lendst - 1 && src[j])
+	i = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	dstlen = ft_strlen(dst);
+	srclen = ft_strlen(src);
+	dst_index = dstlen;
+	if (dstsize <= dstlen)
+		return (dstsize + srclen);
+	while (src[i] && dst_index < dstsize - 1)
 	{
-		dst[lendst + j] = src[j];
-		j++;
+		dst[dst_index] = src[i];
+		i++;
+		dst_index++;
 	}
-	dst[lendst + j] = '\0';
-	return (ft_strlen(src) + lendst);
+	dst[dst_index] = '\0';
+	return (dstlen + srclen);
 }
-
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <unistd.h>
-// int	main(void)
+// int main ()
 // {
-//    char dest[200];
-//    char dest2[200];
-// 	printf("%zu\n", ft_strlcat(NULL, "hello", 0));
-//    //write(1, "\n", 1);
-//    //write(1, dest, 15);
+// 	printf("%zu",ft_strlcat("NULL","NULL",4));
 // }

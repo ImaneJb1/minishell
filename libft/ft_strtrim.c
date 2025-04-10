@@ -3,61 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 00:39:48 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/05 14:46:04 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/28 21:02:14 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/11 02:20:36 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_set(int *arr, char const *s)
+char	*ft_strtrim(char const *s, char const *set)
 {
-	int	i;
+	size_t	i;
+	size_t	end;
 
 	i = 0;
-	while (s[i])
-	{
-		arr[(unsigned int)s[i]] = 1;
-		i++;
-	}
-}
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	int		i;
-	int		j;
-	int		tmp;
-	int		arr[256];
-	char	*trim;
-
-	j = 0;
-	ft_bzero(arr, 256);
-	i = 0;
-	if (!s1 || !set)
+	if (s == NULL || set == NULL)
 		return (NULL);
-	ft_set(arr, set);
-	i = 0;
-	while (s1[i] && arr[(unsigned int)s1[i]] == 1)
+	end = ft_strlen(s);
+	while (s[i] && ft_strchr(set, s[i]))
 		i++;
-	tmp = i;
-	while (s1[i])
-		i++;
-	i--;
-	while (i >= 0 && arr[(unsigned int)s1[i]] == 1)
-		i--;
-	trim = ft_substr(s1, tmp, i - tmp + 1);
-	return (trim);
+	while (end > i && ft_strchr(set, s[end - 1]))
+		end--;
+	return (ft_substr(s, i, end - i));
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char	*s;
-
-// 	s = ft_strtrim("cnnnnnnbghguyuygggjbbbbb", "abc");
-// 	printf("%s", s);
-// 	free(s);
-// }
