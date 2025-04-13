@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/08 01:12:30 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/08 02:20:04 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	errors(char *str, t_data *data, int fd)
 {
-	t_list	*last;
-
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
+	if (fd != -1)
+	{
+		close(fd);
+		close(data->pip[0]);
+		close(data->pip[1]);
+	}
+	if (str[0] == '\0')
+		perror("\'\'");
 	else
-		last->next = new;
+		perror(str);
+	exit(1);
 }

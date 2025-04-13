@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   put_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/08 02:16:00 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/08 02:16:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	put_str(char *s, int fd)
 {
-	t_list	*last;
+	int	i;
 
-	if (!new || !lst)
+	i = 0;
+	if (!s || fd < 0)
 		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }

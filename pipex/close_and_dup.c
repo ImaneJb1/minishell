@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   close_and_dup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/08 01:23:49 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/08 01:24:10 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	close_and_dup(t_data *data, int flage)
 {
-	t_list	*last;
-
-	if (!new || !lst)
+	if (flage == 1)
+	{
+		close(data->pip[0]);
+		dup2(data->fdin, 0);
+		close(data->fdin);
+		dup2(data->pip[1], 1);
+		close(data->pip[1]);
 		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	}
+	else if (flage == 2)
+	{
+		close(data->pip[1]);
+		dup2(data->pip[0], 0);
+		close(data->pip[0]);
+		dup2(data->fdout, 1);
+		close(data->fdout);
+		return ;
+	}
+	return ;
 }

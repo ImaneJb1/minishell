@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   creat_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/08 01:36:34 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/09 19:53:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	creat_fdin(char *arg, t_data *data)
 {
-	t_list	*last;
+	data->fdin = open(arg, O_RDONLY, 0666);
+	if (data->fdin < 0)
+	{
+		close(data->pip[1]);
+		errors(arg, data, -1);
+	}
+	return (data->fdin);
+}
 
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+int	creat_fdout(char *arg, t_data *data)
+{
+	data->fdout = open(arg, O_CREAT | O_RDWR | O_TRUNC, 0666);
+	if (data->fdout < 0)
+	{
+		close(data->pip[0]);
+		perror(arg);
+		exit(1);
+	}
+	return (data->fdout);
 }

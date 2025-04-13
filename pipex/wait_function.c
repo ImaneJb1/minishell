@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   wait_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/08 01:19:48 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/08 03:26:11 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	wait_function(t_data *data)
 {
-	t_list	*last;
+	int	status;
+	int	exit_status;
 
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	status = 0;
+	exit_status = 0;
+	close(data->pip[1]);
+	waitpid(data->pid1, 0, 0);
+	waitpid(data->pid2, &status, 0);
+	if (WIFEXITED(status))
+		exit_status = WEXITSTATUS(status);
+	exit(exit_status);
 }

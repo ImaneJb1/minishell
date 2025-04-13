@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   split_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:56:01 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/10 23:26:39 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:57:48 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Header.h"
 
-char	check_flag(int *flag, char c, int *i, char const *s)
+char	check_flag(int *flag, int *i, char const *s)
 {
 	if (*flag == 1)
 	{
-		c = ' ';
 		*flag = 0;
-		(*i)++;
+		return '\0';
 	}
 	if (s[*i] == '\"' || s[*i] == '\'')
 	{
 		if (*flag == 0)
 		{
 			*flag = 1;
-			c = s[*i];
-			(*i)++;
+			return '\0';
 		}
 	}
-	return (c);
+	return ('|');
 }
 
 char	**super_split(char const *s, char c)
@@ -45,12 +43,12 @@ char	**super_split(char const *s, char c)
 		return (NULL);
 	while (s && s[i])
 	{
-		c = check_flag(&flag, c, &i, s);
+		c = check_flag(&flag, &i, s);
 		while (s[i] == c)
 			i++;
 		if (s[i] == '\0')
 			break ;
-		c = check_flag(&flag, c, &i, s);
+		c = check_flag(&flag, &i, s);
 		ptr[j] = ft_substr(s, i, super_countlen(s, c, i));
 		if (ptr[j] == NULL)
 			return (super_free_2d_arry(ptr));
@@ -60,3 +58,4 @@ char	**super_split(char const *s, char c)
 	}
 	return ((ptr[j] = NULL), ptr);
 }
+// "< file cat | ls |||||a| echo \"hello |||||| m \" "

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:47:07 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 23:26:55 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:48:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char    **splitting(char *line)
 {
 	char **result;
 
-	result = super_split(line, ' ');
+	result = super_split(line, '|');
 	
 	return(result);
 }
@@ -52,7 +52,7 @@ void 	reading_from_input(void)
 
 int	main(void)
 {
-	char **input = splitting("echo \"   hello  world\" kk  awk '{print}' ");
+	char **input = splitting("< file cat | ls |||||a| echo \"hello |||||| m \" ");
 	for(int i = 0; input[i]; i++)
 		printf("{%s}\n", input[i]);
 	return (0);

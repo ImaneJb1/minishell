@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "libft.h": "c",
+        "header.h": "c",
+        "parsing.h": "c",
+        "history.h": "c",
+        "stdlib.h": "c",
+        "test.h": "c",
+        "garbage_collector.h": "c",
+        "sstream": "c"
+    }
+}
