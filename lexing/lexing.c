@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:47:07 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 23:26:55 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:18:47 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,18 @@ void 	reading_from_input(void)
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	char **input = splitting("echo \"   hello  world\" kk  awk '{print}' ");
+	(void)argc;
+	char *s = NULL;
+	int i = 1;
+	while(argv[i])
+	{
+		s = ft_strjoin(s, argv[i]);
+		i++;
+	}
+	char **input = splitting(s);
 	for(int i = 0; input[i]; i++)
-		printf("{%s}\n", input[i]);
+		printf("|%s|\n", input[i]);
 	return (0);
 }
