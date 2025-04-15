@@ -7,7 +7,7 @@ t_cmd   *v_cmd(void)
     return &cmd;
 }
 
-t_pipe  *pipe(void)
+t_pipe  *v_pipe(void)
 {
     static  t_pipe pip;
 

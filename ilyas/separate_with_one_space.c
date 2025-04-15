@@ -11,7 +11,7 @@ void	skip_space(char *str, int *i)
 int	is_one_space(char *str, int i)
 {
 	return ((!ft_strchr(" \t", str[i])) || (str[i + 1] && ft_strchr(" \t",
-				str[i]) && !ft_strchr(" \t", str[i + 1])));
+		str[i]) && !ft_strchr(" \t", str[i + 1])));
 }
 
 char	*separat_with_one_space(char *str)

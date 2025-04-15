@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/14 00:16:29 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/14 23:17:06 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ typedef struct s_cmd
 	struct s_arg	*prev;
 }					t_cmd;
 
+//		global
+
+t_cmd				*v_cmd(void);
+t_pipe				*v_pipe(void);
+
 char				*ft_strchr(const char *str, int c);
 size_t				ft_strlen(const char *str);
 
@@ -60,6 +65,18 @@ void				lstadd_back(t_cmd **lst, t_cmd *new);
 void				lstadd_front(t_cmd **lst, t_cmd *new);
 int					lstsize(t_cmd *lst);
 
+//		check_function(separate)
+
 char				*separat_with_one_space(char *str);
+int					is_arg(char *str, int *i);
+int					is_pipe(char *str, int *i);
+int					is_singl_quoat(char *str, int *i);
+int					is_singl_quoat(char *str, int *i);
+int					is_double_quoat(char *str, int *i);
+int					is_reder_in(char *str, int *i);
+int					is_reder_out(char *str, int *i);
+int					is_reder_out_append(char *str, int *i);
+int					is_heredoc(char *str, int *i);
+int					is_var(char *str, int *i);
 
 #endif
