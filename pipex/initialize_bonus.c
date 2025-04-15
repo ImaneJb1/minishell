@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   initialize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/08 03:30:11 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/08 21:19:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	init(t_data *data)
 {
-	t_list	*last;
-
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	data->number_of_loops = 0;
+	data->number_of_pipes = 0;
+	data->last_cmd = 0;
+	data->cur_loop = 0;
+	data->pipes = 0;
+	data->pid = 0;
+	data->fdin = -1;
+	data->fdout = -1;
+	data->absolute_path = NULL;
+	data->full_cmd = NULL;
+	data->cmd = NULL;
+	data->cmd_path = NULL;
+	data->exec = NULL;
+	data->full_paths = NULL;
 }

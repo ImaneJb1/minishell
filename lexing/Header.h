@@ -22,9 +22,11 @@ typedef struct s_struct
 
 // 		split_functions
 
+size_t				ft_strlen(const char *str);
 char				**super_split(char const *s, char c);
-int			super_count(char const *s, char c);
-size_t		super_countlen(char const *s, char c, size_t i);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+int					super_count(char const *s, char c);
+size_t				super_countlen(char const *s, char c, size_t i);
 void				*super_free_2d_arry(char **ptr);
 int					super_check(char const *str);
 

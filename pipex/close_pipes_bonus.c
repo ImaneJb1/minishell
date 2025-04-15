@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   close_pipes_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/01 18:36:42 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/08 03:08:50 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	close_pipes(t_data *data)
 {
-	t_list	*last;
+	int	i;
 
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	i = 0;
+	while (i < data->number_of_loops && (data->pipes[i][0] != -1
+		&& data->pipes[i][1] != -1))
+	{
+		close(data->pipes[i][0]);
+		data->pipes[i][0] = -1;
+		close(data->pipes[i][1]);
+		data->pipes[i][1] = -1;
+		i++;
+	}
 }

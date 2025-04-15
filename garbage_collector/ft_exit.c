@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/03/25 01:47:18 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/12 16:47:50 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "garbage_collector.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_exit(int status)
 {
-	t_list	*last;
+	ft_free_all();
+	ft_destory_all();
+	return ;
+}
 
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+void	*current_working_mem(void *mem, int set_to_null)
+{
+	static void	*working_mem;
+
+	if (set_to_null)
+		working_mem = NULL;
+	if (mem)
+		working_mem = mem;
+	return (working_mem);
 }

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/11 18:26:22 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/14 00:35:31 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parsing.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_strchr(const char *str, int c)
 {
-	t_list	*last;
+	int	i;
 
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+		{
+			return ((char *)&str[i]);
+		}
+		i++;
+	}
+	if (str[i] == (char)c)
+	{
+		return ((char *)&str[i]);
+	}
+	return (NULL);
 }

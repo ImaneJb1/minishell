@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   get_full_cmd_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 01:26:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/10 19:22:26 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/02/25 08:16:42 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/03/02 17:05:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	**get_full_cmd_bonus(char *arg, t_data *data)
 {
-	t_list	*last;
-
-	if (!new || !lst)
-		return ;
-	last = ft_lstlast(*lst);
-	if (!last)
-		*lst = new;
-	else
-		last->next = new;
+	data->full_cmd = ft_split_bonus(arg, ' ');
+	if (!data->full_cmd)
+	{
+		free_all(data);
+		errors_bonus(arg, data, data->fdin);
+	}
+	return (data->full_cmd);
 }
