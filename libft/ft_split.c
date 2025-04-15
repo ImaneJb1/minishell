@@ -5,99 +5,100 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 16:01:38 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/12 14:43:32 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/29 21:39:25 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/10 18:23:00 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	word_counter(char const *s, char c)
+static int	ft_count(char const *s, char c)
 {
-	int	i;
-	int	count;
+	size_t	i;
+	size_t	count;
+	int		check;
 
-	i = 0;
 	count = 0;
+	i = 0;
+	check = 0;
 	while (s && s[i])
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
+		if (s[i] != c && check == 0)
 		{
+			check = 1;
 			count++;
-			while (s[i] && s[i] != c)
-				i++;
 		}
+		if (s[i] == c)
+			check = 0;
+		i++;
 	}
 	return (count);
 }
 
-static int	length_counter(char const *s, char c, int i)
+static size_t	ft_countlen(char const *s, char c, size_t i)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (s[i] && s[i] != c)
 	{
-		i++;
 		count++;
+		i++;
 	}
 	return (count);
 }
 
-char	**free_arr(char **arr)
+void	*free_2d_arry(char **ptr)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (arr[i])
+	while (ptr[i] != NULL)
 	{
-		free(arr[i]);
+		free(ptr[i]);
 		i++;
 	}
-	free(arr);
+	free(ptr);
 	return (NULL);
 }
+int check(char const *str)
+{
+	int i;
+	i = 0;
+	while(str[i])
+	{
+		if(str[i] == '\'')
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
 
 char	**ft_split(char const *s, char c)
 {
-	int		word_count;
-	int		i;
-	int		j;
-	char	**arr;
+	size_t	i;
+	size_t	j;
+	char	**ptr;
 
 	i = 0;
 	j = 0;
-	word_count = word_counter(s, c);
-	arr = malloc((word_count + 1) * sizeof(char *));
-	if (!arr || !s)
-		return (free(arr), NULL);
-	while (s[i])
+	ptr = malloc(sizeof(char *) * (ft_count(s, c) + 1));
+	if (!ptr)
+		return (NULL);
+	while (s && s[i])
 	{
-		while (s[i] && s[i] == c)
+		while (s[i] == c)
 			i++;
-		if (s[i])
-		{
-			arr[j] = ft_substr(s, i, length_counter(s, c, i));
-			if (!arr[j++])
-				return (free_arr(arr));
-		}
+		if (s[i] == '\0')
+			break ;
+		ptr[j] = ft_substr(s, i, ft_countlen(s, c, i));
+		if (ptr[j] == NULL)
+			return (free_2d_arry(ptr));
+		j++;
 		while (s[i] && s[i] != c)
 			i++;
 	}
-	return (arr[j] = NULL, arr);
+	ptr[j] = NULL;
+	return (ptr);
 }
-
-// int main()
-// {
-//     int i;
-//     char **arr =  ft_split("imane test  ", ' ');
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         printf("%s", arr[i]);
-//         i++;
-//     }
-// }

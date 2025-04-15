@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 11:08:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/08 14:27:30 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/22 20:48:56 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/10/31 12:32:32 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 
 int	ft_isprint(int c)
 {
-	if ((c >= 0 && c <= 31) || (c == 127) || (!(c >= 0 && c <= 127)))
-		return (0);
-	return (1);
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
 }
-// #include <ctype.h>
-// int	main(void)
-// {
-// 	int	a;
-
-// 	scanf("%d", &a);
-// 	printf("expected: %d\n", isprint(a));
-// 	printf("got: %d", ft_isprint(a));
-// }

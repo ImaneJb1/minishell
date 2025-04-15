@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isascii.c                                          :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 11:09:27 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/10/25 11:09:31 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/22 20:48:49 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/10/31 12:31:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isascii(int c)
 {
@@ -16,12 +18,3 @@ int	ft_isascii(int c)
 		return (1);
 	return (0);
 }
-/*#include <stdio.h>
-int	main(void)
-{
-	char	a;
-
-	scanf("%c", &a);
-	printf("%d", ft_isascii(a));
-}
-*/

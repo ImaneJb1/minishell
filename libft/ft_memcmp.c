@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 15:34:58 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/08 21:34:24 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/27 18:39:12 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/14 23:12:52 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,20 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*tmp1;
-	unsigned char	*tmp2;
+	const unsigned char	*cmp1;
+	const unsigned char	*cmp2;
+	size_t				i;
 
-	tmp1 = (unsigned char *)s1;
-	tmp2 = (unsigned char *)s2;
-	while (n > 0)
+	cmp1 = (const unsigned char *)s1;
+	cmp2 = (const unsigned char *)s2;
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (i < n)
 	{
-		if (*tmp1 != *tmp2)
-			return (*tmp1 - *tmp2);
-		tmp1++;
-		tmp2++;
-		n--;
+		if (cmp1[i] != cmp2[i])
+			return (cmp1[i] - cmp2[i]);
+		i++;
 	}
 	return (0);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char	*s1;
-// 	char	*s2;
-
-// 	s1 = "imaane";
-// 	s2 = "ib";
-// 	printf("got: %d\n", ft_memcmp(s1, s2, 50));
-// 	printf("expected: %d", memcmp(s1, s2, 50));
-// }

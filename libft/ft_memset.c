@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 11:11:08 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/10/28 21:14:22 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/24 18:00:05 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/16 15:19:33 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	*str;
+	unsigned char	*t;
 	size_t			i;
 
-	str = b;
+	t = (unsigned char *)b;
 	i = 0;
 	while (i < len)
 	{
-		str[i] = (unsigned char)c;
+		t[i] = (unsigned char)c;
 		i++;
 	}
-	return (str);
+	return ((void *)t);
 }
-/*#include <stdio.h>
-int	main(void)
-{
-	char	str[10];
+// int main ()
+// {
+// 	int i;
+// 	ft_memset(&i,128,4);
+// 	ft_memset(&i,0,3);
 
-	printf("%s\n",(char*) ft_memset(str, 127, 10));
-}
-*/
+// 	printf("%d",i);
+
+// }

@@ -3,44 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 11:41:24 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/11 21:58:47 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/23 12:26:57 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/05 03:41:19 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *str, int c)
 {
-	int	i;
-	int	f;
+	int	last;
 
-	f = -1;
-	i = 0;
-	while (s[i])
+	last = 0;
+	while (str[last])
+		last++;
+	while (last >= 0)
 	{
-		if (s[i] == (char)c)
-			f = i;
-		i++;
+		if (str[last] == (char)c)
+			return ((char *)&str[last]);
+		last--;
 	}
-	if (s[i] == (char)c)
-		return ((char *)&s[i]);
-	if (f == -1)
-		return (NULL);
-	return ((char *)&s[f]);
+	return (NULL);
 }
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-int	main(int argc, char **argv)
-{
-	(void)argc;
-	printf("Got: %s\n", ft_strrchr(argv[1],argv[2][0]));
-	printf("expected: %s\n", strrchr(argv[1],argv[2][0]));
-}
-*/

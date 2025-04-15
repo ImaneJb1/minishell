@@ -3,30 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 13:19:46 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/10/31 13:24:12 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/22 20:48:09 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/10/23 15:48:26 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	else
-		return (c);
+		c = c + 32;
+	return (c);
 }
-/*#include <stdlib.h>
-#include <ctype.h>
-#include <stdio.h>
-
-int	main(int argc, char **argv)
-{
-	if(argc > 1)
-	{
-		printf("Got: %c\n",ft_tolower(atoi(argv[1])));
-		printf("expected: %c\n",tolower(atoi(argv[1])));
-	}
-}
-*/

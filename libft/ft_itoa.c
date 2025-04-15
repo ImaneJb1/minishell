@@ -3,73 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 20:46:09 by ijoubair          #+#    #+#             */
-/*   Updated: 2024/11/07 18:47:17 by ijoubair         ###   ########.fr       */
+/*   Created: 2024/10/30 16:07:42 by imeslaki          #+#    #+#             */
+/*   Updated: 2024/11/04 04:22:59 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	num_len(long n)
+static int	ft_count(int n)
 {
-	int	len;
+	int	i;
 
-	if (n > 0)
-		len = 0;
-	else
-	{
-		len = 1;
-		n = -n;
-	}
-	while (n >= 1)
+	i = 0;
+	if (n <= 0)
+		i = 1;
+	while (n != 0)
 	{
 		n = n / 10;
-		len++;
+		i++;
 	}
-	return (len);
-}
-
-void	ft_fill(char *s, int len, int i, long nb)
-{
-	while (--len >= i)
-	{
-		s[len] = nb % 10 + '0';
-		nb = nb / 10;
-	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*s;
-	int		len;
-	int		i;
-	int		end;
-	long	nb;
+	char	*str;
+	int		j;
+	long	nbr;
 
-	nb = (long)n;
-	i = 0;
-	len = num_len(nb);
-	end = len;
-	s = malloc((len + 1) * sizeof(char));
-	if (!s)
+	nbr = n;
+	j = ft_count(nbr);
+	str = malloc(j + 1);
+	if (!str)
 		return (NULL);
-	if (nb < 0)
+	if (nbr == 0)
+		str[0] = '0';
+	str[j] = '\0';
+	if (nbr < 0)
 	{
-		nb = -nb;
-		s[0] = '-';
-		i++;
+		str[0] = '-';
+		nbr = nbr * -1;
 	}
-	ft_fill(s, len, i, nb);
-	s[end] = 0;
-	return (s);
+	while (nbr != 0)
+	{
+		str[--j] = (nbr % 10) + '0';
+		nbr = nbr / 10;
+	}
+	return (str);
 }
-// #include <limits.h>
-
-// int	main(void)
-// {
-// 	//    int a = -515;
-// 	printf("%s\n", ft_itoa(INT_MIN));
-// 	printf("%s\n", ft_itoa(INT_MAX));
-// }
