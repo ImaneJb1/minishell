@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/16 18:04:59 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/16 23:38:12 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include "../globale_functions/global.h"
 // typedef enum s_type
 // {
 // 	PIPE = 1,
@@ -59,15 +59,15 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }					t_cmd;
 
-// 	globale
-t_cmd				**v_cmd(void);
-t_pipe				*v_pipe(void);
+// // 	globale
+// t_cmd				**v_cmd(void);
+// t_pipe				*v_pipe(void);
 
-// helper
-char				*ft_strchr(const char *str, int c);
-size_t				ft_strlen(const char *str);
-int					ft_strcmp(const char *s1, const char *s2);
-char				*join_str_char(char *str, char c);
+// // helper
+// char				*ft_strchr(const char *str, int c);
+// size_t				ft_strlen(const char *str);
+// int					ft_strcmp(const char *s1, const char *s2);
+// char				*join_str_char(char *str, char c);
 
 // 	linked list functions
 t_cmd				*new_node(char *value);
