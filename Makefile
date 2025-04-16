@@ -1,10 +1,14 @@
-NAME = minishell
+NAME = a.out
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC =  test.c
+PRSING = parsing/fill_the_list.c parsing/ parsing/separate_with_one_space.c parsing/operations_condition.c  parsing/ 
+
+GLOBALE = globale/ft_strchr.c globale/ft_strlen.c globale/strcmp.c globale/globale.c globale/join_str_char.c
+
+SRC =  $(PRSING) $(GLOBALE)
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   global.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 18:31:44 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/11/11 02:17:37 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/16 23:35:37 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/16 23:37:50 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GLOBAL_H
+# define GLOBAL_H
 
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*elem;
+// #include "parsing.h"
+// 	globale
+t_cmd				**v_cmd(void);
+t_pipe				*v_pipe(void);
 
-	elem = malloc(sizeof(t_list));
-	if (!elem)
-		return (NULL);
-	elem->content = content;
-	elem->next = NULL;
-	return (elem);
-}
+// helper
+char				*ft_strchr(const char *str, int c);
+size_t				ft_strlen(const char *str);
+int					ft_strcmp(const char *s1, const char *s2);
+char				*join_str_char(char *str, char c);
+
+#endif
