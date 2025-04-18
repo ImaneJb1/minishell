@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:56:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/17 17:52:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/18 20:02:38 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_arg(char *str, int *i)
 {
 	if( !ft_strchr(" \"\'|<>$", str[*i]))
 	{
+		if(str[(*i) - 1] == ' ')
+			add_to_list(str[(*i) - 1],1);
 		while (str[*i] && !ft_strchr(" |<>$", str[*i]))
 		{
 			if(str[*i] == '\"')
@@ -50,6 +52,8 @@ int	is_reder_in(char *str, int *i)
 {
 	if (str[*i] && str[*i] == '<')
 	{
+		if(str[(*i) - 1] == ' ')
+			add_to_list(str[(*i) - 1],1);
         add_to_list(str[*i],1);
 		(*i)++;
 		add_to_list(0,2);
@@ -63,6 +67,8 @@ int	is_reder_out(char *str, int *i)
 {
 	if (str[*i] && str[*i] == '>')
 	{
+		if(str[(*i) - 1] == ' ')
+			add_to_list(str[(*i) - 1],1);
         add_to_list(str[*i],1);
 		(*i)++;
 		add_to_list(0,2);
@@ -76,6 +82,8 @@ int	is_reder_out_append(char *str, int *i)
 {
 	if (str[*i] && str[*i + 1] && str[*i] == '>' && str[*i + 1] == '>')
 	{
+		if(str[(*i) - 1] == ' ')
+			add_to_list(str[(*i) - 1],1);
         add_to_list(str[*i],1);
 		add_to_list(str[*i + 1],1);
 		(*i) += 2;
@@ -92,6 +100,8 @@ int	is_heredoc(char *str, int *i)
 {
 	if (str[*i] && str[*i + 1] && str[*i] == '<' && str[*i + 1] == '<')
 	{
+		if(str[(*i) - 1] == ' ')
+			add_to_list(str[(*i) - 1],1);
         add_to_list(str[*i],1);
 		add_to_list(str[*i + 1],1);
 		(*i) += 2;
