@@ -7,12 +7,19 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${workspaceFolder}/*/*.c",
+                // "${workspaceFolder}/tester/Unity-master/src/unity.c",
+                "-lreadline",
+                //"-Ofast",
+                //"-Wall",
+                //"-Wextra",
+                //"-Werror",
+                //"-fsanitize=address",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${workspaceFolder}/a.out"
             ],
             "options": {
-                "cwd": "/home/ijoubair/Desktop/minishell"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"

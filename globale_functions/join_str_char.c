@@ -1,4 +1,4 @@
-#include "parsing.h"
+#include "../parsing/parsing.h"
 
 char *join_str_char(char *str, char c)
 {

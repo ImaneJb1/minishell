@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 23:35:37 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/18 14:54:00 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:32:48 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define GLOBAL_H
 
 #include "../parsing/parsing.h"
+# include "../garbage_collector/garbage_collector.h"
+
 // 	globale
 t_cmd				**v_cmd(void);
-t_pipe				*v_pipe(void);
+// t_pipe				*v_pipe(void);
 
 // helper
 char				*ft_strchr(const char *str, int c);

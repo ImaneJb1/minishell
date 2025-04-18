@@ -6,11 +6,11 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:45:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/15 16:46:49 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:01:40 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./parsing.h"
+#include "../parsing/parsing.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
