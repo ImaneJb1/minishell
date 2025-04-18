@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enums(imane).c                                     :+:      :+:    :+:   */
+/*   enums.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:03:08 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/16 15:43:36 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:36:39 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_tokens *init_token_array(void)
 {
-	static t_tokens token[] = {{"|", PIPE}, {"<", REDIRECTION_IN}, {"<<", HERE_DOC},
-						{">", REDIRECTION_OUT}, {">>", APPEND_REDIRECTION}};
+	static t_tokens token[] = {{"|", PIPE}, {"<", REDIR_IN}, {"<<", HERE_DOC},
+						{">", REDIR_OUT}, {">>", APPEND_REDIRECTION}};
 	return(token);
 }
 
@@ -29,7 +29,7 @@ void	identify_symbols(void)
 
 	token = init_token_array();
 	token_len = sizeof(token) / sizeof(token[0]);
-	ptr = v_cmd();
+	ptr = *v_cmd();
 	while(ptr)
 	{
 		i = 0;
@@ -48,14 +48,14 @@ void	identify_cmd(void)
 {
 	t_cmd *ptr;
 
-	ptr = v_cmd();
-	if(ptr.type & WORD)
-		ptr.type = ptr.type | CMD; // if the first arg is a word then it's CMD
-	ptr = ptr->next
+	ptr = *v_cmd();
+	if(ptr->type & WORD)
+		ptr->type = ptr->type | CMD; // if the first arg is a word then it's CMD
+	ptr = ptr->next;
 	while(ptr)
 	{
-		if((ptr.type & WORD) && (ptr->prev.type & PIPE)) // if the previous arg of a word is a PIPE 
-			ptr.type = ptr.type | CMD;               // then the word is a CMD
+		if((ptr->type & WORD) && (ptr->prev->type & PIPE)) // if the previous arg of a word is a PIPE 
+			ptr->type = ptr->type | CMD;               // then the word is a CMD
 		ptr = ptr->next;
 	}
 }
@@ -64,14 +64,14 @@ void	identify_file(void)
 {
 	t_cmd *ptr;
 
-	ptr = v_cmd();
+	ptr = *v_cmd();
 	ptr = ptr->next;
 	while(ptr)
 	{
-		if(ptr.type & word)
+		if(ptr->type & WORD)
 		{
-			if((ptr->previous.type & REDIR_IN) || (ptr->previous.type & REDIR_OUT)) // if the previous arg of a word is a redir in or out
-				ptr.type = ptr.type | FILE;											// 	then its a file
+			if((ptr->prev->type & REDIR_IN) || (ptr->prev->type & REDIR_OUT)) // if the previous arg of a word is a redir in or out
+				ptr->type = ptr->type | FILE;											// 	then its a file
 		}	
 		ptr = ptr->next;
 	}

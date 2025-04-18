@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/16 23:38:12 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:40:15 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ typedef enum s_type
 	APPEND_REDIRECTION  = 1 << 6,  // 64
 	WORD                = 1 << 7,  // 128
 	DOUBLE_Q            = 1 << 8,  // 256
-	SINGLE_Q            = 1 << 9   // 512
-	CMD_ARG				= 1 << 10 // 1024
+	SINGLE_Q            = 1 << 9,  // 512
+	CMD_ARG				= 1 << 10, // 1024
+	PATH				= 1 << 11
 } t_type;
 
 typedef struct s_tokens
