@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   global.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 23:35:37 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/16 23:37:50 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:54:00 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GLOBAL_H
 # define GLOBAL_H
 
-// #include "parsing.h"
+#include "../parsing/parsing.h"
 // 	globale
 t_cmd				**v_cmd(void);
 t_pipe				*v_pipe(void);

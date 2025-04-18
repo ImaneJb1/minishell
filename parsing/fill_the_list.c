@@ -4,7 +4,7 @@ void    add_to_list(char ch, int flag)
 {
 	static char *str;
 	t_cmd *node;
-	t_cmd *list;
+	// t_cmd *list;
 
 	if(flag == 0)
 		str = NULL;

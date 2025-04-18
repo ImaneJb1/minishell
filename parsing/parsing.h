@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/18 13:40:15 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:52:15 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <unistd.h>
-# include "../globale_functions/global.h"
 # ifndef TRUE
 #  define TRUE 1
 # endif
@@ -29,7 +29,7 @@
 typedef enum s_type
 {
 	PIPE                = 1 << 0,  // 1
-	FILE                = 1 << 1,  // 2
+	_FILE                = 1 << 1,  // 2
 	CMD                 = 1 << 2,  // 4
 	HERE_DOC            = 1 << 3,  // 8
 	REDIR_IN      = 1 << 4,  // 16
@@ -69,6 +69,7 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }					t_cmd;
 
+# include "../globale_functions/global.h"
 // // 	globale
 // t_cmd				**v_cmd(void);
 // t_pipe				*v_pipe(void);

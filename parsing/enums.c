@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:03:08 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/18 13:36:39 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:53:24 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	identify_symbols(void)
 	int token_len;
 
 	token = init_token_array();
-	token_len = sizeof(token) / sizeof(token[0]);
+	token_len = 5;
 	ptr = *v_cmd();
 	while(ptr)
 	{
@@ -71,7 +71,7 @@ void	identify_file(void)
 		if(ptr->type & WORD)
 		{
 			if((ptr->prev->type & REDIR_IN) || (ptr->prev->type & REDIR_OUT)) // if the previous arg of a word is a redir in or out
-				ptr->type = ptr->type | FILE;											// 	then its a file
+				ptr->type = ptr->type | _FILE;											// 	then its a file
 		}	
 		ptr = ptr->next;
 	}
