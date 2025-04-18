@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:54:45 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/17 19:41:01 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:54:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	is_double_quote(char *str, int *i)
 
 int	is_var(char *str, int *i)
 { 
-	if ( str[*i] == '$' && ft_strchr(" |<>$", str[*i + 1]))
+	if ( str[*i] == '$' && ft_strchr(" |<>", str[*i + 1]))
 	{
         add_to_list(str[*i],1);
 		(*i)++;
@@ -105,11 +105,11 @@ int	is_var(char *str, int *i)
 		add_to_list(0,0);
         return 1;
 	}
-	else if(str[*i] == '$' && !ft_strchr(" |<>$", str[*i + 1]))
+	else if(str[*i] == '$' && !ft_strchr(" |<>", str[*i + 1]))
 	{
 		add_to_list(str[*i],1);
 		(*i)++;
-		while(str[*i] && ft_strchr(" |<>$",str[*i]))
+		while(str[*i] && ft_strchr(" |<>",str[*i]))
 		{
 			add_to_list(str[*i],1);
 			(*i)++;

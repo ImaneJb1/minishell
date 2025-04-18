@@ -5,13 +5,13 @@
 int main(int argc, char const *argv[])
 {
     char *str;
-    int i = 0;
+    int i = 1;
     if(i == 1)
     {
         i = tester();
         return i;
     }
-    str = "echo gg\'hello| cat \'|te world rr  \"dd\" |rl";
+    str = "echo $USER$PATH";
 	creat_the_list(str);
 	t_cmd *ptr = (*v_cmd());
 	while(ptr)
