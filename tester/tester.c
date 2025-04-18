@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:13:45 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/18 20:12:20 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:23:59 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,11 +220,11 @@ void test_quote_7(void) {
     assert_tokens(input, exp, exp_len(exp));
 }
 
-// void test_quote_8(void) {
-//     char *input = "echo \"unclosed";
-//     char *exp[] = {"echo", "\"unclosed", NULL};
-//     assert_tokens(input, exp, exp_len(exp));
-// }
+void test_quote_8(void) {
+    char *input = "echo \"unclosed";
+    char *exp[] = {"echo", "\"unclosed", NULL};
+    assert_tokens(input, exp, exp_len(exp));
+}
 
 void test_quote_9(void) {
     char *input = "echo $USER $'\"'\"PATH\"'\"'";

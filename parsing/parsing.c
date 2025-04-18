@@ -6,14 +6,14 @@ int main(int argc, char const *argv[])
 {
     char *str;
     int i;
-    // i = 0;
+    i = 0;
     i = 1;
     if(i == 1)
     {
         i = tester();
         return i;
     }
-    str = "echo$USER$$PATH";
+    str = "echo \"unclosed";
 	creat_the_list(str);
 	t_cmd *ptr = (*v_cmd());
 	while(ptr)
