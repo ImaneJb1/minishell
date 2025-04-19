@@ -37,7 +37,7 @@ typedef enum s_type
 	APPEND_REDIRECTION  = 1 << 6,  // 64
 	WORD                = 1 << 7,  // 128
 	DOUBLE_Q            = 1 << 8,  // 256
-	SINGLE_A            = 1 << 9   // 512
+	SINGLE_Q            = 1 << 9   // 512
 	CMD_ARG				= 1 << 10 // 1024
 } t_type;
 
