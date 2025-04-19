@@ -20,23 +20,32 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "../globale_functions/global.h"
-// typedef enum s_type
-// {
-// 	PIPE = 1,
-// 	FILE = 2,
-// 	CMD = 4,
-// 	HERE_DOC = 8,
-// 	REDIRECTION_IN = 16,
-// 	REDIRECTION_OUT = 32,
-// 	APPEND_REDIRECTION = 64,
-// 	WORD = 128
-// }					t_type;
-// tokens struct
-// typedef struct s_tokens
-// {
-// 	char			*input;
-// 	t_type			type;
-// }					t_tokens;
+# ifndef TRUE
+#  define TRUE 1
+# endif
+# ifndef FALSE
+#  define FALSE 0
+# endif
+typedef enum s_type
+{
+	PIPE                = 1 << 0,  // 1
+	FILE                = 1 << 1,  // 2
+	CMD                 = 1 << 2,  // 4
+	HERE_DOC            = 1 << 3,  // 8
+	REDIR_IN      = 1 << 4,  // 16
+	REDIR_OUT     = 1 << 5,  // 32
+	APPEND_REDIRECTION  = 1 << 6,  // 64
+	WORD                = 1 << 7,  // 128
+	DOUBLE_Q            = 1 << 8,  // 256
+	SINGLE_A            = 1 << 9   // 512
+	CMD_ARG				= 1 << 10 // 1024
+} t_type;
+
+typedef struct s_tokens
+{
+	char			*input;
+	t_type			type;
+}					t_tokens;
 
 // enum struct
 
@@ -53,7 +62,7 @@ typedef struct s_cmd
 	char			*content;
 	char			*abs_path;
 	char			**full_arg;
-	// t_type			type;
+	t_type			type;
 	t_pipe			*pipe;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
@@ -84,5 +93,11 @@ void				add_to_list(char ch, int flag);
 
 int					is_double_quoat(char *str, int *i);
 int					is_singl_quoat(char *str, int *i);
+
+// helpers
+bool    is_path(char *str);
+bool    is_double_q(char *str);
+bool    is_single_q(char *str);
+bool    is_cmd_arg(char *str);
 
 #endif

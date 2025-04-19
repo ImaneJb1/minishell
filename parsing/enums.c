@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./parsing.h"
+#include "parsing.h"
 
 t_tokens *init_token_array(void)
 {
@@ -30,22 +30,52 @@ void	identify_symbols(void)
 	token = init_token_array();
 	token_len = sizeof(token) / sizeof(token[0]);
 	ptr = v_cmd();
-	ptr->type = CMD;
 	while(ptr)
 	{
 		i = 0;
 		while(i < token_len)
 		{
+			ptr->type = WORD;
 			if(ft_strcmp(ptr->content, token[i].input))
 				ptr->type = token[i].type;
 			i++;
 		}
 		ptr = ptr->next;
-		if(ptr)
-			ptr->type = WORD;
 	}
 }
 
+void	identify_cmd(void)
+{
+	t_cmd *ptr;
+
+	ptr = v_cmd();
+	if(ptr.type & WORD)
+		ptr.type = ptr.type | CMD; // if the first arg is a word then it's CMD
+	ptr = ptr->next
+	while(ptr)
+	{
+		if((ptr.type & WORD) && (ptr->prev.type & PIPE)) // if the previous arg of a word is a PIPE 
+			ptr.type = ptr.type | CMD;               // then the word is a CMD
+		ptr = ptr->next;
+	}
+}
+
+void	identify_file(void)
+{
+	t_cmd *ptr;
+
+	ptr = v_cmd();
+	ptr = ptr->next;
+	while(ptr)
+	{
+		if(ptr.type & word)
+		{
+			if((ptr->previous.type & REDIR_IN) || (ptr->previous.type & REDIR_OUT)) // if the previous arg of a word is a redir in or out
+				ptr.type = ptr.type | FILE;											// 	then its a file
+		}	
+		ptr = ptr->next;
+	}
+}
 // e_cmd
 // e_word
 // e_here_doc
@@ -55,24 +85,3 @@ void	identify_symbols(void)
 // e_pip
 // e_double_quote
 // 
-
-void	identify_cmd_file(void)
-{
-	t_cmd *ptr;
-
-	ptr = v_cmd();
-	while(ptr)
-	{
-		if(ptr->type == REDIRECTION_IN || ptr->type == REDIRECTION_OUT)
-		{
-			if(ptr->next)
-				ptr->next->type = FILE;
-		}
-		if(ptr->type == PIPE)
-		{
-			if(ptr->next)
-				ptr->next->type = CMD;
-		}
-		ptr = ptr->next;
-	}
-}
