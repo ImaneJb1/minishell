@@ -4,5 +4,6 @@
         "tester.h": "c",
         "unity.h": "c",
         "garbage_collector.h": "c"
-    }
+    },
+    "cmake.sourceDirectory": "/home/imeslaki/Desktop/minishell/tester/Unity-master"
 }

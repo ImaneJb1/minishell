@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:55:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/18 22:01:01 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:22:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,50 +30,24 @@ void    add_to_list(char ch, int flag)
 
 void creat_the_list(char *line)
 {
-    int i = 0;
+    int i;
 	char	*str;
 
+	i = 0;
+	str = NULL;
 	str = separat_with_one_space(line);
     while(str[i])
     {
-		if(str[i] == ' ')
-		{
-			i++;
+		if(str[i] == ' ' && i++)
 			add_to_list(0,0);
-		}
-		if(is_arg(str, &i))
-            ;
-		else if(is_double_quote(str, &i))
-            ;
-        else if(is_singl_quote(str, &i))
-            ;
-		else if(is_pipe(str, &i))
-			;
-		else if(is_reder_out_append(str, &i))
-			;
-		else if(is_heredoc(str, &i))
-			;
-		else if(is_reder_in(str, &i))
-			;
-		else if(is_reder_out(str, &i))
-			;
-		else if(is_var(str, &i))
-			;
+		is_arg(str, &i);
+		is_double_quote(str, &i);
+        is_singl_quote(str, &i);
+		is_pipe(str, &i);
+		is_redir_out_append(str, &i);
+		is_heredoc(str, &i);
+		is_redir_in(str, &i);
+		is_redir_out(str, &i);
+		is_var(str, &i);
 	}
 }
-
-
-
-int	is_pipe(char *str, int *i)
-{
-	if (str[*i] == '|')
-	{
-        add_to_list(str[*i],1);
-		add_to_list(0,2);
-		add_to_list(0,0);
-		(*i)++;
-		return 1;
-	}
-	return 0;
-}
-

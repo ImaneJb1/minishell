@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/17 16:36:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:18:46 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_pipe
 	struct s_pipe	*next;
 }					t_pipe;
 
+
 typedef struct s_cmd
 {
 	char			*content;
@@ -82,16 +83,16 @@ void				creat_the_list(char *str);
 
 //		operations
 
-int					is_pipe(char *str, int *i);
-int					is_double_quote(char *str, int *i);
-int					is_singl_quote(char *str, int *i);
-void				protect_singl_quoat(char *str, int *i, int flag);
-void				protect_double_quoat(char *str, int *i, int flag);
-int					is_arg(char *str, int *i);
-int					is_reder_in(char *str, int *i);
-int					is_reder_out(char *str, int *i);
-int					is_reder_out_append(char *str, int *i);
-int					is_heredoc(char *str, int *i);
-int					is_var(char *str, int *i);
+void					is_pipe(char *str, int *i);
+void					is_double_quote(char *str, int *i);
+void					is_singl_quote(char *str, int *i);
+void					protect_singl_quoat(char *str, int *i, int flag);
+void					protect_double_quoat(char *str, int *i, int flag);
+void					is_arg(char *str, int *i);
+void					is_redir_in(char *str, int *i);
+void					is_redir_out(char *str, int *i);
+void					is_redir_out_append(char *str, int *i);
+void					is_heredoc(char *str, int *i);
+void					is_var(char *str, int *i);
 
 #endif
