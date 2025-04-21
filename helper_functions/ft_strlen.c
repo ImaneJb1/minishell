@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 18:26:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/14 00:35:31 by imeslaki         ###   ########.fr       */
+/*   Created: 2024/10/22 20:49:01 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/21 01:45:26 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "helper.h"
 
-char	*ft_strchr(const char *str, int c)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
-	{
-		if (str[i] == (char)c)
-		{
-			return ((char *)&str[i]);
-		}
 		i++;
-	}
-	if (str[i] == (char)c)
-	{
-		return ((char *)&str[i]);
-	}
-	return (NULL);
+	return (i);
 }

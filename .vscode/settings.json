@@ -3,7 +3,11 @@
         "parsing.h": "c",
         "tester.h": "c",
         "unity.h": "c",
-        "garbage_collector.h": "c"
+        "garbage_collector.h": "c",
+        "helper.h": "c",
+        "readline.h": "c",
+        "stdbool.h": "c",
+        "unistd.h": "c"
     },
     "cmake.sourceDirectory": "/home/imeslaki/Desktop/minishell/tester/Unity-master"
 }

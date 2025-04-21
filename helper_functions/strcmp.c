@@ -6,11 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:45:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/17 17:12:11 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/21 01:46:00 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing/parsing.h"
+#include "helper.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
