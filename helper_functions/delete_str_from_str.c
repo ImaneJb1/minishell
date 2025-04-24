@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   delete_str_from_str.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:49:01 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 15:55:50 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/22 12:36:44 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/22 15:18:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-size_t	ft_strlen(const char *str)
+char	*del_str_str(char *str, char *del)
 {
-	size_t	i;
+	int		i;
+	int		j;
+	int		v;
+	char	*string;
 
 	i = 0;
-	if(!str)
-		return 0;
+	string = NULL;
+	if (!str)
+		return ((char *)NULL);
+	if (!del)
+		return (ft_strdup(str));
+	j = ft_strlen(str);
+	string = ft_malloc(j);
+	j = 0;
+	v = ft_strnstr(str, del);
+	if (v < 0)
+		return (ft_strdup(str));
+	while (i < v)
+		string[j++] = str[i++];
+	if (str[i])
+		i += (ft_strlen(del));
 	while (str[i])
-		i++;
-	return (i);
+		string[j++] = str[i++];
+	return (string);
 }

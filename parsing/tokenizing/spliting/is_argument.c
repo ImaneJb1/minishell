@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 22:35:16 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/21 02:10:47 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:13:42 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@ void	is_arg(char *str, int *i)
 		while (str[*i] && !ft_strchr(" |<>", str[*i]))
 		{
 			if (str[*i] == '\"')
-			{
-				add_to_list(str[(*i)++], 1);
-				protect_double_quoat(str, i, 0);
-			}
+				protect_double_quoat(str, i);
 			else if (str[*i] == '\'')
-			{
-				add_to_list(str[(*i)++], 1);
-				protect_singl_quoat(str, i, 0);
-			}
+				protect_singl_quoat(str, i);
 			else
 				add_to_list(str[(*i)++], 1);
 		}

@@ -2,7 +2,7 @@
 
 void	skip_space(char *str, int *i)
 {
-	if (!str[*i])
+	if (!str || !str[*i])
 		return ;
 	while (str[*i] && ft_strchr(" \t", str[*i]))
 		(*i)++;
@@ -35,7 +35,7 @@ char	*separat_with_one_space(char *str)
 	i = 0;
 	string = ft_malloc(ft_strlen(str) + 1);
 	skip_space(str, (&i));
-	while (str[i])
+	while (str && str[i])
 	{
 		if(ft_strchr("\"\'", str[i]))
 		{

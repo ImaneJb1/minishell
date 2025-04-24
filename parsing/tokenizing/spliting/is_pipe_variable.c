@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:53:42 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/21 02:10:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:13:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,14 @@ void	is_var(char *str, int *i)
 	{
 		add_to_list(str[(*i)++], 1);
 		while (str[*i] && !ft_strchr(" |<>", str[*i]))
-			add_to_list(str[(*i)++], 1);
+		{
+			if(str[*i] == '\"' && str[(*i) + 1] != '\"')
+				protect_double_quoat(str, i);
+			else if(str[*i] == '\''&& str[(*i) + 1] != '\'')
+				protect_singl_quoat(str, i);
+			else
+				add_to_list(str[(*i)++], 1);
+		}
 		add_to_list(0, 2);
 		add_to_list(0, 0);
 	}

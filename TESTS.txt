@@ -1,0 +1,10 @@
+$USER"""'$USER'$ $$"$HOME'"$USER"'
+$$$"USER" '$HOME '$USER
+$$"$HOME'"$USER"'
+$USER"""'$USER'
+$USER"""'$USER'$
+'"'"'"
+"'"'"
+'"'"
+echo $USER"""'$USER'$ $$"$HOME'"$USER"'
+$'USER'$"USER" $$'USER'$$"USER" '$"USER"''"$USER"' "$'USER'$"USER""

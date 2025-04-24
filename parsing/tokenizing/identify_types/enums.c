@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:03:08 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/21 02:11:19 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:12:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	identify_cmd(void)
 	while(ptr)
 	{
 		if((ptr->type & WORD) && (ptr->prev->type & PIPE)) // if the previous arg of a word is a PIPE 
-			ptr->type = ptr->type | CMD;               // then the word is a CMD
+			ptr->type = ptr->type | CMD;     	          // then the word is a CMD
 		ptr = ptr->next;
 	}
 }
@@ -70,7 +70,7 @@ void	identify_file(void)
 	{
 		if(ptr->type & WORD)
 		{
-			if((ptr->prev->type & REDIR_IN) || (ptr->prev->type & REDIR_OUT)) // if the previous arg of a word is a redir in or out
+			if((ptr->prev->type & REDIR_IN) || (ptr->prev->type & REDIR_OUT) || (ptr->prev->type & APPEND_REDIRECTION)) // if the previous arg of a word is a redir in or out
 				ptr->type = ptr->type | FILE_NAME;											// 	then its a file
 		}	
 		ptr = ptr->next;

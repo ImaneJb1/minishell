@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:55:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/21 02:10:51 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:10:15 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	add_to_list(char ch, int flag)
 		str = join_str_char(str, ch);
 	else if (flag == 2)
 	{
-		node = new_node(str);
-		lstadd_back(v_cmd(), node);
+		node = lst_new_cmd_node(str);
+		lstadd_cmd_back(v_cmd(), node);
 	}
 }
 
@@ -35,6 +35,8 @@ void	creat_the_list(char *line)
 
 	i = 0;
 	str = NULL;
+	if(!line)
+		return;
 	str = separat_with_one_space(line);
 	while (str[i])
 	{
@@ -50,4 +52,5 @@ void	creat_the_list(char *line)
 		is_redir_out(str, &i);
 		is_var(str, &i);
 	}
+	index_the_cmd_list();
 }

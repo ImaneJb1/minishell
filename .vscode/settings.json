@@ -7,7 +7,8 @@
         "helper.h": "c",
         "readline.h": "c",
         "stdbool.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "TESTS.C": "cpp"
     },
     "cmake.sourceDirectory": "/home/imeslaki/Desktop/minishell/tester/Unity-master"
 }

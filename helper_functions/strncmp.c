@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   strncmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:49:01 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 15:55:50 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/22 12:46:48 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/22 12:59:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
 	i = 0;
-	if(!str)
-		return 0;
-	while (str[i])
+    if(!s1 || !s2)
+        return 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (i < n && (str1[i] || str2[i]))
+	{
+		if (str1[i] != str2[i])
+		{
+			if (str1[i] < str2[i])
+				return (-1);
+			else
+				return (1);
+		}
 		i++;
-	return (i);
+	}
+	return (0);
 }

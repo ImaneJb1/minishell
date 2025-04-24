@@ -1,7 +1,9 @@
 #include "../../parsing.h"
 
 void	identify_all_types(void)
-{	
+{
+	if(!v_cmd() ||!(*v_cmd()))
+		return;
 	identify_symbols();
 	identify_cmd();
 	identify_file();
