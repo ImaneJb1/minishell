@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/24 18:58:02 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:44:29 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef enum s_type
 	SINGLE_Q = 1 << 9,           // 512
 	CMD_ARG = 1 << 10,           // 1024
 	PATH = 1 << 11,
-	VARIABLE = 1 << 12
+	VARIABLE = 1 << 12,
+	DELIMITER = 1 << 13
 }					t_type;
-
 // 		tokens struct
 typedef struct s_tokens
 {
@@ -83,6 +83,19 @@ typedef struct s_env
 	char			*value;
 	struct s_env	*next;
 }					t_env;
+
+// r
+
+// execute struct
+typedef struct s_exec
+{
+	char			*abs_path;
+	char			**cmd;
+	int				fd_in;
+	int				fd_out;
+	struct s_exec	*next;
+	struct s_exec	*prev;
+}					t_exec;
 
 //		globale
 t_cmd				**v_cmd(void);
@@ -140,27 +153,28 @@ void				identify_single_q(void);
 void				identify_cmd_arg(void);
 void				hanlde_case(void);
 void				identify_var(void);
+void				identify_delimiter(void);
 t_tokens			*init_token_array(void);
 
 //		environment functions
 void				creat_environment(char **env);
 void				change_var_value(t_cmd *cur);
-void				environment_variable_value(char **env);
+void				environment_variable_value(void);
 char				*inside_singl_quote(char *command, char *content, int *i);
-int 				is_$_inside_quote(char *c, int i, int j);
+int					is_var_inside_quote(char *c, int i, int j);
 int					check_double_quote(char c, int j);
 char				*get_value_from_env(char *key);
 
-//		syntax error
-int					check_unclosed_quotes(void);
-int					check_pipe_syntax(void);
+// 		syntax error
+int					check_unclosed_quotes(t_cmd *ptr);
+int					check_pipe_syntax(t_cmd *ptr);
 void				print_error(char *s);
-bool				is_valid_syntax(void);
-int					if_special_at_end(void);
-int					redir_errors(void);
+int					if_special_at_end(t_cmd *ptr);
+int					redir_errors(t_cmd *ptr);
 bool				is_special_token(int type);
 void				print_error_with_token(char *message, char *token);
-int					unexpected_token(void);
+int					unexpected_token(t_cmd *ptr);
 void				print_error_with_token(char *message, char *token);
+bool				is_valid_syntax(void);
 
 #endif

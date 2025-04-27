@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 18:46:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:31:37 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ t_cmd	*find_cmd_by_index(int index)
 void	lst_add_one_cmd(t_cmd	*new, int index)
 {
 	t_cmd	*cur;
-	t_cmd	*next;
-	t_cmd	*prev;
 
 	cur = find_cmd_by_index(index);
 	if(!cur && cur->prev)
@@ -74,8 +72,6 @@ void	lst_add_one_cmd(t_cmd	*new, int index)
 void	lst_del_one_cmd(int index)
 {
 	t_cmd	*cur;
-	t_cmd	*next;
-	t_cmd	*prev;
 	t_cmd	*tmp;
 
 	if(!*v_cmd() || !(*v_cmd())->next)

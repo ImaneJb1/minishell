@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:23:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 14:33:58 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:08:46 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-int	ft_strnstr(const char *haystack, const char *needle)
+int	ft_strnstr(char *haystack, char *needle)
 {
 	size_t	i;
 	size_t	j;

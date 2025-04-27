@@ -1,11 +1,8 @@
 #include "../parsing.h"
 
-int	check_pipe_syntax(void)
+int	check_pipe_syntax(t_cmd *ptr)
 {
-	t_cmd *ptr;
-
-	ptr = *v_cmd();
-	while(ptr)
+	if(ptr)
 	{
 		if((ptr->type & PIPE) && (!ptr->next || !ptr->prev) )
 		{
@@ -14,10 +11,9 @@ int	check_pipe_syntax(void)
 		}
 		else if((ptr->type & PIPE) && (ptr->next->type & PIPE))
 		{
-			print_error("syntax error near unexpected token `|'\n");
+			print_error("pipe near pipe  ");
 			return(-1);
 		}
-		ptr = ptr->next;
 	}
 	return(0);
 }

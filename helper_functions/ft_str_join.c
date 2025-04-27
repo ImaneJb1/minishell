@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:47:28 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/24 17:48:07 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:07:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-static char	*do_the_join(char const *s1, char const *s2)
+static char	*do_the_join(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -38,7 +38,7 @@ static char	*do_the_join(char const *s1, char const *s2)
 	return (join);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*join;
 

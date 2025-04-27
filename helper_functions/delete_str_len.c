@@ -6,17 +6,17 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:44:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 15:08:08 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:25:42 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-char    *del_str_len(char   *str, int start, size_t len)
+char	*del_str_len(char *str, size_t start, size_t len)
 {
-	int		i;
-	int		j;
-	int 	x;
+	size_t	i;
+	size_t	j;
+	size_t	x;
 	char	*string;
 
 	i = 0;

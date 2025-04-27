@@ -58,3 +58,19 @@ void    identify_cmd_arg(void)
         ptr = ptr->next;
     }
 }
+
+void    identify_delimiter(void)
+{
+    t_cmd   *ptr;
+
+    ptr = *v_cmd();
+    while(ptr)
+    {
+        if(ptr->prev && (ptr->prev->type & HERE_DOC))
+        {
+            if(ptr->type & WORD)
+                ptr->type |= DELIMITER;
+        }
+        ptr = ptr->next;
+    }
+}

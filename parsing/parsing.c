@@ -6,22 +6,22 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/24 13:56:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:43:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "../tester/tester.h"
 
-void    parsing(char *str, char **env)
+void    parsing(char *str)
 {
     t_cmd *ptr;
-    t_env *x;
+    // t_env *x;
     creat_the_list(str);
     identify_all_types();
     if(is_valid_syntax() == FALSE)
         return;
-    environment_variable_value(env);
+    environment_variable_value();
     ptr = *v_cmd();
     while(ptr)
 	{
@@ -52,6 +52,8 @@ void    parsing(char *str, char **env)
             printf("PATH ");
         if (ptr->type & VARIABLE)
             printf("VARIABLE");
+        if (ptr->type & DELIMITER)
+            printf("DELIMITER");
         printf("  (%d) ", ptr->index);
 		ptr = ptr->next;
         printf("\n");
@@ -63,12 +65,15 @@ int main(int argc, char const *argv[], char **env)
     char *str;
     int i;
     i = 0;
+    (void)argc;
+    (void)argv;
     // i = 1;
-    if(i == 1)
-    {
-        i = tester();
-        return i;
-    }
+    // if(i == 1)
+    // {
+    //     // i = tester();
+    //     return i;
+    // }
+    creat_environment(env);
     while(1)
     {
         lstclear_cmd();
@@ -76,6 +81,6 @@ int main(int argc, char const *argv[], char **env)
         if(!str)
             continue;
         add_history(str);
-        parsing(str, env);
+        parsing(str);
     }
 }

@@ -15,38 +15,34 @@ bool	is_special_token(int type)
 	}
 	return(FALSE);
 }
-
-int    if_special_at_end(void)
+int    if_special_at_end(t_cmd	*ptr)
 {
-    t_cmd   *ptr;
     t_tokens *arr;
     int i;
 
     i = 0; 
     arr = init_token_array();
-    ptr = *v_cmd();
-    while(ptr->next)
-        ptr = ptr->next;
-    while(i < 5)
+    if(ptr && ptr->next == NULL)
     {
-        if(arr[i].type & ptr->type)
+        while(i < 5)
         {
-            print_error("Syntax error near unexpected token \'newline\'\n");
-            return(-1);
+            if(arr[i].type & ptr->type)
+            {
+                print_error("Syntax error near unexpected token \'newline\'\n");
+                return(-1);
+            }
+            i++;
         }
-        i++;
-    }
+    }    
     return(0);
 }
 
-int redir_errors(void)
+int redir_errors(t_cmd	*ptr)
 {
-    t_cmd *ptr;
-    char *redir[] = {">", "<", "<<", ">>", NULL};
+    char *redir[] = {">", "<", ">>", NULL};
     int i;
     
-    ptr = *v_cmd();
-    while(ptr)
+    if(ptr)
     {
         i = 0;
         while(redir[i])
@@ -61,19 +57,14 @@ int redir_errors(void)
             }
             i++;
         }
-        ptr = ptr->next;
     }
     return(0);
 
 }
 
-int   unexpected_token(void)
+int   unexpected_token(t_cmd	*ptr)
 {
-    int i;
-    t_cmd *ptr;
-
-    ptr = *v_cmd();
-    while (ptr)
+    if (ptr)
     {
         if(is_special_token(ptr->type))
         {
@@ -83,7 +74,6 @@ int   unexpected_token(void)
                 return(-1);
             }
         }
-        ptr = ptr->next;
     }
     return(0);
 }

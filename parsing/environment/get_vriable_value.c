@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/24 18:58:22 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:42:08 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,27 @@ char	*add_var_string(char *command, char *content, int *i, int x)
 	}
 	else if (content[*i])
 		return (join_str_char(command, content[*i]));
+	return (join_str_char(command, '\0'));
 }
-
-
 
 void	change_var_value(t_cmd *cur)
 {
 	char *(command), *(key);
-	int	(i), (j) = 0;
+	int(i), (j) = 0;
 	i = 0;
 	key = NULL;
 	command = NULL;
 	while (cur->content[i])
 	{
-        j = check_double_quote(cur->content[i], j);
+		j = check_double_quote(cur->content[i], j);
 		if (j == 0 && cur->content[i] == '\'')
 			command = inside_singl_quote(command, cur->content, &i);
 		else if ((cur->content[i] == '$' && cur->content[i + 1] == '$'))
-        {
+		{
 			command = ft_strjoin(command, "$$");
-            i += 2;
-        }
-		else if (is_$_inside_quote(cur->content, i, j))
+			i += 2;
+		}
+		else if (is_var_inside_quote(cur->content, i, j))
 		{
 			if (!(command = add_var_string(command, cur->content, &i, j)))
 				command = ft_strdup("");
@@ -85,11 +84,10 @@ void	change_var_value(t_cmd *cur)
 	cur->content = ft_strdup(command);
 }
 
-void	environment_variable_value(char **env)
+void	environment_variable_value(void)
 {
 	t_cmd	*head;
 
-	creat_environment(env);
 	head = *v_cmd();
 	while (head)
 	{

@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:45:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/21 01:46:00 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:08:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	unsigned char	*tmp1;
 	unsigned char	*tmp2;

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   enums.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 15:03:08 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/23 14:12:49 by imeslaki         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../parsing.h"
 
 t_tokens *init_token_array(void)
@@ -49,13 +37,13 @@ void	identify_cmd(void)
 	t_cmd *ptr;
 
 	ptr = *v_cmd();
-	if(ptr->type & WORD)
+	if(ptr && ptr->type & WORD)
 		ptr->type = ptr->type | CMD; // if the first arg is a word then it's CMD
 	ptr = ptr->next;
 	while(ptr)
 	{
-		if((ptr->type & WORD) && (ptr->prev->type & PIPE)) // if the previous arg of a word is a PIPE 
-			ptr->type = ptr->type | CMD;     	          // then the word is a CMD
+		if((ptr->type & WORD) && ((ptr->prev->type & PIPE) || (ptr->prev->type & DELIMITER))) // if the previous arg of a word is a PIPE 
+			ptr->type = ptr->type | CMD;               // then the word is a CMD
 		ptr = ptr->next;
 	}
 }
@@ -96,3 +84,12 @@ void	hanlde_case(void)
 		ptr = ptr->next;
 	}	
 }
+// e_cmd
+// e_word
+// e_here_doc
+// e_red_in
+// e_red_out
+// e_red_in_app
+// e_pip
+// e_double_quote
+// 
