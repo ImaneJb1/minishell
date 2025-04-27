@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strcmp.c                                           :+:      :+:    :+:   */
+/*   strnstr_index.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 16:45:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/27 17:08:39 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/22 14:23:09 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/27 17:08:46 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strnstr(char *haystack, char *needle)
 {
-	unsigned char	*tmp1;
-	unsigned char	*tmp2;
+	size_t	i;
+	size_t	j;
 
-	tmp1 = (unsigned char *)s1;
-	tmp2 = (unsigned char *)s2;
-	while ((*tmp1 != '\0' || *tmp2 != '\0'))
+	i = 0;
+	if (*needle == '\0')
 	{
-		if (*tmp1 != *tmp2)
-			return (*tmp1 - *tmp2);
-		tmp1++;
-		tmp2++;
+		return (i);
 	}
-	return (0);
+	while (haystack[i])
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j] && haystack[i + j])
+		{
+			j++;
+		}
+		if (needle[j] == '\0')
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (-1);
 }

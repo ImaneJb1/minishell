@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strcmp.c                                           :+:      :+:    :+:   */
+/*   delete_char_from_str.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 16:45:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/04/17 17:12:11 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/22 12:20:44 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/22 15:18:29 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing/parsing.h"
+#include "helper.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+char	*del_char_str_index(char *str, int i)
 {
-	unsigned char	*tmp1;
-	unsigned char	*tmp2;
+	int		j;
+	int		v;
+	char	*string;
 
-	tmp1 = (unsigned char *)s1;
-	tmp2 = (unsigned char *)s2;
-	while ((*tmp1 != '\0' || *tmp2 != '\0'))
-	{
-		if (*tmp1 != *tmp2)
-			return (*tmp1 - *tmp2);
-		tmp1++;
-		tmp2++;
-	}
-	return (0);
+	v = 0;
+	string = NULL;
+	if (!str || i < 0)
+		return (NULL);
+	j = ft_strlen(str);
+	if (i > j - 1)
+		i = j - 1;
+	string = ft_malloc(j + 1);
+	j = 0;
+	while (str[v] && j < i)
+		string[j++] = str[v++];
+	if (str[v])
+		v++;
+	while (str[v])
+		string[j++] = str[v++];
+	return (string);
 }

@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   delete_str_len.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 18:26:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/14 00:35:31 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/22 14:44:27 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/27 17:25:42 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "helper.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*del_str_len(char *str, size_t start, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
+	size_t	x;
+	char	*string;
 
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] == (char)c)
-		{
-			return ((char *)&str[i]);
-		}
+	string = NULL;
+	if (!str || start < 0)
+		return (NULL);
+	j = ft_strlen(str);
+	string = ft_malloc(j + 1);
+	j = 0;
+	while (str[i] && j < start)
+		string[j++] = str[i++];
+	x = i;
+	while (str[i] && i < x + len)
 		i++;
-	}
-	if (str[i] == (char)c)
-	{
-		return ((char *)&str[i]);
-	}
-	return (NULL);
+	while (str[i])
+		string[j++] = str[i++];
+	return (string);
 }

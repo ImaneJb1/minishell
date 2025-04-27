@@ -6,25 +6,27 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:14:20 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/17 19:33:22 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:48:38 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef tester_H
-# define tester_H
+#ifndef TESTER_H
+# define TESTER_H
 
-# include "Unity-master/src/unity.h"
 # include "../parsing/parsing.h"
+# include "Unity-master/src/unity.h"
 
-// typedef struct testes {
-//     const char *name;
-//     const char *command;
-//     const char *expected_cmd;
-//     int expected_status;
-// } testcase;
+#define COUNT(a) (sizeof(a) / sizeof(a[0]))
 
-void	setUp(void);
-void	tearDown(void);
-int	    tester(void);
+typedef struct s_cases
+{
+	const char		*command;
+	t_type			type;
+	struct s_cases	*next;
+}					t_case;
+
+void				setUp(void);
+void				tearDown(void);
+int					tester(void);
 
 #endif

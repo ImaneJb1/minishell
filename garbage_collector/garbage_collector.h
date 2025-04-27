@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/03/25 01:47:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:23:44 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void					save_mem(void *mem);
 void					ft_bzero(void *mem, size_t size);
 void					*ft_malloc(size_t n);
 t_mem_list				**ft_img_list(void);
-void					save_img(void *mem);
 void					ft_destory_all(void);
 
 #endif

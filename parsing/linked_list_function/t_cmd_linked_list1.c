@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_list_function.c                             :+:      :+:    :+:   */
+/*   t_cmd_linked_list1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:06:29 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/16 17:43:35 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:10:15 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../parsing.h"
 
-t_cmd	*new_node(char *value)
+t_cmd	*lst_new_cmd_node(char *value)
 {
 	t_cmd	*elem;
 
@@ -25,13 +25,13 @@ t_cmd	*new_node(char *value)
 	return (elem);
 }
 
-void	lstadd_back(t_cmd **lst, t_cmd *new)
+void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
 {
 	t_cmd	*last;
 
 	if (!new || !lst)
 		return ;
-	last = lstlast(*lst);
+	last = lstlast_cmd(*lst);
 	if (!last)
 		*lst = new;
 	else
@@ -41,7 +41,7 @@ void	lstadd_back(t_cmd **lst, t_cmd *new)
 	}
 }
 
-void	lstadd_front(t_cmd **lst, t_cmd *new)
+void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
 {
 	if (!lst || !new)
 		return ;
@@ -49,7 +49,7 @@ void	lstadd_front(t_cmd **lst, t_cmd *new)
 	*lst = new;
 }
 
-t_cmd	*lstlast(t_cmd *lst)
+t_cmd	*lstlast_cmd(t_cmd *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -60,7 +60,7 @@ t_cmd	*lstlast(t_cmd *lst)
 	return (lst);
 }
 
-int	lstsize(t_cmd *lst)
+int	lstsize_cmd(t_cmd *lst)
 {
 	int		i;
 	t_cmd	*tmp;
