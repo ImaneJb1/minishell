@@ -6,11 +6,12 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 17:31:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 21:33:30 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "linked_list.h"
+
 
 void	lstclear_cmd(void)
 {

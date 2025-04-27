@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:53:48 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/26 15:43:33 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 22:05:33 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,18 @@ int	check_double_quote(char c, int j)
 		return (0);
 }
 
+int is_valid(char c)
+{
+	if(is_digit(c) || is_alpha(c) || c == '_')
+		return 1;
+	return 0;
+}
+
 int is_var_inside_quote(char *c, int i, int j)
 {
-	if (c[i] == '$' && !ft_strchr(" \'\"$><|", c[i + 1]) && j == 1)
+	if (c[i] == '$' && !is_valid(c[i + 1]) && j == 1)
 		return (1);
-	else if (c[i] == '$' && !ft_strchr(" $><|", c[i + 1]) && j == 0)
+	else if (c[i] == '$' && is_valid(c[i + 1]) && j == 0)
 		return (1);
 	return (0);
 }

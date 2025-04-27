@@ -3,6 +3,14 @@
         "parsing.h": "c",
         "tester.h": "c",
         "unity.h": "c",
-        "garbage_collector.h": "c"
+        "garbage_collector.h": "c",
+        "minishell.h": "c",
+        "helper.h": "c",
+        "built_in.h": "c",
+        "history.h": "c",
+        "readline.h": "c",
+        "stdbool.h": "c",
+        "stdlib.h": "c",
+        "linked_list.h": "c"
     }
 }

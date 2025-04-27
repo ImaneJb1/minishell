@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globale.c                                          :+:      :+:    :+:   */
+/*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 21:27:06 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/27 22:39:02 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#ifndef BUILT_IN_H
+# define BUILT_IN_H
 
-t_cmd   **v_cmd(void)
-{
-    static t_cmd *cmd;
+#include "../linked_list_function/linked_list.h"
+#include "../minishell.h"
 
-    return &cmd;
-}
 
-t_env   **v_env(void)
-{
-    static t_env *env;
+//      env
+void	env_built_in(void);
 
-    return &env;
-}
 
-// t_pipe  *v_pipe(void)
-// {
-//     static  t_pipe pipe;
-
-//     return &pipe;
-// }
+#endif

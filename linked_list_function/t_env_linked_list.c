@@ -1,47 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd_linked_list1.c                               :+:      :+:    :+:   */
+/*   t_env_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 19:06:29 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 18:10:15 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/27 21:19:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "linked_list.h"
 
-t_cmd	*lst_new_cmd_node(char *value)
+t_env	*new_env_node(char *key, char *value)
 {
-	t_cmd	*elem;
+	t_env	*elem;
 
-	elem = ft_malloc(sizeof(t_cmd));
+	elem = ft_malloc(sizeof(t_env));
 	if (!elem)
 		return (NULL);
-	elem->content = value;
-	elem->prev = NULL;
+	elem->key = key;
+    elem->value = value;
 	elem->next = NULL;
 	return (elem);
 }
 
-void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
+void	lstadd_env_back(t_env **lst, t_env *new)
 {
-	t_cmd	*last;
+	t_env	*last;
 
 	if (!new || !lst)
 		return ;
-	last = lstlast_cmd(*lst);
+	last = lstlast_env(*lst);
 	if (!last)
 		*lst = new;
 	else
-	{
 		last->next = new;
-		new->prev = last;
-	}
 }
 
-void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
+void	lstadd_env_front(t_env **lst, t_env *new)
 {
 	if (!lst || !new)
 		return ;
@@ -49,7 +46,7 @@ void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
 	*lst = new;
 }
 
-t_cmd	*lstlast_cmd(t_cmd *lst)
+t_env	*lstlast_env(t_env *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -60,10 +57,10 @@ t_cmd	*lstlast_cmd(t_cmd *lst)
 	return (lst);
 }
 
-int	lstsize_cmd(t_cmd *lst)
+int	lstsize_env(t_env *lst)
 {
 	int		i;
-	t_cmd	*tmp;
+	t_env	*tmp;
 
 	tmp = lst;
 	i = 0;

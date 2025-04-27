@@ -6,11 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:23:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/26 15:15:19 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 22:39:02 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "../built_in.h"
 
 void	add_to_env(char *key, char *value)
 {
@@ -56,6 +56,7 @@ void	creat_environment(char **env)
 	i = 0;
 	key = NULL;
 	value = NULL;
+
 	if (!env || !(*env))
 		return ;
 	while (env[i])
@@ -65,5 +66,17 @@ void	creat_environment(char **env)
 		value = split_env_value(env[i], &j);
 		add_to_env(key, value);
 		i++;
+	}
+}
+
+void	env_built_in(void)
+{
+	t_env	*env;
+
+	env = *v_env();
+	while(env)
+	{
+		printf("%s%s\n",env->key, env->value);
+		env = env->next;
 	}
 }

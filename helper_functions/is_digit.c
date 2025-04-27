@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globale.c                                          :+:      :+:    :+:   */
+/*   is_digit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 21:27:06 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/27 21:56:29 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/27 22:07:07 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "helper.h"
 
-t_cmd   **v_cmd(void)
+int	is_digit(int n)
 {
-    static t_cmd *cmd;
-
-    return &cmd;
+	if (n >= '0' && n <= '9')
+		return (1);
+	return (0);
 }
-
-t_env   **v_env(void)
-{
-    static t_env *env;
-
-    return &env;
-}
-
-// t_pipe  *v_pipe(void)
-// {
-//     static  t_pipe pipe;
-
-//     return &pipe;
-// }

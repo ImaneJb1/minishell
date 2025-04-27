@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 18:13:49 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 22:18:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,17 @@ char	*get_value_from_env(char *key)
 	}
 	return (NULL);
 }
-// key = userilyas value = ilyas
+
+char	*expand_the_value(char *command, char *key, int j)
+{
+	key = get_value_from_env(key);
+	if (!key)
+		return (command);
+	while (key[j])
+		command = join_str_char(command, key[++j]);
+	return (command);
+}
+
 char	*add_var_string(char *command, char *content, int *i, int x)
 {
 	int(j), (flag);
@@ -35,22 +45,20 @@ char	*add_var_string(char *command, char *content, int *i, int x)
 	j = 0;
 	flag = 0;
 	(*i)++;
-	while (content[*i] && !ft_strchr(" \'\"$><|", content[*i]))
+	while (content[*i] && (is_valid(content[*i])))
 	{
 		flag = 1;
+		if (content[*i - 1] == '$' && is_digit(content[*i]))
+		{
+			key = join_str_char(key, content[(*i)++]);
+			break;
+		}
 		key = join_str_char(key, content[(*i)++]);
 		if (!key)
 			return (ft_strdup(""));
 	}
 	if ((x == 0 || flag == 1))
-	{
-		key = get_value_from_env(key);
-		if (!key)
-			return (command);
-		while (key[j])
-			command = join_str_char(command, key[++j]);
-		return (command);
-	}
+		command = expand_the_value(command, key, j);
 	else if (content[*i])
 		return (join_str_char(command, content[*i]));
 	return (join_str_char(command, '\0'));
