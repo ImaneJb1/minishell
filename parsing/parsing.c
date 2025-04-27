@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 17:43:20 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:12:33 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void    parsing(char *str)
 int main(int argc, char const *argv[], char **env)
 {
     char *str;
-    int i;
-    i = 0;
+    // int i;
+    // i = 0;
     (void)argc;
     (void)argv;
     // i = 1;

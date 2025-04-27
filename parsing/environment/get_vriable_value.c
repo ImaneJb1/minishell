@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 17:42:08 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:13:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ char	*add_var_string(char *command, char *content, int *i, int x)
 
 void	change_var_value(t_cmd *cur)
 {
-	char *(command), *(key);
+	char *(command);
 	int(i), (j) = 0;
 	i = 0;
-	key = NULL;
 	command = NULL;
 	while (cur->content[i])
 	{
