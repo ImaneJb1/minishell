@@ -68,6 +68,7 @@ bool    if_its_pipe(int type)
         return(TRUE);
     return(FALSE);
 }
+
 int   unexpected_token(t_cmd	*ptr)
 {
     if (ptr)
