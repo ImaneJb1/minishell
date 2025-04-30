@@ -62,12 +62,21 @@ int redir_errors(t_cmd	*ptr)
 
 }
 
+bool    if_its_pipe(int type)
+{
+    if(type & PIPE)
+        return(TRUE);
+    return(FALSE);
+}
+
 int   unexpected_token(t_cmd	*ptr)
 {
     if (ptr)
     {
         if(is_special_token(ptr->type))
         {
+            if((ptr->type & PIPE) && (ptr->next && (is_special_token(ptr->next->type) && (!if_its_pipe(ptr->next->type)))))
+                return(0);
             if(ptr->next && is_special_token(ptr->next->type))
             {
                 print_error_with_token("Syntax error near unexpected token ", ptr->next->content);
