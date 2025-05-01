@@ -15,6 +15,7 @@ bool	is_special_token(int type)
 	}
 	return(FALSE);
 }
+
 int    if_special_at_end(t_cmd	*ptr)
 {
     t_tokens *arr;

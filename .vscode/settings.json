@@ -11,6 +11,7 @@
         "readline.h": "c",
         "stdbool.h": "c",
         "stdlib.h": "c",
-        "linked_list.h": "c"
+        "linked_list.h": "c",
+        "builtins.h": "c"
     }
 }

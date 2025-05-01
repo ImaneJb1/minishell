@@ -75,6 +75,6 @@ typedef struct s_env
 }					t_env;
 
 void				parsing(char *str);
-void				creat_environment(char **env);
+void				create_environment(char **env);
 
 #endif

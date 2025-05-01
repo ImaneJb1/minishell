@@ -73,7 +73,10 @@ int main(int argc, char const *argv[], char **env)
     //     // i = tester();
     //     return i;
     // }
-    creat_environment(env);
+    print_working_directory();
+    change_directory("..");
+    print_working_directory();
+    create_environment(env);
     while(1)
     {
         lstclear_cmd();

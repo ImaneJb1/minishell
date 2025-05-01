@@ -46,7 +46,7 @@ char	*split_env_value(char *line, int *i)
 	return (value);
 }
 
-void	creat_environment(char **env)
+void	create_environment(char **env)
 {
 	int		i;
 	int		j;
