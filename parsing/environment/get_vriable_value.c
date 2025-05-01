@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 22:18:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:03:02 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*add_var_string(char *command, char *content, int *i, int x)
 		command = expand_the_value(command, key, j);
 	else if (content[*i])
 		return (join_str_char(command, content[*i]));
-	return (join_str_char(command, '\0'));
+	return command;
 }
 
 void	change_var_value(t_cmd *cur)
@@ -70,6 +70,7 @@ void	change_var_value(t_cmd *cur)
 	int(i), (j) = 0;
 	i = 0;
 	command = NULL;
+
 	while (cur->content[i])
 	{
 		j = check_double_quote(cur->content[i], j);

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 22:42:15 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/29 21:21:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,16 @@
 void print_parsing(void)
 {
     t_cmd *ptr = *v_cmd();
+    printf("----------------------------------------------\n");
+    printf("                    PARSING                   \n");
+    printf("----------------------------------------------\n");
     while(ptr)
 	{
-        if(ft_strcmp(ptr->content, "env") == 0)
-        {
-            env_built_in();
-            break;
-        }
         printf("[%s] = ", ptr->content);
         if (ptr->type & WORD)
         printf("WORD ");
         if (ptr->type & FILE_NAME)
-            printf("FILE_NAME "); 
+            printf("FILE_NAME ");
         if (ptr->type & CMD)
             printf("CMD ");
         if (ptr->type & CMD_ARG)
@@ -58,6 +56,23 @@ void print_parsing(void)
 		ptr = ptr->next;
         printf("\n");
 	}
+    printf("----------------------------------------------\n");
+    printf("----------------------------------------------\n");
+}
+
+int is_built_in(void)
+{
+    t_cmd *cmd;
+    cmd = *v_cmd();
+    if(!v_cmd() || !(*v_cmd()))
+        return 0;
+    if((ft_strcmp("env", cmd->content) == 0 || ft_strcmp("export", cmd->content) == 0) &&  lstsize_cmd(cmd) == 1)
+        return (env_built_in());
+    else if(ft_strcmp("export", cmd->content) == 0 &&  lstsize_cmd(cmd) > 1)
+        return (export_built_in());
+    else if(ft_strcmp("unset", cmd->content) == 0)
+        return (unset());
+    return 0;
 }
 
 int main(int argc, char const *argv[], char **env)
@@ -81,7 +96,12 @@ int main(int argc, char const *argv[], char **env)
         if(!str)
             continue;
         add_history(str);
-        parsing(str);
+        if(!parsing(str))
+            continue;
         print_parsing();
+        if(!is_built_in())
+            continue;
+        
+        
     }
 }

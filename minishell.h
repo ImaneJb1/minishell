@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 22:34:31 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/29 18:46:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "./garbage_collector/garbage_collector.h"
 # include "./helper_functions/helper.h"
 
@@ -71,10 +72,12 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
+	int				index;
 	struct s_env	*next;
+	struct s_env	*prev;
 }					t_env;
 
-void				parsing(char *str);
+int				parsing(char *str);
 void				creat_environment(char **env);
 
 #endif

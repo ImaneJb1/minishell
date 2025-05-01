@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:55:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/22 18:10:15 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:12:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	creat_the_list(char *line)
 	if(!line)
 		return;
 	str = separat_with_one_space(line);
-	while (str[i])
+ 	while (str[i])
 	{
 		if (str[i] == ' ' && i++)
 			add_to_list(0, 0);

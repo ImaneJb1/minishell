@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_argument.c                                      :+:      :+:    :+:   */
+/*   export_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:35:16 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/30 18:41:11 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/04/29 18:06:13 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../parsing.h"
+#include "../built_in.h"
 
-void	is_arg(char *str, int *i)
+int    export_built_in(void)
 {
-	if (!ft_strchr(" \"\'|<>$", str[*i]))
-	{
-		while (str[*i] && !ft_strchr(" |<>", str[*i]))
-		{
-			if (str[*i] == '\"')
-				protect_double_quotes(str, i);
-			else if (str[*i] == '\'')
-				protect_singl_quotes(str, i);
-			else
-				add_to_list(str[(*i)++], 1);
-		}
-		add_to_list(0, 2);
-		add_to_list(0, 0);
-	}
+    // t_env *env;
+    // t_cmd *cmd;
+    return 1;
+
+    
+    
 }

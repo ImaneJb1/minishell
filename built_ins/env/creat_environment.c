@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:23:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 22:39:02 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/29 18:05:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	creat_environment(char **env)
 	}
 }
 
-void	env_built_in(void)
+int	env_built_in(void)
 {
 	t_env	*env;
 
@@ -79,4 +79,5 @@ void	env_built_in(void)
 		printf("%s%s\n",env->key, env->value);
 		env = env->next;
 	}
+	return 1;
 }

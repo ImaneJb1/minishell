@@ -29,22 +29,26 @@ PARSING_SYNTAX = parsing/syntax_error/check_valid_syntax.c parsing/syntax_error/
 PARSING_ENV =  parsing/environment/get_vriable_value.c parsing/environment/variable_checkers.c
 
 PARSING_LL = linked_list_function/t_cmd_linked_list1.c linked_list_function/t_cmd_linked_list_2.c \
-	linked_list_function/t_env_linked_list.c
+	linked_list_function/t_env_linked_list1.c linked_list_function/t_env_linked_list2.c
 
-PARSING = parsing/parsing.c parsing/globale.c $(PARSING_TOKEN_IDENTIFY) $(PARSING_TOKEN_SPLIT) $(PARSING_SYNTAX) \
-	$(PARSING_ENV) $(PARSING_LL)
+PARSING = parsing/parsing.c parsing/globale.c  parsing/remove_quotes.c $(PARSING_TOKEN_IDENTIFY) $(PARSING_TOKEN_SPLIT) \
+	$(PARSING_SYNTAX) $(PARSING_ENV) $(PARSING_LL)
 
 BUILT_IN_ENV = built_ins/env/creat_environment.c
 
-BUILT_IN = $(BUILT_IN_ENV)
+BUILT_IN_EXPORT = built_ins/export/export_function.c
+
+BUILT_IN_UNSET = built_ins/unset/unset_var_from_env.c 
+
+BUILT_IN = $(BUILT_IN_ENV) $(BUILT_IN_EXPORT) $(BUILT_IN_UNSET)
 
 SRC = minishell.c $(GARBAGE_COLLECTOR) $(HELPER_FUNCTIONS) $(PARSING) $(BUILT_IN)
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(NAME) clean
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) 
 	$(CC) $(CFLAGS) $(OBJ) -lreadline -o $(NAME)
 
 clean:

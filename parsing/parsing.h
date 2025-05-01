@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 22:27:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:41:11 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ t_cmd				**v_cmd(void);
 // t_pipe				*v_pipe(void);
 t_env				**v_env(void);
 
-void				parsing(char *str);
+int				parsing(char *str);
+void    		remove_quotes(void);
 
 // 		spliting functions
 void				add_to_list(char ch, int flag);
@@ -58,8 +59,8 @@ void				creat_the_list(char *str);
 void				is_pipe(char *str, int *i);
 void				is_double_quote(char *str, int *i);
 void				is_singl_quote(char *str, int *i);
-void				protect_singl_quoat(char *str, int *i);
-void				protect_double_quoat(char *str, int *i);
+void				protect_singl_quotes(char *str, int *i);
+void				protect_double_quotes(char *str, int *i);
 void				is_arg(char *str, int *i);
 void				is_redir_in(char *str, int *i);
 void				is_redir_out(char *str, int *i);

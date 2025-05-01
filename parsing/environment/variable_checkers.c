@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:53:48 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 22:05:33 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:06:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*inside_singl_quote(char *command, char *content, int *i)
 		if (content[*i] == '\'' && c == '\0')
 		{
 			command = join_str_char(command, content[*i]);
-			c = command[(*i)++];
+			c = content[(*i)++];
 		}
 		else if (content[*i] == '\'' && c != '\0')
 		{
@@ -56,9 +56,9 @@ int is_valid(char c)
 
 int is_var_inside_quote(char *c, int i, int j)
 {
-	if (c[i] == '$' && !is_valid(c[i + 1]) && j == 1)
+	if (c[i] == '$' && is_valid(c[i + 1]))
 		return (1);
-	else if (c[i] == '$' && is_valid(c[i + 1]) && j == 0)
+	if(j == 0 && c[i] == '$' && ft_strchr("\"\'", c[i + 1]))
 		return (1);
 	return (0);
 }

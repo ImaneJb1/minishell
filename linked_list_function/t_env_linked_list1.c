@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env_linked_list.c                                :+:      :+:    :+:   */
+/*   t_env_linked_list1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 21:19:16 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/29 17:24:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_env	*new_env_node(char *key, char *value)
 	elem->key = key;
     elem->value = value;
 	elem->next = NULL;
+	elem->prev = NULL;
 	return (elem);
 }
 
@@ -35,7 +36,10 @@ void	lstadd_env_back(t_env **lst, t_env *new)
 	if (!last)
 		*lst = new;
 	else
+	{
 		last->next = new;
+		new->prev = last;
+	}
 }
 
 void	lstadd_env_front(t_env **lst, t_env *new)
