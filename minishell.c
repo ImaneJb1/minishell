@@ -44,8 +44,8 @@ void print_parsing(void)
             printf("REDIR_IN ");
         if (ptr->type & REDIR_OUT)
             printf("REDIR_OUT ");
-        if (ptr->type & APPEND_REDIRECTION)
-            printf("APPEND_REDIRECTION ");
+        if (ptr->type & APPEND)
+            printf("APPEND ");
         if (ptr->type & PATH)
             printf("PATH ");
         if (ptr->type & VARIABLE)

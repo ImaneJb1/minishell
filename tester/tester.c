@@ -116,7 +116,7 @@ void simple_test5(void) {
     t_case exp[] = {
         {"echo", WORD | CMD},                 // command :contentReference[oaicite:8]{index=8}
         {"foo", WORD | CMD_ARG},              // argument :contentReference[oaicite:9]{index=9}
-        {">>", APPEND_REDIRECTION},            // append redirection 
+        {">>", APPEND},            // append redirection 
         {"outfile", WORD | FILE_NAME},        // filename 
     };
     assert_tokens(input, exp, COUNT(exp));
@@ -174,7 +174,7 @@ void simple_test11(void) {
     t_case exp[] = {
         {"echo", WORD | CMD},                      // command 
         {"this\"is 'a'\"test", WORD | CMD_ARG | DOUBLE_Q | SINGLE_Q}, // merged by quotes 
-        {">>", APPEND_REDIRECTION},                 // first >> 
+        {">>", APPEND},                 // first >> 
         {">", REDIR_OUT},                           // then > 
         {"cat", WORD | FILE_NAME},                        // new cmd :contentReference[oaicite:18]{index=18}
         {"|", PIPE},                                // first pipe :contentReference[oaicite:19]{index=19}
@@ -378,7 +378,7 @@ void test_redir_1(void) {
 void test_redir_2(void) {
     char *input = ">> appendfile";
     t_case exp[] = {
-        {">>", APPEND_REDIRECTION},
+        {">>", APPEND},
         {"appendfile", WORD | FILE_NAME},
     };
     assert_tokens(input, exp, COUNT(exp));
@@ -413,7 +413,7 @@ void test_redir_5(void) {
         {"<<", HERE_DOC},
         {"EOF", WORD},
         {"cat", WORD | CMD},
-        {">>", APPEND_REDIRECTION},
+        {">>", APPEND},
         {"log", WORD | FILE_NAME},
     };
     assert_tokens(input, exp, COUNT(exp));

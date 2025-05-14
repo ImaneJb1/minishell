@@ -3,7 +3,7 @@
 t_tokens *init_token_array(void)
 {
 	static t_tokens token[] = {{"|", PIPE}, {"<", REDIR_IN}, {"<<", HERE_DOC},
-						{">", REDIR_OUT}, {">>", APPEND_REDIRECTION}};
+						{">", REDIR_OUT}, {">>", APPEND}};
 	return(token);
 }
 
@@ -58,7 +58,7 @@ void	identify_file(void)
 	{
 		if(ptr->type & WORD)
 		{
-			if((ptr->prev->type & REDIR_IN) || (ptr->prev->type & REDIR_OUT) || (ptr->prev->type & APPEND_REDIRECTION)) // if the previous arg of a word is a redir in or out
+			if((ptr->prev->type & REDIR_IN) || (ptr->prev->type & REDIR_OUT) || (ptr->prev->type & APPEND)) // if the previous arg of a word is a redir in or out
 				ptr->type = ptr->type | FILE_NAME;											// 	then its a file
 		}	
 		ptr = ptr->next;
