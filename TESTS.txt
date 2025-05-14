@@ -14,8 +14,9 @@ $USER"$""$USER"'$'""$USER""$USER"$USER$"$
 "#$USER$$$"$'"$USER"'
 $@USER%
 ls | exit 1
-
-
+ls -la | cat > file | << del file >> ls | cat
+ls -la | cat > file | < del file >> ls | cat
+export v="ls "-ls""
 
 
 

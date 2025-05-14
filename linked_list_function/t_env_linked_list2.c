@@ -6,12 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 17:17:58 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 17:37:26 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:26:08 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
-
 
 void	lstclear_env(void)
 {
@@ -45,6 +44,29 @@ t_env	*find_env_by_index(int index)
 	return cur;
 }
 
+void	lstadd_one_env_by_node(t_env	*new, t_env	*cur)
+{
+	if(!cur && cur->prev)
+		return;
+	else if(!cur->next)
+	{
+		lstadd_env_back(v_env(), new);
+		cur->prev = new;
+		new->next = cur;
+	}
+	else
+	{
+		new->next = cur;
+		new->prev = cur->prev;
+		if(!cur->prev)
+			*v_env() = new;
+		else
+			(cur->prev)->next = new;
+		cur->prev = new;
+	}
+	index_the_env_list();
+}
+
 void	lst_add_one_env(t_env	*new, int index)
 {
 	t_env	*cur;
@@ -71,16 +93,18 @@ void	lst_add_one_env(t_env	*new, int index)
 	index_the_env_list();
 }
 
-void	lst_del_one_env(int index)
+void	lst_del_one_env_by_node(t_env	*cur)
 {
-	t_env	*cur;
+	
 	t_env	*tmp;
 
-	if(!*v_env() || !(*v_env())->next)
+	if(!*v_env())
 		return ;
-	cur = find_env_by_index(index);
-	if(!cur)
-		return;
+	if(!(*v_env())->next)
+	{
+		*v_env() = NULL;
+		return ;
+	}
 	tmp = cur;
 	if(cur->prev)
 	{

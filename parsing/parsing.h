@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/30 18:41:11 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:34:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,21 @@
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
 
-// 		tokens struct
+//      main parsing fuctions
+int				    parsing(char *str);
+void	            creat_the_cmd_list(char *line);
+bool				is_valid_syntax(void);
+void	            expand_variable_value(void);
+void    		    remove_quotes(void);
 
-// 		pipe struct
-// typedef struct s_pipe
-// {
-// 	int				fd_read;
-// 	int				fd_write;
-// 	struct s_pipe	*next;
-// }					t_pipe;
+//      fill exec list
+void                fill_the_exec_struct(void);
+t_exec	            *add_to_exec_list(char *str, t_exec *cur, int flag);
+t_exec	            *check_cmd(t_cmd **cmd, t_exec *list);
 
-//		arguments splited struct
-
-// 		environment struct
-
-// r
-
-// execute struct
-typedef struct s_exec
-{
-	char			*abs_path;
-	char			**cmd;
-	int				fd_in;
-	int				fd_out;
-	struct s_exec	*next;
-	struct s_exec	*prev;
-}					t_exec;
-
-//		globale
-t_cmd				**v_cmd(void);
-// t_pipe				*v_pipe(void);
-t_env				**v_env(void);
-
-int				parsing(char *str);
-void    		remove_quotes(void);
 
 // 		spliting functions
-void				add_to_list(char ch, int flag);
-void				creat_the_list(char *str);
+void				add_to_cmd_list(char ch, int flag);
 
 //		operations functions
 void				is_pipe(char *str, int *i);
@@ -91,7 +68,6 @@ t_tokens			*init_token_array(void);
 //		environment functions
 int					is_valid(char c);
 void				change_var_value(t_cmd *cur);
-void				environment_variable_value(void);
 char				*inside_singl_quote(char *command, char *content, int *i);
 int					is_var_inside_quote(char *c, int i, int j);
 int					check_double_quote(char c, int j);
@@ -107,6 +83,5 @@ bool				is_special_token(int type);
 void				print_error_with_token(char *message, char *token);
 int					unexpected_token(t_cmd *ptr);
 void				print_error_with_token(char *message, char *token);
-bool				is_valid_syntax(void);
 
 #endif

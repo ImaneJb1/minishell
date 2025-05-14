@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:23:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 18:05:16 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:28:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*split_env_key(char *line, int *i)
 	char	*key;
 
 	key = NULL;
-	while (line[*i] != '=')
+	while (line[*i] && line[*i] != '=')
 	{
 		key = join_str_char(key, line[*i]);
 		(*i)++;
@@ -38,6 +38,7 @@ char	*split_env_value(char *line, int *i)
 	char	*value;
 
 	value = NULL;
+	(*i)++;
 	while (line[*i])
 	{
 		value = join_str_char(value, line[*i]);
@@ -69,15 +70,19 @@ void	creat_environment(char **env)
 	}
 }
 
-int	env_built_in(void)
+void	env_built_in(char *cmd, char **args)
 {
 	t_env	*env;
 
-	env = *v_env();
-	while(env)
+	if(!cmd || !args || !(*args))
+		return ;
+	if(ft_strcmp(cmd, "env") == 0)
 	{
-		printf("%s%s\n",env->key, env->value);
-		env = env->next;
+		env = *v_env();
+		while(env)
+		{
+			printf("%s=\"%s\"\n",env->key, env->value);
+			env = env->next;
+		}
 	}
-	return 1;
 }

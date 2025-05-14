@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd_linked_list_2.c                              :+:      :+:    :+:   */
+/*   t_exec_linked_list2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/12 16:36:12 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:54:10 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
 
-
-void	lstclear_cmd(void)
+void	lstclear_exec(void)
 {
-	t_cmd	*cur;
-	t_cmd	*next;
+	t_exec	*cur;
+	t_exec	*next;
 
-	cur = *v_cmd();
+	cur = *v_exec();
 	if (!cur)
 		return ;
 	while (cur)
 	{
-		next = cur->next;
-		free(cur->content);
-		free(cur);
-		cur = next;
+        next = cur->next;
+		if(cur->cmd)
+			free(cur->cmd);
+		if(cur->args)
+        	free_2d_arry(cur->args);
+        // lstclear_pipe();
+		cur = cur->next;
 	}
-	*v_cmd() = NULL;
+	*v_exec() = NULL;
 }
 
-t_cmd	*find_cmd_by_index(int index)
+t_exec	*find_exec_by_index(int index)
 {
-	t_cmd	*cur;
-	cur = *v_cmd();
+	t_exec	*cur;
+	cur = *v_exec();
 	while(cur)
 	{
 		if(cur->index == index)
@@ -44,16 +46,16 @@ t_cmd	*find_cmd_by_index(int index)
 	return cur;
 }
 
-void	lst_add_one_cmd(t_cmd	*new, int index)
+void	lst_add_one_exec(t_exec	*new, int index)
 {
-	t_cmd	*cur;
+	t_exec	*cur;
 
-	cur = find_cmd_by_index(index);
+	cur = find_exec_by_index(index);
 	if(!cur && cur->prev)
 		return;
 	else if(!cur->next)
 	{
-		lstadd_cmd_back(v_cmd(), new);
+		lstadd_exec_back(v_exec(), new);
 		cur->prev = new;
 		new->next = cur;
 	}
@@ -62,23 +64,23 @@ void	lst_add_one_cmd(t_cmd	*new, int index)
 		new->next = cur;
 		new->prev = cur->prev;
 		if(!cur->prev)
-			*v_cmd() = new;
+			*v_exec() = new;
 		else
 			(cur->prev)->next = new;
 		cur->prev = new;
 	}
-	index_the_cmd_list();
+	index_the_exec_list();
 }
 
-void	lst_del_one_cmd_by_node(t_cmd	*cur)
+void	lst_del_one_exec_by_node(t_exec	*cur)
 {
-	t_cmd	*tmp;
+	t_exec	*tmp;
 
-	if(!*v_cmd())
+	if(!*v_exec())
 		return ;
-	if(!(*v_cmd())->next)
+	if(!(*v_exec())->next)
 	{
-		*v_cmd() = NULL;
+		*v_exec() = NULL;
 		return ;
 	}
 	tmp = cur;
@@ -90,23 +92,23 @@ void	lst_del_one_cmd_by_node(t_cmd	*cur)
 	}
 	else
 	{
-		*v_cmd() = cur->next;
+		*v_exec() = cur->next;
 		(cur->next)->prev = NULL;
 	}
 	free(tmp);
-	index_the_cmd_list();
+	index_the_exec_list();
 }
 
 // void	lst_del_one_cmd(int index)
 // {
-// 	t_cmd	*cur;
-// 	t_cmd	*tmp;
+// 	t_exec	*cur;
+// 	t_exec	*tmp;
 
-// 	if(!*v_cmd())
+// 	if(!*v_exec())
 // 		return ;
-// 	if(!(*v_cmd())->next)
+// 	if(!(*v_exec())->next)
 // 	{
-// 		*v_cmd() = NULL;
+// 		*v_exec() = NULL;
 // 		return ;
 // 	}
 // 	cur = find_cmd_by_index(index);
@@ -121,20 +123,20 @@ void	lst_del_one_cmd_by_node(t_cmd	*cur)
 // 	}
 // 	else
 // 	{
-// 		*v_cmd() = cur->next;
+// 		*v_exec() = cur->next;
 // 		(cur->next)->prev = NULL;
 // 	}
 // 	free(tmp);
 // 	index_the_cmd_list();
 // }
 
-void	index_the_cmd_list(void)
+void	index_the_exec_list(void)
 {
 	int i;
-	t_cmd	*cur;
+	t_exec	*cur;
 
 	i = 0;
-	cur = *v_cmd();
+	cur = *v_exec();
 	if(!cur)
 		return ;
 	while(cur)

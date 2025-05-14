@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globale.c                                          :+:      :+:    :+:   */
+/*   free_2d_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 21:27:06 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/05/13 15:41:48 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/05/13 15:42:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "helper.h"
 
-t_cmd   **v_cmd(void)
+void	*free_2d_arry(char **ptr)
 {
-    static t_cmd *cmd;
+	size_t	i;
 
-    return &cmd;
+	i = 0;
+	while (ptr[i] != NULL)
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
+	return (NULL);
 }
-
-t_env   **v_env(void)
-{
-    static t_env *env;
-
-    return &env;
-}
-
-// t_pipe  *v_pipe(void)
-// {
-//     static  t_pipe pipe;
-
-//     return &pipe;
-// }

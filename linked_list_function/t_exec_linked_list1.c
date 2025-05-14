@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd_linked_list1.c                               :+:      :+:    :+:   */
+/*   t_exec_linked_list1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 19:06:29 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:47:20 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/05/13 16:10:56 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
 
-t_cmd	*new_cmd_node(char *value)
+t_exec	*new_exec_node(void)
 {
-	t_cmd	*elem;
+	t_exec	*elem;
 
-	elem = ft_malloc(sizeof(t_cmd));
+	elem = ft_malloc(sizeof(t_exec));
 	if (!elem)
 		return (NULL);
-	elem->content = value;
-	elem->prev = NULL;
+	elem->cmd = NULL;
+    elem->args = NULL;
+    elem->fd_in = 0;
+    elem->fd_out = 1;
 	elem->next = NULL;
+	elem->prev = NULL;
 	return (elem);
 }
 
-void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
+void	lstadd_exec_back(t_exec **lst, t_exec *new)
 {
-	t_cmd	*last;
+	t_exec	*last;
 
 	if (!new || !lst)
 		return ;
-	last = lstlast_cmd();
+	last = lstlast_exec();
 	if (!last)
 		*lst = new;
 	else
@@ -41,7 +44,7 @@ void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
 	}
 }
 
-void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
+void	lstadd_exec_front(t_exec **lst, t_exec *new)
 {
 	if (!lst || !new)
 		return ;
@@ -49,11 +52,11 @@ void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
 	*lst = new;
 }
 
-t_cmd	*lstlast_cmd(void)
+t_exec	*lstlast_exec(void)
 {
-	t_cmd *lst;
+	t_exec *lst;
 
-	lst = *v_cmd();
+	lst = *v_exec();
 	if (lst == NULL)
 		return (NULL);
 	while (lst->next)
@@ -63,11 +66,13 @@ t_cmd	*lstlast_cmd(void)
 	return (lst);
 }
 
-int	lstsize_cmd(t_cmd *lst)
+int	lstsize_exec(void)
 {
 	int		i;
-	t_cmd	*tmp;
+	t_exec	*tmp;
+	t_exec	*lst;
 
+	lst = *v_exec();
 	tmp = lst;
 	i = 0;
 	while (tmp)

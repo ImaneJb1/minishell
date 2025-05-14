@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_argument.c                                      :+:      :+:    :+:   */
+/*   globale.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 22:35:16 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 11:25:48 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/05/13 10:23:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../parsing.h"
+#include "minishell.h"
 
-void	is_arg(char *str, int *i)
+t_cmd   **v_cmd(void)
 {
-	if (!ft_strchr(" \"\'|<>$", str[*i]))
-	{
-		while (str[*i] && !ft_strchr(" |<>", str[*i]))
-		{
-			if (str[*i] == '\"')
-				protect_double_quotes(str, i);
-			else if (str[*i] == '\'')
-				protect_singl_quotes(str, i);
-			else
-				add_to_cmd_list(str[(*i)++], 1);
-		}
-		add_to_cmd_list(0, 2);
-		add_to_cmd_list(0, 0);
-	}
+    static t_cmd *cmd;
+
+    return &cmd;
+}
+
+t_env   **v_env(void)
+{
+    static t_env *env;
+
+    return &env;
+}
+
+    t_exec  **v_exec(void)
+{
+    static t_exec *exec;
+
+    return &exec;
+}
+
+t_pipe  **v_pipe(void)
+{
+    static  t_pipe *pipe;
+
+    return &pipe;
 }

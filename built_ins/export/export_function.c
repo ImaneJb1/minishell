@@ -6,18 +6,80 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 18:06:13 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:33:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
 
-int    export_built_in(void)
+char *check_key(char *str, int *i)
 {
-    // t_env *env;
-    // t_cmd *cmd;
-    return 1;
+    char *key;
 
-    
-    
+    key = NULL;
+    if (!str)
+        return NULL;
+    while (is_valid(str[*i]))
+    {
+        key = join_str_char(key, str[*i]);
+        (*i)++;
+    }
+    if (str[*i] == '=')
+        return key;
+    if (str[*i] == '+' && str[(*i) + 1] == '=')
+    {
+        if (!append_existe_var(str, key, *i))
+            return key;
+    }
+    return NULL;
+}
+
+char *extracte_str(char *str, int i)
+{
+    char *value;
+
+    value = NULL;
+    i++;
+    if (str[i] == '=')
+        i++;
+    while (str[i])
+        value = join_str_char(value, str[i++]);
+    return value;
+}
+
+void export_arg(char *arg)
+{
+    char *key;
+    char *value;
+    t_env *existe;
+    int i;
+
+    i = 0;
+    existe = NULL;
+    key = check_key(arg, &i);
+    if (!key)
+        return;
+    value = extracte_str(arg, i);
+    if (!value)
+        return;
+    existe = is_existe_in_env(key);
+    if(existe)
+        lst_del_one_env_by_node(existe);
+    add_to_env(key, value);
+}
+
+void export_built_in(char *cmd, char **args)
+{
+    int i;
+
+    i = 0;
+    if (!cmd || !args || !(*args))
+        return;
+    if (ft_strcmp(cmd, "export") == 0)
+    {
+        while (args[++i])
+            export_arg(args[i]);
+    }
+    else
+        return;
 }

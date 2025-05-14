@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 21:21:18 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:35:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,13 @@ void print_parsing(void)
 
 int is_built_in(void)
 {
-    t_cmd *cmd;
-    cmd = *v_cmd();
-    if(!v_cmd() || !(*v_cmd()))
+    t_exec *exec;
+    exec = *v_exec();
+    if(!v_exec() || !(*v_exec()))
         return 0;
-    if((ft_strcmp("env", cmd->content) == 0 || ft_strcmp("export", cmd->content) == 0) &&  lstsize_cmd(cmd) == 1)
-        return (env_built_in());
-    else if(ft_strcmp("export", cmd->content) == 0 &&  lstsize_cmd(cmd) > 1)
-        return (export_built_in());
-    else if(ft_strcmp("unset", cmd->content) == 0)
-        return (unset());
+    export_built_in(exec->cmd, exec->args);
+    env_built_in(exec->cmd, exec->args);
+    unset(exec->cmd, exec->args);
     return 0;
 }
 
@@ -97,11 +94,15 @@ int main(int argc, char const *argv[], char **env)
             continue;
         add_history(str);
         if(!parsing(str))
+        {
+            lstclear_exec();
             continue;
-        print_parsing();
+        }
+            // print_parsing();
         if(!is_built_in())
+        {
+            lstclear_exec();
             continue;
-        
-        
+        }   
     }
 }

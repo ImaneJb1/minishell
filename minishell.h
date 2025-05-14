@@ -6,22 +6,24 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 18:46:49 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:28:42 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include "./garbage_collector/garbage_collector.h"
 # include "./helper_functions/helper.h"
+
+// # include "./parsing/parsing.h"
 
 # ifndef TRUE
 #  define TRUE 1
@@ -55,14 +57,34 @@ typedef struct s_tokens
 	t_type			type;
 }					t_tokens;
 
+typedef struct s_pipe
+{
+	int write;
+	int read;
+	int index;
+	struct s_pipe	*next;
+	struct s_pipe	*prev;
+}	t_pipe;
+
+
+typedef struct s_exec
+{
+	char *cmd;
+	char **args;
+	int	 fd_in;
+	int	 fd_out;
+	t_pipe *pipe;
+	int  index;
+	struct s_exec *next;
+	struct s_exec *prev;
+}	t_exec;
+
+
 typedef struct s_cmd
 {
 	char			*content;
-	char			*abs_path;
-	char			**full_arg;
 	int				index;
 	t_type			type;
-	// t_pipe			*pipe;
 	struct s_cmd	*next;
 
 	struct s_cmd	*prev;
@@ -77,7 +99,14 @@ typedef struct s_env
 	struct s_env	*prev;
 }					t_env;
 
+//		globale
+t_cmd				**v_cmd(void);
+t_exec				**v_exec(void);
+t_pipe				**v_pipe(void);
+t_env				**v_env(void);
+
+// void			add_to_exec_list(char *str, t_exec *cur, int flag);
 int				parsing(char *str);
-void				creat_environment(char **env);
+void			creat_environment(char **env);
 
 #endif

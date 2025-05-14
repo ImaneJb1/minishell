@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/30 12:03:02 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:30:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,12 @@ void	change_var_value(t_cmd *cur)
 			i += 2;
 		}
 		else if (is_var_inside_quote(cur->content, i, j))
-		{
-			if (!(command = add_var_string(command, cur->content, &i, j)))
-				command = ft_strdup("");
-		}
+			command = add_var_string(command, cur->content, &i, j);
 		else
 			command = join_str_char(command, cur->content[i++]);
 	}
-	cur->content = ft_strdup(command);
-}
-
-void	environment_variable_value(void)
-{
-	t_cmd	*head;
-
-	head = *v_cmd();
-	while (head)
-	{
-		if (head->type & VARIABLE)
-		{
-			change_var_value(head);
-		}
-		head = head->next;
-	}
+	if(!command)
+		lst_del_one_cmd_by_node(cur);
+	else
+		cur->content = command;
 }

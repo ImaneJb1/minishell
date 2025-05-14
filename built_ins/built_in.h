@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 18:05:34 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:36:04 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,25 @@
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
 
+typedef struct s_data {
+    int i;
+    int j;
+    char line;
+}   t_data;
+
 //      env
-int		env_built_in(void);
+void	env_built_in(char *cmd, char **args);
+void	add_to_env(char *key, char *value);
 
 //      export
-int		export_built_in(void);
+void		export_built_in(char *cmd, char **args);
+char        *extracte_str(char *str, int i);
+t_env       *is_existe_in_env(char *key);
+char        *check_key(char *str, int *i);
+int         append_existe_var(char *str, char *Key, int i);
 
 //      unset
-int		unset(void);
-void	unset_value_from_env(char *key);
+void    delete_from_env(char *key);
+void    unset(char *cmd, char **args);
 
 #endif

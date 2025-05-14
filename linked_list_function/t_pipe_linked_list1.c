@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd_linked_list1.c                               :+:      :+:    :+:   */
+/*   t_pipe_linked_list1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 19:06:29 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:47:20 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/05/13 10:23:36 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
 
-t_cmd	*new_cmd_node(char *value)
+t_pipe	*new_pipe_node( int read, int write)
 {
-	t_cmd	*elem;
+	t_pipe	*elem;
 
-	elem = ft_malloc(sizeof(t_cmd));
+	elem = ft_malloc(sizeof(t_pipe));
 	if (!elem)
 		return (NULL);
-	elem->content = value;
-	elem->prev = NULL;
+    if(read != -2)
+        elem->read = read;
+    if(write != -2)
+        elem->write = write;
 	elem->next = NULL;
+	elem->prev = NULL;
 	return (elem);
 }
 
-void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
+void	lstadd_pipe_back(t_pipe **lst, t_pipe *new)
 {
-	t_cmd	*last;
+	t_pipe	*last;
 
 	if (!new || !lst)
 		return ;
-	last = lstlast_cmd();
+	last = lstlast_pipe(*lst);
 	if (!last)
 		*lst = new;
 	else
@@ -41,7 +44,7 @@ void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
 	}
 }
 
-void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
+void	lstadd_pipe_front(t_pipe **lst, t_pipe *new)
 {
 	if (!lst || !new)
 		return ;
@@ -49,11 +52,8 @@ void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
 	*lst = new;
 }
 
-t_cmd	*lstlast_cmd(void)
+t_pipe	*lstlast_pipe(t_pipe *lst)
 {
-	t_cmd *lst;
-
-	lst = *v_cmd();
 	if (lst == NULL)
 		return (NULL);
 	while (lst->next)
@@ -63,10 +63,10 @@ t_cmd	*lstlast_cmd(void)
 	return (lst);
 }
 
-int	lstsize_cmd(t_cmd *lst)
+int	lstsize_pipe(t_pipe *lst)
 {
 	int		i;
-	t_cmd	*tmp;
+	t_pipe	*tmp;
 
 	tmp = lst;
 	i = 0;

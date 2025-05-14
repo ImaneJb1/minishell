@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 21:22:01 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/29 22:03:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:21:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 char    *handle_one_cmd(char *str)
 {
     int i;
-    int j;
     char *command;
     char c;
 
     i = 0;
-    j = 0;
     c = '\0';
-    command = NULL;
+    command = ft_malloc(1);
     while(str[i])
     {
         if(c == 0 && ft_strchr("\"\'", str[i]))

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:13:45 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/26 15:51:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:25:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void setUp(void)
 }
 void tearDown(void)
 {
-    add_to_list(0, 0);
+    add_to_cmd_list(0, 0);
 }
 
 int exp_len(char **exp)
@@ -44,7 +44,7 @@ int exp_len(char **exp)
 
 static void prepare(char *input)
 {
-    creat_the_list(input);
+    creat_the_cmd_list(input);
     identify_all_types();
 }
 
