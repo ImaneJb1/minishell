@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:41:48 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:42:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/15 09:26:31 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	*free_2d_arry(char **ptr)
 	i = 0;
 	while (ptr[i] != NULL)
 	{
-		free(ptr[i]);
+		ft_free(ptr[i]);
 		i++;
 	}
-	free(ptr);
+	ft_free(ptr);
 	return (NULL);
 }

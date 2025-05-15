@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:33:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:41:37 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void export_arg(char *arg)
     add_to_env(key, value);
 }
 
-void export_built_in(char *cmd, char **args)
+void    export_built_in(char *cmd, char **args)
 {
     int i;
 

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:49:59 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:34:38 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ t_exec	*add_to_exec_list(char *str, t_exec *cur, int flag)
 	if(flag == 1)
 	{
 		node = new_exec_node();
+		if(!node)	
+			return (*v_exec());
 		node->cmd = ft_strdup(str);
 		return (node);
 	}
 	else if(flag == 2)
 	{
-		if(!cur)
-			return (*v_exec());
 		cur->args[i] = ft_strdup(str);
 		i++;
 		return (cur);

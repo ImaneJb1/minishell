@@ -1,0 +1,16 @@
+a.out
+build
+built_ins
+file
+garbage_collector
+globale.c
+helper_functions
+linked_list_function
+ls
+Makefile
+minishell.c
+minishell.h
+parsing
+tester
+test.sh
+TESTS.txt

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:35:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/15 09:45:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void print_parsing(void)
     printf("----------------------------------------------\n");
     printf("----------------------------------------------\n");
 }
-
+// exec->in = open()
 int is_built_in(void)
 {
     t_exec *exec;
@@ -95,13 +95,16 @@ int main(int argc, char const *argv[], char **env)
         add_history(str);
         if(!parsing(str))
         {
-            lstclear_exec();
+            ft_free(*v_exec());
+            *v_exec() = NULL;
             continue;
         }
+        // print_parsing();
             // print_parsing();
         if(!is_built_in())
         {
-            lstclear_exec();
+            ft_free(*v_exec());
+            *v_exec() = NULL;
             continue;
         }   
     }

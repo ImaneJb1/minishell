@@ -17,12 +17,9 @@ ls | exit 1
 ls -la | cat > file | << del file >> ls | cat
 ls -la | cat > file | < del file >> ls | cat
 export v="ls "-ls""
-
-
-
-
-
-
 << end ><
 << $$"a"
+<< $"$user ' ls ''"'"'
 $_
+
+<< $"d"$ ls | ls >> file << $'d'$$$USER LS

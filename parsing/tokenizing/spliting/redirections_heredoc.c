@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:56:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 11:25:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:14:37 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	is_redir_out(char *str, int *i)
 
 void	is_redir_out_append(char *str, int *i)
 {
-	if (str[*i] && str[*i + 1] && str[*i] == '>' && str[*i + 1] == '>')
+	if (str[*i] == '>' && str[*i + 1] == '>')
 	{
 		add_to_cmd_list(str[*i], 1);
 		add_to_cmd_list(str[*i + 1], 1);
@@ -48,7 +48,7 @@ void	is_redir_out_append(char *str, int *i)
 
 void	is_heredoc(char *str, int *i)
 {
-	if (str[*i] && str[*i + 1] && str[*i] == '<' && str[*i + 1] == '<')
+	if ( str[*i] == '<' && str[*i + 1] == '<')
 	{
 		add_to_cmd_list(str[*i], 1);
 		add_to_cmd_list(str[*i + 1], 1);
