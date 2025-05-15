@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 01:42:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:42:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:45:31 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ size_t	ft_strlen(char *str);
 char	*ft_strdup(char *s1);
 int		is_alpha(int c);
 int		is_digit(int n);
+void	skip_space(char *str, int *i);
 
 #endif

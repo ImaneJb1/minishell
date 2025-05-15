@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/15 15:02:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:47:51 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,56 @@ char	*get_value_from_env(char *key)
 	return (NULL);
 }
 
-char	*expand_the_value(char *command, char *key, int j)
+char	*field_spliting(t_cmd *cur, char *value)
 {
-	key = get_value_from_env(key);
-	if (!key)
+	int i;
+	char	*str;
+
+	i = 0;
+	while (value[i])
+	{
+		while (value[i] && !ft_strchr(" \t", value[i]))
+			str = join_str_char(str, value[i++]);
+		lst_add_one_cmd_by_node();
+		skip_space(str, &i);
+		i++;
+	}
+}
+char	*expand_the_value(t_cmd *cur, char *command, char *key, int x)
+{
+	int j;
+
+	j = 0;
+	char *value;
+	value = get_value_from_env(key);
+	if (!value)
 		return (command);
-	while (key[j])
-		command = join_str_char(command, key[++j]);
+	if(x == 0)
+		retrun (field_spliting(cur, value));
+	while (value[j])
+		command = join_str_char(command, value[++j]);
 	return (command);
 }
 
-char	*add_var_string(char *command, char *content, int *i, int x)
+// char	*value(char	*key, int *i)
+// {
+// 	char *value;
+
+// 	while (key[*i] && !ft_strchr("\"\'", key[*i]))
+// 	{
+// 		value = join_str_char(value, key[*i]);
+// 	}
+// }
+
+
+
+char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 {
 	int(j), (flag);
-	char *(key) = NULL;
+	char (*content), *(key) = NULL;
+	t_cmd *cur;
+	
+	content = cur->content;
 	j = 0;
 	flag = 0;
 	(*i)++;
@@ -57,13 +93,27 @@ char	*add_var_string(char *command, char *content, int *i, int x)
 		if (!key)
 			return (ft_strdup(""));
 	}
-	if ((x == 0 || flag == 1))
-		command = expand_the_value(command, key, j);
+	if(x == 0 || flag == 1)
+		command = expand_the_value(cur, command, key, x);
 	else if (content[*i])
 		return (join_str_char(command, content[*i]));
 	return command;
 }
-
+int check(char *content, char *command, int *i, int j)
+{
+	if (j == 0 && content[*i] == '\'')
+	{
+		command = inside_quote(command, content, i,'\'');
+		return 1;
+	}
+	else if ((content[*i] == '$' && content[(*i) + 1] == '$'))
+	{
+		command = ft_strjoin(command, "$$");
+		(*i) += 2;
+		return 1;
+	}
+	return 0;
+}
 void	change_var_value(t_cmd *cur)
 {
 	char *(command);
@@ -74,16 +124,13 @@ void	change_var_value(t_cmd *cur)
 	while (cur->content[i])
 	{
 		j = check_double_quote(cur->content[i], j);
-		if (j == 0 && cur->content[i] == '\'')
-			command = inside_quote(command, cur->content, &i,'\'');
-		else if ((cur->content[i] == '$' && cur->content[i + 1] == '$'))
-		{
-			command = ft_strjoin(command, "$$");
-			i += 2;
-		}
+		if(check(cur->content, command, &i, j))
+			continue;
 		else if (is_var_inside_quote(cur->content, i, j))
-			command = add_var_string(command, cur->content, &i, j);
-		// else if()
+		{
+			command = add_var_string(command, cur, &i, j);
+			
+		}
 		else
 			command = join_str_char(command, cur->content[i++]);
 	}
