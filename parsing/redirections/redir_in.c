@@ -2,7 +2,7 @@
 
 bool    if_its_infile(t_cmd *ptr)
 {
-    if((ptr->type & REDIR_IN) && (ptr->next->type & FILE_NAME))
+    if((ptr->type & FILE_NAME) && ((ptr->prev && ptr->prev->type & REDIR_IN)))
         return(TRUE);
     return(FALSE);
 }
@@ -10,6 +10,7 @@ bool    if_its_infile(t_cmd *ptr)
 void    open_fd_in(t_cmd *token, int *fd)
 {
     if(if_its_infile(token))
-        fd = open(token->next->content, O_RDONLY);
-    return;
+        *fd = open(token->content, O_RDONLY);
+    if(*fd < 0)
+        perror(token->content);
 }

@@ -1,8 +1,8 @@
 #include "../parsing.h"
 
-bool    if_its_apptfile(t_cmd *ptr)
+bool    if_its_appfile(t_cmd *ptr)
 {
-    if((ptr->type & APPEND) && (ptr->next && (ptr->next->type & FILE_NAME)))
+    if((ptr->type & FILE_NAME) && (ptr->next && (ptr->prev->type & APPEND)))
         return(TRUE);
     return(FALSE);
 }
@@ -10,5 +10,7 @@ bool    if_its_apptfile(t_cmd *ptr)
 void    open_fd_app(t_cmd *token, int *fd)
 {
     if(if_its_appfile(token))
-        fd = open(token->next->content, O_RDWR | O_CREAT | O_APPEND);
+        *fd = open(token->content, O_RDWR | O_CREAT | O_APPEND);
+    if(*fd < 0)
+        perror(token->content);
 }

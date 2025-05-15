@@ -49,7 +49,7 @@ bool	is_valid_syntax(void)
 	while(ptr)
 	{
 		if(check_pipe_syntax(ptr) < 0 || check_unclosed_quotes(ptr) != 0 
-		|| unexpected_token(ptr) < 0 ||	redir_errors(ptr) < 0 || if_special_at_end(ptr) < 0)
+		|| here_doc_error(ptr) < 0 ||	redir_errors(ptr) < 0 || if_special_at_end(ptr) < 0)
 			return(FALSE);
 		ptr = ptr->next;
 	}
@@ -89,7 +89,7 @@ int    parsing(char *str)
 {
     creat_the_cmd_list(str);  
     if(is_valid_syntax() == FALSE)
-        return (lstclear_cmd(), 1);
+        return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
     fill_the_exec_struct();
 	t_exec *exec;
@@ -98,12 +98,14 @@ int    parsing(char *str)
 	{
 		printf("{(%s)  ", exec->cmd);
 		printf("[");
+		printf("fdin = %d fdout = %d ", exec->fd_in, exec->fd_out);
 		for(int i = 0; exec->args[i]; i++)
 			printf("%s ", exec->args[i]);
 		printf("]}\n");
 		exec = exec->next;
 	}
-	lstclear_cmd();
+	
+	// lstclear_cmd();
 	// lstclear_exec();
     return 1;
 }

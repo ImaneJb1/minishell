@@ -88,21 +88,21 @@ int main(int argc, char const *argv[], char **env)
     creat_environment(env);
     while(1)
     {
-        lstclear_cmd();
         str = readline("Minishell $>: ");
         if(!str)
             continue;
         add_history(str);
         if(!parsing(str))
         {
-            lstclear_exec();
+            
             continue;
         }
-            // print_parsing();
+        print_parsing();
+        ft_free(*v_cmd());
+        *v_cmd() = NULL;   
         if(!is_built_in())
         {
-            lstclear_exec();
             continue;
-        }   
+        }
     }
 }

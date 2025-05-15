@@ -83,8 +83,10 @@ bool				is_special_token(int type);
 void				print_error_with_token(char *message, char *token);
 int					unexpected_token(t_cmd *ptr);
 void				print_error_with_token(char *message, char *token);
+t_tokens            *init_redir_array(void);
+int                 here_doc_error(t_cmd *ptr);
 //      redirections
-int    open_fd_in(t_cmd *token, int *fd);
+void   open_fd_in(t_cmd *token, int *fd);
 void    open_fd_out(t_cmd *token, int *fd);
 void    open_fd_app(t_cmd *token, int *fd);
 void    fill_fds(t_cmd *token, t_exec *node);

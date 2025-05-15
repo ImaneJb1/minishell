@@ -1,4 +1,4 @@
-#include "parsing.h"
+#include "../parsing.h"
 
 void    fill_fds(t_cmd *token, t_exec *node)
 {   

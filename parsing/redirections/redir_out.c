@@ -2,7 +2,7 @@
 
 bool    if_its_outfile(t_cmd *ptr)
 {
-    if((ptr->type & REDIR_OUT) && (ptr->next && (ptr->next->type & FILE_NAME)))
+    if((ptr->type & FILE_NAME) && (ptr->prev && (ptr->prev->type & REDIR_OUT)))
         return(TRUE);
     return(FALSE);
 }
@@ -10,5 +10,7 @@ bool    if_its_outfile(t_cmd *ptr)
 void    open_fd_out(t_cmd *token, int *fd)
 {
     if(if_its_outfile(token))
-        fd = open(token->next->content, O_RDWR | O_CREAT | O_TRUNC);
+        *fd = open(token->content, O_RDWR | O_CREAT | O_TRUNC);
+    if(*fd < 0)
+        perror(token->content);
 }
