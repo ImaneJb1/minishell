@@ -1,19 +1,10 @@
 #include "../built_in.h"
 
-void    change_oldpwd_var(char *oldpwd, char **env)
+void    change_oldpwd_var(char *oldpwd)
 {
-    int i;
+    t_env *node;
 
-    i = 0;
-    oldpwd = ft_strjoin("OLDPWD= ", oldpwd);
-    while (env[i])
-    {
-        if(ft_strnstr(env[i], "OLDPWD") >= 0)
-        {
-            env[i] = ft_strdup(oldpwd);
-            break;
-        }
-        i++;
-    }
+    node = is_existe_in_env("OLDPWD");
+    node->value = ft_strdup(oldpwd);
     
 }

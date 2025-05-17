@@ -1,13 +1,30 @@
 #include "../built_in.h"
 
-void    cd_home(char *path)
+void    cd_home(char *oldpwd)
 {
     char *home;
-
-    if(ft_strcmp(path, "~") || ft_strcmp(path, ""))
+ 
+    home = get_value_from_env("HOME");
+    if(chdir(home) < 0)
+        perror("");
+    else
     {
-        home = get_value_from_env("HOME");
-        if(chdir(home) < 0)
-            perror("home error");
+        change_pwd_var();
+        change_oldpwd_var(oldpwd);
+    }
+}
+
+void    cd_back(char *oldpwd)
+{
+    char *prev_wd;
+
+    prev_wd = get_value_from_env("OLDPWD");
+    printf("prev_wd=%s\n", prev_wd);
+    if(chdir(prev_wd) < 0)
+        perror("");
+    else
+    {
+        change_pwd_var();
+        change_oldpwd_var(oldpwd);
     }
 }

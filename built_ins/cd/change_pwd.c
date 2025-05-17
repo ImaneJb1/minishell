@@ -6,22 +6,13 @@ char    *get_pwd(void)
         return(getcwd(cwd, sizeof(cwd)));
 }
 
-void    change_pwd_var(char **env)
+void    change_pwd_var()
 {
-    int i;
     char *pwd;
+    t_env *node;
 
-    i = 0;
     pwd = get_pwd();
-    pwd = ft_strjoin("PWD= ", pwd);
-    while (env[i])
-    {
-        if(ft_strnstr(env[i], "PWD") >= 0)
-        {
-            env[i] = ft_strdup(pwd);
-            break;
-        }
-        i++;
-    }
+    node = is_existe_in_env("PWD");
+    node->value = ft_strdup(pwd);
     
 }

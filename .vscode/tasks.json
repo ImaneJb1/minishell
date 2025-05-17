@@ -14,11 +14,6 @@
                 "${workspaceFolder}/built_ins/*/*.c",
                 "${workspaceFolder}/tester/Unity-master/src/unity.c",
                 "-lreadline",
-                //"-Ofast",
-                //"-Wall",
-                //"-Wextra",
-                //"-Werror",
-                //"-fsanitize=address",
                 "-o",
                 "${workspaceFolder}/a.out"
             ],

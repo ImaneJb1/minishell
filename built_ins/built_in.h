@@ -43,11 +43,12 @@ void    delete_from_env(char *key);
 void    unset(char *cmd, char **args);
 
 //cd pwd
-void    change_directory(char *path, char **env);
+void    change_directory(char *path);
 char    *get_pwd(void);
-void    change_pwd_var(char **env);
-void    change_oldpwd_var(char *oldpwd, char **env);
-void    cd_home(char *path);
+void    change_pwd_var();
+void    change_oldpwd_var(char *oldpwd);
+void    cd_home(char *oldpwd);
+void    cd_back(char *oldpwd);
 
 //pwd
 void    print_working_directory(void);

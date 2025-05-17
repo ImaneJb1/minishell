@@ -18,7 +18,7 @@ static char	*do_the_join(char *s1, char *s2)
 	size_t	j;
 	char	*join;
 
-	join = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	join = ft_malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (join == NULL)
 		return (NULL);
 	i = 0;

@@ -72,38 +72,38 @@ int is_built_in(void)
     return 0;
 }
 
-int main(int argc, char const *argv[], char **env)
-{
-    char *str;
-    // int i;
-    // i = 0;
-    (void)argc;
-    (void)argv;
-    // i = 1;
-    // if(i == 1)
-    // {
-    //     // i = tester();
-    //     return i;
-    // }
-    creat_environment(env);
-    while(1)
-    {
-        str = readline("Minishell $>: ");
-        if(!str)
-            continue;
-        add_history(str);
-        if(!parsing(str))
-        {
+// int main(int argc, char const *argv[], char **env)
+// {
+//     char *str;
+//     // int i;
+//     // i = 0;
+//     (void)argc;
+//     (void)argv;
+//     // i = 1;
+//     // if(i == 1)
+//     // {
+//     //     // i = tester();
+//     //     return i;
+//     // }
+//     creat_environment(env);
+//     while(1)
+//     {
+//         str = readline("Minishell $>: ");
+//         if(!str)
+//             continue;
+//         add_history(str);
+//         if(!parsing(str))
+//         {
             
-            continue;
-        }
-        print_parsing();
-        ft_free(*v_cmd());
-        *v_cmd() = NULL;   
-        if(!is_built_in())
-        {
-            continue;
-        }
-    }
-}
+//             continue;
+//         }
+//         print_parsing();
+//         ft_free(*v_cmd());
+//         *v_cmd() = NULL;   
+//         if(!is_built_in())
+//         {
+//             continue;
+//         }
+//     }
+// }
 
