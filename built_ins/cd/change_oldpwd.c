@@ -2,9 +2,18 @@
 
 void    change_oldpwd_var(char *oldpwd)
 {
-    t_env *node;
+    t_env *env;
 
-    node = is_existe_in_env("OLDPWD");
-    node->value = ft_strdup(oldpwd);
+    env = *v_env();
+    while (env)
+    {
+        if (ft_strcmp(env->key, "OLDPWD") == 0)
+        {
+            ft_free(env->value);
+            env->value = ft_strdup(oldpwd);
+            break;
+        }
+        env = env->next;
+    }
     
 }

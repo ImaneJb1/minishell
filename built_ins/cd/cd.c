@@ -9,11 +9,9 @@ void    change_directory(char *path)
         //if(special case '-' '~' ' ')
         if(ft_strcmp(path, "-") == 0)
         {
-            
-            printf("return=%d\n", ft_strcmp(path, "-"));
             cd_back(oldpwd);
         }
-        else if(!path)    
+        else if(!path || ft_strcmp(path, "~") == 0)    
             cd_home(oldpwd);
         else
             perror("");
@@ -25,15 +23,17 @@ void    change_directory(char *path)
     }
 }
 
-int main(int argc, char **argv, char **env)
-{
-    creat_environment(env);
-    change_directory(argv[1]);
-    int i = 0;
-    while(env[i])
-    {
-        if(ft_strnstr(env[i]," OLDPWD") >= 0 || ft_strnstr(env[i], "PWD") >= 0)
-            printf("%s\n", env[i]);
-        i++;
-    }
-}
+// int main(int argc, char **argv, char **env)
+// {
+//     creat_environment(env);
+//     for(int i = 0; env[i]; i++)
+//         printf("%s\n", env[i]);
+//     change_directory(argv[1]);
+//     int i = 0;
+//     while(env[i])
+//     {
+//         if(ft_strnstr(env[i]," OLDPWD") >= 0 || ft_strnstr(env[i], "PWD") >= 0)
+//             printf("%s\n", env[i]);
+//         i++;
+//     }
+// }
