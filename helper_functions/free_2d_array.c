@@ -12,16 +12,14 @@
 
 #include "helper.h"
 
-void	*free_2d_arry(char **ptr)
+int	*strlen_2d_array(char **ptr)
 {
 	size_t	i;
 
 	i = 0;
+	if(!ptr)
+		return(0);
 	while (ptr[i] != NULL)
-	{
-		free(ptr[i]);
 		i++;
-	}
-	free(ptr);
-	return (NULL);
+	return (i);
 }

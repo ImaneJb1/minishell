@@ -49,6 +49,7 @@ void    change_pwd_var();
 void    change_oldpwd_var(char *oldpwd);
 void    cd_home(char *oldpwd);
 void    cd_back(char *oldpwd);
+void    cd(t_exec *node);
 
 //pwd
 void    print_working_directory(void);
