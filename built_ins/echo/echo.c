@@ -9,5 +9,7 @@ void    echo(char **args, int fd_out)
     {
         write(fd_out, &args[i],ft_strlen(args[i]));
         i++;
+        if(args[i]) 
+            write(fd_out, " ",1);
     }
 }
