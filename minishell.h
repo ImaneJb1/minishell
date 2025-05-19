@@ -41,7 +41,7 @@ typedef enum s_type
 	HERE_DOC = 1 << 3,           // 8
 	REDIR_IN = 1 << 4,           // 16
 	REDIR_OUT = 1 << 5,          // 32
-	APPEND_REDIRECTION = 1 << 6, // 64
+	APPEND = 1 << 6, // 64
 	WORD = 1 << 7,               // 128
 	DOUBLE_Q = 1 << 8,           // 256
 	SINGLE_Q = 1 << 9,           // 512

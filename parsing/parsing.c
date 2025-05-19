@@ -61,20 +61,7 @@ void	creat_the_cmd_list(char *line)
 	index_the_cmd_list();
 }
 
-bool	is_valid_syntax(void)
-{
-	t_cmd *ptr;
 
-	ptr = *v_cmd();
-	while(ptr)
-	{
-		if(check_pipe_syntax(ptr) < 0 || check_unclosed_quotes(ptr) != 0 
-		|| unexpected_token(ptr) < 0 ||	redir_errors(ptr) < 0 || if_special_at_end(ptr) < 0)
-			return(FALSE);
-		ptr = ptr->next;
-	}
-	return(TRUE);
-}
 void	expand_variable_value(void)
 {
 	t_cmd	*head;
@@ -99,7 +86,8 @@ void fill_the_exec_struct(void)
 	while (cmd)
 	{
 		list = check_cmd(&cmd, list);
-		lstadd_exec_back(v_exec(), list);
+
+
 		if(cmd)
 			cmd = cmd->next;
 	}
@@ -119,14 +107,16 @@ int    parsing(char *str)
 	exec = *v_exec();
  	while (exec)
 	{
-		printf("{(%s)  ", exec->cmd);
-		printf("[");
-		for(int i = 0; exec->args[i]; i++)
-			printf("%s ", exec->args[i]);
+		// printf("{(%s)  ", exec->cmd);
+		// printf("[");
+		printf("command = %s fdin = %d fdout = %d ", exec->cmd, exec->fd_in, exec->fd_out);
+		// for(int i = 0; exec->args[i]; i++)
+		// 	printf("%s ", exec->args[i]);
 		printf("]}\n");
 		exec = exec->next;
 	}
-	lstclear_cmd();
+	
+	// lstclear_cmd();
 	// lstclear_exec();
 	return 1;
 }

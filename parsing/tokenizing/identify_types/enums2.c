@@ -46,8 +46,12 @@ void    identify_cmd_arg(void)
     ptr = *v_cmd();
     while(ptr)
     {
+<<<<<<< HEAD
         // if(ptr->type & WORD)
         // if(((ptr->type & CMD_ARG) || (ptr->type & CMD)))
+=======
+        // if(((ptr->type & CMD_ARG)||(ptr->type & CMD)))
+>>>>>>> origin/imane3
         // {
         //     if(ptr->next && (ptr->next->type & WORD))
         //     {
@@ -56,6 +60,11 @@ void    identify_cmd_arg(void)
         //         //     ptr->next->type = ptr->next->type | FILE_NAME;
         //     }
         // }
+<<<<<<< HEAD
+=======
+        if((ptr->type & WORD) && (!(ptr->type & CMD)&& (!(ptr->type & FILE_NAME))))
+            ptr->type |= CMD_ARG;
+>>>>>>> origin/imane3
         ptr = ptr->next;
     }
 }

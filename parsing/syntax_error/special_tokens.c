@@ -51,7 +51,7 @@ int redir_errors(t_cmd	*ptr)
             {
                 if(ptr->next && (!(ptr->next->type & FILE_NAME)))
                 {
-                    print_error("Syntax error missing filename\n");
+                    print_error_with_token("Syntax error near unexpected token ", ptr->next->content);
                     return(-1);
                 }
             }

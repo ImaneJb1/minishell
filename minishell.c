@@ -44,8 +44,8 @@ void print_parsing(void)
             printf("REDIR_IN ");
         if (ptr->type & REDIR_OUT)
             printf("REDIR_OUT ");
-        if (ptr->type & APPEND_REDIRECTION)
-            printf("APPEND_REDIRECTION ");
+        if (ptr->type & APPEND)
+            printf("APPEND ");
         if (ptr->type & PATH)
             printf("PATH ");
         if (ptr->type & VARIABLE)
@@ -63,12 +63,49 @@ void print_parsing(void)
 int is_built_in(void)
 {
     t_exec *exec;
+    t_env *our_env;
+    
+    our_env = *v_env();
     exec = *v_exec();
     if(!v_exec() || !(*v_exec()))
         return 0;
+<<<<<<< HEAD
     // char *str = "export";
     // char *str1[] = {"export", "a=\"c  ddd   ee\"", NULL};
     // export_built_in(str, str1);
+=======
+    printf("input cmd : (%s)\n", (*v_cmd())->content);
+    //   while(our_env)
+    // {
+    //     if(ft_strcmp(our_env->key,"OLDPWD") == 0 || ft_strcmp(our_env->key, "PWD") == 0)
+    //     {   
+    //         if(ft_strcmp(our_env->key,"OLDPWD") == 0)
+    //             printf(" ------------ OLDPWD ");
+    //         else if(ft_strcmp(our_env->key,"PWD") == 0)
+    //             printf("---------------PWD ");
+    //         printf("%s\n", our_env->value);
+    //     }
+    //     our_env = our_env->next;
+    // }
+    printf("------------------------------------------------------------------------------\n");
+    change_directory((*v_cmd())->content);
+    // our_env = *v_env();
+    while(our_env)
+    {
+        if(ft_strcmp(our_env->key,"OLDPWD") == 0 || ft_strcmp(our_env->key, "PWD") == 0)
+        {   
+            if(ft_strcmp(our_env->key,"OLDPWD") == 0)
+                printf("OLDPWD ");
+            else if(ft_strcmp(our_env->key,"PWD") == 0)
+                printf("PWD ");
+            printf("%s\n", our_env->value);
+        }
+        our_env = our_env->next;
+    }
+    ft_free(*v_cmd());
+        *v_cmd() = NULL;  
+    return 1;
+>>>>>>> origin/imane3
     export_built_in(exec->cmd, exec->args);
     env_built_in(exec->cmd, exec->args);
     unset(exec->cmd, exec->args);
@@ -78,26 +115,17 @@ int is_built_in(void)
 int main(int argc, char const *argv[], char **env)
 {
     char *str;
-    // int i;
-    // i = 0;
-    (void)argc;
-    (void)argv;
-    // i = 1;
-    // if(i == 1)
-    // {
-    //     // i = tester();
-    //     return i;
-    // }
+
     creat_environment(env);
     while(1)
     {
-        lstclear_cmd();
         str = readline("Minishell $>: ");
         if(!str)
             continue;
         add_history(str);
         if(!parsing(str))
         {
+<<<<<<< HEAD
             ft_free(*v_exec());
             *v_exec() = NULL;
             continue;
@@ -108,7 +136,42 @@ int main(int argc, char const *argv[], char **env)
         {
             ft_free(*v_exec());
             *v_exec() = NULL;
+=======
+            
             continue;
-        }   
+        }
+        // print_parsing();
+        // ft_free(*v_cmd());
+        // *v_cmd() = NULL;   
+        if(!is_built_in())
+        {
+>>>>>>> origin/imane3
+            continue;
+        }
     }
 }
+
+// int main(int argc, char **argv, char **env)
+// {
+//     t_env *our_env;
+    
+//     creat_environment(env);
+//     our_env = *v_env();
+//     // for(int i = 0; env[i]; i++)
+//     //     printf("%s\n", env[i]);
+//     printf("----------------------------------------\n");
+//     change_directory("-");
+//     int i = 0;
+//     while(our_env)
+//     {
+//         if(ft_strcmp(our_env->key,"OLDPWD") == 0 || ft_strcmp(our_env->key, "PWD") == 0)
+//         {   
+//             if(ft_strcmp(our_env->key,"OLDPWD") == 0)
+//                 printf("OLDPWD ");
+//             else if(ft_strcmp(our_env->key,"PWD") == 0)
+//                 printf("PWD ");
+//             printf("%s\n", our_env->value);
+//         }
+//         our_env = our_env->next;
+//     }
+// }

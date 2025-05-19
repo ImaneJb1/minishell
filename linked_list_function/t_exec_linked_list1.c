@@ -40,6 +40,7 @@ void	lstadd_exec_back(t_exec **lst, t_exec *new)
 	else
 	{
 		last->next = new;
+		new->next = NULL;
 		new->prev = last;
 	}
 }

@@ -15,6 +15,11 @@
 
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
+# include <limits.h>
+
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif
 
 // typedef struct s_bdata {
 //     int i;
@@ -37,4 +42,14 @@ int         append_existe_var(char *str, char *Key, int i);
 void    delete_from_env(char *key);
 void    unset(char *cmd, char **args);
 
+//cd pwd
+void    change_directory(char *path);
+char    *get_pwd(void);
+void    change_pwd_var();
+void    change_oldpwd_var(char *oldpwd);
+void    cd_home(char *oldpwd);
+void    cd_back(char *oldpwd);
+
+//pwd
+void    print_working_directory(void);
 #endif
