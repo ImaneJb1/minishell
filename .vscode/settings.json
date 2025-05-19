@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "files.associations": {
     "parsing.h": "c",
     "tester.h": "c",
@@ -15,23 +14,4 @@
   },
   "cmake.sourceDirectory": "/home/imeslaki/Desktop/minishell/tester/Unity-master",
   "C_Cpp_Runner.msvcBatchPath": ""
-=======
-    "files.associations": {
-        "parsing.h": "c",
-        "tester.h": "c",
-        "unity.h": "c",
-        "garbage_collector.h": "c",
-        "minishell.h": "c",
-        "helper.h": "c",
-        "built_in.h": "c",
-        "history.h": "c",
-        "readline.h": "c",
-        "stdbool.h": "c",
-        "stdlib.h": "c",
-        "linked_list.h": "c",
-        "builtins.h": "c",
-        "terminal.integrated.defaultProfile.windows": "WSL"
-
-    }
->>>>>>> origin/imane3
 }

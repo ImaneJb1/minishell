@@ -6,36 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/18 19:33:06 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:03:54 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../parsing.h"
-
-// char	*field_spliting(t_cmd *cur, char *value, char *command)
-// {
-// 	t_data	*data;
-
-// 	data = init_data();
-// 	while (value[data->i])
-// 	{
-// 		if(data->j == 0)
-// 		{
-// 			data->j = 1;
-// 			while (value[data->i] && !ft_strchr(" \t", value[data->i]))
-// 				command = join_str_char(command, value[data->i++]);
-// 		}
-// 		skip_space(value, &data->i);
-// 		while (value[data->i] && !ft_strchr(" \t", value[data->i]))
-// 			data->str = join_str_char(data->str, value[data->i++]);
-// 		lst_add_one_cmd_by_node(cur, new_cmd_node(ft_strdup(data->str)));
-// 		cur = cur->next;
-// 		skip_space(value, &data->i);
-// 		ft_free(data->str);
-// 		data->str = NULL;
-// 	}
-// 	return command;
-// }
 
 static int	ft_count(char const *s, char *c)
 {
@@ -81,53 +56,6 @@ void    insert_into_list(t_cmd *cur, t_data *data)
     lst_del_one_cmd_by_node(node);
 }
 
-// void	field_spliting(t_cmd *cur, char *value, char *command, int index)
-// {
-// 	t_data	*data;
-
-// 	data = init_data();
-//     data->args = ft_malloc(sizeof(char *) * (ft_count(value, " \t") + 3));
-//     data->args[0] = ft_strdup(command);
-// 	while(value[data->i])
-// 	{
-// 		if(data->i = 0)
-//     	{
-//             while (value[data->i] && !ft_strchr(" \t", value[data->i]))
-//                 data->args[data->j++] = join_str_char(data->args[data->j], value[data->i++]);
-//         }
-//         skip_space(value, &data->i);
-//         while (value[data->i] && !ft_strchr(" \t", value[data->i]))
-// 			data->args[data->j] = join_str_char(data->args[data->j], value[data->i++]);
-//         if(data->i == (ft_strlen(value) - 1))
-//         {
-//             if(!strchr(" \t", value[data->i]))
-//             {
-//                 while (cur->content[index])
-//                     data->args[data->j] = join_str_char(data->args[data->j], cur->content[index++]);
-//             }
-//         }
-//         data->j++;
-// 	}
-// 	data->args[data->j] = 0;
-//     insert_into_list(cur, data);
-// 	return ;
-// }
-
-// int	check_field(char	*value, int x)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	if(x != 0)
-// 		return 0;
-// 	skip_space(value, &i);
-// 	while (value[i] && value[i] != ' ' && value[i] != '\t')
-// 		i++;
-// 	skip_space(value, &i);
-// 	if(value[i])
-// 		return 1;
-// 	return 0;
-// }
 int	len_of_word(char *str, int j)
 {
 	t_data	*data;

@@ -2,7 +2,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-<<<<<<< HEAD
       "name": "gcc build and debug active file",
       "type": "cppdbg",
       "request": "launch",
@@ -10,19 +9,11 @@
       "args": [
         ""
       ],
-=======
-      "name": "Debug with WSL",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/a.out",
-      "args": [],
->>>>>>> origin/imane3
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
-<<<<<<< HEAD
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -43,9 +34,6 @@
       "program": "/home/imeslaki/Desktop/local-mini_shell/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
-=======
-      "miDebuggerPath": "/usr/bin/gdb",
->>>>>>> origin/imane3
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -55,8 +43,4 @@
       ]
     }
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/imane3

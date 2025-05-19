@@ -12,16 +12,12 @@
                 "${workspaceFolder}/parsing/*/*/*.c",
                 "${workspaceFolder}/parsing/*/*.c",
                 "${workspaceFolder}/built_ins/*/*.c",
-                "${workspaceFolder}/tester/Unity-master/src/unity.c",
                 "-lreadline",
-<<<<<<< HEAD
                 //"-Ofast",
                 //"-Wall",
                 //"-Wextra",
                 //"-Werror",
                 //"-fsanitize=address",
-=======
->>>>>>> origin/imane3
                 "-o",
                 "${workspaceFolder}/a.out"
             ],

@@ -23,6 +23,24 @@ void    change_directory(char *path)
     }
 }
 
+void    cd(t_exec *node)
+{
+    char *command;
+    int num_args;
+
+    command = node->cmd;
+    if(ft_strcmp(command, "cd") == 0)
+    {
+        num_args = strlen_2d_array(node->args);
+        if(num_args > 1)
+        {
+            perror("cd : too many argument"); 
+            return;
+        }
+        change_directory(node->args[0]);
+    }
+}
+
 // int main(int argc, char **argv, char **env)
 // {
 //     creat_environment(env);
