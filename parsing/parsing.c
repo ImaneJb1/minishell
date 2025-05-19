@@ -6,13 +6,32 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/15 14:26:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:08:23 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "../tester/tester.h"
+#include "parsing.h"	
 #include "../built_ins/built_in.h"
+
+t_data	*init_data(void)
+{
+	t_data *data;
+
+	data = ft_malloc(sizeof(t_data ));
+	data->i = 0;
+	data->j = 0;
+	data->x = 0;
+	data->count = 0;
+	data->c = 0;
+	data->str = NULL;
+	data->del = NULL;
+	data->key = NULL;
+	data->value = NULL;
+	data->content = NULL;
+	data->command = NULL;
+	data->args = NULL;
+	return data;
+}
 
 void	creat_the_cmd_list(char *line)
 {
@@ -93,6 +112,8 @@ int    parsing(char *str)
     if(is_valid_syntax() == FALSE)
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
+	field_spliting();
+	print_parsing();
     fill_the_exec_struct();
 	t_exec *exec;
 	exec = *v_exec();

@@ -21,5 +21,5 @@ export v="ls "-ls""
 << $$"a"
 << $"$user ' ls ''"'"'
 $_
-
+export z"a=2"
 << $"d"$ ls | ls >> file << $'d'$$$USER LS

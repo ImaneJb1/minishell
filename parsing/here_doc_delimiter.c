@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/15 11:40:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:11:15 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    true_del(t_cmd **cmd)
         if(str[i] == '\"')
             del = inside_quote(del, str, &i, '\"');
         else if(str[i] == '$' && ft_strchr("\"\'", str[i + 1]))
-            i++;   
+            i++;
         else
             del = join_str_char(del, str[i++]);
     }

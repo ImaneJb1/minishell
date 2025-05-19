@@ -2,7 +2,7 @@
 
 void	skip_space(char *str, int *i)
 {
-	if (!str || !str[*i])
+	if (!str )
 		return ;
 	while (str[*i] && ft_strchr(" \t", str[*i]))
 		(*i)++;

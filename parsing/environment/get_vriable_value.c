@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/15 19:47:51 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/18 17:35:13 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,114 +28,77 @@ char	*get_value_from_env(char *key)
 	return (NULL);
 }
 
-char	*field_spliting(t_cmd *cur, char *value)
+char	*expand_the_value(t_cmd *cur, char *command, t_data *data, int x)
 {
-	int i;
-	char	*str;
+	char	*save;
 
-	i = 0;
-	while (value[i])
-	{
-		while (value[i] && !ft_strchr(" \t", value[i]))
-			str = join_str_char(str, value[i++]);
-		lst_add_one_cmd_by_node();
-		skip_space(str, &i);
-		i++;
-	}
-}
-char	*expand_the_value(t_cmd *cur, char *command, char *key, int x)
-{
-	int j;
-
-	j = 0;
-	char *value;
-	value = get_value_from_env(key);
-	if (!value)
+	save = NULL;
+	data->j = 0;
+	data->value = get_value_from_env(data->key);
+	if (!data->value)
 		return (command);
-	if(x == 0)
-		retrun (field_spliting(cur, value));
-	while (value[j])
-		command = join_str_char(command, value[++j]);
+	while (data->value[data->j])
+		command = join_str_char(command, data->value[data->j++]);
 	return (command);
 }
 
-// char	*value(char	*key, int *i)
-// {
-// 	char *value;
-
-// 	while (key[*i] && !ft_strchr("\"\'", key[*i]))
-// 	{
-// 		value = join_str_char(value, key[*i]);
-// 	}
-// }
-
-
-
 char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 {
-	int(j), (flag);
-	char (*content), *(key) = NULL;
-	t_cmd *cur;
-	
-	content = cur->content;
-	j = 0;
-	flag = 0;
+	t_data *data;
+
+	data = init_data();
 	(*i)++;
-	while (content[*i] && (is_valid(content[*i])))
+	while (cur->content[*i] && (is_valid(cur->content[*i])))
 	{
-		flag = 1;
-		if (content[*i - 1] == '$' && is_digit(content[*i]))
+		data->flag = 1;
+		if (cur->content[*i - 1] == '$' && is_digit(cur->content[*i]))
 		{
-			key = join_str_char(key, content[(*i)++]);
+			data->key = join_str_char(data->key, cur->content[(*i)++]);
 			break;
 		}
-		key = join_str_char(key, content[(*i)++]);
-		if (!key)
+		data->key = join_str_char(data->key, cur->content[(*i)++]);
+		if (!data->key)
 			return (ft_strdup(""));
 	}
-	if(x == 0 || flag == 1)
-		command = expand_the_value(cur, command, key, x);
-	else if (content[*i])
-		return (join_str_char(command, content[*i]));
+	data->i = (*i);
+	if(x == 0 || data->flag == 1)
+		command = expand_the_value(cur, command, data, x);
+	else if (cur->content[*i])
+		return (join_str_char(command, cur->content[*i]));
 	return command;
 }
-int check(char *content, char *command, int *i, int j)
+int check(char *content, t_data **data, int j)
 {
-	if (j == 0 && content[*i] == '\'')
+	if (j == 0 && content[(*data)->i] == '\'')
 	{
-		command = inside_quote(command, content, i,'\'');
+		(*data)->command = inside_quote((*data)->command, content, &(*data)->i,'\'');
 		return 1;
 	}
-	else if ((content[*i] == '$' && content[(*i) + 1] == '$'))
+	else if ((content[(*data)->i] == '$' && content[(*data)->i + 1] == '$'))
 	{
-		command = ft_strjoin(command, "$$");
-		(*i) += 2;
+		(*data)->command = ft_strjoin((*data)->command, "$$");
+		(*data)->i += 2;
 		return 1;
 	}
 	return 0;
 }
 void	change_var_value(t_cmd *cur)
 {
-	char *(command);
-	int(i), (j) = 0;
-	i = 0;
-	command = NULL;
+	t_data *data;
 
-	while (cur->content[i])
+	data = init_data();
+	while (cur && cur->content && cur->content[data->i])
 	{
-		j = check_double_quote(cur->content[i], j);
-		if(check(cur->content, command, &i, j))
+		data->flag = check_double_quote(cur->content[data->i], data->flag);
+		if(check(cur->content, &data, data->flag))
 			continue;
-		else if (is_var_inside_quote(cur->content, i, j))
-		{
-			command = add_var_string(command, cur, &i, j);
-			
-		}
+		else if (is_var_inside_quote(cur->content, data->i, data->flag))
+			data->command = add_var_string(data->command, cur, &data->i, data->flag);
 		else
-			command = join_str_char(command, cur->content[i++]);
+			data->command = join_str_char(data->command, cur->content[data->i++]);
 	}
-	if(!command)
+	if(!data->command)
 		lst_del_one_cmd_by_node(cur);
 	else
-		cur->content = command;
+		cur->content = data->command;
 }

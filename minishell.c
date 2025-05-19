@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/15 09:45:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:20:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int is_built_in(void)
     exec = *v_exec();
     if(!v_exec() || !(*v_exec()))
         return 0;
+    // char *str = "export";
+    // char *str1[] = {"export", "a=\"c  ddd   ee\"", NULL};
+    // export_built_in(str, str1);
     export_built_in(exec->cmd, exec->args);
     env_built_in(exec->cmd, exec->args);
     unset(exec->cmd, exec->args);

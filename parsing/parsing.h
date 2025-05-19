@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/15 11:08:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:31:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
+
+
 
 //      main parsing fuctions
 int				    parsing(char *str);
@@ -73,6 +75,7 @@ char	            *inside_quote(char *command, char *content, int *i, char c);
 int					is_var_inside_quote(char *c, int i, int j);
 int					check_double_quote(char c, int j);
 char				*get_value_from_env(char *key);
+void	field_spliting(void);
 
 // 		syntax error
 int					check_unclosed_quotes(t_cmd *ptr);
