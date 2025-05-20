@@ -39,6 +39,7 @@ t_exec	*add_to_exec_list(char *str, t_exec *cur, int flag)
 	}
 	return (cur);
 }
+
 int	count_args(t_cmd *cmd)
 {
 	t_type type;
@@ -53,26 +54,26 @@ int	count_args(t_cmd *cmd)
 	}
 	return i;
 }
+
 t_exec	*check_cmd(t_cmd **cmd, t_exec *list)
 {
 	t_type type;
 
 	type = PIPE;
-	if((*cmd)->type & CMD)
+	if((*cmd)->type | CMD)
 	{
 		if(list)
 			list = list->next;
 		list = add_to_exec_list((*cmd)->content, list, 1);
 		while ((*cmd) && ((*cmd)->type != type))
 		{
-			fill_fds(*cmd, list);
+			fill_fds(cmd, list);
 			if(!(list->args))
 				list->args = ft_malloc(sizeof(char *) * count_args(*cmd));
 			list = add_to_exec_list((*cmd)->content, list, 2);
 			*cmd = (*cmd)->next;
 		}
 		list = add_to_exec_list(0, list, 0);
-		lstadd_exec_back(v_exec(), list);
 	}
 	return list;
 }

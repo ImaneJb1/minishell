@@ -67,7 +67,6 @@ void fill_the_exec_struct(void)
 	{
 		list = check_cmd(&cmd, list);
 
-
 		if(cmd)
 			cmd = cmd->next;
 	}
