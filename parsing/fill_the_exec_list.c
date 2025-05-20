@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_the_exec_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/19 18:39:31 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:18:41 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_exec	*add_to_exec_list(char *str, t_exec *cur, int flag)
 	}
 	return (cur);
 }
+
 int	count_args(t_cmd *cmd)
 {
 	t_type type;
