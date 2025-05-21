@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_env_linked_list2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 17:17:58 by imeslaki          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/14 11:26:08 by imeslaki         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/18 19:10:44 by imeslaki         ###   ########.fr       */
->>>>>>> origin/ilyas
+/*   Updated: 2025/05/21 10:30:04 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +23,9 @@ void	lstclear_env(void)
 	while (cur)
 	{
 		next = cur->next;
-<<<<<<< HEAD
-		free(cur->key);
-        free(cur->value);
-		free(cur);
-=======
 		ft_free(cur->key);
         ft_free(cur->value);
 		ft_free(cur);
->>>>>>> origin/ilyas
 		cur = next;
 	}
 	*v_env() = NULL;
@@ -127,11 +117,7 @@ void	lst_del_one_env_by_node(t_env	*cur)
 		*v_env() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-<<<<<<< HEAD
-	free(tmp);
-=======
 	ft_free(tmp);
->>>>>>> origin/ilyas
 	index_the_env_list();
 }
 

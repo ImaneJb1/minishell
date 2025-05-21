@@ -3,44 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   variable_checkers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:53:48 by imeslaki          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/30 12:06:28 by imeslaki         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/15 15:38:21 by imeslaki         ###   ########.fr       */
->>>>>>> origin/ilyas
+/*   Updated: 2025/05/21 10:31:37 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-<<<<<<< HEAD
-char	*inside_singl_quote(char *command, char *content, int *i)
-=======
 char	*inside_quote(char *command, char *content, int *i, char sp)
->>>>>>> origin/ilyas
 {
 	char	c;
 
 	c = '\0';
 	while (content[*i])
 	{
-<<<<<<< HEAD
-		if (content[*i] == '\'' && c == '\0')
-=======
 		if (content[*i] == sp && c == '\0')
->>>>>>> origin/ilyas
 		{
 			command = join_str_char(command, content[*i]);
 			c = content[(*i)++];
 		}
-<<<<<<< HEAD
-		else if (content[*i] == '\'' && c != '\0')
-=======
 		else if (content[*i] == sp && c != '\0')
->>>>>>> origin/ilyas
 		{
 			command = join_str_char(command, content[(*i)++]);
 			c = '\0';
@@ -78,8 +62,6 @@ int is_var_inside_quote(char *c, int i, int j)
 		return (1);
 	return (0);
 }
-<<<<<<< HEAD
-=======
 
 // int is_var_outside_quote(char *c, int i, int j)
 // {
@@ -89,4 +71,3 @@ int is_var_inside_quote(char *c, int i, int j)
 // 		return (1);
 // 	return (0);
 // }
->>>>>>> origin/ilyas

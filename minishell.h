@@ -6,13 +6,14 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 09:52:26 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:28:22 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include <stddef.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -31,6 +32,7 @@
 # ifndef FALSE
 #  define FALSE 0
 # endif
+
 
 // 		enums type
 typedef enum s_type

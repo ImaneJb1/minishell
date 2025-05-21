@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_cmd_linked_list_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/12 16:36:12 by imeslaki         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/18 19:10:24 by imeslaki         ###   ########.fr       */
->>>>>>> origin/ilyas
+/*   Updated: 2025/05/21 10:29:51 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +24,8 @@ void	lstclear_cmd(void)
 	while (cur)
 	{
 		next = cur->next;
-<<<<<<< HEAD
-		free(cur->content);
-		free(cur);
-=======
 		ft_free(cur->content);
 		ft_free(cur);
->>>>>>> origin/ilyas
 		cur = next;
 	}
 	*v_cmd() = NULL;
@@ -53,34 +44,6 @@ t_cmd	*find_cmd_by_index(int index)
 	return cur;
 }
 
-<<<<<<< HEAD
-void	lst_add_one_cmd(t_cmd	*new, int index)
-{
-	t_cmd	*cur;
-
-	cur = find_cmd_by_index(index);
-	if(!cur && cur->prev)
-		return;
-	else if(!cur->next)
-	{
-		lstadd_cmd_back(v_cmd(), new);
-		cur->prev = new;
-		new->next = cur;
-	}
-	else
-	{
-		new->next = cur;
-		new->prev = cur->prev;
-		if(!cur->prev)
-			*v_cmd() = new;
-		else
-			(cur->prev)->next = new;
-		cur->prev = new;
-	}
-	index_the_cmd_list();
-}
-
-=======
 void	lst_add_one_cmd_by_node(t_cmd	*cur, t_cmd	*new)
 {
 	t_cmd *next;
@@ -129,7 +92,6 @@ void	lst_add_one_cmd_by_node(t_cmd	*cur, t_cmd	*new)
 // 	index_the_cmd_list();
 // }
 
->>>>>>> origin/ilyas
 void	lst_del_one_cmd_by_node(t_cmd	*cur)
 {
 	t_cmd	*tmp;
@@ -153,12 +115,7 @@ void	lst_del_one_cmd_by_node(t_cmd	*cur)
 		*v_cmd() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-<<<<<<< HEAD
-	free(tmp);
-	index_the_cmd_list();
-=======
 	ft_free(tmp);
->>>>>>> origin/ilyas
 }
 
 // void	lst_del_one_cmd(int index)
@@ -188,11 +145,7 @@ void	lst_del_one_cmd_by_node(t_cmd	*cur)
 // 		*v_cmd() = cur->next;
 // 		(cur->next)->prev = NULL;
 // 	}
-<<<<<<< HEAD
-// 	free(tmp);
-=======
 // 	ft_free(tmp);
->>>>>>> origin/ilyas
 // 	index_the_cmd_list();
 // }
 
