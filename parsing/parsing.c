@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/20 18:39:24 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:06:56 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_data	*init_data(void)
 	data->i = 0;
 	data->j = 0;
 	data->x = 0;
+	data->fd = 0;
 	data->count = 0;
 	data->c = 0;
 	data->str = NULL;
@@ -57,6 +58,7 @@ void	creat_the_cmd_list(char *line)
 			list[j++](str, &i);
 	}
 	identify_all_types();
+	
 	index_the_cmd_list();
 }
 
@@ -75,10 +77,10 @@ void	expand_variable_value(void)
 	remove_quotes();
 }
 
-
 int    parsing(char *str)
 {
     creat_the_cmd_list(str);
+	print_parsing();
 	change_the_correct_del();
     if(is_valid_syntax() == FALSE)
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);

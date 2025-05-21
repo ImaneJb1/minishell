@@ -35,15 +35,19 @@ void	identify_symbols(void)
 void	identify_cmd(void)
 {
 	t_cmd *ptr;
+	int flag;
 
+	flag = 0;
 	ptr = *v_cmd();
-	if(ptr && ptr->type & WORD)
-		ptr->type = ptr->type | CMD; // if the first arg is a word then it's CMD
-	ptr = ptr->next;
 	while(ptr)
 	{
-		if((ptr->type & WORD) && ((ptr->prev->type & PIPE) || (ptr->prev->type & DELIMITER))) // if the previous arg of a word is a PIPE 
-			ptr->type = ptr->type | CMD;               // then the word is a CMD
+		if(ptr->type == WORD && flag == 0)
+		{
+			ptr->type |= CMD;
+			flag = 1;
+		}
+		if(ptr->type == PIPE)
+			flag = 0;
 		ptr = ptr->next;
 	}
 }

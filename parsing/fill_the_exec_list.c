@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_the_exec_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/20 19:50:26 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:52:04 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 t_exec	*add_to_exec_list(char *str, t_exec *cur, int flag)
 {
-	t_exec *node;
 	static int i;
 
 	if(flag == 1)
 	{
-		node = new_exec_node();
-		if(!node)	
-			return (*v_exec());
-		node->cmd = ft_strdup(str);
-		return (node);
+		cur->cmd = ft_strdup(str);
+		return (cur);
 	}
 	else if(flag == 2)
 	{

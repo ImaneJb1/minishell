@@ -809,8 +809,18 @@
 //     return UNITY_END();
 // }
 
-
-
+// void clear_the_list(void) 
+// {
+//     t_cmd *cur = *v_cmd();
+//     t_cmd *next;
+//     while (cur) {
+//         next = cur->next;
+//         free(cur->content);
+//         free(cur);
+//         cur = next;
+//     }
+//     *v_cmd() = NULL;
+// }
 
 
 
