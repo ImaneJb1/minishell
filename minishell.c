@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:51:07 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:21:53 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ int main(int argc, char const *argv[], char **env)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
 	    	printf("(%s)  [", exec->cmd);
-	    	for(int i = 0; exec->args[i]; i++)
-            {
-                if(i != 0)
-                    printf(" ");
-                printf("%s", exec->args[i]);
+	    	// for(int i = 0; exec->args[i]; i++)
+            // {
+            //     if(i != 0)
+            //         printf(" ");
+            //     printf("%s", exec->args[i]);
                 
-            }
+            // }
 	    	printf("]\n{fdin = (%d) fdout = (%d)}", exec->fd_in, exec->fd_out);
 	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
 	    	exec = exec->next;

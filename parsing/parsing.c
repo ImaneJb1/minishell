@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:49:33 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:19:34 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	expand_variable_value(void)
 int    parsing(char *str)
 {
     creat_the_cmd_list(str);
+	print_parsing();
 	change_the_correct_del();
     if(is_valid_syntax() == FALSE)
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);

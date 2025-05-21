@@ -6,12 +6,13 @@ void	identify_all_types(void)
 		return;
 	identify_symbols();
 	identify_delimiter();
-	identify_cmd();
 	identify_file();
 	identify_path();
 	identify_double_q();
 	identify_single_q();    
+	identify_cmd();
 	hanlde_case();
+	//commad case
 	identify_cmd_arg();
 	identify_var();
 }

@@ -31,4 +31,5 @@ echo hello > file1 world
 < file > file2 >> file3
 < main.c > file2 > file3 ls > file4
 < main.c > file2 > file3 ls
+ ls -la - | cat > file >> file2 < file3 < file4 < file5 >> file6 ls 
 < main.c cat >file > file1 > file2
