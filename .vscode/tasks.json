@@ -9,15 +9,9 @@
                 "-g",
                 "${workspaceFolder}/*.c",
                 "${workspaceFolder}/*/*.c",
-<<<<<<< HEAD
                 "${workspaceFolder}/parsing/*/*/*.c",
                 "${workspaceFolder}/parsing/*/*.c",
                 "${workspaceFolder}/built_ins/*/*.c",
-=======
-                "/home/imeslaki/Desktop/minishell/parsing/*/*/*.c",
-                "/home/imeslaki/Desktop/minishell/parsing/*/*.c",
->>>>>>> origin/ilyas
-                "${workspaceFolder}/tester/Unity-master/src/unity.c",
                 "-lreadline",
                 "-o",
                 "${workspaceFolder}/a.out"
