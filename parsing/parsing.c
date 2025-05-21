@@ -3,16 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:12:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/21 09:51:13 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "../tester/tester.h"
+#include "parsing.h"	
 #include "../built_ins/built_in.h"
+
+t_data	*init_data(void)
+{
+	t_data *data;
+
+	data = ft_malloc(sizeof(t_data ));
+	data->i = 0;
+	data->j = 0;
+	data->x = 0;
+	data->count = 0;
+	data->c = 0;
+	data->str = NULL;
+	data->del = NULL;
+	data->key = NULL;
+	data->value = NULL;
+	data->content = NULL;
+	data->command = NULL;
+	data->args = NULL;
+	return data;
+}
 
 void	creat_the_cmd_list(char *line)
 {
@@ -22,7 +41,7 @@ void	creat_the_cmd_list(char *line)
 
 	i = 0;
 	str = NULL;
-	if(!line)
+	if(!line || !*line)
 		return;
 	str = separat_with_one_space(line);
 	static void (*list[])(char *str, int *i) = {
@@ -34,7 +53,7 @@ void	creat_the_cmd_list(char *line)
 		j = 0;
 		if (str[i] == ' ' && i++)
 			add_to_cmd_list(0, 0);
-		while(j < 8)
+		while(j < 9)
 			list[j++](str, &i);
 	}
 	identify_all_types();
@@ -49,50 +68,22 @@ void	expand_variable_value(void)
 	head = *v_cmd();
 	while (head)
 	{
-		if (head->type & VARIABLE)
+		if ((head->type & VARIABLE) && !(head->type & DELIMITER))
 			change_var_value(head);
 		head = head->next;
 	}
 	remove_quotes();
 }
 
-void fill_the_exec_struct(void)
-{
-	t_cmd *cmd;
-	t_exec *list;
-	
-	cmd = *v_cmd();
-	list = *v_exec();
-	while (cmd)
-	{
-		list = check_cmd(&cmd, list);
-
-		if(cmd)
-			cmd = cmd->next;
-	}
-}
 
 int    parsing(char *str)
 {
-    creat_the_cmd_list(str);  
+    creat_the_cmd_list(str);
+	change_the_correct_del();
     if(is_valid_syntax() == FALSE)
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
-    fill_the_exec_struct();
-	t_exec *exec;
-	exec = *v_exec();
- 	while (exec)
-	{
-		// printf("{(%s)  ", exec->cmd);
-		// printf("[");
-		printf("command = %s fdin = %d fdout = %d ", exec->cmd, exec->fd_in, exec->fd_out);
-		// for(int i = 0; exec->args[i]; i++)
-		// 	printf("%s ", exec->args[i]);
-		printf("]}\n");
-		exec = exec->next;
-	}
-	
-	// lstclear_cmd();
-	// lstclear_exec();
-    return 1;
+	field_spliting();
+	fill_the_exec_struct();
+	return 1;
 }

@@ -6,7 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/13 15:54:10 by imeslaki         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/20 14:55:34 by imeslaki         ###   ########.fr       */
+>>>>>>> origin/ilyas
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +28,20 @@ void	lstclear_exec(void)
 	{
         next = cur->next;
 		if(cur->cmd)
+<<<<<<< HEAD
 			free(cur->cmd);
 		if(cur->args)
         	free_2d_arry(cur->args);
         // lstclear_pipe();
+=======
+			ft_free(cur->cmd);
+		if(cur->args)
+		{
+        	ft_free(cur->args);
+			cur->args = NULL;
+		}
+			// lstclear_pipe();
+>>>>>>> origin/ilyas
 		cur = cur->next;
 	}
 	*v_exec() = NULL;
@@ -95,7 +109,11 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 		*v_exec() = cur->next;
 		(cur->next)->prev = NULL;
 	}
+<<<<<<< HEAD
 	free(tmp);
+=======
+	ft_free(tmp);
+>>>>>>> origin/ilyas
 	index_the_exec_list();
 }
 
@@ -126,7 +144,11 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 // 		*v_exec() = cur->next;
 // 		(cur->next)->prev = NULL;
 // 	}
+<<<<<<< HEAD
 // 	free(tmp);
+=======
+// 	ft_free(tmp);
+>>>>>>> origin/ilyas
 // 	index_the_cmd_list();
 // }
 

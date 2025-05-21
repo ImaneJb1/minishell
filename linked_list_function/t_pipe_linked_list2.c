@@ -6,7 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/13 10:23:41 by imeslaki         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/18 19:11:20 by imeslaki         ###   ########.fr       */
+>>>>>>> origin/ilyas
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +28,15 @@
 // 	while (cur)
 // 	{
 //         next = cur->next;
+<<<<<<< HEAD
 // 		free(cur->cmd);
 //         free(cur->);
 // 		free(cur);
+=======
+// 		ft_free(cur->cmd);
+//         ft_free(cur->);
+// 		ft_free(cur);
+>>>>>>> origin/ilyas
 //         lstclear_pipe();
 // 		cur = next;
 // 	}
@@ -95,7 +105,11 @@ void	lst_del_one_pipe_by_node(t_pipe	*cur)
 		*v_pipe() = cur->next;
 		(cur->next)->prev = NULL;
 	}
+<<<<<<< HEAD
 	free(tmp);
+=======
+	ft_free(tmp);
+>>>>>>> origin/ilyas
 	index_the_pipe_list();
 }
 

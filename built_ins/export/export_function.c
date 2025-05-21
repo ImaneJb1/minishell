@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:33:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/21 09:57:58 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
 
-char *check_key(char *str, int *i)
+char    *check_key(char *str, int *i)
 {
     char *key;
 
@@ -47,7 +47,7 @@ char *extracte_str(char *str, int i)
     return value;
 }
 
-void export_arg(char *arg)
+void    export_arg(char *arg)
 {
     char *key;
     char *value;
@@ -64,11 +64,14 @@ void export_arg(char *arg)
         return;
     existe = is_existe_in_env(key);
     if(existe)
-        lst_del_one_env_by_node(existe);
+    {
+        existe->value = value;
+        return ;
+    }
     add_to_env(key, value);
 }
 
-void export_built_in(char *cmd, char **args)
+void    export_built_in(char *cmd, char **args)
 {
     int i;
 

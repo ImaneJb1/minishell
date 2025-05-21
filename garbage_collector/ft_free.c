@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/12 16:58:16 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:28:29 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	find_to_free(void *mem)
 	{
 		prev = head;
 		head = head->next;
-		if (head->mem == mem)
+		if (head && head->mem == mem)
 		{
+
 			prev->next = head->next;
 			free(head->mem);
 			free(head);
@@ -60,7 +61,7 @@ void	ft_free(void *mem)
 	t_mem_list	*head;
 
 	mems = ft_mem_list();
-	if (!(*mems))
+	if (!(*mems) || !mem)
 		return ;
 	head = (*mems);
 	if ((*mems)->mem == mem)

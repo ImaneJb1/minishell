@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:35:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/21 09:53:46 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void print_parsing(void)
     printf("----------------------------------------------\n");
     printf("----------------------------------------------\n");
 }
-
 int is_built_in(void)
 {
     t_exec *exec;
@@ -69,41 +68,12 @@ int is_built_in(void)
     exec = *v_exec();
     if(!v_exec() || !(*v_exec()))
         return 0;
-    printf("input cmd : (%s)\n", (*v_cmd())->content);
-    //   while(our_env)
-    // {
-    //     if(ft_strcmp(our_env->key,"OLDPWD") == 0 || ft_strcmp(our_env->key, "PWD") == 0)
-    //     {   
-    //         if(ft_strcmp(our_env->key,"OLDPWD") == 0)
-    //             printf(" ------------ OLDPWD ");
-    //         else if(ft_strcmp(our_env->key,"PWD") == 0)
-    //             printf("---------------PWD ");
-    //         printf("%s\n", our_env->value);
-    //     }
-    //     our_env = our_env->next;
-    // }
-    printf("------------------------------------------------------------------------------\n");
-    change_directory((*v_cmd())->content);
-    // our_env = *v_env();
-    while(our_env)
-    {
-        if(ft_strcmp(our_env->key,"OLDPWD") == 0 || ft_strcmp(our_env->key, "PWD") == 0)
-        {   
-            if(ft_strcmp(our_env->key,"OLDPWD") == 0)
-                printf("OLDPWD ");
-            else if(ft_strcmp(our_env->key,"PWD") == 0)
-                printf("PWD ");
-            printf("%s\n", our_env->value);
-        }
-        our_env = our_env->next;
-    }
     ft_free(*v_cmd());
-        *v_cmd() = NULL;  
-    return 1;
+    *v_cmd() = NULL;  
     export_built_in(exec->cmd, exec->args);
     env_built_in(exec->cmd, exec->args);
     unset(exec->cmd, exec->args);
-    return 0;
+    return 1;
 }
 
 int main(int argc, char const *argv[], char **env)
@@ -114,45 +84,38 @@ int main(int argc, char const *argv[], char **env)
     while(1)
     {
         str = readline("Minishell $>: ");
-        if(!str)
+        if(!str || !*str)
             continue;
         add_history(str);
         if(!parsing(str))
         {
-            
+            ft_free(*v_exec());
+            *v_exec() = NULL;
             continue;
         }
-        // print_parsing();
-        // ft_free(*v_cmd());
-        // *v_cmd() = NULL;   
         if(!is_built_in())
         {
+            ft_free(*v_exec());
+            *v_exec() = NULL;
             continue;
         }
+        t_exec *exec;
+	    exec = *v_exec();
+ 	    while (exec)
+	    {
+            printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
+	    	printf("(%s)  [", exec->cmd);
+	    	for(int i = 0; exec->args[i]; i++)
+            {
+                if(i != 0)
+                    printf(" ");
+                printf("%s", exec->args[i]);
+                
+            }
+	    	printf("]\n{fdin = (%d) fdout = (%d)}", exec->fd_in, exec->fd_out);
+	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
+	    	exec = exec->next;
+	    }
+        lstclear_exec();
     }
 }
-
-// int main(int argc, char **argv, char **env)
-// {
-//     t_env *our_env;
-    
-//     creat_environment(env);
-//     our_env = *v_env();
-//     // for(int i = 0; env[i]; i++)
-//     //     printf("%s\n", env[i]);
-//     printf("----------------------------------------\n");
-//     change_directory("-");
-//     int i = 0;
-//     while(our_env)
-//     {
-//         if(ft_strcmp(our_env->key,"OLDPWD") == 0 || ft_strcmp(our_env->key, "PWD") == 0)
-//         {   
-//             if(ft_strcmp(our_env->key,"OLDPWD") == 0)
-//                 printf("OLDPWD ");
-//             else if(ft_strcmp(our_env->key,"PWD") == 0)
-//                 printf("PWD ");
-//             printf("%s\n", our_env->value);
-//         }
-//         our_env = our_env->next;
-//     }
-// }

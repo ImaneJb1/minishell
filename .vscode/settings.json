@@ -4,6 +4,7 @@
         "tester.h": "c",
         "unity.h": "c",
         "garbage_collector.h": "c",
+<<<<<<< HEAD
         "minishell.h": "c",
         "helper.h": "c",
         "built_in.h": "c",
@@ -16,4 +17,13 @@
         "terminal.integrated.defaultProfile.windows": "WSL"
 
     }
+=======
+        "helper.h": "c",
+        "readline.h": "c",
+        "stdbool.h": "c",
+        "unistd.h": "c",
+        "TESTS.C": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/imeslaki/Desktop/minishell/tester/Unity-master"
+>>>>>>> origin/ilyas
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 13:28:42 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/21 09:52:26 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,24 @@ typedef struct s_tokens
 	t_type			type;
 }					t_tokens;
 
+typedef struct s_data
+{
+	int i;
+	int j;
+    int x;
+	int count;
+	int flag;
+	char c;
+	char *key;
+	char *value;
+	char *str;
+	char *content;
+    char *command;
+	char *del;
+	char **args;
+
+}	t_data;
+
 typedef struct s_pipe
 {
 	int write;
@@ -84,6 +102,8 @@ typedef struct s_cmd
 {
 	char			*content;
 	int				index;
+	int	 fd_in;
+	int	 fd_out;
 	t_type			type;
 	struct s_cmd	*next;
 
@@ -99,14 +119,17 @@ typedef struct s_env
 	struct s_env	*prev;
 }					t_env;
 
+void print_parsing(void);
+
 //		globale
 t_cmd				**v_cmd(void);
 t_exec				**v_exec(void);
 t_pipe				**v_pipe(void);
 t_env				**v_env(void);
 
-// void			add_to_exec_list(char *str, t_exec *cur, int flag);
-int				parsing(char *str);
-void			creat_environment(char **env);
+t_data	            *init_data(void);
+// void				add_to_exec_list(char *str, t_exec *cur, int flag);
+int					parsing(char *str);
+void				creat_environment(char **env);
 
 #endif

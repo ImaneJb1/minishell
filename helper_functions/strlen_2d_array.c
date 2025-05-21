@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester.h                                           :+:      :+:    :+:   */
+/*   free_2d_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 16:14:20 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/21 14:48:38 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/05/13 15:41:48 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/05/19 16:58:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTER_H
-# define TESTER_H
+#include "helper.h"
 
-# include "../parsing/parsing.h"
-# include "Unity-master/src/unity.h"
-
-#define COUNT(a) (sizeof(a) / sizeof(a[0]))
-
-typedef struct s_cases
+int	strlen_2d_array(char **ptr)
 {
-	const char		*command;
-	t_type			type;
-	struct s_cases	*next;
-}					t_case;
+	size_t	i;
 
-void				setUp(void);
-void				tearDown(void);
-int					tester(void);
-
-#endif
+	i = 0;
+	if(!ptr)
+		return(0);
+	while (ptr[i] != NULL)
+		i++;
+	return (i);
+}
