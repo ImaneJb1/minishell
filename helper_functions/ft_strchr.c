@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 18:26:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 17:07:01 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:08:31 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ char	*ft_strchr(char *str, int c)
 			return ((char *)&str[i]);
 		}
 		i++;
-	}
-	if (str[i] == (char)c)
-	{
-		return ((char *)&str[i]);
 	}
 	return (NULL);
 }

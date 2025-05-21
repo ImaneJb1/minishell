@@ -11,7 +11,7 @@ int	check_pipe_syntax(t_cmd *ptr)
 		}
 		else if((ptr->type & PIPE) && (ptr->next->type & PIPE))
 		{
-			print_error("pipe near pipe  ");
+			print_error("syntax error near unexpected token `|'\n");
 			return(-1);
 		}
 	}

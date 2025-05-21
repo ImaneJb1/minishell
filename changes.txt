@@ -1,0 +1,9 @@
+
+-----------------------------⚠️ATTENTION⚠️-------------------------
+🛑helper fuctions changed
+    -->remove free2darray
+    -->add strlen_2d_array
+
+🛑change parsing
+    -->change fill_the_exec_list
+

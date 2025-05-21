@@ -9,4 +9,25 @@ $USER"""'$USER'$
 echo $USER"""'$USER'$ $$"$HOME'"$USER"'
 $'USER'$"USER" $$'USER'$$"USER" '$"USER"''"$USER"' "$'USER'$"USER""
 "$USER"$$USER$"USER' $USER'" '"$USER"$USER'$USER
+$USER"$""$USER"'$'""$USER""$USER"$USER$"$
+'$'cat"""><"'""''"$"'"'$'"
+"#$USER$$$"$'"$USER"'
+$@USER%
 ls | exit 1
+ls -la | cat > file | << del file >> ls | cat
+ls -la | cat > file | < del file >> ls | cat
+export v="ls "-ls""
+<< end ><
+<< $$"a"
+<< $"$user ' ls ''"'"'
+$_
+export z"a=2"
+<< $"d"$ ls | ls >> file << $'d'$$$USER LS
+ls -la | cat > file >> file2 | ls -la >> file3 | << del > file4
+ls -la | cat > file >> file2 | ls -la >> file3 | > file4
+ls -la >> file1 >> file2 > file3 | < file4 cat > file5
+echo hello > file1 world
+> file
+< file > file2 >> file3
+< main.c > file2 > file3 ls > file4
+< main.c > file2 > file3 ls

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:44:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 17:25:42 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:10:06 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*del_str_len(char *str, size_t start, size_t len)
 
 	i = 0;
 	string = NULL;
-	if (!str || start < 0)
+	if (!str)
 		return (NULL);
 	j = ft_strlen(str);
 	string = ft_malloc(j + 1);
