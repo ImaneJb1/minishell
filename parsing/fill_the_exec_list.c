@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 11:52:04 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:28:49 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	fill_args(t_cmd *token, t_exec **cmd)
 	if(token->type & CMD_ARG)
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
 }
+
 void 	fill_the_exec_struct(void)
 {
 	t_cmd *tokens;
@@ -75,7 +76,6 @@ void 	fill_the_exec_struct(void)
 	if(!v_cmd() || !(*v_cmd()))
         return ;
 	tokens = *v_cmd();
-
 	cmd = new_exec_node();
 	while(tokens)
 	{

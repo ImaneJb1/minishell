@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 01:42:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:45:43 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:19:38 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ size_t	ft_strlen(char *str);
 char	*ft_strdup(char *s1);
 int		is_alpha(int c);
 int		is_digit(int n);
+char	**ft_split(char const *s, char c);
 void	skip_space(char *str, int *i);
-
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 #endif
