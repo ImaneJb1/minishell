@@ -23,3 +23,4 @@ export v="ls "-ls""
 $_
 export z"a=2"
 << $"d"$ ls | ls >> file << $'d'$$$USER LS
+< main.c cat >file > file1 > file2
