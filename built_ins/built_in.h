@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:36:04 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:05:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 #define PATH_MAX 4096
 #endif
 
-typedef struct s_data {
-    int i;
-    int j;
-    char line;
-}   t_data;
+// typedef struct s_bdata {
+//     int i;
+//     int j;
+//     char line;
+// }   t_bdata;
 
 //      env
 void	env_built_in(char *cmd, char **args);

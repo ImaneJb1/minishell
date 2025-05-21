@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:54:10 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:55:08 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	lstclear_exec(void)
 	{
         next = cur->next;
 		if(cur->cmd)
-			free(cur->cmd);
+			ft_free(cur->cmd);
 		if(cur->args)
-        	free_2d_arry(cur->args);
+        	ft_free(cur->args);
         // lstclear_pipe();
 		cur = cur->next;
 	}
@@ -95,7 +95,7 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 		*v_exec() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-	free(tmp);
+	ft_free(tmp);
 	index_the_exec_list();
 }
 
@@ -126,7 +126,7 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 // 		*v_exec() = cur->next;
 // 		(cur->next)->prev = NULL;
 // 	}
-// 	free(tmp);
+// 	ft_free(tmp);
 // 	index_the_cmd_list();
 // }
 

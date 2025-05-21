@@ -29,9 +29,9 @@ void    cd(t_exec *node)
     int num_args;
 
     command = node->cmd;
-    num_args = strlen_2d_array(node->args);
     if(ft_strcmp(command, "cd") == 0)
     {
+        num_args = strlen_2d_array(node->args);
         if(num_args > 1)
         {
             perror("cd : too many argument"); 

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 10:23:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:11:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 // 	while (cur)
 // 	{
 //         next = cur->next;
-// 		free(cur->cmd);
-//         free(cur->);
-// 		free(cur);
+// 		ft_free(cur->cmd);
+//         ft_free(cur->);
+// 		ft_free(cur);
 //         lstclear_pipe();
 // 		cur = next;
 // 	}
@@ -95,7 +95,7 @@ void	lst_del_one_pipe_by_node(t_pipe	*cur)
 		*v_pipe() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-	free(tmp);
+	ft_free(tmp);
 	index_the_pipe_list();
 }
 

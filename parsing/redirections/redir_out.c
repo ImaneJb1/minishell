@@ -10,7 +10,7 @@ bool    if_its_outfile(t_cmd *ptr)
 void    open_fd_out(t_cmd *token, int *fd)
 {
     if(if_its_outfile(token))
-        *fd = open(token->content, O_RDWR | O_CREAT | O_TRUNC);
+        *fd = open(token->content, O_RDWR | O_CREAT | O_TRUNC, 0666);
     if(*fd < 0)
         perror(token->content);
 }

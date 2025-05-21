@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:14:24 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:26:00 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:40:01 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_cmd	*lstlast_cmd(void);
 void	lstclear_cmd(void);
 void	lst_del_one_cmd_by_node(t_cmd	*cur);
 // void	lst_del_one_cmd(int index);
-void	lst_add_one_cmd(t_cmd *new, int index);
+void	lst_add_one_cmd_by_node(t_cmd	*cur, t_cmd	*new);
 
 //          env list
 t_env	*new_env_node(char *key, char *value);

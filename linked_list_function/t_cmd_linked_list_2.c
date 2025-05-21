@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/12 16:36:12 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:10:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	lstclear_cmd(void)
 	while (cur)
 	{
 		next = cur->next;
-		free(cur->content);
-		free(cur);
+		ft_free(cur->content);
+		ft_free(cur);
 		cur = next;
 	}
 	*v_cmd() = NULL;
@@ -44,31 +44,53 @@ t_cmd	*find_cmd_by_index(int index)
 	return cur;
 }
 
-void	lst_add_one_cmd(t_cmd	*new, int index)
+void	lst_add_one_cmd_by_node(t_cmd	*cur, t_cmd	*new)
 {
-	t_cmd	*cur;
+	t_cmd *next;
 
-	cur = find_cmd_by_index(index);
-	if(!cur && cur->prev)
-		return;
-	else if(!cur->next)
+	next = cur->next;
+	if(!cur || !cur->next)
 	{
 		lstadd_cmd_back(v_cmd(), new);
-		cur->prev = new;
-		new->next = cur;
+		// cur->prev = new;
+		// new->next = cur;
 	}
 	else
 	{
-		new->next = cur;
-		new->prev = cur->prev;
-		if(!cur->prev)
-			*v_cmd() = new;
-		else
-			(cur->prev)->next = new;
-		cur->prev = new;
+		cur->next = new;
+		new->prev = cur;
+		new->next = next;
+		next->prev = new;
+		// new->next = cur;
+		// new->prev = cur->prev;
 	}
-	index_the_cmd_list();
 }
+
+// void	lst_add_one_cmd(t_cmd	*new, int index)
+// {
+// 	t_cmd	*cur;
+
+// 	cur = find_cmd_by_index(index);
+// 	if(!cur && cur->prev)
+// 		return;
+// 	else if(!cur->next)
+// 	{
+// 		lstadd_cmd_back(v_cmd(), new);
+// 		cur->prev = new;
+// 		new->next = cur;
+// 	}
+// 	else
+// 	{
+// 		new->next = cur;
+// 		new->prev = cur->prev;
+// 		if(!cur->prev)
+// 			*v_cmd() = new;
+// 		else
+// 			(cur->prev)->next = new;
+// 		cur->prev = new;
+// 	}
+// 	index_the_cmd_list();
+// }
 
 void	lst_del_one_cmd_by_node(t_cmd	*cur)
 {
@@ -93,8 +115,7 @@ void	lst_del_one_cmd_by_node(t_cmd	*cur)
 		*v_cmd() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-	free(tmp);
-	index_the_cmd_list();
+	ft_free(tmp);
 }
 
 // void	lst_del_one_cmd(int index)
@@ -124,7 +145,7 @@ void	lst_del_one_cmd_by_node(t_cmd	*cur)
 // 		*v_cmd() = cur->next;
 // 		(cur->next)->prev = NULL;
 // 	}
-// 	free(tmp);
+// 	ft_free(tmp);
 // 	index_the_cmd_list();
 // }
 
