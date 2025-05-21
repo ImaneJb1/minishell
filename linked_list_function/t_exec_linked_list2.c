@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:31:01 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:36:58 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,7 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 // 		*v_exec() = cur->next;
 // 		(cur->next)->prev = NULL;
 // 	}
-<<<<<<< HEAD
-// 	free(tmp);
-=======
 // 	ft_free(tmp);
->>>>>>> origin/ilyas
 // 	index_the_cmd_list();
 // }
 
