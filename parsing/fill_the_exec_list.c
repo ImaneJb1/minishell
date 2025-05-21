@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:49:21 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:52:04 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 t_exec	*add_to_exec_list(char *str, t_exec *cur, int flag)
 {
-	t_exec *node;
 	static int i;
 
 	if(flag == 1)
 	{
-		node = new_exec_node();
-		if(!node)	
-			return (*v_exec());
-		node->cmd = ft_strdup(str);
-		return (node);
+		cur->cmd = ft_strdup(str);
+		return (cur);
 	}
 	else if(flag == 2)
 	{
@@ -55,9 +51,6 @@ int	count_args(t_cmd *cmd)
 	}
 	return i;
 }
-// t_exec	*check_cmd(t_cmd **cmd, t_exec *list)
-// {
-// 	t_type type;
 
 void fill_cmd(t_cmd *token, t_exec **cmd)
 {

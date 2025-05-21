@@ -15,7 +15,6 @@ void    open_fd_in(t_cmd *token, int *fd)
     if(if_its_infile(token))
     {
         *fd = open(token->content, O_RDONLY, 0666);
-        printf("%s\n", token->content);
         if(*fd < 0)
             perror(token->content);
     }
