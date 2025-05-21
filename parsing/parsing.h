@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:49:43 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:34:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	            *inside_quote(char *command, char *content, int *i, char c);
 int					is_var_inside_quote(char *c, int i, int j);
 int					check_double_quote(char c, int j);
 char				*get_value_from_env(char *key);
-void	field_spliting(void);
+void	            field_spliting(void);
 
 // 		syntax error
 int					check_unclosed_quotes(t_cmd *ptr);

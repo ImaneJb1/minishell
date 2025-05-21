@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_vriable_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:46:39 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:08:17 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_value_from_env(char *key)
 	return (NULL);
 }
 
-char	*expand_the_value(t_cmd *cur, char *command, t_data *data, int x)
+char	*expand_the_value( char *command, t_data *data, int x)
 {
 	char	*save;
 
@@ -42,12 +42,8 @@ char	*expand_the_value(t_cmd *cur, char *command, t_data *data, int x)
 	return (command);
 }
 
-char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
+void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 {
-	t_data *data;
-
-	data = init_data();
-	(*i)++;
 	while (cur->content[*i] && (is_valid(cur->content[*i])))
 	{
 		data->flag = 1;
@@ -60,9 +56,18 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 		if (!data->key)
 			return (ft_strdup(""));
 	}
+}
+
+char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
+{
+	t_data *data;
+
+	data = init_data();
+	(*i)++;
+	fill_the_key(cur, i, data);
 	data->i = (*i);
 	if(x == 0 || data->flag == 1)
-		command = expand_the_value(cur, command, data, x);
+		command = expand_the_value(command, data, x);
 	else if (cur->content[*i])
 		return (join_str_char(command, cur->content[*i]));
 	return command;

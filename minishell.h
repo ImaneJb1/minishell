@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:50:15 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:06:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_data
     int x;
 	int count;
 	int flag;
+	int fd;
 	char c;
 	char *key;
 	char *value;
