@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 09:48:52 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:49:21 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	count_args(t_cmd *cmd)
 	}
 	return i;
 }
+// t_exec	*check_cmd(t_cmd **cmd, t_exec *list)
+// {
+// 	t_type type;
 
 void fill_cmd(t_cmd *token, t_exec **cmd)
 {

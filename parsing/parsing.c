@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 09:51:13 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:49:33 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	creat_the_cmd_list(char *line)
 			list[j++](str, &i);
 	}
 	identify_all_types();
+	
 	index_the_cmd_list();
 }
 
@@ -74,7 +75,6 @@ void	expand_variable_value(void)
 	}
 	remove_quotes();
 }
-
 
 int    parsing(char *str)
 {

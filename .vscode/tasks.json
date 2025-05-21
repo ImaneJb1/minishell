@@ -13,6 +13,11 @@
                 "${workspaceFolder}/parsing/*/*.c",
                 "${workspaceFolder}/built_ins/*/*.c",
                 "-lreadline",
+                //"-Ofast",
+                //"-Wall",
+                //"-Wextra",
+                //"-Werror",
+                //"-fsanitize=address",
                 "-o",
                 "${workspaceFolder}/a.out"
             ],

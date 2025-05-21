@@ -31,3 +31,4 @@ echo hello > file1 world
 < file > file2 >> file3
 < main.c > file2 > file3 ls > file4
 < main.c > file2 > file3 ls
+< main.c cat >file > file1 > file2
