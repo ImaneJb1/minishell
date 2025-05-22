@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/21 17:06:02 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:19:05 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int		execution(t_exec *cmd)
 {
 	//if its buitlin
 	//else
-	//findpath
+	if(!cmd->path)
+		print_cmd_error(cmd->cmd, "Command not found");
 	execve(cmd->path, cmd->args, v_env());
 }
 
@@ -33,7 +34,7 @@ void	execute_first_command(t_exec *cmd, int *fd)
 	}
 	else
 		dup2(fd[1], 1);
-	//execute
+	execution(cmd);
 }
 
 void	execute_middle_command(t_exec *cmd, int *fd)
@@ -52,8 +53,9 @@ void	execute_middle_command(t_exec *cmd, int *fd)
 	else
 		dup2(fd[1], 1);
 	close(fd[1]);
-	//execute
+	execution(cmd);
 }
+
 void	execute_last_comand(t_exec *cmd, int *fd)
 {
 	close(fd[0]);
@@ -68,31 +70,13 @@ void	execute_last_comand(t_exec *cmd, int *fd)
 		dup2(cmd->fd_out, 1);
 		close(cmd->fd_out);
 	}
+	execution(cmd);
 }
 
 void	execute_commands(t_exec *cmd, int *fd)
 {
-	//execute_first_command
+	execute_first_command(cmd, fd);
+	execute_middle_command(cmd, fd);
+	execute_last_command(cmd, fd);
 }
 
-
-int		pipex(void)
-{
-	t_exec *cmd;
-	int fd[2];
-	int pid;
-	
-	cmd = v_exec();
-	while(cmd)
-	{
-		if(pipe(fd) < 0)
-			perror("");
-		pid = fork();
-		if(pid == 0)
-			//execute
-		dup2(fd[0], 0);
-		close(fd[0]);
-		close(fd[1]);
-		cmd = cmd->next;
-	}
-}

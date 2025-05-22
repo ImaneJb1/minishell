@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 14:28:49 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:14:04 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void fill_cmd(t_cmd *token, t_exec **cmd)
 		*cmd = add_to_exec_list(token->content, *cmd, 1);
 		(*cmd)->args = ft_malloc(sizeof(char *) * (count_args(token) + 1));
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
+		fill_path(*cmd);
 	}
 }
 
