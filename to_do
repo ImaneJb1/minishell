@@ -1,0 +1,10 @@
+check builtin paths
+
+/usr/bin/echo
+/usr/bin/././././././echo
+if it's a path we check the string after the last slash 
+if it's a buitin command
+if yes;
+	we check the path with access
+if no;
+	we use the execve functions
