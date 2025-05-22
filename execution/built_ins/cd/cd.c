@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
+/*   Updated: 2025/05/22 22:52:16 by ijoubair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../built_in.h"
 
 void    change_directory(char *path)
@@ -6,7 +18,6 @@ void    change_directory(char *path)
     oldpwd = get_pwd(); // store the old one
     if(chdir(path) < 0)   // change the wd
     {
-        //if(special case '-' '~' ' ')
         if(ft_strcmp(path, "-") == 0)
         {
             cd_back(oldpwd);

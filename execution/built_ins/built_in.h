@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:45:28 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/22 23:57:04 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 //     int j;
 //     char line;
 // }   t_bdata;
+
+typedef struct s_buitlin
+{
+	char *cmd;
+	void (*func)(t_exec *);
+}	t_buitin;
 
 //      env
 void	env_built_in(char *cmd, char **args);
@@ -52,5 +58,10 @@ void    cd_back(char *oldpwd);
 void    cd(t_exec *node);
 
 //pwd
-void    print_working_directory(void);
+void    pwd(t_exec *node);
+
+//echo
+void    echo(t_exec *node);
+//execution
+void	builtin(t_exec *cmd);
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve.c                                           :+:      :+:    :+:   */
+/*   pipe_cmd_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/22 10:43:59 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/22 23:59:39 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int		execution(t_exec *cmd)
 {
-	//if its buitlin
-	//else
+	builtin(cmd);
 	if(!cmd->path)
 		print_cmd_error(cmd->path, "No such file or directory");
-	execve(cmd->path, cmd->args, v_env());
+	execve(cmd->path, cmd->args, v_env());// env must be char **
 }
 
 void	execute_first_command(t_exec *cmd, int *fd)

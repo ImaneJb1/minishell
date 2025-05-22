@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:03:36 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/14 11:35:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/22 22:34:33 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,4 @@ void    unset(char *cmd, char **args)
         while(args[++i])
             delete_from_env(args[i]);
     }
-    else
-        return ;
 }
-    
