@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/22 10:13:31 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:43:09 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char                *handle_one_cmd(char *str);
 //      fill exec list
 void                fill_the_exec_struct(void);
 t_exec	            *add_to_exec_list(char *str, t_exec *cur, int flag);
-char				*fill_path(t_exec *cmd);
+void				fill_path(t_exec *cmd);
 // t_exec	            *check_cmd(t_cmd **cmd, t_exec *list);
 
 //		operations functions

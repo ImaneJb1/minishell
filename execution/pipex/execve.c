@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/22 10:19:05 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:43:59 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		execution(t_exec *cmd)
 	//if its buitlin
 	//else
 	if(!cmd->path)
-		print_cmd_error(cmd->cmd, "Command not found");
+		print_cmd_error(cmd->path, "No such file or directory");
 	execve(cmd->path, cmd->args, v_env());
 }
 
