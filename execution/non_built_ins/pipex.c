@@ -1,4 +1,4 @@
-#include "../pipex.h"
+#include "./pipex.h"
 
 int		pipex(void)
 {
@@ -6,7 +6,7 @@ int		pipex(void)
 	int fd[2];
 	int pid;
 	
-	cmd = v_exec();
+	cmd = *v_exec();
 	while(cmd)
 	{
 		if(pipe(fd) < 0)
