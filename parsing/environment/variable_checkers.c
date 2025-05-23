@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   variable_checkers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:53:48 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:51:32 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:04:47 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+
+char	*get_value_from_env(char *key)
+{
+	t_env	*cur_env;
+
+	if (!v_env() || !(*v_env()) || !key)
+		return (NULL);
+	cur_env = *v_env();
+	while (cur_env)
+	{
+		if (ft_strcmp(cur_env->key, key) == 0)
+			return (ft_strdup(cur_env->value));
+		cur_env = cur_env->next;
+	}
+	return (NULL);
+}
 
 char	*inside_quote(char *command, char *content, int *i, char sp)
 {
@@ -62,12 +78,3 @@ int is_var_inside_quote(char *c, int i, int j)
 		return (1);
 	return (0);
 }
-
-// int is_var_outside_quote(char *c, int i, int j)
-// {
-// 	if (c[i] == '$' && is_valid(c[i + 1]))
-// 		return (1);
-// 	if(j == 0 && c[i] == '$' && !ft_strchr("\"\'", c[i + 1]))
-// 		return (1);
-// 	return (0);
-// }

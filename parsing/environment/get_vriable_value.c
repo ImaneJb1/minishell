@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_vriable_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/22 16:50:55 by imeslaki         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/21 10:46:39 by ijoubair         ###   ########.fr       */
->>>>>>> origin/imane3
+/*   Updated: 2025/05/23 16:04:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-
-char	*get_value_from_env(char *key)
-{
-	t_env	*cur_env;
-
-	if (!v_env() || !(*v_env()) || !key)
-		return (NULL);
-	cur_env = *v_env();
-	while (cur_env)
-	{
-		if (ft_strcmp(cur_env->key, key) == 0)
-			return (ft_strdup(cur_env->value));
-		cur_env = cur_env->next;
-	}
-	return (NULL);
-}
 
 char	*expand_the_value( char *command, t_data *data, int x)
 {

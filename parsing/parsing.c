@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/22 17:01:39 by imeslaki         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/21 12:02:05 by ijoubair         ###   ########.fr       */
->>>>>>> origin/imane3
+/*   Updated: 2025/05/23 16:02:51 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +35,6 @@ t_data	*init_data(void)
 	return data;
 }
 
-void	creat_the_cmd_list(char *line)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	str = NULL;
-	if(!line || !*line)
-		return;
-	str = separat_with_one_space(line);
-	static void (*list[])(char *str, int *i) = {
-		is_arg, is_double_quote, is_singl_quote,
-		is_pipe, is_redir_out_append, is_heredoc,
-		is_redir_in, is_redir_out, is_var};
- 	while (str[i])
-	{
-		j = 0;
-		if (str[i] == ' ' && i++)
-			add_to_cmd_list(0, 0);
-		while(j < 9)
-			list[j++](str, &i);
-	}
-	identify_all_types();
-	
-	index_the_cmd_list();
-}
-
-
 void	expand_variable_value(void)
 {
 	t_cmd	*head;
@@ -84,15 +51,8 @@ void	expand_variable_value(void)
 
 int    parsing(char *str)
 {
-<<<<<<< HEAD
    	creat_the_cmd_list(str);
 	if(is_valid_syntax() == FALSE)
-=======
-    creat_the_cmd_list(str);
-	print_parsing();
-	change_the_correct_del();
-    if(is_valid_syntax() == FALSE)
->>>>>>> origin/imane3
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
 	field_spliting();

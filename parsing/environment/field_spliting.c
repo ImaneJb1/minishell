@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 16:50:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:06:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,6 @@ static int	ft_count(char const *s, char *c)
 		i++;
 	}
 	return (count);
-}
-
-void    insert_into_list(t_cmd *cur, t_data *data)
-{
-    data->i = 0;
-    t_cmd *node;
-
-    node = cur;
-    while (data->args[data->i])
-    {
-        lst_add_one_cmd_by_node(cur, new_cmd_node(data->args[data->i]));
-        cur = cur->next;
-        data->i++;
-    }
-    lst_del_one_cmd_by_node(node);
 }
 
 int	len_of_word(char *str, int j)
@@ -97,7 +82,6 @@ char	*node_content(char	*str, int *i)
 		}
 		word[j++] = str[(*i)++];
 	}
-	// word = handl_dollar_sign_case();
 	skip_space(str, i);
 	return word;
 }
