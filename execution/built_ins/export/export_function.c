@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:45:24 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:55:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
 
-char    *check_key(char *str, int *i)
+char    *is_valid_key(char *str, int *i)
 {
     char *key;
 
@@ -34,7 +34,7 @@ char    *check_key(char *str, int *i)
     return NULL;
 }
 
-char *extracte_str(char *str, int i)
+char    *extracte_str(char *str, int i)
 {
     char *value;
 
@@ -56,9 +56,9 @@ void    export_arg(char *arg)
 
     i = 0;
     existe = NULL;
-    key = check_key(arg, &i);
-    if (!key)
-        return;
+    if (!is_valid_key(arg, &i))
+        return ;
+    
     value = extracte_str(arg, i);
     if (!value)
         return;
@@ -71,17 +71,17 @@ void    export_arg(char *arg)
     add_to_env(key, value);
 }
 
-void    export_built_in(char *cmd, char **args)
+void    export(t_exec *node)
 {
     int i;
 
     i = 0;
-    if (!cmd || !args || !(*args))
+    if (!node)
         return;
-    if (ft_strcmp(cmd, "export") == 0)
+    if (ft_strcmp(node->cmd, "export") == 0)
     {
-        while (args[++i])
-            export_arg(args[i]);
+        while (node->args[++i])
+            export_arg(node->args[i]);
     }
     else
         return;

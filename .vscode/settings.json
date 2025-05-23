@@ -16,20 +16,12 @@
         "terminal.integrated.defaultProfile.windows": "WSL",
         "stdio.h": "c",
         "unistd.h": "c",
-<<<<<<< HEAD
-        "TESTS.C": "cpp",
-        "built_in.h": "c",
-        "linked_list.h": "c",
-        "minishell.h": "c"
-    },
-    "cmake.sourceDirectory": "/home/imeslaki/Desktop/minishell/tester/Unity-master"
-=======
         "fcntl.h": "c",
         "array": "c",
         "string": "c",
         "string_view": "c",
         "span": "c",
-        "charconv": "c"
+        "charconv": "c",
+        "pipex.h": "c"
     }
->>>>>>> origin/imane3
 }

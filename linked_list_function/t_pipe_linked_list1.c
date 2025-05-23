@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 10:23:36 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:39:17 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ t_pipe	*lstlast_pipe(t_pipe *lst)
 	return (lst);
 }
 
-int	lstsize_pipe(t_pipe *lst)
-{
-	int		i;
-	t_pipe	*tmp;
+// int	lstsize_pipe(t_pipe *lst)
+// {
+// 	int		i;
+// 	t_pipe	*tmp;
 
-	tmp = lst;
-	i = 0;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	return (i);
-}
+// 	tmp = lst;
+// 	i = 0;
+// 	while (tmp)
+// 	{
+// 		tmp = tmp->next;
+// 		i++;
+// 	}
+// 	return (i);
+// }

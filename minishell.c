@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 12:01:28 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:30:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "./built_ins/built_in.h"
+#include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
 
 
@@ -70,9 +70,9 @@ int is_built_in(void)
         return 0;
     ft_free(*v_cmd());
     *v_cmd() = NULL;  
-    export_built_in(exec->cmd, exec->args);
-    env_built_in(exec->cmd, exec->args);
-    unset(exec->cmd, exec->args);
+    export(exec);
+    env(exec);
+    unset(exec);
     return 1;
 }
 

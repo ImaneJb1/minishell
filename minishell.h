@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:16:58 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:00:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,29 +65,16 @@ typedef struct s_data
 	int				x;
 	int				count;
 	int				flag;
+	int				fd;
 	char			c;
 	char			*key;
 	char			*value;
+	char			*word;
 	char			*str;
 	char			*content;
 	char			*command;
 	char			*del;
 	char			**args;
-	int i;
-	int j;
-    int x;
-	int count;
-	int flag;
-	int fd;
-	char c;
-	char *key;
-	char *value;
-	char *str;
-	char *content;
-    char *command;
-	char *word;
-	char *del;
-	char **args;
 
 }					t_data;
 

@@ -4,7 +4,7 @@ char	*get_env_path(void)
 {
 	t_env *env;
 
-	env = v_env();
+	env = *v_env();
 	while(env)
 	{
 		if(ft_strcmp(env->key, "PATH"))
@@ -41,6 +41,6 @@ void	fill_path(t_exec *cmd)
 	if(ft_strchr(cmd->cmd, '/') == NULL)
 		paths = find_path(cmd, paths);
 	else
-		paths = cmd->cmd;	
+		paths = cmd->cmd;
 	cmd->path = paths;
 }
