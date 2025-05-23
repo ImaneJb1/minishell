@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 00:08:20 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:11:47 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../../linked_list_function/linked_list.h"
 # include "../../minishell.h"
+# include "../execution.h"
 # include <limits.h>
 
 #ifndef PATH_MAX
@@ -34,19 +35,21 @@ typedef struct s_buitlin
 }	t_buitin;
 
 //      env
-void	env_built_in(char *cmd, char **args);
+void	env(t_exec	*node);
 void	add_to_env(char *key, char *value);
 
 //      export
-void		export_built_in(char *cmd, char **args);
-char        *extracte_str(char *str, int i);
+void		export(t_exec	*node);
+void    	export_arg(char *arg);
+char        *get_var_value(char *str, int i);
 t_env       *is_existe_in_env(char *key);
-char        *check_key(char *str, int *i);
-int         append_existe_var(char *str, char *Key, int i);
+char        *is_valid_key(char *str, int *i);
+void    	add_var_node(t_env **node, char *new_value);
+void    	appand_var(t_env **node, char *new_value);
 
 //      unset
 void    delete_from_env(char *key);
-void    unset(char *cmd, char **args);
+void    unset(t_exec	*node);
 
 //cd pwd
 void    change_directory(char *path);

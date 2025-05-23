@@ -6,12 +6,13 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 00:04:13 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:02:14 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execution/built_ins/built_in.h"
+#include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
 
 
@@ -70,9 +71,9 @@ int is_built_in(void)
         return 0;
     ft_free(*v_cmd());
     *v_cmd() = NULL;  
-    export_built_in(exec->cmd, exec->args);
-    env_built_in(exec->cmd, exec->args);
-    unset(exec->cmd, exec->args);
+    export(exec);
+    env(exec);
+    unset(exec);
     return 1;
 }
 

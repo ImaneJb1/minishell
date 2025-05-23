@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 21:22:01 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/12 16:21:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:57:26 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-char    *handle_one_cmd(char *str)
+char    *unquoted_one_cmd(char *str)
 {
     int i;
     char *command;
@@ -48,7 +48,7 @@ void    remove_quotes(void)
     while(cmd)
     {
         if(cmd->type & (DOUBLE_Q | SINGLE_Q))
-            cmd->content = handle_one_cmd(cmd->content);
+            cmd->content = unquoted_one_cmd(cmd->content);
         cmd = cmd->next;
     }
 }

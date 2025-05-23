@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:03:36 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/22 22:34:33 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:28:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void    delete_from_env(char *key)
     }
 }
 
-void    unset(char *cmd, char **args)
+void    unset(t_exec	*node)
 {
     int i;
 
     i = 0;
-    if(ft_strcmp(cmd, "unset") == 0)
+    if(ft_strcmp(node->cmd, "unset") == 0)
     {
-        while(args[++i])
-            delete_from_env(args[i]);
+        while(node->args[++i])
+            delete_from_env(node->args[i]);
     }
 }

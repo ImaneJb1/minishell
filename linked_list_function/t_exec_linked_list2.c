@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_exec_linked_list2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:51:37 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:40:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	lstclear_exec(void)
         	ft_free(cur->args);
 			cur->args = NULL;
 		}
-			// lstclear_pipe();
 		cur = cur->next;
 	}
 	*v_exec() = NULL;
@@ -72,7 +71,6 @@ void	lst_add_one_exec(t_exec	*new, int index)
 			(cur->prev)->next = new;
 		cur->prev = new;
 	}
-	index_the_exec_list();
 }
 
 void	lst_del_one_exec_by_node(t_exec	*cur)
@@ -99,39 +97,7 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 		(cur->next)->prev = NULL;
 	}
 	ft_free(tmp);
-	index_the_exec_list();
 }
-
-// void	lst_del_one_cmd(int index)
-// {
-// 	t_exec	*cur;
-// 	t_exec	*tmp;
-
-// 	if(!*v_exec())
-// 		return ;
-// 	if(!(*v_exec())->next)
-// 	{
-// 		*v_exec() = NULL;
-// 		return ;
-// 	}
-// 	cur = find_cmd_by_index(index);
-// 	if(!cur)
-// 		return;
-// 	tmp = cur;
-// 	if(cur->prev)
-// 	{
-// 		(cur->prev)->next = cur->next;
-// 		if(cur->next)
-// 			(cur->next)->prev = cur->prev;
-// 	}
-// 	else
-// 	{
-// 		*v_exec() = cur->next;
-// 		(cur->next)->prev = NULL;
-// 	}
-// 	ft_free(tmp);
-// 	index_the_cmd_list();
-// }
 
 void	index_the_exec_list(void)
 {

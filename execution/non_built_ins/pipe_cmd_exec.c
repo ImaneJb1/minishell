@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_cmd_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/22 23:59:39 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:59:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		execution(t_exec *cmd)
 	builtin(cmd);
 	if(!cmd->path)
 		print_cmd_error(cmd->path, "No such file or directory");
-	execve(cmd->path, cmd->args, v_env());// env must be char **
+	// execve(cmd->path, cmd->args, v_env());// env must be char **
 }
 
 void	execute_first_command(t_exec *cmd, int *fd)
@@ -55,7 +55,7 @@ void	execute_middle_command(t_exec *cmd, int *fd)
 	execution(cmd);
 }
 
-void	execute_last_comand(t_exec *cmd, int *fd)
+void	execute_last_command(t_exec *cmd, int *fd)
 {
 	close(fd[0]);
 	close(fd[1]);

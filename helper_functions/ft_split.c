@@ -49,7 +49,7 @@ char	**free_arr(char **arr)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	int		word_count;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/19 16:03:54 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:06:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,7 @@ static int	ft_count(char const *s, char *c)
 			check = 0;
 		i++;
 	}
-    // if(ft_strchr(" \t", s[0]) && !ft_strchr(" \t", s[ft_strlen(s)]))
-    //     count--;
-    // else if(!ft_strchr(" \t", s[0]) && ft_strchr(" \t", s[ft_strlen(s)]))
-    //     count--;
-    // else if(ft_strchr(" \t", s[0]) && ft_strchr(" \t", s[ft_strlen(s)]))
-    //     count -= 2;
 	return (count);
-}
-
-void    insert_into_list(t_cmd *cur, t_data *data)
-{
-    data->i = 0;
-    t_cmd *node;
-
-    node = cur;
-    while (data->args[data->i])
-    {
-        lst_add_one_cmd_by_node(cur, new_cmd_node(data->args[data->i]));
-        cur = cur->next;
-        data->i++;
-    }
-    lst_del_one_cmd_by_node(node);
 }
 
 int	len_of_word(char *str, int j)
@@ -77,17 +56,8 @@ int	len_of_word(char *str, int j)
 		data->count++;
 		j++;
 	}
-	// while (str[j] && ft_strchr(" \t", str[j]) && j++)
-	// 	data->i++;
-	// if(str[j] == '$')
-	// 	data->count += data->i;
 	return data->count;
 }
-
-// char  *handl_dollar_sign_case()
-// {
-	
-// }
 
 char	*node_content(char	*str, int *i)
 {
@@ -112,7 +82,6 @@ char	*node_content(char	*str, int *i)
 		}
 		word[j++] = str[(*i)++];
 	}
-	// word = handl_dollar_sign_case();
 	skip_space(str, i);
 	return word;
 }
@@ -121,14 +90,17 @@ void	split_the_field(t_cmd *cmd)
 {
 	t_data *data;
 	t_cmd	*cur;
+	t_cmd	*node;
 
+	node = NULL;
 	data = init_data();
 	data->content = cmd->content;
 	cur = cmd;
 	while (data->content[data->i])
 	{
 		data->str = node_content(data->content, &data->i);
-		lst_add_one_cmd_by_node(cmd, new_cmd_node(ft_strdup(data->str)));
+		node = new_cmd_node(ft_strdup(data->str));
+		lst_add_one_cmd_by_node(cmd, node);
 		ft_free(data->str);
 		cmd = cmd->next;
 	}

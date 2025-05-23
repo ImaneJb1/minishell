@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_check_functions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 11:02:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:45:17 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:47:23 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,36 @@ t_env   *is_existe_in_env(char *key)
     return NULL;
 }
 
-int append_existe_var(char *str, char *Key, int i)
+char    *get_var_value(char *str, int i)
 {
     char *value;
-    t_env *env;
 
-    env = *v_env();
-    value = extracte_str(str, i);
-    while (env)
+    value = NULL;
+    // i++;
+    if (str[i] == '=')
+        i++;
+    else if(str[i] == '+' && str[i + 1] == '=')
+        i += 2;
+    while (str[i])
+        value = join_str_char(value, str[i++]);
+    return value;
+}
+
+char    *is_valid_key(char *str, int *i)
+{
+    char *key;
+
+    key = NULL;
+    if (!str || !*str)
+        return NULL;
+    while (is_valid(str[*i]))
     {
-        if (ft_strcmp(env->key, Key) == 0)
-        {
-            i = 0;
-            while (value[i])
-                env->value = join_str_char(env->value, value[i++]);
-            return 1;
-        }
-        env = env->next;
+        key = join_str_char(key, str[*i]);
+        (*i)++;
     }
-    return 0;
+    if (!str[*i] || str[*i] == '=')
+        return key;
+    else if(str[*i] == '+' || str[(*i) + 1] == '=')
+        return key;
+    return NULL;
 }

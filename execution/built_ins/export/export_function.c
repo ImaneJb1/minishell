@@ -3,48 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   export_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:45:24 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:54:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
 
-char    *check_key(char *str, int *i)
+void    appand_var(t_env **node, char *new_value)
 {
-    char *key;
+    int i;
+    char *appand_value;
 
-    key = NULL;
-    if (!str)
-        return NULL;
-    while (is_valid(str[*i]))
-    {
-        key = join_str_char(key, str[*i]);
-        (*i)++;
-    }
-    if (str[*i] == '=')
-        return key;
-    if (str[*i] == '+' && str[(*i) + 1] == '=')
-    {
-        if (!append_existe_var(str, key, *i))
-            return key;
-    }
-    return NULL;
+    appand_value = NULL;
+    if(!new_value)
+        (*node)->type = local;
+    (*node)->value = ft_strjoin((*node)->value, new_value);
+    (*node)->type = global;
 }
 
-char *extracte_str(char *str, int i)
+void    add_var_node(t_env **node, char *new_value)
 {
-    char *value;
-
-    value = NULL;
-    i++;
-    if (str[i] == '=')
-        i++;
-    while (str[i])
-        value = join_str_char(value, str[i++]);
-    return value;
+    if(!new_value)
+        (*node)->type = local;
+    (*node)->value = new_value;
+    (*node)->type = global;
 }
 
 void    export_arg(char *arg)
@@ -56,32 +41,34 @@ void    export_arg(char *arg)
 
     i = 0;
     existe = NULL;
-    key = check_key(arg, &i);
-    if (!key)
-        return;
-    value = extracte_str(arg, i);
-    if (!value)
-        return;
-    existe = is_existe_in_env(key);
-    if(existe)
-    {
-        existe->value = value;
+    if (!is_valid_key(arg, &i))
         return ;
-    }
-    add_to_env(key, value);
+    if(arg[i] == '=' || arg[i] == '+')
+        value = get_var_value(arg, i);
+    existe = is_existe_in_env(key);
+    if(arg[i] == '+' && existe)
+        return (appand_var(&existe, value));
+    else if(arg[i] == '=' && existe)
+        add_var_node(&existe, value);
+    existe = new_env_node(key, value);
+    if(!value)
+        existe->type = local;
+    else
+        existe->type = global;
+	lstadd_env_back(v_env(), existe);
 }
 
-void    export_built_in(char *cmd, char **args)
+void    export(t_exec *node)
 {
     int i;
 
     i = 0;
-    if (!cmd || !args || !(*args))
+    if (!node)
         return;
-    if (ft_strcmp(cmd, "export") == 0)
+    if (ft_strcmp(node->cmd, "export") == 0)
     {
-        while (args[++i])
-            export_arg(args[i]);
+        while (node->args[++i])
+            export_arg(node->args[i]);
     }
     else
         return;

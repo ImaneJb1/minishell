@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 00:07:44 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:12:12 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,46 +21,19 @@ t_data	*init_data(void)
 	data->i = 0;
 	data->j = 0;
 	data->x = 0;
+	data->fd = 0;
 	data->count = 0;
 	data->c = 0;
 	data->str = NULL;
 	data->del = NULL;
 	data->key = NULL;
+	data->word = NULL;
 	data->value = NULL;
 	data->content = NULL;
 	data->command = NULL;
 	data->args = NULL;
 	return data;
 }
-
-void	creat_the_cmd_list(char *line)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	str = NULL;
-	if(!line || !*line)
-		return;
-	str = separat_with_one_space(line);
-	static void (*list[])(char *str, int *i) = {
-		is_arg, is_double_quote, is_singl_quote,
-		is_pipe, is_redir_out_append, is_heredoc,
-		is_redir_in, is_redir_out, is_var};
- 	while (str[i])
-	{
-		j = 0;
-		if (str[i] == ' ' && i++)
-			add_to_cmd_list(0, 0);
-		while(j < 9)
-			list[j++](str, &i);
-	}
-	identify_all_types();
-	
-	index_the_cmd_list();
-}
-
 
 void	expand_variable_value(void)
 {
@@ -78,13 +51,12 @@ void	expand_variable_value(void)
 
 int    parsing(char *str)
 {
-    creat_the_cmd_list(str);
-	print_parsing();
-	change_the_correct_del();
-    if(is_valid_syntax() == FALSE)
+   	creat_the_cmd_list(str);
+	if(is_valid_syntax() == FALSE)
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
 	field_spliting();
+	print_parsing();
 	fill_the_exec_struct();
 	return 1;
 }
