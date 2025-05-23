@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/22 17:01:39 by imeslaki         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/21 12:02:05 by ijoubair         ###   ########.fr       */
+>>>>>>> origin/imane3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +84,15 @@ void	expand_variable_value(void)
 
 int    parsing(char *str)
 {
+<<<<<<< HEAD
    	creat_the_cmd_list(str);
 	if(is_valid_syntax() == FALSE)
+=======
+    creat_the_cmd_list(str);
+	print_parsing();
+	change_the_correct_del();
+    if(is_valid_syntax() == FALSE)
+>>>>>>> origin/imane3
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
 	field_spliting();

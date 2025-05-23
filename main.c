@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #include "minishell.h"
 char ***n(void)
@@ -23,3 +24,5 @@ char ***n(void)
 // }
 
 
+=======
+>>>>>>> origin/imane3
