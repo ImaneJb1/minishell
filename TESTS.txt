@@ -33,8 +33,8 @@ echo hello > file1 world
 < main.c > file2 > file3 ls
  ls -la - | cat > file >> file2 < file3 < file4 < file5 >> file6 ls 
 < main.c cat >file > file1 > file2
-<<<<<<< HEAD
 << del cat << del ls
 cat << del ls
-=======
->>>>>>> origin/imane3
+
+buitlin functions that has paths:
+==> echo pwd env 

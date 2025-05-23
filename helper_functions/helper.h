@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 01:42:47 by imeslaki          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/22 17:00:00 by imeslaki         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/21 10:45:43 by ijoubair         ###   ########.fr       */
->>>>>>> origin/imane3
+/*   Updated: 2025/05/23 16:19:50 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +35,7 @@ char	*ft_itoa(int n);
 char	*ft_strdup(char *s1);
 int		is_alpha(int c);
 int		is_digit(int n);
+char	**ft_split(char const *s, char c);
 void	skip_space(char *str, int *i);
-
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 #endif

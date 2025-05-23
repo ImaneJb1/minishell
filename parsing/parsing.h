@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:00:54 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:18:03 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char                *unquoted_one_cmd(char *str);
 //      fill exec list
 void                fill_the_exec_struct(void);
 t_exec	            *add_to_exec_list(char *str, t_exec *cur, int flag);
+void				fill_path(t_exec *cmd);
 // t_exec	            *check_cmd(t_cmd **cmd, t_exec *list);
 
 //		operations functions
@@ -79,15 +80,19 @@ void	            field_spliting(void);
 bool				is_valid_syntax(void);
 int					check_unclosed_quotes(t_cmd *ptr);
 int					check_pipe_syntax(t_cmd *ptr);
-void				print_error(char *s);
 int					if_special_at_end(t_cmd *ptr);
 int					redir_errors(t_cmd *ptr);
 bool				is_special_token(int type);
-void				print_error_with_token(char *message, char *token);
 int					unexpected_token(t_cmd *ptr);
-void				print_error_with_token(char *message, char *token);
-t_tokens            *init_redir_array(void);
 int                 here_doc_error(t_cmd *ptr);
+t_tokens            *init_redir_array(void);
+
+// error printers
+void				print_error_with_token(char *message, char *token);
+void				print_error(char *s);
+void    			print_cmd_error(char *command, char *message);
+void				print_error_with_token(char *message, char *token);
+
 //      redirections
 void                open_fd_in(t_cmd *token, int *fd);
 void                open_fd_out(t_cmd *token, int *fd);
