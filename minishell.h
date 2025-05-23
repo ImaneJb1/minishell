@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 17:00:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:32:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,18 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }					t_cmd;
 
+typedef enum s_env_type
+{
+	global,
+	local
+}	t_env_type;
+
 typedef struct s_env
 {
 	char			*key;
 	char			*value;
 	int				index;
+	t_env_type		type;
 	struct s_env	*next;
 	struct s_env	*prev;
 }					t_env;

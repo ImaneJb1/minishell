@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 17:54:15 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:48:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	add_to_env(char *key, char *value);
 
 //      export
 void		export(t_exec	*node);
-char        *extracte_str(char *str, int i);
+void    	export_arg(char *arg);
+char        *get_var_value(char *str, int i);
 t_env       *is_existe_in_env(char *key);
 char        *is_valid_key(char *str, int *i);
-int         append_existe_var(char *str, char *Key, int i);
+void    	add_var_node(t_env **node, char *new_value);
+void    	appand_var(t_env **node, char *new_value);
 
 //      unset
 void    delete_from_env(char *key);
