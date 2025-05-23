@@ -6,12 +6,12 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 12:01:28 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 00:04:13 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "./built_ins/built_in.h"
+#include "execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
 
 
@@ -104,7 +104,6 @@ int main(int argc, char const *argv[], char **env)
  	    while (exec)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
-	    	printf("(%s)  [", exec->cmd);
             if( exec->args)
 	    	{
                 for(int i = 0; exec->args[i]; i++)
@@ -115,7 +114,7 @@ int main(int argc, char const *argv[], char **env)
 
                 }
             }
-            printf("     {fdin = (%d) fdout = (%d) }", exec->fd_in, exec->fd_out);
+            printf("cmd = [%s] path = [%s]\n", exec->cmd, exec->path);
 	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
 	    	exec = exec->next;
 	    }

@@ -6,12 +6,12 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 12:02:05 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 00:07:44 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"	
-#include "../built_ins/built_in.h"
+#include "../execution/built_ins/built_in.h"
 
 t_data	*init_data(void)
 {

@@ -6,15 +6,15 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/22 23:57:04 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/23 00:08:20 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
-# include "../linked_list_function/linked_list.h"
-# include "../minishell.h"
+# include "../../linked_list_function/linked_list.h"
+# include "../../minishell.h"
 # include <limits.h>
 
 #ifndef PATH_MAX
