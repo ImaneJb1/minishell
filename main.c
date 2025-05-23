@@ -1,11 +1,19 @@
-<<<<<<< HEAD
 
 #include "minishell.h"
-char ***n(void)
+// char ***n(void)
+// {
+// 	static char **str;
+// 	return &str;
+// }
+int main(int argc, char const *argv[])
 {
-	static char **str;
-	return &str;
+	char  *str = NULL;
+	write(1,"\"",1);
+	write(1,str,10);
+	write(1,"\"",1);
+	return 0;
 }
+
 // int main(int argc, char const *argv[],char **env)
 // {
 //     // char *st[] = {"/usr/bin/export", NULL};
@@ -24,5 +32,3 @@ char ***n(void)
 // }
 
 
-=======
->>>>>>> origin/imane3

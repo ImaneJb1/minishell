@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 18:54:58 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:22:15 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,38 @@ void    export_arg(char *arg)
 	lstadd_env_back(v_env(), existe);
 }
 
+void    print_export_var(t_exec *node)
+{
+    t_env *env;
+    
+    env = *v_env();
+	while(env)
+	{
+        ft_putstr_fd("declare -x ", node->fd_out);
+		ft_putstr_fd(env->key, node->fd_out);
+		ft_putstr_fd("=\"", node->fd_out);
+		ft_putstr_fd(env->value, node->fd_out);
+        ft_putstr_fd("\"\n", node->fd_out);
+		env = env->next;
+	}
+}
 void    export(t_exec *node)
 {
     int i;
+    int count;
 
     i = 0;
     if (!node)
         return;
     if (ft_strcmp(node->cmd, "export") == 0)
     {
-        while (node->args[++i])
-            export_arg(node->args[i]);
+        count = strlen_2d_array(node->args);
+        if(count == 1)
+            print_export_var(node);
+        else if(count > 2)
+        {
+            while (node->args[++i])
+                export_arg(node->args[i]);
+        }
     }
-    else
-        return;
 }
