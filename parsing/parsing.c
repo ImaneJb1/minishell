@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 17:06:56 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/22 17:01:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_data	*init_data(void)
 	data->str = NULL;
 	data->del = NULL;
 	data->key = NULL;
+	data->word = NULL;
 	data->value = NULL;
 	data->content = NULL;
 	data->command = NULL;
@@ -79,13 +80,12 @@ void	expand_variable_value(void)
 
 int    parsing(char *str)
 {
-    creat_the_cmd_list(str);
-	print_parsing();
-	change_the_correct_del();
-    if(is_valid_syntax() == FALSE)
+   	creat_the_cmd_list(str);
+	if(is_valid_syntax() == FALSE)
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
 	field_spliting();
+	print_parsing();
 	fill_the_exec_struct();
 	return 1;
 }

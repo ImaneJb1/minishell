@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 14:34:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:37:34 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,12 @@
 
 //      main parsing fuctions
 int				    parsing(char *str);
-void	            creat_the_cmd_list(char *line);
-bool				is_valid_syntax(void);
-void	            expand_variable_value(void);
 void    		    remove_quotes(void);
 
-
+//      fill exec list
+void	            creat_the_cmd_list(char *line);
 void				add_to_cmd_list(char ch, int flag);
-void                change_the_correct_del(void);
-char                *handle_one_cmd(char *str);
+char                *unquoted_one_cmd(char *str);
 
 //      fill exec list
 void                fill_the_exec_struct(void);
@@ -69,6 +66,7 @@ void				identify_delimiter(void);
 t_tokens			*init_token_array(void);
 
 //		environment functions
+void	            expand_variable_value(void);
 int					is_valid(char c);
 void				change_var_value(t_cmd *cur);
 char	            *inside_quote(char *command, char *content, int *i, char c);
@@ -78,6 +76,7 @@ char				*get_value_from_env(char *key);
 void	            field_spliting(void);
 
 // 		syntax error
+bool				is_valid_syntax(void);
 int					check_unclosed_quotes(t_cmd *ptr);
 int					check_pipe_syntax(t_cmd *ptr);
 void				print_error(char *s);
@@ -90,9 +89,17 @@ void				print_error_with_token(char *message, char *token);
 t_tokens            *init_redir_array(void);
 int                 here_doc_error(t_cmd *ptr);
 //      redirections
-void   open_fd_in(t_cmd *token, int *fd);
-void    open_fd_out(t_cmd *token, int *fd);
-void    open_fd_app(t_cmd *token, int *fd);
-void    fill_fds(t_cmd *token, t_exec **node);
+void                open_fd_in(t_cmd *token, int *fd);
+void                open_fd_out(t_cmd *token, int *fd);
+void                open_fd_app(t_cmd *token, int *fd);
+void                fill_fds(t_cmd *token, t_exec **node);
+
+//      open_fd_heredoc
+void                 open_fd_heredoc(t_cmd *token, int *fd);
+void                 write_in_here_doc_file(t_cmd  *del, int *fd);
+void                get_delimiter(t_cmd **cmd);
+void                check_expand_and_put_in_file(t_data *data, int fd);
+char                *expand_string(char *string, char *str, int *i);
+char                *expand_here_doc_value(char *str, int *i);
 
 #endif

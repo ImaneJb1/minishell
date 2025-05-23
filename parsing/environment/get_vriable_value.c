@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 18:08:17 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:50:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 		}
 		data->key = join_str_char(data->key, cur->content[(*i)++]);
 		if (!data->key)
-			return (ft_strdup(""));
+			return ;
 	}
 }
 
