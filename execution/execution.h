@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:31:55 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/25 14:05:43 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:32:41 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@
 # include "../minishell.h"
 #include "./built_ins/built_in.h"
 #include "non_built_ins/pipex.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 
 char ***env_arr(void);
 void    env_to_arr(void);
+void	execute_cmd(t_exec *cmd);
+int		execution(t_exec *cmd);
+void	dup_and_close(t_exec *cmd);
+void	simple_cmd(void);
+
 #endif 

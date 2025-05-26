@@ -63,7 +63,7 @@ BUILT_IN = $(BUILT_IN_ENV) $(BUILT_IN_EXPORT) $(BUILT_IN_UNSET) $(BUILT_IN_ECHO)
 # ===================== EXECUTION =============================
 EXECUTION_BUILTINS = execution/built_ins/is_builtin.c
 EXECUTION_NON_BUILTINS = execution/non_built_ins/execute_pipex.c execution/non_built_ins/pipe_cmd_exec.c \
-execution/env_to_arr.c 
+execution/env_to_arr.c execution/non_built_ins/simple_cmd.c
 
 EXECUTION = $(EXECUTION_BUILTINS) $(EXECUTION_NON_BUILTINS)
 

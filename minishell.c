@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 13:49:45 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:51:19 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,16 @@ int main(int argc, char const *argv[], char **env)
             *v_exec() = NULL;
             continue;
         }
-        // if(!is_built_in())
-        // {
-        //     ft_free(*v_exec());
-        //     *v_exec() = NULL;
-        //     continue;
-        // }
+        if(!is_built_in())
+        {
+            ft_free(*v_exec());
+            *v_exec() = NULL;
+            continue;
+        }
         
         t_exec *exec;
 	    exec = *v_exec();
-        // pipex();
+        simple_cmd();
  	    while (exec)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
