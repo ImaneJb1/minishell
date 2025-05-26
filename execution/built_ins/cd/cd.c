@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/26 18:05:34 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:18:20 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@ void    change_directory(char *path)
 {
     char *oldpwd;
     oldpwd = get_pwd(); // store the old one
+    printf("home\n");
     if(chdir(path) < 0)   // change the wd
     {
         if(ft_strcmp(path, "-") == 0)
         {
             cd_back(oldpwd);
         }
-        else if(!path || ft_strcmp(path, "~") == 0)    
+        else if(!path || ft_strcmp(path, "~") == 0)
+        {
             cd_home(oldpwd);
+        }   
         else
-            perror("");
+            perror(path);
     }
     else
     {
@@ -40,16 +43,14 @@ void    cd(t_exec *node)
     int num_args;
 
     command = node->cmd;
-    if(ft_strcmp(command, "cd") == 0)
+    num_args = strlen_2d_array(node->args);
+    num_args -= 1;
+    if(num_args > 1)
     {
-        num_args = strlen_2d_array(node->args);
-        if(num_args > 1)
-        {
-            perror("cd : too many argument"); 
-            return;
-        }
-        change_directory(node->args[0]);
+        perror("cd : too many argument"); 
+        return;
     }
+    change_directory(node->args[1]);
 }
 
 // int main(int argc, char **argv, char **env)

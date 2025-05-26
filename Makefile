@@ -35,7 +35,7 @@ PARSING_SYNTAX = parsing/syntax_error/is_valid_syntax.c parsing/syntax_error/han
 PARSING_ENV = parsing/environment/get_vriable_value.c parsing/environment/variable_checkers.c
 PARSING_ENV_EXTRA = parsing/environment/field_spliting.c
 
-PARSING_REDIR = parsing/redirections/append.c parsing/redirections/fill_fd_into_exec.c \
+PARSING_REDIR = parsing/redirections/append.c parsing/redirections/fds_cmd_args.c \
 	parsing/redirections/redir_in.c parsing/redirections/redir_out.c
 
 PARSING_HEREDOC = parsing/here_doc/here_doc_and_delimiter.c parsing/here_doc/here_doc_helpers.c

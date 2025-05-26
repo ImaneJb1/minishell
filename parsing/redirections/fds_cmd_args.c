@@ -1,0 +1,48 @@
+#include "../parsing.h"
+
+int	count_args(t_cmd *cmd)
+{
+	t_type type;
+	int i;
+
+	type = PIPE;
+	i = 0;
+	while (cmd && (cmd->type != type ))
+	{
+		if(cmd->type & (CMD_ARG | CMD))
+			i++;
+		cmd = cmd->next;
+	}
+	return i;
+}
+
+void fill_cmd(t_cmd *token, t_exec **cmd)
+{
+	static int i = 0;
+	if(token->type & CMD)
+	{
+		*cmd = add_to_exec_list(token->content, *cmd, 1);
+		(*cmd)->args = ft_malloc(sizeof(char *) * (count_args(token) + 1));
+		*cmd = add_to_exec_list(token->content, *cmd, 2);
+		fill_path(*cmd);
+		(*cmd)->index = i;
+		i++;
+	}
+}
+
+void	fill_args(t_cmd *token, t_exec **cmd)
+{
+	if(token->type & CMD_ARG)
+		*cmd = add_to_exec_list(token->content, *cmd, 2);
+}
+
+void    fill_exec(t_cmd *token, t_exec **node)
+{
+    open_fd_heredoc(token, &(*node)->fd_in);
+    open_fd_in(token, &(*node)->fd_in);
+    open_fd_out(token, &(*node)->fd_out);
+    open_fd_app(token, &(*node)->fd_out);
+    fill_cmd(token, node);
+    fill_args(token, node);
+}
+

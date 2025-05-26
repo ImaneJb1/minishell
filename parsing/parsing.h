@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/24 16:02:46 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:53:22 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void				print_error_with_token(char *message, char *token);
 void                open_fd_in(t_cmd *token, int *fd);
 void                open_fd_out(t_cmd *token, int *fd);
 void                open_fd_app(t_cmd *token, int *fd);
-void                fill_fds(t_cmd *token, t_exec **node);
+void 				fill_exec(t_cmd *token, t_exec **node);
+
 
 //      open_fd_heredoc
 void                 open_fd_heredoc(t_cmd *token, int *fd);

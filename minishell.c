@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 17:58:20 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:15:03 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int main(int argc, char const *argv[], char **env)
 
                 }
             }
-            printf("cmd = [%s] path = [%s]\n", exec->cmd, exec->path);
+            printf("\ncmd = [%s] path = [%s]\n index = %i\n", exec->cmd, exec->path, exec->index);
 	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
             // close(exec->fd_in);
             // close(exec->fd_out);

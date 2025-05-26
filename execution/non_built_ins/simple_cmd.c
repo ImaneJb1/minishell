@@ -17,15 +17,14 @@ void	dup_and_close(t_exec *cmd)
 
 void	execute_cmd(t_exec *cmd)
 {
-	// int pid;
+	int pid;
 
-	// pid = fork();
-	// if(pid == 0)
-	// {
+	pid = fork();
+	if(pid == 0)
+	{
 		dup_and_close(cmd);
-		builtin(cmd);
 		execution(cmd);
-	// }
+	}
 	if(cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if(cmd->fd_out != 1)
