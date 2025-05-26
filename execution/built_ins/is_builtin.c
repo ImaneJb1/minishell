@@ -8,7 +8,10 @@ void	builtin(t_exec *cmd)
 	while(i < 3)
 	{
 		if(ft_strcmp(arr[i].cmd, cmd->cmd) == 0)
+		{
 			arr[i].func(cmd);
+			exit(0);
+		}
 		i++;
 	}
 }

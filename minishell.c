@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 15:51:19 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:58:20 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int main(int argc, char const *argv[], char **env)
         
         t_exec *exec;
 	    exec = *v_exec();
-        simple_cmd();
  	    while (exec)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
@@ -124,6 +123,8 @@ int main(int argc, char const *argv[], char **env)
             // close(exec->fd_out);
 	    	exec = exec->next;
 	    }
+        printf("\n=========================================================================\n");
+        simple_cmd();
         lstclear_exec();
     }
 }

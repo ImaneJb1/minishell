@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/26 15:45:18 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:05:34 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void    cd(t_exec *node)
         }
         change_directory(node->args[0]);
     }
-    exit(0);
 }
 
 // int main(int argc, char **argv, char **env)

@@ -40,6 +40,5 @@ void    echo(t_exec *node)
     }
     if(is_dash_n(node->args[1]) == FALSE)
         write(node->fd_out, "\n", 1);
-    exit(0);
 }
 
