@@ -37,4 +37,5 @@ echo hello > file1 world
 cat << del ls
 
 buitlin functions that has paths:
-==> echo pwd env 
+echo pwd env 
+/bin/ls

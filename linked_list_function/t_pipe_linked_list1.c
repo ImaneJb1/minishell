@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:39:17 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:06:45 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_pipe	*new_pipe_node( int read, int write)
     if(read != -2)
         elem->read = read;
     if(write != -2)
-        elem->write = write;
+    	elem->write = write;
 	elem->next = NULL;
 	elem->prev = NULL;
 	return (elem);

@@ -6,17 +6,14 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:04:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:04:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-char	*expand_the_value( char *command, t_data *data, int x)
+char	*expand_the_value( char *command, t_data *data)
 {
-	char	*save;
-
-	save = NULL;
 	data->j = 0;
 	data->value = get_value_from_env(data->key);
 	if (!data->value)
@@ -51,7 +48,7 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 	fill_the_key(cur, i, data);
 	data->i = (*i);
 	if(x == 0 || data->flag == 1)
-		command = expand_the_value(command, data, x);
+		command = expand_the_value(command, data);
 	else if (cur->content[*i])
 		return (join_str_char(command, cur->content[*i]));
 	return command;

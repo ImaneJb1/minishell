@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:30:04 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/25 15:40:02 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:09:51 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "execution.h"
 
-char    ***env_to_arr(void)
+char    **env_to_arr(void)
 {
     t_env *env_list;
     char  **env_array;
@@ -34,5 +34,5 @@ char    ***env_to_arr(void)
         env_list = env_list->next;
     }
     env_array[i] = NULL;
-    return (&env_array);
+    return (env_array);
 }

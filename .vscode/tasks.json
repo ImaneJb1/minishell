@@ -15,9 +15,9 @@
                 "${workspaceFolder}/execution/*/*.c",
                 "-lreadline",
                 //"-Ofast",
-                //"-Wall",
-                //"-Wextra",
-                //"-Werror",
+                // "-Wall",
+                // "-Wextra",
+                // "-Werror",
                 //"-fsanitize=address",
                 "-o",
                 "${workspaceFolder}/a.out"

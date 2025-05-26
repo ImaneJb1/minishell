@@ -6,18 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:23:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/24 18:50:46 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:16:15 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
-
-void	add_to_env(char *key, char *value)
-{
-	t_env	*node;
-
-	
-}
 
 char	*split_env_key(char *line, int *i)
 {
@@ -68,7 +61,6 @@ void	creat_environment(char **env)
 		node = new_env_node(key, value);
 		node->type = global;
 		lstadd_env_back(v_env(), node);
-		add_to_env(key, value);
 		i++;
 	}
 }

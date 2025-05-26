@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/24 14:19:22 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:14:38 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int main(int argc, char const *argv[], char **env)
  	    while (exec)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
-	    	printf("(%s)  [", exec->cmd);
             if( exec->args)
 	    	{
                 for(int i = 0; exec->args[i]; i++)
@@ -113,7 +112,7 @@ int main(int argc, char const *argv[], char **env)
 
                 }
             }
-            printf("     {fdin = (%d) fdout = (%d) }", exec->fd_in, exec->fd_out);
+            printf("cmd = [%s] path = [%s]\n", exec->cmd, exec->path);
 	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
 	    	exec = exec->next;
 	    }

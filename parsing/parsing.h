@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:18:03 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:33:45 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char				*get_value_from_env(char *key);
 void	            field_spliting(void);
 
 // 		syntax error
+int                 syntax_error(char	*flag);
 bool				is_valid_syntax(void);
 int					check_unclosed_quotes(t_cmd *ptr);
 int					check_pipe_syntax(t_cmd *ptr);

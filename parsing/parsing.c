@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/24 12:09:22 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:16:36 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,35 @@ void	expand_variable_value(void)
 	remove_quotes();
 }
 
+// int	syntax_error(char	*flag)
+// {
+// 	static int i;
+
+// 	if(flag == NULL)
+// 		return i;
+// 	if(ft_strcmp("no", flag) == 0)
+// 		i = 1;
+// 	if(ft_strcmp("yes", flag) == 0)
+// 		i = 0;
+// 	return i;
+// }
+
+// int	is_heredoc_syntax(int flag)
+// {
+// 	static int i;
+	
+// 	if(flag == 1)
+// 		i = 1;
+// 	if(flag == 0)
+// 		i = 0;
+// 	return i;
+// }
+
+
 int    parsing(char *str)
 {
    	creat_the_cmd_list(str);
-	if(is_valid_syntax() == FALSE)
+	if(is_valid_syntax() == FALSE )
         return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
     expand_variable_value();
 	field_spliting();
