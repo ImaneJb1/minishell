@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 11:25:15 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:51:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,34 @@ int	count_args(t_cmd *cmd)
 	return i;
 }
 
+void add_type(t_exec	*cmd)
+{
+	int i;
+	static char *built[] = {
+		"echo", "env", "export", "unset","cd",
+		"pwd", "exit", NULL };
+	i = 0;
+	while (built[i])
+	{
+		if(ft_strcmp(built[i], cmd->cmd) == 0)
+		{
+			cmd->type = builtin_cmd;
+			return ;
+		}
+		i++;
+	}
+	cmd->type = non_builtin_cmd;
+}
+
 void fill_cmd(t_cmd *token, t_exec **cmd)
 {
+	
 	if(token->type & CMD)
 	{
 		*cmd = add_to_exec_list(token->content, *cmd, 1);
 		(*cmd)->args = ft_malloc(sizeof(char *) * (count_args(token) + 1));
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
+		add_type(*cmd);
 		fill_path(*cmd);
 	}
 }

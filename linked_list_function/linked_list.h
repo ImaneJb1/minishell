@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:14:24 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/25 15:32:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:34:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		lstsize_exec(void);
 t_exec	*find_exec_by_index(int index);
 void	lst_add_one_exec(t_exec *new, int index);
 void	lst_del_one_exec_by_node(t_exec *cur);
-void	index_the_exec_list(void);
+// void	index_the_exec_list(void);
 void	lstclear_exec(void);
 
 //          pipe list

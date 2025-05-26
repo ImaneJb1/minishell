@@ -6,38 +6,37 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/25 17:16:38 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:21:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
 
-void    appand_var(t_env **node, char *new_value)
+void	appand_var(t_env **node, char *new_value)
 {
-    int i;
-    char *appand_value;
+	char	*appand_value;
 
-    appand_value = NULL;
-    if(!new_value)
-        (*node)->type = local;
-    (*node)->value = ft_strjoin((*node)->value, new_value);
-    (*node)->type = global;
+	appand_value = NULL;
+	if (!new_value)
+		(*node)->type = local;
+	(*node)->value = ft_strjoin((*node)->value, new_value);
+	(*node)->type = global;
 }
 
-void    add_var_node(t_env **node, char *new_value)
+void	add_var_node(t_env **node, char *new_value)
 {
-    if(!new_value)
-        (*node)->type = local;
-    (*node)->value = new_value;
-    (*node)->type = global;
+	if (!new_value)
+		(*node)->type = local;
+	(*node)->value = new_value;
+	(*node)->type = global;
 }
 
-void    export_arg(char *arg)
+void	export_arg(char *arg)
 {
-    char *key;
-    char *value;
-    t_env *existe;
-    int i;
+	char	*key;
+	char	*value;
+	t_env	*existe;
+	int		i;
 
     i = 0;
     existe = NULL;

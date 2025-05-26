@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:40:16 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:35:45 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,44 +35,6 @@ void	lstclear_exec(void)
 	*v_exec() = NULL;
 }
 
-t_exec	*find_exec_by_index(int index)
-{
-	t_exec	*cur;
-	cur = *v_exec();
-	while(cur)
-	{
-		if(cur->index == index)
-			break;	
-		cur = cur->next;
-	}
-	return cur;
-}
-
-void	lst_add_one_exec(t_exec	*new, int index)
-{
-	t_exec	*cur;
-
-	cur = find_exec_by_index(index);
-	if(!cur && cur->prev)
-		return;
-	else if(!cur->next)
-	{
-		lstadd_exec_back(v_exec(), new);
-		cur->prev = new;
-		new->next = cur;
-	}
-	else
-	{
-		new->next = cur;
-		new->prev = cur->prev;
-		if(!cur->prev)
-			*v_exec() = new;
-		else
-			(cur->prev)->next = new;
-		cur->prev = new;
-	}
-}
-
 void	lst_del_one_exec_by_node(t_exec	*cur)
 {
 	t_exec	*tmp;
@@ -99,19 +61,19 @@ void	lst_del_one_exec_by_node(t_exec	*cur)
 	ft_free(tmp);
 }
 
-void	index_the_exec_list(void)
-{
-	int i;
-	t_exec	*cur;
+// void	index_the_exec_list(void)
+// {
+// 	int i;
+// 	t_exec	*cur;
 
-	i = 0;
-	cur = *v_exec();
-	if(!cur)
-		return ;
-	while(cur)
-	{
-		cur->index = i;
-		cur = cur->next;
-		i++;
-	}
-}
+// 	i = 0;
+// 	cur = *v_exec();
+// 	if(!cur)
+// 		return ;
+// 	while(cur)
+// 	{
+// 		cur->index = i;
+// 		cur = cur->next;
+// 		i++;
+// 	}
+// }

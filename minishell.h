@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 18:32:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:51:17 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+// # include "execution/execution.h" 
 // # include "./parsing/parsing.h"
 
 # ifndef TRUE
@@ -87,6 +87,12 @@ typedef struct s_pipe
 	struct s_pipe	*prev;
 }					t_pipe;
 
+typedef enum s_execute_type
+{
+	builtin_cmd,
+	non_builtin_cmd
+}	t_execute_type;
+
 typedef struct s_exec
 {
 	char			*path;
@@ -94,8 +100,7 @@ typedef struct s_exec
 	char			**args;
 	int				fd_in;
 	int				fd_out;
-	int				index;
-	t_type			type;
+	t_execute_type	type;
 	struct s_exec	*next;
 	struct s_exec	*prev;
 }					t_exec;

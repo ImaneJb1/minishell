@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 11:14:38 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:59:23 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int is_built_in(void)
 int main(int argc, char const *argv[], char **env)
 {
     char *str;
-
+    (void)argv;
+    (void)argc;
     creat_environment(env);
     while(1)
     {
@@ -97,23 +98,33 @@ int main(int argc, char const *argv[], char **env)
             *v_exec() = NULL;
             continue;
         }
+        
         t_exec *exec;
 	    exec = *v_exec();
+        // pipex();
  	    while (exec)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
+            printf("cmd = (%s)   args = {", exec->cmd);
             if( exec->args)
 	    	{
                 for(int i = 0; exec->args[i]; i++)
                 {
                     if(i != 0)
-                        printf(" ");
+                        printf(" ,");
                     printf("%s", exec->args[i]);
 
                 }
             }
-            printf("cmd = [%s] path = [%s]\n", exec->cmd, exec->path);
+            printf("}  path = [%s]\n", exec->path);
+            printf("\nfdin = <%d>    fdout = <%d>   ", exec->fd_in, exec->fd_out);
+            if(exec->type == builtin_cmd)
+                printf("type = builtin_cmd");
+            else if(exec->type == non_builtin_cmd)
+                printf("type = non_builtin_cmd");
 	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
+            // close(exec->fd_in);
+            // close(exec->fd_out);
 	    	exec = exec->next;
 	    }
         lstclear_exec();
