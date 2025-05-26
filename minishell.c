@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 17:30:16 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:19:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int is_built_in(void)
     exec = *v_exec();
     if(!v_exec() || !(*v_exec()))
         return 0;
-    ft_free(*v_cmd());
-    *v_cmd() = NULL;  
     export(exec);
     env(exec);
     unset(exec);

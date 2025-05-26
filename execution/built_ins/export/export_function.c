@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 19:22:15 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:16:38 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void    export_arg(char *arg)
 
     i = 0;
     existe = NULL;
-    if (!is_valid_key(arg, &i))
+    key = NULL;
+    value = NULL;
+    key = is_valid_key(arg, &i);
+    if (!key)
         return ;
     if(arg[i] == '=' || arg[i] == '+')
         value = get_var_value(arg, i);
@@ -49,7 +52,7 @@ void    export_arg(char *arg)
     if(arg[i] == '+' && existe)
         return (appand_var(&existe, value));
     else if(arg[i] == '=' && existe)
-        add_var_node(&existe, value);
+        return (add_var_node(&existe, value));
     existe = new_env_node(key, value);
     if(!value)
         existe->type = local;
@@ -75,21 +78,21 @@ void    print_export_var(t_exec *node)
 }
 void    export(t_exec *node)
 {
-    int i;
+    int index;
     int count;
 
-    i = 0;
     if (!node)
         return;
+    index = 1;
     if (ft_strcmp(node->cmd, "export") == 0)
     {
         count = strlen_2d_array(node->args);
         if(count == 1)
             print_export_var(node);
-        else if(count > 2)
+        else if(count > 1)
         {
-            while (node->args[++i])
-                export_arg(node->args[i]);
+            while (node->args[index])
+                export_arg(node->args[index++]);
         }
     }
 }

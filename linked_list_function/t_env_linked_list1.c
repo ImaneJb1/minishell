@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:49:26 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:30:50 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ t_env	*lstlast_env(void)
 	return (lst);
 }
 
-int	lstsize_env(t_env *lst)
+int	lstsize_env(void)
 {
 	int		i;
 	t_env	*tmp;
+	t_env 	*lst;
 
+	lst = *v_env();
 	tmp = lst;
 	i = 0;
 	while (tmp)

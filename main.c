@@ -5,14 +5,14 @@
 // 	static char **str;
 // 	return &str;
 // }
-int main(int argc, char const *argv[])
-{
-	char  *str = NULL;
-	write(1,"\"",1);
-	write(1,str,10);
-	write(1,"\"",1);
-	return 0;
-}
+// int main(int argc, char const *argv[])
+// {
+// 	char  *str = NULL;
+// 	write(1,"\"",1);
+// 	write(1,str,10);
+// 	write(1,"\"",1);
+// 	return 0;
+// }
 
 // int main(int argc, char const *argv[],char **env)
 // {
