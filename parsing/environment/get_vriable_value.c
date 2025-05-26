@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_vriable_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:04:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:54:30 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*expand_the_value( char *command, t_data *data, int x)
 {
 	char	*save;
-
+	(void)x;
 	save = NULL;
 	data->j = 0;
 	data->value = get_value_from_env(data->key);

@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 19:02:14 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:49:45 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int is_built_in(void)
 int main(int argc, char const *argv[], char **env)
 {
     char *str;
-
+    (void)argv;
+    (void)argc;
     creat_environment(env);
     while(1)
     {
@@ -94,14 +95,16 @@ int main(int argc, char const *argv[], char **env)
             *v_exec() = NULL;
             continue;
         }
-        if(!is_built_in())
-        {
-            ft_free(*v_exec());
-            *v_exec() = NULL;
-            continue;
-        }
+        // if(!is_built_in())
+        // {
+        //     ft_free(*v_exec());
+        //     *v_exec() = NULL;
+        //     continue;
+        // }
+        
         t_exec *exec;
 	    exec = *v_exec();
+        // pipex();
  	    while (exec)
 	    {
             printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
@@ -117,6 +120,8 @@ int main(int argc, char const *argv[], char **env)
             }
             printf("cmd = [%s] path = [%s]\n", exec->cmd, exec->path);
 	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
+            // close(exec->fd_in);
+            // close(exec->fd_out);
 	    	exec = exec->next;
 	    }
         lstclear_exec();

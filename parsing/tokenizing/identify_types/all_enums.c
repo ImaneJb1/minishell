@@ -10,9 +10,9 @@ void	identify_all_types(void)
 	identify_path();
 	identify_double_q();
 	identify_single_q();    
-	identify_cmd();
+	identify_cmd(); 
 	hanlde_case();
 	//commad case
-	identify_cmd_arg();
+	identify_cmd_arg(); // single double quote
 	identify_var();
 }

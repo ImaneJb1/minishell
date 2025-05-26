@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:31:55 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:38:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/25 14:05:43 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
 #include "./built_ins/built_in.h"
+#include "non_built_ins/pipex.h"
 
-
+char ***env_arr(void);
+void    env_to_arr(void);
 #endif 

@@ -46,7 +46,7 @@ void    identify_cmd_arg(void)
     ptr = *v_cmd();
     while(ptr)
     {
-        if(ptr->type == WORD)
+        if((ptr->type == WORD))
             ptr->type |= CMD_ARG;
         ptr = ptr->next;
     }

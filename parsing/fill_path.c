@@ -7,7 +7,7 @@ char	*get_env_path(void)
 	env = *v_env();
 	while(env)
 	{
-		if(ft_strcmp(env->key, "PATH"))
+		if(ft_strcmp(env->key, "PATH") == 0)
 			return(env->value);
 		env = env->next;
 	}

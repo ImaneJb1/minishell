@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 19:12:12 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:54:27 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int    parsing(char *str)
 	field_spliting();
 	print_parsing();
 	fill_the_exec_struct();
+	lstclear_cmd();
 	return 1;
 }

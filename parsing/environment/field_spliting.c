@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   field_spliting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 16:06:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:57:22 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../parsing.h"
-
-static int	ft_count(char const *s, char *c)
-{
-	size_t	i;
-	size_t	count;
-	int		check;
-
-	count = 0;
-	i = 0;
-	check = 0;
-	while (s && s[i])
-	{
-		if (!ft_strchr(" \t", s[i]) && check == 0)
-		{
-			check = 1;
-			count++;
-		}
-		if (ft_strchr(" \t", s[i]))
-			check = 0;
-		i++;
-	}
-	return (count);
-}
 
 int	len_of_word(char *str, int j)
 {

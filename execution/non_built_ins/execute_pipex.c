@@ -1,4 +1,6 @@
 #include "./pipex.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 
 int		pipex(void)
 {
@@ -14,10 +16,13 @@ int		pipex(void)
 		pid = fork();
 		if(pid == 0)
 			execute_commands(cmd, fd);
-		dup2(fd[0], 0);
+		// dup2(fd[0], 0);
 		close(fd[0]);
 		close(fd[1]);
+		// close(cmd->fd_in);
+		// close(cmd->fd_out);
+		waitpid(pid, NULL, 0);
 		cmd = cmd->next;
 	}
-	//khsni ndir loop fel parent katsed ga3 fd's li f exec list
+	return(0);
 }
