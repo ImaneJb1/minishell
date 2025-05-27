@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:17:52 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:24:01 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,12 @@ void    export(t_exec *node)
     if (!node)
         return;
     index = 1;
-    if (ft_strcmp(node->cmd, "export") == 0)
+    count = strlen_2d_array(node->args);
+    if(count == 1)
+        print_export_var(node);
+    else if(count > 1)
     {
-        count = strlen_2d_array(node->args);
-        if(count == 1)
-            print_export_var(node);
-        else if(count > 1)
-        {
-            while (node->args[index])
-                export_arg(node->args[index++]);
-        }
+        while (node->args[index])
+            export_arg(node->args[index++]);
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/26 18:18:20 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:02:41 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void    change_directory(char *path)
 {
     char *oldpwd;
     oldpwd = get_pwd(); // store the old one
-    printf("home\n");
     if(chdir(path) < 0)   // change the wd
     {
         if(ft_strcmp(path, "-") == 0)
@@ -55,7 +54,7 @@ void    cd(t_exec *node)
 
 // int main(int argc, char **argv, char **env)
 // {
-//     creat_environment(env);
+//     create_environment(env);
 //     for(int i = 0; env[i]; i++)
 //         printf("%s\n", env[i]);
 //     change_directory(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 16:59:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:28:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,6 @@ t_env				**v_env(void);
 t_data				*init_data(void);
 // void				add_to_exec_list(char *str, t_exec *cur, int flag);
 int					parsing(char *str);
-void				creat_environment(char **env);
+void				create_environment(char **env);
 
 #endif

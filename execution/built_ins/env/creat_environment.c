@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_environment.c                                :+:      :+:    :+:   */
+/*   create_environment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:23:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 11:16:15 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:25:02 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*split_env_value(char *line, int *i)
 	return (value);
 }
 
-void	creat_environment(char **env)
+void	create_environment(char **env)
 {
 	int		i;
 	int		j;
@@ -71,19 +71,16 @@ void	env(t_exec	*node)
 
 	if(!node)
 		return ;
-	if(ft_strcmp(node->cmd, "env") == 0 )
+	env = *v_env();
+	while(env)
 	{
-		env = *v_env();
-		while(env)
+		if(env->type == global)
 		{
-			if(env->type == global)
-			{
-				ft_putstr_fd(env->key, node->fd_out);
-				ft_putstr_fd("=", node->fd_out);
-				ft_putstr_fd(env->value, node->fd_out);
-				ft_putstr_fd("\n", node->fd_out);
-			}
-			env = env->next;
+			ft_putstr_fd(env->key, node->fd_out);
+			ft_putstr_fd("=", node->fd_out);
+			ft_putstr_fd(env->value, node->fd_out);
+			ft_putstr_fd("\n", node->fd_out);
 		}
+		env = env->next;
 	}
 }

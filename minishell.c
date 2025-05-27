@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 16:59:27 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:36:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,13 @@ void print_parsing(void)
     printf("----------------------------------------------\n");
     printf("----------------------------------------------\n");
 }
-int is_built_in(void)
-{
-    t_exec *exec;
-    t_env *our_env;
-    
-    our_env = *v_env();
-    exec = *v_exec();
-    if(!v_exec() || !(*v_exec()))
-        return 0;
-    export(exec);
-    env(exec);
-    unset(exec);
-    return 1;
-}
 
 int main(int argc, char const *argv[], char **env)
 {
     char *str;
     (void)argv;
     (void)argc;
-    creat_environment(env);
+    create_environment(env);
     while(1)
     {
         str = readline("Minishell $>: ");
@@ -92,18 +78,6 @@ int main(int argc, char const *argv[], char **env)
             lstclear_exec();
             continue;
         }
-        if(!is_built_in())
-        {
-            lstclear_exec();
-            continue;
-        }
-        if(!is_built_in())
-        {
-            ft_free(*v_exec());
-            *v_exec() = NULL;
-            continue;
-        }
-        
         // t_exec *exec;
 	    // exec = *v_exec();
  	    // while (exec)

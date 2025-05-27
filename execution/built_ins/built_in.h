@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 16:59:13 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:00:56 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ typedef struct s_buitlin
 	void	(*func)(t_exec *);
 }			t_buitin;
 
+void fd_exit(t_exec *node);
+
+
 //      env
 void		env(t_exec *node);
-void		add_to_env(char *key, char *value);
 
 //      export
 void		export(t_exec *node);
@@ -50,7 +52,6 @@ void		appand_var(t_env **node, char *new_value);
 //      unset
 void		delete_from_env(char *key);
 void		unset(t_exec *node);
-
 //		cd pwd
 void		change_directory(char *path);
 char		*get_pwd(void);
