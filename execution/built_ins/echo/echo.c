@@ -5,7 +5,8 @@ bool    is_dash_n(char *args)
     int i;
 
     i = 1;
-    if(args[0] != '-')
+
+    if(args && *args != '-')
         return(FALSE);
     while(args[i] == 'n')
         i++;
@@ -26,13 +27,12 @@ void    echo(t_exec *node)
         write(node->fd_out, "\n", 1);
         return;
     }
-    while(node->args[i])
+    while(node->args && node->args[i])
     {
         if((is_dash_n(node->args[i]) == FALSE) || (is_dash_n(node->args[i]) == TRUE && flag == 1))
         {
-            write(node->fd_out, &node->args[i],ft_strlen(node->args[i]));
-            i++;
-            if(node->args[i]) 
+            write(node->fd_out, node->args[i],ft_strlen(node->args[i]));
+            if(node->args[i + 1]) 
                 write(node->fd_out, " ",1);
             flag = 1;
         }

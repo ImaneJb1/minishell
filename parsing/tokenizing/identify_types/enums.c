@@ -41,7 +41,7 @@ void	identify_cmd(void)
 	ptr = *v_cmd();
 	while(ptr)
 	{
-		if((ptr->type == WORD || ptr->type | PATH) && flag == 0)
+		if((ptr->type == WORD || ptr->type & PATH) && flag == 0)
 		{
 			ptr->type |= CMD;
 			flag = 1;

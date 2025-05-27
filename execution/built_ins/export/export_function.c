@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:21:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:17:52 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	export_arg(char *arg)
         existe->type = local;
     else
         existe->type = global;
-	lstadd_env_back(v_env(), existe);
+    lstadd_env_back(v_env(), existe);
 }
 
 void    print_export_var(t_exec *node)

@@ -23,6 +23,10 @@
         "span": "c",
         "charconv": "c",
         "pipex.h": "c",
-        "execution.h": "c"
+        "execution.h": "c",
+        "cstdlib": "c",
+        "types.h": "c",
+        "wait.h": "c",
+        "stddef.h": "c"
     }
 }

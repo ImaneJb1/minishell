@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 16:53:10 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:11:01 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_data	*init_data(void)
 	data->x = 0;
 	data->fd = 0;
 	data->count = 0;
+	data->pid = 0;
 	data->c = 0;
 	data->str = NULL;
 	data->del = NULL;

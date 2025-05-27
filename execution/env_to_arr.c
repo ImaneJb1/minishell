@@ -6,11 +6,17 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:30:04 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:20:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:00:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "execution.h"
+char ***env_arr(void)
+{
+    static char **env;
+    
+    return &env;
+}
 
 char    **env_to_arr(void)
 {
@@ -34,5 +40,12 @@ char    **env_to_arr(void)
         env_list = env_list->next;
     }
     env_array[i] = NULL;
-    return (env_array);
+    return env_array;
 }
+
+// int main()
+// {
+//     char  **env_array;
+//     env_array = *env_arr();
+//     printf("%s\n",env_array[0]);
+// }

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:14:24 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:34:49 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:16:11 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,6 @@ void	lst_del_one_exec_by_node(t_exec *cur);
 // void	index_the_exec_list(void);
 void	lstclear_exec(void);
 
-//          pipe list
-t_pipe	*new_pipe_node(int read, int write);
-void	lstadd_pipe_back(t_pipe **lst, t_pipe *new);
-void	lstadd_pipe_front(t_pipe **lst, t_pipe *new);
-t_pipe	*lstlast_pipe(t_pipe *lst);
-int		lstsize_pipe(t_pipe *lst);
-t_pipe	*find_pipe_by_index(int index);
-void	lst_add_one_pipe(t_pipe *new, int index);
-void	lst_del_one_pipe_by_node(t_pipe *cur);
-void	index_the_pipe_list(void);
+
 
 #endif
