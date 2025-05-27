@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/27 17:23:34 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:57:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_exit(int status)
 {
 	ft_free_all();
-	ft_destory_all();
 	exit(status) ;
 }
 

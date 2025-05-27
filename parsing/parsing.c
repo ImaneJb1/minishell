@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:18:23 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:53:10 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,40 +49,54 @@ void	expand_variable_value(void)
 	remove_quotes();
 }
 
-// int	syntax_error(char	*flag)
-// {
-// 	static int i;
+int	syntax_error(char	*flag)
+{
+	static int i;
 
-// 	if(flag == NULL)
-// 		return i;
-// 	if(ft_strcmp("no", flag) == 0)
-// 		i = 1;
-// 	if(ft_strcmp("yes", flag) == 0)
-// 		i = 0;
-// 	return i;
-// }
+	if(flag == NULL)
+		return i;
+	if(ft_strcmp("no", flag) == 0)
+		i = 0;
+	if(ft_strcmp("yes", flag) == 0)
+		i = 1;
+	return i;
+}
 
-// int	is_heredoc_syntax(int flag)
+// int after_pipe(char	*flag)
 // {
 // 	static int i;
 	
-// 	if(flag == 1)
-// 		i = 1;
-// 	if(flag == 0)
+// 	if(flag == NULL)
+// 		return i;
+// 	if(ft_strcmp("no", flag) == 0)
 // 		i = 0;
+// 	if(ft_strcmp("yes", flag) == 0)
+// 		i = 1;
 // 	return i;
 // }
+
+int	syntax_error_index(int	flag)
+{
+	static int i;
+
+	if(flag == 0)
+		return i;
+	else
+		i = flag;
+	return i;
+}
 
 
 int    parsing(char *str)
 {
    	creat_the_cmd_list(str);
-	if(is_valid_syntax() == FALSE )
-        return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
+	if(is_valid_syntax() == FALSE)
+    	syntax_error("yes");
     expand_variable_value();
 	field_spliting();
 	print_parsing();
-	fill_the_exec_struct();
+	if(!fill_the_exec_struct())
+		return 0;
 	lstclear_cmd();
 	return 1;
 }

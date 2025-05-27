@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:19:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:21:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void	split_the_field(t_cmd *cmd)
 	t_data *data;
 	t_cmd	*cur;
 	t_cmd	*node;
+	int		flag;
 
+	flag = 0;
 	node = NULL;
 	data = init_data();
 	data->content = cmd->content;
@@ -77,6 +79,11 @@ void	split_the_field(t_cmd *cmd)
 	{
 		data->str = node_content(data->content, &data->i);
 		node = new_cmd_node(ft_strdup(data->str));
+		if(flag == 0)
+			node->type = CMD;
+		else
+			node->type = CMD_ARG;
+		flag = 1; 
 		lst_add_one_cmd_by_node(cmd, node);
 		ft_free(data->str);
 		cmd = cmd->next;

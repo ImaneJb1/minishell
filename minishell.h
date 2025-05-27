@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:51:17 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:49:03 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ typedef struct s_exec
 typedef struct s_cmd
 {
 	char			*content;
-	int				index;
 	int				fd_in;
 	int				fd_out;
+	int				index;
 	t_type			type;
 	struct s_cmd	*next;
 

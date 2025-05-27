@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:51:24 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:07:07 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,41 @@ void	fill_args(t_cmd *token, t_exec **cmd)
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
 }
 
-void 	fill_the_exec_struct(void)
+void fill_node(t_cmd *tokens, t_exec **cmd)
+{
+	fill_fds(tokens, cmd);
+	fill_cmd(tokens, cmd);
+	fill_args(tokens, cmd);
+}
+
+// int	syntax(t_cmd *tokens, int *flag)
+// {
+// 	if(syntax_error("yes") && tokens->index == syntax_error_index(0))
+// 	{
+// 		if(flag == 1)
+// 			return 0;
+// 		else if(flag == 0 && tokens->type != HERE_DOC)
+// 			return 0;
+		
+// 	}
+// }
+
+int 	fill_the_exec_struct(void)
 {
 	t_cmd *tokens;
 	t_exec *cmd;
+	int	flag;
 	
+	flag = 0;
 	if(!v_cmd() || !(*v_cmd()))
-        return ;
+        return 0;
 	tokens = *v_cmd();
 	cmd = new_exec_node();
 	while(tokens)
 	{
-		fill_fds(tokens, &cmd);
-		fill_cmd(tokens, &cmd);
-		fill_args(tokens, &cmd);
+		// if(!syntax(tokens, &flag))
+		// 	return 0;
+		fill_node(tokens, &cmd);
 		if(tokens->type & PIPE)
 		{
 			lstadd_exec_back(v_exec(), cmd);
@@ -115,4 +136,5 @@ void 	fill_the_exec_struct(void)
 	if(cmd)
 		cmd = add_to_exec_list(NULL, cmd, 0);
 	lstadd_exec_back(v_exec(), cmd);
+	return 1;
 }

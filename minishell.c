@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:59:23 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:03:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,12 @@ int main(int argc, char const *argv[], char **env)
         add_history(str);
         if(!parsing(str))
         {
-            ft_free(*v_exec());
-            *v_exec() = NULL;
+            lstclear_exec();
             continue;
         }
         if(!is_built_in())
         {
-            ft_free(*v_exec());
-            *v_exec() = NULL;
+            lstclear_exec();
             continue;
         }
         

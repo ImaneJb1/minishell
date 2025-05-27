@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:35:45 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:01:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	lstclear_exec(void)
         	ft_free(cur->args);
 			cur->args = NULL;
 		}
-		cur = cur->next;
+		ft_free(cur);
+		cur = next;
 	}
 	*v_exec() = NULL;
 }

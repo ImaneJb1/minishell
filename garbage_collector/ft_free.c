@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:45:34 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:56:44 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,4 @@ void	ft_free(void *mem)
 		return ;
 	}
 	find_to_free(mem);
-}
-
-void	ft_destory_all(void)
-{
-	t_mem_list	**list;
-	t_mem_list	*tmp;
-	void		*mem;
-
-	list = ft_img_list();
-	if (!list || !(*list))
-		return ;
-	while (*list)
-	{
-		tmp = *list;
-		*list = (*list)->next;
-		free(tmp);
-	}
-	mem = current_working_mem(NULL, 0);
-	free(mem);
-	current_working_mem(NULL, 1);
 }

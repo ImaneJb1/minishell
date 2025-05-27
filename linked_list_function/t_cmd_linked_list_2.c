@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 10:59:38 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:48:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ void	lstclear_cmd(void)
 	*v_cmd() = NULL;
 }
 
-t_cmd	*find_cmd_by_index(int index)
-{
-	t_cmd	*cur;
+// t_cmd	*find_cmd_by_index(int index)
+// {
+// 	t_cmd	*cur;
 
-	cur = *v_cmd();
-	while (cur)
-	{
-		if (cur->index == index)
-			break ;
-		cur = cur->next;
-	}
-	return (cur);
-}
+// 	cur = *v_cmd();
+// 	while (cur)
+// 	{
+// 		if (cur->index == index)
+// 			break ;
+// 		cur = cur->next;
+// 	}
+// 	return (cur);
+// }
 
 void	lst_add_one_cmd_by_node(t_cmd *cur, t_cmd *new)
 {
@@ -91,37 +91,6 @@ void	lst_del_one_cmd_by_node(t_cmd *cur)
 	}
 	ft_free(tmp);
 }
-
-// void	lst_del_one_cmd(int index)
-// {
-// 	t_cmd	*cur;
-// 	t_cmd	*tmp;
-
-// 	if(!*v_cmd())
-// 		return ;
-// 	if(!(*v_cmd())->next)
-// 	{
-// 		*v_cmd() = NULL;
-// 		return ;
-// 	}
-// 	cur = find_cmd_by_index(index);
-// 	if(!cur)
-// 		return ;
-// 	tmp = cur;
-// 	if(cur->prev)
-// 	{
-// 		(cur->prev)->next = cur->next;
-// 		if(cur->next)
-// 			(cur->next)->prev = cur->prev;
-// 	}
-// 	else
-// 	{
-// 		*v_cmd() = cur->next;
-// 		(cur->next)->prev = NULL;
-// 	}
-// 	ft_free(tmp);
-// 	index_the_cmd_list();
-// }
 
 void	index_the_cmd_list(void)
 {

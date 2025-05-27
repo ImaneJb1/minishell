@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:17:59 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:52:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 //      main parsing fuctions
 int				    parsing(char *str);
 void    		    remove_quotes(void);
+int	                syntax_error_index(int	flag);
+int                 after_pipe(char	*flag);
 
 //      fill exec list
 void	            creat_the_cmd_list(char *line);
@@ -28,7 +30,7 @@ void				add_to_cmd_list(char ch, int flag);
 char                *unquoted_one_cmd(char *str);
 
 //      fill exec list path
-void                fill_the_exec_struct(void);
+int                fill_the_exec_struct(void);
 t_exec	            *add_to_exec_list(char *str, t_exec *cur, int flag);
 void				fill_path(t_exec *cmd);
 // t_exec	            *check_cmd(t_cmd **cmd, t_exec *list);
