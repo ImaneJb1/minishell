@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/24 11:56:50 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:33:19 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 // # include "execution/execution.h" 
 // # include "./parsing/parsing.h"
 
@@ -63,6 +65,7 @@ typedef struct s_data
 	int				i;
 	int				j;
 	int				x;
+	int				pid;
 	int				count;
 	int				flag;
 	int				fd;
@@ -75,7 +78,6 @@ typedef struct s_data
 	char			*command;
 	char			*del;
 	char			**args;
-
 }					t_data;
 
 typedef struct s_pipe
@@ -127,6 +129,9 @@ typedef struct s_env
 	struct s_env	*next;
 	struct s_env	*prev;
 }					t_env;
+
+void	main_execution(void);
+int		pipes(void);
 
 void				print_parsing(void);
 

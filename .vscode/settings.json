@@ -25,6 +25,8 @@
         "pipex.h": "c",
         "execution.h": "c",
         "cstdlib": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "wait.h": "c",
+        "stddef.h": "c"
     }
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 11:53:55 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:49:10 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execution/built_ins/built_in.h"
-#include "./execution/built_ins/built_in.h"
+// #include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
 
 
@@ -102,29 +102,31 @@ int main(int argc, char const *argv[], char **env)
             continue;
         }
         
-        t_exec *exec;
-	    exec = *v_exec();
- 	    while (exec)
-	    {
-            printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
-            if( exec->args)
-	    	{
-                for(int i = 0; exec->args[i]; i++)
-                {
-                    if(i != 0)
-                        printf(" ");
-                    printf("%s", exec->args[i]);
+        // t_exec *exec;
+	    // exec = *v_exec();
+ 	    // while (exec)
+	    // {
+        //     printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
+        //     if( exec->args)
+	    // 	{
+        //         for(int i = 0; exec->args[i]; i++)
+        //         {
+        //             if(i != 0)
+        //                 printf(" ");
+        //             printf("%s", exec->args[i]);
 
-                }
-            }
-            printf("\ncmd = [%s] path = [%s]\n index = %i\n", exec->cmd, exec->path, exec->index);
-	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
-            // close(exec->fd_in);
-            // close(exec->fd_out);
-	    	exec = exec->next;
-	    }
-        printf("\n=========================================================================\n");
+        //         }
+        //     }
+        //     printf("\ncmd = [%s] path = [%s]\n \n", exec->cmd, exec->path);
+        //     printf("    fdin = {%d}     fdout = {%d}",exec->fd_in, exec->fd_out);
+	    // 	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
+        //     // close(exec->fd_in);
+        //     // close(exec->fd_out);
+	    // 	exec = exec->next;
+	    // }
+        // printf("\n=========================================================================\n");
         main_execution();
         lstclear_exec();
+        // ft_free_all();
     }
 }

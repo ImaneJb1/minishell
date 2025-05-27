@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 11:11:01 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:31:52 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../minishell.h"
 
 //      main parsing fuctions
-int			parsing(char *str);
+
 void		remove_quotes(void);
 
 //      fill exec list
@@ -103,7 +103,7 @@ void		fill_fds_into_exec(t_cmd *token, t_exec **node);
 
 //      open_fd_heredoc
 void		open_fd_heredoc(t_cmd *token, int *fd);
-void		write_in_here_doc_file(t_cmd *del, int *fd);
+void		write_in_here_doc_file(t_cmd *del, t_data *info, int *fd);
 void		get_delimiter(t_cmd **cmd);
 void		check_expand_and_put_in_file(t_data *data, int fd);
 char		*expand_string(char *string, char *str, int *i);

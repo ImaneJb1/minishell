@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_to_arr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:30:04 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/25 15:30:37 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:29:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char ***env_arr(void)
     return &env;
 }
 
-void    env_to_arr(void)
+char    **env_to_arr(void)
 {
     t_env *env_list;
     char  **env_array;
@@ -26,7 +26,6 @@ void    env_to_arr(void)
     int i;
 
     env_list = *v_env();
-    env_array = *env_arr();
     str = NULL;
     env_array = ft_malloc(sizeof(char *) * (lstsize_env(env_list) + 1));
     i = 0;
@@ -40,6 +39,7 @@ void    env_to_arr(void)
         env_list = env_list->next;
     }
     env_array[i] = NULL;
+    return env_array;
 }
 
 // int main()

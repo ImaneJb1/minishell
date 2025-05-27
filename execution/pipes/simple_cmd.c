@@ -19,7 +19,10 @@ void	execute_cmd(t_exec *cmd)
 {
 	int pid;
 
+	// write(1,"out\n",4);
+	// write(0,"in\n",3);
 	pid = fork();
+	// exit(0);
 	if(pid == 0)
 	{
 		dup_and_close(cmd);

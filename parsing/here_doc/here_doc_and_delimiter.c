@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/22 17:02:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:51:06 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,15 @@ void    get_delimiter(t_cmd **cmd)
     (*cmd)->content = del;
 }
 
-void    write_in_here_doc_file(t_cmd  *del, int *fd)
+void    write_in_here_doc_file(t_cmd  *del, t_data *info, int *fd)
 {
     t_data *data;
-    static int here_num;
+    
 
     data = init_data();
-    data->word = ft_strjoin("/tmp/", ft_itoa(here_num++));
-    *fd = open(data->word, O_CREAT | O_RDWR | O_TRUNC, 0666);
+    *fd = open(info->word, O_CREAT | O_RDWR | O_TRUNC, 0666);
     if(*fd < 0)
-       return (perror(""));
+       return (perror(info->word));
     if (!(del->type & (SINGLE_Q | DOUBLE_Q)))
         data->flag = 1;
     while (1)
@@ -62,13 +61,31 @@ void    write_in_here_doc_file(t_cmd  *del, int *fd)
             break;
         check_expand_and_put_in_file(data, *fd);
     }
+    close(*fd);
 }
 
 void    open_fd_heredoc(t_cmd *token, int *fd)
 {
+    t_data *data;
+    char    *fd_file_name;
+    static int here_num;
+
+    data = init_data();
+    fd_file_name = NULL;
     if(token->type & DELIMITER)
     {
-        get_delimiter(&token);
-        write_in_here_doc_file(token, fd);
+        data->word = ft_strjoin("/tmp/", ft_itoa(here_num++));
+        *fd = open(data->word, O_CREAT | O_RDWR | O_TRUNC, 0666);
+        if(*fd < 0)
+            return (perror(fd_file_name));
+        data->pid = fork();
+        if(data->pid == 0)
+        {
+            get_delimiter(&token);
+            write_in_here_doc_file(token, data, fd);
+            ft_free_all();
+            exit(1);
+        }
+        wait(NULL);
     }
 }

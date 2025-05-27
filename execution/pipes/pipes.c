@@ -1,4 +1,4 @@
-#include "./pipex.h"
+#include "../execution.h"
 
 int		pipes(void)
 {

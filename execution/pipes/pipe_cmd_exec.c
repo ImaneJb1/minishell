@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_cmd_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/27 11:29:09 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:41:50 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,25 @@
 
 int		execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 {
-	char **env;
-	
-	env_to_arr();
-	env = *env_arr();
 	builtin(cmd);
-	if(!cmd->path)
+	char **env = env_to_arr();
+	if(!cmd->path && cmd->cmd)
 	{
 		print_cmd_error(cmd->cmd, "No such file or directory");
 		exit(1);
 	}
-	if(execve(cmd->path, cmd->args, env) < 0)
-		perror("");
-	return(0);
+	if(!cmd->cmd)
+		exit(1);
+	dprintf(1,"here\n");
+	// // dprintf(0,"here2\n");
+	// dprintf(1,"arg = %s, %s\n",cmd->args[0], cmd->args[1]);
+	// if(!env_to_arr()[0])
+	// 	dprintf(1, "env is null\n");
+	// dprintf(0,"cmd = %s   env = %s\n", cmd->path, env_to_arr()[0]);
+	// dprintf(1,"in = %d   out = %d\n", cmd->fd_in, cmd->fd_out);
+	execve(cmd->path, cmd->args, env);
+	perror("execve");
+	exit(1);
 }
 
 void	execute_first_command(t_exec *cmd, int *fd)
