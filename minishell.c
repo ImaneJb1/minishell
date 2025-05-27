@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 19:15:03 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:53:55 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int main(int argc, char const *argv[], char **env)
 	    	exec = exec->next;
 	    }
         printf("\n=========================================================================\n");
-        simple_cmd();
+        main_execution();
         lstclear_exec();
     }
 }

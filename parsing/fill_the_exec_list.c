@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 19:13:07 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:16:56 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	fill_the_exec_struct(void)
 	cmd = new_exec_node();
 	while (tokens)
 	{
-		fill_exec(tokens, &cmd);
+		fill_fds_into_exec(tokens, &cmd);
+		fill_cmd(tokens, &cmd);
+    	fill_args(tokens, &cmd);
 		if (tokens->type & PIPE)
 		{
 			lstadd_exec_back(v_exec(), cmd);

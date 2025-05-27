@@ -36,13 +36,11 @@ void	fill_args(t_cmd *token, t_exec **cmd)
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
 }
 
-void    fill_exec(t_cmd *token, t_exec **node)
+void    fill_fds_into_exec(t_cmd *token, t_exec **node)
 {
     open_fd_heredoc(token, &(*node)->fd_in);
     open_fd_in(token, &(*node)->fd_in);
     open_fd_out(token, &(*node)->fd_out);
     open_fd_app(token, &(*node)->fd_out);
-    fill_cmd(token, node);
-    fill_args(token, node);
 }
 
