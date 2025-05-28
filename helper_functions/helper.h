@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 01:42:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/23 17:45:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:23:01 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_strcmp(char *s1, char *s2);
 char	*del_char_str_index(char *str, int i);
 char	*del_str_str(char *str, char *del);
 void	ft_putstr_fd(char *s, int fd);
-int	    strlen_2d_array(char **ptr);
+int		strlen_2d_array(char **ptr);
 char	*separat_with_one_space(char *str);
 char	*ft_strchr(char *str, int c);
 char	*join_str_char(char *str, char c);
@@ -38,4 +38,5 @@ int		is_digit(int n);
 char	**ft_split(char *s, char c);
 void	skip_space(char *str, int *i);
 char	*ft_substr(char *s, unsigned int start, size_t len);
+int		ft_isdigit(int c);
 #endif

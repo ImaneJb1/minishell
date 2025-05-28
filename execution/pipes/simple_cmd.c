@@ -14,16 +14,10 @@ void	dup_and_close(t_exec *cmd)
 	}
 }
 
-void fd_exit(t_exec *node)
-{
-	(void)node;
-	ft_free_all();
-	exit(1);
-}
 bool	handle_export_unset(t_exec *cmd)
 {
 	static t_buitin arr[5]={{"cd", cd}, {"pwd", pwd},
-		{"exit", fd_exit}, {"export", export}, {"unset", unset}};
+		{"exit", exit_func}, {"export", export}, {"unset", unset}};
 	int i;
 	i = 0;
 	while(i < 5)

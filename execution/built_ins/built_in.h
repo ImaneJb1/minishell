@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 18:00:56 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:51:16 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct s_buitlin
 	void	(*func)(t_exec *);
 }			t_buitin;
 
-void fd_exit(t_exec *node);
+void exit_func(t_exec *node);
+void    exit_status_case(char *arg);
 
 
 //      env

@@ -28,7 +28,8 @@ HELPER_FUNCTIONS = \
 	helper_functions/separate_with_one_space.c \
 	helper_functions/strcmp.c \
 	helper_functions/strncmp.c \
-	helper_functions/strnstr_index.c
+	helper_functions/strnstr_index.c \
+	helper_functions/ft_is_digit.c
 
 HELPER_EXTRA = \
 	helper_functions/ft_itoa.c \
@@ -106,6 +107,7 @@ BUILT_IN_EXPORT = \
 BUILT_IN_UNSET = execution/built_ins/unset/new_unset.c
 BUILT_IN_ECHO = execution/built_ins/echo/echo.c
 BUILT_IN_PWD = execution/built_ins/pwd/pwd.c
+BUILT_IN_EXIT = execution/built_ins/exit/exit_func.c
 
 BUILT_IN_CD = \
 	execution/built_ins/cd/cd.c \
@@ -119,7 +121,8 @@ BUILT_IN = \
 	$(BUILT_IN_UNSET) \
 	$(BUILT_IN_ECHO) \
 	$(BUILT_IN_PWD) \
-	$(BUILT_IN_CD)
+	$(BUILT_IN_CD) \
+	$(BUILT_IN_EXIT)
 
 # ===================== EXECUTION =============================
 EXECUTION_BUILTINS = execution/built_ins/is_builtin.c
@@ -160,3 +163,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+.SECONDARY : $(OBJ)

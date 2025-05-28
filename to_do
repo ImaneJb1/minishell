@@ -1,1 +1,6 @@
-handle is a directory with opendir
+[x] handle is a directory with opendir
+[x] exit function
+[] exit status
+[] echo $?
+=====================================
+i used atoi in exit_func
