@@ -7,7 +7,7 @@ void	builtin(t_exec *cmd)
 		{"exit", fd_exit}, {"export", export}, {"env", env}, {"unset", unset}};
 	int i;
 	i = 0;
-	while(i < 4)
+	while(i < 7)
 	{
 		if(ft_strcmp(arr[i].cmd, cmd->cmd) == 0)
 		{
