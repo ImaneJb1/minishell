@@ -21,6 +21,8 @@ char	*find_path(t_exec *cmd, char *path)
 	char *tmp;
 
 	all_paths = ft_split(path, ':');
+	if(all_paths == NULL)
+		return(NULL);
 	i = 0;
 	while(all_paths[i])
 	{
@@ -38,6 +40,12 @@ void	fill_path(t_exec *cmd)
 	char *paths;
 
 	paths = get_env_path();
+	if(paths == NULL)
+	{
+		print_cmd_error(cmd->cmd, "no such file or directory");
+		cmd->cmd = NULL;
+		return;
+	}
 	if(ft_strchr(cmd->cmd, '/') == NULL)
 		paths = find_path(cmd, paths);
 	else

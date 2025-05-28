@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/28 11:20:11 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:37:57 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 	if (opendir(cmd->cmd))
 	{
 		print_cmd_error(cmd->cmd, "is a directory");
-		exit(1);
+		free_exit(1);
 	}
+	if (!cmd->cmd || cmd->fd_in < 0 || cmd->fd_out < 0)
+		free_exit(1);
 	if (!cmd->path && cmd->cmd)
 	{
-		print_cmd_error(cmd->cmd, "No such file or directory");
-		exit(1);
+		print_cmd_error(cmd->cmd, "command not found");
+		free_exit(1);
 	}
-	if (!cmd->cmd)
-		exit(1);
 	execve(cmd->path, cmd->args, env);
-	perror("execve");
-	exit(1);
+	perror(cmd->cmd);
+	free_exit(1);
 }
 
 void	execute_first_command(t_exec *cmd, int *fd)

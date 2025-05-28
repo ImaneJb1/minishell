@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 14:52:31 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:50:34 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // #include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
 
-int exit_status = 5;
+int exit_status;
 
 
 void print_parsing(void)
@@ -73,13 +73,16 @@ int main(int argc, char const *argv[], char **env)
     {
         str = readline("Minishell $>: ");
         if(!str || !*str)
-            continue;
+        continue;
         add_history(str);
+        update_exit_status(errno);
         if(!parsing(str))
         {
             lstclear_exec();
             continue;
         }
+    	
+
         // t_exec *exec;
 	    // exec = *v_exec();
  	    // while (exec)

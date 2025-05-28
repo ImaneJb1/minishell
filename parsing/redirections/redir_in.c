@@ -16,6 +16,10 @@ void    open_fd_in(t_cmd *token, int *fd)
     {
         *fd = open(token->content, O_RDONLY, 0666);
         if(*fd < 0)
+        {
             perror(token->content);
+            exit_status = errno;
+            update_exit_status(exit_status);
+        }
     }
 }

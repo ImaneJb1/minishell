@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 15:09:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:04:41 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int    parsing(char *str)
 {
    	creat_the_cmd_list(str);
 	if(is_valid_syntax() == FALSE)
-    	return (syntax_error("yes"), 0);
+    	return (lstclear_cmd(), syntax_error("yes"), 0);
     expand_variable_value();
 	field_spliting();
 	remove_quotes();

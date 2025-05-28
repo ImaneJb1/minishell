@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_vriable_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 15:34:19 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:33:41 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 	}
 }
 
-char	*expand_exit_status(char *command)
-{
-	command = ft_strjoin(command, ft_itoa(exit_status));
-	return command;
-}
+// char	*expand_exit_status(char *command)
+// {
+// 	command = ft_strjoin(command, ft_itoa(exit_status));
+// 	return command;
+// }
 
 char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 {

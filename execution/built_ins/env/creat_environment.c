@@ -62,7 +62,7 @@ void	create_environment(char **env)
 		lstadd_env_back(v_env(), node);
 		i++;
 	}
-	node = new_env_node("?", ft_itoa(exit_status));
+	node = new_env_node("?", "0");
 	node->type = special;
 	lstadd_env_back(v_env(), node);
 }

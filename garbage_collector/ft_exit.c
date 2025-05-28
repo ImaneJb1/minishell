@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 15:57:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:38:20 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_exit(int status)
 {
 	ft_free_all();
-	exit(status) ;
+	exit(status);
 }
 
 void	*current_working_mem(void *mem, int set_to_null)

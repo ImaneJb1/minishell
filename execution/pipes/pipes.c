@@ -5,7 +5,7 @@ void    exit_status_case(char *arg)
 	if(ft_strcmp(arg, "$?") == 0)
 	{
         printf("%d\n", exit_status);
-		exit(0);
+		free_exit(0);
 	}
 }
 int		pipes(void)
