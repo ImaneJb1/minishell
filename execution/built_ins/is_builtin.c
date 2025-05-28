@@ -4,7 +4,7 @@
 void	builtin(t_exec *cmd)
 {	
 	static t_buitin arr[7]={{"echo", echo}, {"cd", cd}, {"pwd", pwd},
-		{"exit", fd_exit}, {"export", export}, {"env", env}, {"unset", unset}};
+		{"exit", exit_func}, {"export", export}, {"env", env}, {"unset", unset}};
 	int i;
 	i = 0;
 	while(i < 7)

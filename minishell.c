@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:36:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:52:31 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "execution/built_ins/built_in.h"
 // #include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
+
+int exit_status = 5;
 
 
 void print_parsing(void)
