@@ -32,7 +32,7 @@ char	*find_path(t_exec *cmd, char *path)
 			return(path);
 		i++;
 	}
-	return(NULL);
+	return(cmd->cmd);
 }
 
 void	fill_path(t_exec *cmd)

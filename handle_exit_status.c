@@ -7,11 +7,11 @@ void    update_exit_status(int status)
     env = *v_env();
     while (env)
     {
-        if(ft_strcmp(env->key, "?") == 0);
+        if(ft_strcmp(env->key, "?") == 0)
             break;
         env = env->next;
     }
-    ft_free(env->value);
+    // ft_free(env->value);
     env->value = NULL;
     env->value = ft_strdup(ft_itoa(status));
 }

@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 18:50:34 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:14:17 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ int main(int argc, char const *argv[], char **env)
     create_environment(env);
     while(1)
     {
+        // update_exit_status(0);
         str = readline("Minishell $>: ");
         if(!str || !*str)
         continue;
         add_history(str);
-        update_exit_status(errno);
         if(!parsing(str))
         {
             lstclear_exec();

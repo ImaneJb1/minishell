@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 17:33:41 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:10:32 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 
 	data = init_data();
 	(*i)++;
-	if(cur->content[*i] == '?' && (*i)++)
-		return (command = ft_strjoin(command, ft_itoa(exit_status)));
+	// if(cur->content[*i] == '?' && (*i)++)e
+		// return (command = ft_strjoin(command, ft_itoa(exit_status)));
 	fill_the_key(cur, i, data);
 	data->i = (*i);
 	if(x == 0 || data->flag == 1)
