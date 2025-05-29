@@ -35,6 +35,7 @@ bool	handle_export_unset(t_exec *cmd)
 void	execute_simple_cmd(t_exec *cmd)
 {
 	int pid;
+	int	status;
 
 	if(handle_export_unset(cmd))
 		return;
@@ -50,8 +51,9 @@ void	execute_simple_cmd(t_exec *cmd)
 			close(cmd->fd_in);
 		if(cmd->fd_out != 1)
 			close(cmd->fd_out);
-		wait(NULL);
+		waitpid(pid, &status, 0);
 	}
+	update_exit_status(WEXITSTATUS(status));
 }
 
 void	simple_cmd(void)

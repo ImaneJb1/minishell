@@ -1,34 +1,24 @@
 
 #include "minishell.h"
-// char ***n(void)
+
+// void handle_sigint(int signum)
 // {
-// 	static char **str;
-// 	return &str;
+//     (void)signum;
+//     rl_replace_line("", 0);
+//     // write(1, "this signal\n", 12);
+//     write(1, "\n", 1);
+//     rl_on_new_line();
+//     rl_redisplay();
 // }
+
 // int main(int argc, char const *argv[])
 // {
-// 	char  *str = NULL;
-// 	write(1,"\"",1);
-// 	write(1,str,10);
-// 	write(1,"\"",1);
-// 	return 0;
-// }
-
-// int main(int argc, char const *argv[],char **env)
-// {
-//     // char *st[] = {"/usr/bin/export", NULL};
-//     // execve("/usr/bin/export", st, NULL);
-
-//     // char    ** s;
-//     // s = n(); 
-//     char **env;
-//     env = convert_env_to_arr();
-//     (*n()) = malloc(sizeof(char *) * 100);
-//     (*n())[0] = strdup("0");
-//     (*n())[1] = NULL;
-//     printf("%s\n",(*n())[0]);
-
+//     while (1)
+//     {
+//         signal(SIGINT, handle_sigint);
+//         readline(" << ");
+//     }
+    
 //     return 0;
 // }
-
 

@@ -5,7 +5,7 @@ void    exit_status_case(char *arg)
 	if(ft_strcmp(arg, "$?") == 0)
 	{
         printf("%d\n", exit_status);
-		exit(0);
+		free_exit(0);
 	}
 }
 int		pipes(void)
@@ -33,5 +33,6 @@ int		pipes(void)
 	}
 	dup2(saved_stdin ,0);
 	exit_status = WEXITSTATUS(status);
+	update_exit_status(exit_status);
 	return(0);
 }

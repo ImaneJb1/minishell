@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   handle_exit_status.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 01:47:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/29 16:12:31 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/05/29 17:16:32 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/05/29 17:16:33 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
+#include "minishell.h"
 
-void	ft_exit(int status)
+void    update_exit_status(int status)
 {
-	ft_free_all();
-	exit(status);
+    t_env   *env;
+
+    env = *v_env();
+    while (env)
+    {
+        if(ft_strcmp(env->key, "?") == 0)
+            break;
+        env = env->next;
+    }
+    // ft_free(env->value);
+    env->value = NULL;
+    env->value = ft_strdup(ft_itoa(status));
 }
 
-void	*current_working_mem(void *mem, int set_to_null)
+void	free_exit(int status)
 {
-	static void	*working_mem;
-
-	if (set_to_null)
-		working_mem = NULL;
-	if (mem)
-		working_mem = mem;
-	return (working_mem);
+	update_exit_status(status);
+	ft_exit(status);
 }

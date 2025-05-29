@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:09:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:38:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ void    write_in_here_doc_file(t_cmd  *del, t_data *info, int *fd)
     {
         data->str = readline("  >> ");
         if(!data->str)
-            continue;
+        {
+            ft_putstr_fd("Minishell: warning: here-document delimited by end-of-file (wanted `", 2);
+		    ft_putstr_fd(del->content, 2);
+		    ft_putstr_fd("')\n", 2);
+            break;
+        }
         if (ft_strcmp(del->content, data->str) == 0)
             break;
         check_expand_and_put_in_file(data, *fd);
@@ -81,11 +86,22 @@ void    open_fd_heredoc(t_cmd *token, int *fd)
         data->pid = fork();
         if(data->pid == 0)
         {
+            signal(SIGINT, SIG_DFL);
             get_delimiter(&token);
             write_in_here_doc_file(token, data, fd);
             ft_free_all();
-            exit(1);
+            free_exit(0);
         }
-        wait(NULL);
+        waitpid(data->pid, &data->status, 0);
+        update_exit_status(WEXITSTATUS(data->status));
+        printf("exit num = %d\n",WEXITSTATUS(data->status));
+        if(WEXITSTATUS(data->status) == 130)
+        {
+            // printf("sig\n");
+            rl_replace_line("", 0);
+            write(1, "\n", 1);
+            // rl_on_new_line();
+            rl_redisplay();
+        }
     }
 }

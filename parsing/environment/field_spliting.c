@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_spliting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 16:21:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:50:13 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*node_content(char	*str, int *i)
 void	skip_quotes(char *str, int *i)
 {
 	char c;
-	if(ft_strchr(" \t\'\"", str[*i]))
+	if(ft_strchr("\'\"", str[*i]))
 	{
 		c = str[*i];
 		(*i)++;
@@ -139,7 +139,11 @@ void	split_the_field(t_cmd *cmd)
 		data->str = node_content(data->content, &data->i);
 		node = new_cmd_node(ft_strdup(data->str));
 		if(flag == 0)
+		{
 			node->type = CMD;
+			if(ft_strchr(node->content, '/'))
+			node->type |= PATH;	
+		}
 		else
 			node->type = CMD_ARG;
 		flag = 1;

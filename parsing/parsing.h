@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:09:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/29 17:27:36 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
+// # include <sys/wait.h>
 
 //      main parsing fuctions
 
