@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:28:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/29 17:29:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <sys/types.h>
+// # include <dirent.h>
+# include <sys/wait.h>
+# include <signal.h>
 // # include "execution/execution.h" 
 // # include "./parsing/parsing.h"
+extern int exit_status;
 
 # ifndef TRUE
 #  define TRUE 1
@@ -68,6 +71,7 @@ typedef struct s_data
 	int				pid;
 	int				count;
 	int				flag;
+	int				status;
 	int				fd;
 	char			c;
 	char			*key;
@@ -89,11 +93,11 @@ typedef struct s_pipe
 	struct s_pipe	*prev;
 }					t_pipe;
 
-typedef enum s_execute_type
-{
-	builtin_cmd,
-	non_builtin_cmd
-}	t_execute_type;
+// typedef enum s_execute_type
+// {
+// 	builtin_cmd,
+// 	non_builtin_cmd
+// }	t_execute_type;
 
 typedef struct s_exec
 {
@@ -102,7 +106,6 @@ typedef struct s_exec
 	char			**args;
 	int				fd_in;
 	int				fd_out;
-	t_execute_type	type;
 	struct s_exec	*next;
 	struct s_exec	*prev;
 }					t_exec;
@@ -122,7 +125,8 @@ typedef struct s_cmd
 typedef enum s_env_type
 {
 	global,
-	local
+	local,
+	special
 }	t_env_type;
 
 typedef struct s_env
@@ -135,10 +139,16 @@ typedef struct s_env
 	struct s_env	*prev;
 }					t_env;
 
+void	free_exit(int status);
+void    update_exit_status(int status);
 void	main_execution(void);
 int		pipes(void);
 
 void				print_parsing(void);
+
+
+// 		signels
+void handle_sigint(int signum);
 
 //		globale
 t_cmd				**v_cmd(void);

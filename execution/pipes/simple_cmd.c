@@ -14,16 +14,10 @@ void	dup_and_close(t_exec *cmd)
 	}
 }
 
-void fd_exit(t_exec *node)
-{
-	(void)node;
-	ft_free_all();
-	exit(1);
-}
 bool	handle_export_unset(t_exec *cmd)
 {
 	static t_buitin arr[5]={{"cd", cd}, {"pwd", pwd},
-		{"exit", fd_exit}, {"export", export}, {"unset", unset}};
+		{"exit", exit_func}, {"export", export}, {"unset", unset}};
 	int i;
 	i = 0;
 	while(i < 5)
@@ -41,6 +35,7 @@ bool	handle_export_unset(t_exec *cmd)
 void	execute_simple_cmd(t_exec *cmd)
 {
 	int pid;
+	int	status;
 
 	if(handle_export_unset(cmd))
 		return;
@@ -56,8 +51,9 @@ void	execute_simple_cmd(t_exec *cmd)
 			close(cmd->fd_in);
 		if(cmd->fd_out != 1)
 			close(cmd->fd_out);
-		wait(NULL);
+		waitpid(pid, &status, 0);
 	}
+	update_exit_status(WEXITSTATUS(status));
 }
 
 void	simple_cmd(void)

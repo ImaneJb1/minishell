@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_spliting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:14:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:50:13 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,63 @@ char	*node_content(char	*str, int *i)
 	return word;
 }
 
+void	skip_quotes(char *str, int *i)
+{
+	char c;
+	if(ft_strchr("\'\"", str[*i]))
+	{
+		c = str[*i];
+		(*i)++;
+		while (str[*i] && str[*i] != c)
+			(*i)++;
+		if(str[*i] == c)
+			(*i)++;
+	}
+}
+int	is_not_field(char *content)
+{
+	int i;
+
+	i = 0;
+	if(ft_strchr(" \t", content[i]))
+		return (0);
+	while (content[i])
+	{
+		// skip_quotes(content, &i);
+		while (content[i] && !ft_strchr(" \t\'\"", content[i]))
+			i++;
+		skip_quotes(content, &i);
+		if(!content[i])
+			return (1);
+		if(ft_strchr(" \t", content[i]))
+			return (0);
+	}
+	return 0;
+}
+
+// int		is_not_field(char const *s, char *c)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	i = 0;
+// 	count = 0;
+// 	if(ft_strchr(c, s[i]))
+// 		return 1;
+// 	while (s && s[i])
+// 	{
+// 		while (s[i] && ft_strchr(c, s[i]))
+// 			i++;
+// 		if (s[i])
+// 		{
+// 			count++;
+// 			while (s[i] && !ft_strchr(c, s[i]))
+// 				i++;
+// 		}
+// 	}
+// 	return (count);
+// }
+
 void	split_the_field(t_cmd *cmd)
 {
 	t_data *data;
@@ -75,12 +132,18 @@ void	split_the_field(t_cmd *cmd)
 	data = init_data();
 	data->content = cmd->content;
 	cur = cmd;
+	if(is_not_field(data->content))
+		return ;
 	while (data->content[data->i])
 	{
 		data->str = node_content(data->content, &data->i);
 		node = new_cmd_node(ft_strdup(data->str));
 		if(flag == 0)
+		{
 			node->type = CMD;
+			if(ft_strchr(node->content, '/'))
+			node->type |= PATH;	
+		}
 		else
 			node->type = CMD_ARG;
 		flag = 1;

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:36:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:41:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "execution/built_ins/built_in.h"
 // #include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
+
+int exit_status;
 
 
 void print_parsing(void)
@@ -61,16 +63,34 @@ void print_parsing(void)
     printf("----------------------------------------------\n");
 }
 
+void handle_sigint(int signum)
+{
+    (void)signum;
+    rl_replace_line("", 0);
+    // write(1, "this signal\n", 12);
+    write(1, "\n", 1);
+    rl_on_new_line();
+    rl_redisplay();
+    exit_status = 130;
+    update_exit_status(130);
+}
+
 int main(int argc, char const *argv[], char **env)
 {
     char *str;
     (void)argv;
     (void)argc;
+    signal(SIGINT, handle_sigint);
+    signal(SIGQUIT, SIG_IGN);
+    // signal();
     create_environment(env);
     while(1)
     {
+        // update_exit_status(0);
         str = readline("Minishell $>: ");
-        if(!str || !*str)
+        if(!str)
+            ft_exit(exit_status);
+        if(!*str)
             continue;
         add_history(str);
         if(!parsing(str))
@@ -78,6 +98,8 @@ int main(int argc, char const *argv[], char **env)
             lstclear_exec();
             continue;
         }
+    	
+
         // t_exec *exec;
 	    // exec = *v_exec();
  	    // while (exec)

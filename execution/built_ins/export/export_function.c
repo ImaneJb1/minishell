@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:24:01 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:23:47 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ void    print_export_var(t_exec *node)
     env = *v_env();
 	while(env)
 	{
-        ft_putstr_fd("declare -x ", node->fd_out);
-		ft_putstr_fd(env->key, node->fd_out);
-		ft_putstr_fd("=\"", node->fd_out);
-		ft_putstr_fd(env->value, node->fd_out);
-        ft_putstr_fd("\"\n", node->fd_out);
+        if((env->type == local) || (env->type == global))
+        {
+            ft_putstr_fd("declare -x ", node->fd_out);
+		    ft_putstr_fd(env->key, node->fd_out);
+		    ft_putstr_fd("=\"", node->fd_out);
+		    ft_putstr_fd(env->value, node->fd_out);
+            ft_putstr_fd("\"\n", node->fd_out);
+        }
 		env = env->next;
 	}
 }

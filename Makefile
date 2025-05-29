@@ -1,7 +1,7 @@
 NAME = mini
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -ggdb
+CFLAGS = -Wall -Wextra -Werror
 
 # ===================== GARBAGE COLLECTOR =====================
 GARBAGE_COLLECTOR = \
@@ -17,7 +17,6 @@ HELPER_FUNCTIONS = \
 	helper_functions/delete_str_from_str.c \
 	helper_functions/delete_str_len.c \
 	helper_functions/ft_str_join.c \
-	helper_functions/ft_strchr.c \
 	helper_functions/ft_strdup.c \
 	helper_functions/ft_strlen.c \
 	helper_functions/insert_char_in_str.c \
@@ -28,14 +27,14 @@ HELPER_FUNCTIONS = \
 	helper_functions/separate_with_one_space.c \
 	helper_functions/strcmp.c \
 	helper_functions/strncmp.c \
-	helper_functions/strnstr_index.c
-
-HELPER_EXTRA = \
+	helper_functions/strnstr_index.c \
+	helper_functions/ft_is_digit.c \
 	helper_functions/ft_itoa.c \
 	helper_functions/ft_putstr_fd.c \
 	helper_functions/ft_split.c \
 	helper_functions/ft_substr.c \
-	helper_functions/strlen_2d_array.c
+	helper_functions/strlen_2d_array.c \
+	helper_functions/ft_strchr.c
 
 # ===================== PARSING ===============================
 PARSING_TOKEN_IDENTIFY = \
@@ -81,7 +80,7 @@ PARSING_LL = \
 	linked_list_function/t_env_linked_list1.c \
 	linked_list_function/t_env_linked_list2.c \
 	linked_list_function/t_exec_linked_list1.c \
-	linked_list_function/t_exec_linked_list2.c \
+	linked_list_function/t_exec_linked_list2.c
 
 PARSING = \
 	parsing/parsing.c \
@@ -106,6 +105,7 @@ BUILT_IN_EXPORT = \
 BUILT_IN_UNSET = execution/built_ins/unset/new_unset.c
 BUILT_IN_ECHO = execution/built_ins/echo/echo.c
 BUILT_IN_PWD = execution/built_ins/pwd/pwd.c
+BUILT_IN_EXIT = execution/built_ins/exit/exit_func.c
 
 BUILT_IN_CD = \
 	execution/built_ins/cd/cd.c \
@@ -119,7 +119,8 @@ BUILT_IN = \
 	$(BUILT_IN_UNSET) \
 	$(BUILT_IN_ECHO) \
 	$(BUILT_IN_PWD) \
-	$(BUILT_IN_CD)
+	$(BUILT_IN_CD) \
+	$(BUILT_IN_EXIT)
 
 # ===================== EXECUTION =============================
 EXECUTION_BUILTINS = execution/built_ins/is_builtin.c
@@ -136,9 +137,12 @@ EXECUTION = execution/execution.c $(EXECUTION_BUILTINS) $(EXECUTION_PIPES)
 SRC = \
 	minishell.c \
 	globale.c \
+	handle_exit_status.c \
+	main.c \
+	path.c \
+	tester/tester.c \
 	$(GARBAGE_COLLECTOR) \
 	$(HELPER_FUNCTIONS) \
-	$(HELPER_EXTRA) \
 	$(PARSING) \
 	$(BUILT_IN) \
 	$(EXECUTION)
@@ -160,3 +164,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+.SECONDARY : $(OBJ)

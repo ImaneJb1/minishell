@@ -50,7 +50,6 @@ void	create_environment(char **env)
 	i = 0;
 	key = NULL;
 	value = NULL;
-
 	if (!env || !(*env))
 		return ;
 	while (env[i])
@@ -63,6 +62,9 @@ void	create_environment(char **env)
 		lstadd_env_back(v_env(), node);
 		i++;
 	}
+	node = new_env_node("?", "0");
+	node->type = special;
+	lstadd_env_back(v_env(), node);
 }
 
 void	env(t_exec	*node)

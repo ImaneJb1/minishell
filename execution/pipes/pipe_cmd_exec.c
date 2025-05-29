@@ -6,36 +6,42 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/27 17:01:10 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:34:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-int		execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
+void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 {
-	builtin(cmd);
 	char **env = env_to_arr();
-	if(!cmd->path && cmd->cmd)
+	
+	builtin(cmd);
+	if (opendir(cmd->cmd))
 	{
-		print_cmd_error(cmd->cmd, "No such file or directory");
-		exit(1);
+		print_cmd_error(cmd->cmd, "is a directory");
+		ft_exit(errno);
 	}
-	if(!cmd->cmd)
-		exit(1);
-	execve(cmd->path, cmd->args, env);
-	perror("execve");
-	exit(1);
+	execve(cmd->path, cmd->args, env); //   cat => /cat => /usr/bin/cat => access(path, F_OK | X_OK)
+	if (errno == EACCES) {
+        fprintf(stderr, "minishell: %s: Permission denied\n", cmd->cmd);
+        ft_exit(126);  
+    } else if (errno == ENOENT) {
+        fprintf(stderr, "minishell: %s: command not found\n", cmd->cmd);
+        ft_exit(127);  
+    } else {
+        perror("execve");
+        ft_exit(1);    // Other errors
+    }
 }
 
 void	execute_first_command(t_exec *cmd, int *fd)
 {
-	printf("*******************first*****************\n");
 	close(fd[0]);
 	dup2(cmd->fd_in, 0);
-	if(cmd->fd_in != 0)
+	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
-	if(cmd->fd_out != 1)
+	if (cmd->fd_out != 1)
 	{
 		dup2(cmd->fd_out, 1);
 		close(cmd->fd_out);
@@ -48,14 +54,13 @@ void	execute_first_command(t_exec *cmd, int *fd)
 
 void	execute_middle_command(t_exec *cmd, int *fd)
 {
-	dprintf(2, "*******************middle*****************\n");
 	close(fd[0]);
-	if(cmd->fd_in != 0)
+	if (cmd->fd_in != 0)
 	{
 		dup2(cmd->fd_in, 0);
 		close(cmd->fd_in);
 	}
-	if(cmd->fd_out != 1)
+	if (cmd->fd_out != 1)
 	{
 		dup2(cmd->fd_out, 1);
 		close(cmd->fd_out);
@@ -68,15 +73,15 @@ void	execute_middle_command(t_exec *cmd, int *fd)
 
 void	execute_last_command(t_exec *cmd, int *fd)
 {
-	dprintf(2,"*******************last*****************\n");
+	dprintf(2, "*******************last*****************\n");
 	close(fd[1]);
 	close(fd[0]);
-	if(cmd->fd_in != 0)
+	if (cmd->fd_in != 0)
 	{
 		dup2(cmd->fd_in, 0);
 		close(cmd->fd_in);
 	}
-	if(cmd->fd_out != 1)
+	if (cmd->fd_out != 1)
 	{
 		dup2(cmd->fd_out, 1);
 		close(cmd->fd_out);
@@ -86,10 +91,9 @@ void	execute_last_command(t_exec *cmd, int *fd)
 
 void	execute_commands(t_exec *cmd, int *fd)
 {
-	if(cmd->prev == NULL)
-		execute_first_command(cmd, fd);	
-	else if(cmd->next == NULL)
+	if (cmd->prev == NULL)
+		execute_first_command(cmd, fd);
+	else if (cmd->next == NULL)
 		execute_last_command(cmd, fd);
 	execute_middle_command(cmd, fd);
- }
-
+}
