@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 16:58:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/22 16:59:11 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:21:45 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 
 	nbr = n;
 	j = ft_count(nbr);
-	str = malloc(j + 1);
+	str = ft_malloc(j + 1);
 	if (!str)
 		return (NULL);
 	if (nbr == 0)

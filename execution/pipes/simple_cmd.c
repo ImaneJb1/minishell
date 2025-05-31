@@ -51,9 +51,11 @@ void	execute_simple_cmd(t_exec *cmd)
 			close(cmd->fd_in);
 		if(cmd->fd_out != 1)
 			close(cmd->fd_out);
+		inside_child(1);
 		waitpid(pid, &status, 0);
 	}
 	update_exit_status(WEXITSTATUS(status));
+	inside_child(0);
 }
 
 void	simple_cmd(void)

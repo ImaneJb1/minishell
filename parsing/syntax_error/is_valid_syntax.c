@@ -20,7 +20,7 @@ bool	is_valid_syntax(void)
 	t_cmd *ptr;
 
 	ptr = *v_cmd();
-	index_the_cmd_list();
+	// index_the_cmd_list();
 	while(ptr)
 	{
 		// syntax_error_index(ptr->index);

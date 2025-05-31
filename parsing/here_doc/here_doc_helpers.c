@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:51:24 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/22 16:35:30 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 09:23:34 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-char    *expand_string(char *string, char *str, int *i)
+char    *expand_heredoc_string(char *string, char *str, int *i)
 {
     t_data *data;
 
@@ -38,7 +38,7 @@ char    *expand_here_doc_value(char *str, int *i)
         if((str[*i] == '$' && str[(*i) + 1] == '$') && ((*i) += 2))
             string = ft_strjoin(string, "$$");
         else if(str[*i] == '$' && is_valid(str[(*i) + 1]))
-            string = expand_string(string, str, i);
+            string = expand_heredoc_string(string, str, i);
         else
             string = join_str_char(string, str[(*i)++]);
     }

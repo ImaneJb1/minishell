@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/29 17:29:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:02:37 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void				print_parsing(void);
 
 
 // 		signels
-void handle_sigint(int signum);
+void handle_sig_int(int signum);
 
 //		globale
 t_cmd				**v_cmd(void);

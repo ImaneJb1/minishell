@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:19:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:35:37 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int 	fill_the_exec_struct(void)
 	while (tokens)
 	{
 		fill_node(tokens, &cmd);
+		if(heredoc_exit_with_signal(2))
+		{
+			heredoc_exit_with_signal(0);
+			return 0;
+		}
+		inside_child(0);
 		if(tokens->type & PIPE)
 		{
 			lstadd_exec_back(v_exec(), cmd);

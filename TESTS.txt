@@ -40,6 +40,7 @@ buitlin functions that has paths:
 echo pwd env 
 /bin/ls
  echo "ls /ls"
-
+find ../../../../ | cat 
+cat | cat| cat | ls
 
 remove PATH from env and test echo with and without path

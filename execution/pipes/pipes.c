@@ -28,9 +28,9 @@ int		pipes(void)
 		dup2(fd[0], 0);
 		close(fd[0]);
 		close(fd[1]);
-		waitpid(pid, &status, 0);
 		cmd = cmd->next;
 	}
+	waitpid(pid, &status, 0);
 	dup2(saved_stdin ,0);
 	exit_status = WEXITSTATUS(status);
 	update_exit_status(exit_status);

@@ -43,7 +43,10 @@ char	*separat_with_one_space(char *str)
 			string[j++] = str[i++];
 			while(str[i] && str[i] != ch)
 				string[j++] = str[i++];
-			string[j++] = str[i];
+			if(str[i] == ch)
+				string[j++] = str[i];
+			else
+				break;
 		}
 		else
 			add_to_string(str, &i, string, &j);

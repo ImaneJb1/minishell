@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/29 17:13:34 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:37:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,19 @@ int    parsing(char *str)
    	creat_the_cmd_list(str);
 	if(is_valid_syntax() == FALSE)
 	{
-		lstclear_cmd();
-		syntax_error("yes");
 		update_exit_status(2);
-    	return (0);
+    	lstclear_cmd();
+		return (0);
 	}
     expand_variable_value();
 	field_spliting();
 	remove_quotes();
-	print_parsing();
+	// print_parsing();
 	if(!fill_the_exec_struct())
+	{
+		lstclear_cmd();
 		return 0;
+	}
 	lstclear_cmd();
 	return 1;
 }

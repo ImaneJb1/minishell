@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:06:29 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 15:47:20 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:26:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cmd	*new_cmd_node(char *value)
 	elem = ft_malloc(sizeof(t_cmd));
 	if (!elem)
 		return (NULL);
-	elem->content = value;
+	elem->content = ft_strdup(value);
 	elem->prev = NULL;
 	elem->next = NULL;
 	return (elem);

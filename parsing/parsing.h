@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/29 17:27:36 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:35:37 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 // # include <sys/wait.h>
 
 //      main parsing fuctions
+int inside_child(int flag);
+int         heredoc_exit_with_signal(int flag);
 
 void		remove_quotes(void);
 
@@ -107,7 +109,7 @@ void		open_fd_heredoc(t_cmd *token, int *fd);
 void		write_in_here_doc_file(t_cmd *del, t_data *info, int *fd);
 void		get_delimiter(t_cmd **cmd);
 void		check_expand_and_put_in_file(t_data *data, int fd);
-char		*expand_string(char *string, char *str, int *i);
+char		*expand_heredoc_string(char *string, char *str, int *i);
 char		*expand_here_doc_value(char *str, int *i);
 
 #endif

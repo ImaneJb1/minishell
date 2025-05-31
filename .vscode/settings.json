@@ -27,6 +27,8 @@
         "cstdlib": "c",
         "types.h": "c",
         "wait.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "dirent.h": "c",
+        "string.h": "c"
     }
 }
