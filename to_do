@@ -3,5 +3,6 @@
 [q
 [] echo $?
 [] fix exit
+[] heredoc errors (valgrind)
 =====================================
 i used atoi in exit_func

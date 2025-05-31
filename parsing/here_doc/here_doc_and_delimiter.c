@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 18:42:12 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:03:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	open_fd_heredoc(t_cmd *token, int *fd)
 			signal(SIGINT, SIG_DFL);
 			get_delimiter(&token);
 			write_in_here_doc_file(token, data, fd);
-			ft_free_all();
 			free_exit(0);
 		}
 		inside_child(1);
