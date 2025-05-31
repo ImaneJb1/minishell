@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/31 17:03:01 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:23:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_errors(t_exec *cmd)
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
 		ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
-        ft_exit(126);  
+        ft_exit(126);
     } 
 	else if (errno == ENOENT)
 	{
@@ -40,7 +40,6 @@ void	print_errors(t_exec *cmd)
 
 void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 {
-	// char **env = ;
 	
 	signal(SIGINT, SIG_DFL);
 	builtin(cmd);

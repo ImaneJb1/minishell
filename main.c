@@ -3,6 +3,29 @@
 #include "string.h"
 
 
+        // t_exec *exec;
+	    // exec = *v_exec();
+ 	    // while (exec)
+	    // {
+        //     printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
+        //     if( exec->args)
+	    // 	{
+        //         for(int i = 0; exec->args[i]; i++)
+        //         {
+        //             if(i != 0)
+        //                 printf(" ");
+        //             printf("%s", exec->args[i]);
+
+        //         }
+        //     }
+        //     printf("\ncmd = [%s] path = [%s]\n \n", exec->cmd, exec->path);
+        //     printf("    fdin = {%d}     fdout = {%d}",exec->fd_in, exec->fd_out);
+	    // 	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
+        //     // close(exec->fd_in);
+        //     // close(exec->fd_out);
+	    // 	exec = exec->next;
+	    // }
+        // printf("\n=========================================================================\n");
 
 
 

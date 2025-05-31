@@ -32,7 +32,6 @@ int		pipes(void)
 	}
 	waitpid(pid, &status, 0);
 	dup2(saved_stdin ,0);
-	exit_status = WEXITSTATUS(status);
-	update_exit_status(exit_status);
+	update_exit_status(WEXITSTATUS(status));
 	return(0);
 }

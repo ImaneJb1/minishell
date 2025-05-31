@@ -2,5 +2,6 @@
 [x] exit function
 [q
 [] echo $?
+[] fix exit
 =====================================
 i used atoi in exit_func

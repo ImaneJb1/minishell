@@ -32,12 +32,47 @@ bool	handle_export_unset(t_exec *cmd)
 	return(FALSE);
 }
 
+void	signal_msg_and_exit_status(int status)
+{
+	int signal;
+
+	signal = WTERMSIG(status);
+    if (signal == SIGQUIT)
+		ft_putstr_fd("Quit (core dumped)\n",STDERR_FILENO);
+	update_exit_status((128 + signal));
+}
+
+void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
+{
+	int	status;
+	
+	if(cmd->fd_in != 0)
+		close(cmd->fd_in);
+	if(cmd->fd_out != 1)
+		close(cmd->fd_out);
+	inside_child(1);
+	waitpid(pid, &status, 0);
+	if (WIFSIGNALED(status))
+		signal_msg_and_exit_status(status);
+	else if (WIFEXITED(status))
+		update_exit_status(WEXITSTATUS(status));
+	inside_child(0);
+}
+
+int	fd_error(t_exec	*cmd)
+{
+	if(cmd->fd_in < 0)
+		return 1;
+	if(cmd->fd_out < 0)
+		return 1;
+	return 0;
+}
+
 void	execute_simple_cmd(t_exec *cmd)
 {
 	int pid;
-	int	status;
 
-	if(handle_export_unset(cmd))
+	if(fd_error(cmd) || handle_export_unset(cmd))
 		return;
 	else
 	{
@@ -47,22 +82,14 @@ void	execute_simple_cmd(t_exec *cmd)
 			dup_and_close(cmd);
 			execution(cmd);
 		}
-		if(cmd->fd_in != 0)
-			close(cmd->fd_in);
-		if(cmd->fd_out != 1)
-			close(cmd->fd_out);
-		inside_child(1);
-		waitpid(pid, &status, 0);
+		parent_proccess_in_simple_cmd(cmd, pid);
 	}
-	update_exit_status(WEXITSTATUS(status));
-	inside_child(0);
 }
 
-void	simple_cmd(void)
-{
-	t_exec	*cmd;
+// void	simple_cmd(void)
+// {
+// 	t_exec	*cmd;
 
-	cmd = *v_exec();
-	execute_simple_cmd(cmd);
-	
-}
+// 	cmd = *v_exec();
+// 	execute_simple_cmd(cmd);
+// }

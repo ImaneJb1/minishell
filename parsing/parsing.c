@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 17:37:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:26:59 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int    parsing(char *str)
    	creat_the_cmd_list(str);
 	if(is_valid_syntax() == FALSE)
 	{
-		update_exit_status(2);
+		exit_status = 2;
+		update_exit_status(exit_status);
     	lstclear_cmd();
 		return (0);
 	}

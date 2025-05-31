@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 11:35:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:42:12 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,14 @@ void	open_fd_heredoc(t_cmd *token, int *fd)
 			free_exit(0);
 		}
 		inside_child(1);
-		// signal(SIGINT, SIG_IGN);
 		waitpid(data->pid, &data->status, 0);
 		if (WIFSIGNALED(data->status))
+		{
+			update_exit_status((128 + WTERMSIG(data->status)));
 			heredoc_exit_with_signal(1);
+		}
 		if (WIFEXITED(data->status))
-			update_exit_status(data->status);
+			update_exit_status(WEXITSTATUS(data->status));
 		inside_child(0);
 	}
 }
