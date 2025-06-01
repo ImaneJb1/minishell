@@ -8,7 +8,8 @@ void    exit_status_case(char *arg)
 		free_exit(0);
 	}
 }
-int		pipes(void)
+
+void		pipes(void)
 {
 	t_exec *cmd;
 	int fd[2];
@@ -28,11 +29,11 @@ int		pipes(void)
 		dup2(fd[0], 0);
 		close(fd[0]);
 		close(fd[1]);
-		waitpid(pid, &status, 0);
 		cmd = cmd->next;
 	}
+	while(wait(&status) > 0)
+		;
 	dup2(saved_stdin ,0);
 	exit_status = WEXITSTATUS(status);
 	update_exit_status(exit_status);
-	return(0);
 }

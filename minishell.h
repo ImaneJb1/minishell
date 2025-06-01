@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/29 17:29:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/01 19:53:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ typedef struct s_env
 void	free_exit(int status);
 void    update_exit_status(int status);
 void	main_execution(void);
-int		pipes(void);
+void		pipes(void);
 
 void				print_parsing(void);
 

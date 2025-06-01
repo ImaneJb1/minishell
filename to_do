@@ -4,3 +4,5 @@
 [] echo $?
 =====================================
 i used atoi in exit_func
+
+wait(null) loop
