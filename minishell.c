@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 18:33:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:38:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	main(int argc, char const *argv[], char **env)
 			lstclear_exec();
 			continue ;
 		}
+		
 		main_execution();
 		lstclear_exec();
 	}

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/31 18:23:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:41:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ void	print_errors(t_exec *cmd)
 void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 {
 	
-	signal(SIGINT, SIG_DFL);
+	
 	builtin(cmd);
 	if (opendir(cmd->cmd))
 	{
 		print_cmd_error(cmd->cmd, "is a directory");
 		ft_exit(126);
 	}
-	signal(SIGQUIT, SIG_DFL);
 	execve(cmd->path, cmd->args, env_to_arr()); //   cat => /cat => /usr/bin/cat => access(path, F_OK | X_OK)
 	print_errors(cmd);
 }

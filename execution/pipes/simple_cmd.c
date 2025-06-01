@@ -39,6 +39,8 @@ void	signal_msg_and_exit_status(int status)
 	signal = WTERMSIG(status);
     if (signal == SIGQUIT)
 		ft_putstr_fd("Quit (core dumped)\n",STDERR_FILENO);
+	else if (signal == SIGINT)
+		ft_putstr_fd("\n", STDERR_FILENO);
 	update_exit_status((128 + signal));
 }
 
@@ -72,17 +74,22 @@ void	execute_simple_cmd(t_exec *cmd)
 {
 	int pid;
 
+
 	if(fd_error(cmd) || handle_export_unset(cmd))
 		return;
 	else
 	{
+		signal(SIGINT, SIG_IGN);
 		pid = fork();
 		if(pid == 0)
 		{
+			signal(SIGQUIT, SIG_DFL);
+			signal(SIGINT, SIG_DFL);
 			dup_and_close(cmd);
 			execution(cmd);
 		}
 		parent_proccess_in_simple_cmd(cmd, pid);
+		signal(SIGINT, handle_sig_int);
 	}
 }
 

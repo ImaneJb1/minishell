@@ -44,3 +44,48 @@ find ../../../../ | cat
 cat | cat| cat | ls
 
 remove PATH from env and test echo with and without path
+
+
+
+// oneperson
+1)
+>> ls | cat
+>> lajsdlfj
+>> ls
+==>valgrind shows a segfault
+
+2) export ==
+
+3) export a b c d e
+
+4) export a a a a
+
+5) export a=
+env => this should display a
+
+6) export number=
+export special=
+
+
+7) issue in pipe
+[echo hey | cat -e]
+
+8) issue: cd
+[invalid read]
+
+9) all kinds of redirection are not working(> >> <)
+[SEGFAULT]
+
+10) expansion error when a var is not a exported variable
+[EXMPLE: echo $lkjdsfffffffffffffffffffa]
+
+11) ambigious redirect
+
+
+12) issue in export
+export b=$a => minishell: b=1: command not found
+
+
+13)  echo - -n -n -n -nnnnnnnnnnnnnnnn
+
+14) Ctl + c

@@ -1,7 +1,7 @@
 NAME = mini
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # ===================== GARBAGE COLLECTOR =====================
 GARBAGE_COLLECTOR = \
