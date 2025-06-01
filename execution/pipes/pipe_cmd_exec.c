@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/01 18:41:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/01 19:56:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 void	execute_first_command(t_exec *cmd, int *fd)
 {
 	close(fd[0]);
-	dup2(cmd->fd_in, 0);
 	if (cmd->fd_in != 0)
+	{
+		dup2(cmd->fd_in, 0); 
 		close(cmd->fd_in);
+	}
 	if (cmd->fd_out != 1)
 	{
 		dup2(cmd->fd_out, 1);

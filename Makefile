@@ -34,7 +34,8 @@ HELPER_FUNCTIONS = \
 	helper_functions/ft_split.c \
 	helper_functions/ft_substr.c \
 	helper_functions/strlen_2d_array.c \
-	helper_functions/ft_strchr.c
+	helper_functions/ft_strchr.c \
+	helper_functions/ft_atoi.c
 
 # ===================== PARSING ===============================
 PARSING_TOKEN_IDENTIFY = \

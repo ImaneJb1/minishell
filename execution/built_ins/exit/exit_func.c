@@ -24,7 +24,7 @@ void exit_func(t_exec *node)
 	else if(node->args[1] && !node->args[2])
 	{
 		if(is_numeric_arg(node->args[1]))
-			free_exit(atoi(node->args[1]));
+			free_exit(ft_atoi(node->args[1]));
 		else
 		{
 			write(1, "exit: ", 6);

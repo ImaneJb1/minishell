@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 11:35:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/01 19:57:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ int 	fill_the_exec_struct(void)
 {
 	t_cmd *tokens;
 	t_exec *cmd;
-	int	flag;
 	
-	flag = 0;
 	if(!v_cmd() || !(*v_cmd()))
         return 0;
 	tokens = *v_cmd();
