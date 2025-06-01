@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 18:36:25 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/01 14:16:53 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ typedef struct s_env
 void	free_exit(int status);
 void    update_exit_status(int status);
 void	main_execution(void);
-int		pipes(void);
+void		pipes(void);
 
 void				print_parsing(void);
 

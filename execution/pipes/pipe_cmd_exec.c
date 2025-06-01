@@ -6,13 +6,13 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/29 13:07:59 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/05/31 22:39:36 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
-int	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
+void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 {
 	char **env = env_to_arr();
 	
@@ -38,9 +38,11 @@ int	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 void	execute_first_command(t_exec *cmd, int *fd)
 {
 	close(fd[0]);
-	dup2(cmd->fd_in, 0);
 	if (cmd->fd_in != 0)
+	{
+		dup2(cmd->fd_in, 0); 
 		close(cmd->fd_in);
+	}
 	if (cmd->fd_out != 1)
 	{
 		dup2(cmd->fd_out, 1);

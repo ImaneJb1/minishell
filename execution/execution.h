@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:31:55 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 11:22:43 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/01 14:13:59 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 char    **env_to_arr(void);
 void	execute_simple_cmd(t_exec *cmd);
-int		execution(t_exec *cmd);
+void	execution(t_exec *cmd);
 void	dup_and_close(t_exec *cmd);
 void	simple_cmd(void);
 void 	exit_func(t_exec *node);
 void	execute_commands(t_exec *cmd, int *fd);
-int		pipes(void);
+void		pipes(void);
 void	main_execution(void);
 
 #endif 

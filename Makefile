@@ -17,7 +17,6 @@ HELPER_FUNCTIONS = \
 	helper_functions/delete_str_from_str.c \
 	helper_functions/delete_str_len.c \
 	helper_functions/ft_str_join.c \
-	helper_functions/ft_strchr.c \
 	helper_functions/ft_strdup.c \
 	helper_functions/ft_strlen.c \
 	helper_functions/insert_char_in_str.c \
@@ -29,14 +28,14 @@ HELPER_FUNCTIONS = \
 	helper_functions/strcmp.c \
 	helper_functions/strncmp.c \
 	helper_functions/strnstr_index.c \
-	helper_functions/ft_is_digit.c
-
-HELPER_EXTRA = \
+	helper_functions/ft_is_digit.c \
 	helper_functions/ft_itoa.c \
 	helper_functions/ft_putstr_fd.c \
 	helper_functions/ft_split.c \
 	helper_functions/ft_substr.c \
-	helper_functions/strlen_2d_array.c
+	helper_functions/strlen_2d_array.c \
+	helper_functions/ft_strchr.c \
+	helper_functions/ft_atoi.c
 
 # ===================== PARSING ===============================
 PARSING_TOKEN_IDENTIFY = \
@@ -82,7 +81,7 @@ PARSING_LL = \
 	linked_list_function/t_env_linked_list1.c \
 	linked_list_function/t_env_linked_list2.c \
 	linked_list_function/t_exec_linked_list1.c \
-	linked_list_function/t_exec_linked_list2.c \
+	linked_list_function/t_exec_linked_list2.c
 
 PARSING = \
 	parsing/parsing.c \
@@ -139,9 +138,12 @@ EXECUTION = execution/execution.c $(EXECUTION_BUILTINS) $(EXECUTION_PIPES)
 SRC = \
 	minishell.c \
 	globale.c \
+	handle_exit_status.c \
+	main.c \
+	path.c \
+	tester/tester.c \
 	$(GARBAGE_COLLECTOR) \
 	$(HELPER_FUNCTIONS) \
-	$(HELPER_EXTRA) \
 	$(PARSING) \
 	$(BUILT_IN) \
 	$(EXECUTION)
