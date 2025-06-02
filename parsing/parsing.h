@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 11:35:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:23:17 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ int			here_doc_error(t_cmd *ptr);
 t_tokens	*init_redir_array(void);
 
 // error printers
-void		print_error_with_token(char *message, char *token);
+void		print_error_token(char *message, char *token);
 void		print_error(char *s);
 void		print_cmd_error(char *command, char *message);
-void		print_error_with_token(char *message, char *token);
+void		print_error_token(char *message, char *token);
 
 //      redirections
 void		open_fd_in(t_cmd *token, int *fd);

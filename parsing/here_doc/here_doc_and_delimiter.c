@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_and_delimiter.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 19:03:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:09:41 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 		if (!data->str)
 		{
 			ft_putstr_fd("Minishell: warning: here-document delimited by end-of-file (wanted `",
-					2);
+				2);
 			ft_putstr_fd(del->content, 2);
 			ft_putstr_fd("')\n", 2);
 			ft_exit(0);

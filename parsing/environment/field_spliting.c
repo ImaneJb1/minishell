@@ -6,11 +6,11 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 16:50:13 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:09:16 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../parsing.h"
+#include "../parsing.h"
 
 int	len_of_word(char *str, int j)
 {
@@ -19,7 +19,7 @@ int	len_of_word(char *str, int j)
 	data = init_data();
 	while (str[j] && !ft_strchr(" \t", str[j]))
 	{
-		if(ft_strchr("\"\'", str[j]))
+		if (ft_strchr("\"\'", str[j]))
 		{
 			data->c = str[j++];
 			data->count++;
@@ -33,14 +33,14 @@ int	len_of_word(char *str, int j)
 		data->count++;
 		j++;
 	}
-	return data->count;
+	return (data->count);
 }
 
-char	*node_content(char	*str, int *i)
+char	*node_content(char *str, int *i)
 {
-	char flag;
-	char *word;
-	int j;
+	char	flag;
+	char	*word;
+	int		j;
 
 	flag = 0;
 	skip_space(str, i);
@@ -49,7 +49,7 @@ char	*node_content(char	*str, int *i)
 	j = 0;
 	while (str[*i] && !ft_strchr(" \t", str[*i]))
 	{
-		if(ft_strchr("\"\'", str[*i]))
+		if (ft_strchr("\"\'", str[*i]))
 		{
 			flag = str[*i];
 			word[j++] = str[(*i)++];
@@ -60,28 +60,29 @@ char	*node_content(char	*str, int *i)
 		word[j++] = str[(*i)++];
 	}
 	skip_space(str, i);
-	return word;
+	return (word);
 }
 
 void	skip_quotes(char *str, int *i)
 {
-	char c;
-	if(ft_strchr("\'\"", str[*i]))
+	char	c;
+
+	if (ft_strchr("\'\"", str[*i]))
 	{
 		c = str[*i];
 		(*i)++;
 		while (str[*i] && str[*i] != c)
 			(*i)++;
-		if(str[*i] == c)
+		if (str[*i] == c)
 			(*i)++;
 	}
 }
 int	is_not_field(char *content)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(ft_strchr(" \t", content[i]))
+	if (ft_strchr(" \t", content[i]))
 		return (0);
 	while (content[i])
 	{
@@ -89,12 +90,12 @@ int	is_not_field(char *content)
 		while (content[i] && !ft_strchr(" \t\'\"", content[i]))
 			i++;
 		skip_quotes(content, &i);
-		if(!content[i])
+		if (!content[i])
 			return (1);
-		if(ft_strchr(" \t", content[i]))
+		if (ft_strchr(" \t", content[i]))
 			return (0);
 	}
-	return 0;
+	return (0);
 }
 
 // int		is_not_field(char const *s, char *c)
@@ -105,7 +106,7 @@ int	is_not_field(char *content)
 // 	i = 0;
 // 	count = 0;
 // 	if(ft_strchr(c, s[i]))
-// 		return 1;
+// 		return (1);
 // 	while (s && s[i])
 // 	{
 // 		while (s[i] && ft_strchr(c, s[i]))
@@ -122,27 +123,27 @@ int	is_not_field(char *content)
 
 void	split_the_field(t_cmd *cmd)
 {
-	t_data *data;
+	t_data	*data;
 	t_cmd	*cur;
 	t_cmd	*node;
-	int flag;
+	int		flag;
 
 	flag = 0;
 	node = NULL;
 	data = init_data();
 	data->content = cmd->content;
 	cur = cmd;
-	if(is_not_field(data->content))
+	if (is_not_field(data->content))
 		return ;
 	while (data->content[data->i])
 	{
 		data->str = node_content(data->content, &data->i);
 		node = new_cmd_node(ft_strdup(data->str));
-		if(flag == 0)
+		if (flag == 0)
 		{
 			node->type = CMD;
-			if(ft_strchr(node->content, '/'))
-			node->type |= PATH;	
+			if (ft_strchr(node->content, '/'))
+				node->type |= PATH;
 		}
 		else
 			node->type = CMD_ARG;
