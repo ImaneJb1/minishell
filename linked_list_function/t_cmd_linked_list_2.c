@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 16:48:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:58:08 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	lst_del_one_cmd_by_node(t_cmd *cur)
 		*v_cmd() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-	ft_free(tmp);
+	// ft_free(tmp);
 }
 
 void	index_the_cmd_list(void)

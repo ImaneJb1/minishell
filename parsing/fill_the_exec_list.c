@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/01 19:57:16 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:09:07 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_exec	*add_to_exec_list(char *str, t_exec *cur, int flag)
 void fill_node(t_cmd *tokens, t_exec **cmd)
 {
 	fill_fds_into_exec(tokens, cmd);
-	fill_cmd(tokens, cmd);
 	fill_args(tokens, cmd);
+	fill_cmd(tokens, cmd);
 }
 
 int 	fill_the_exec_struct(void)
@@ -64,6 +64,7 @@ int 	fill_the_exec_struct(void)
 		inside_child(0);
 		if(tokens->type & PIPE)
 		{
+			is_arg_of_cmd(0);
 			lstadd_exec_back(v_exec(), cmd);
 			cmd = add_to_exec_list(NULL, cmd, 0);
 			cmd = new_exec_node();
@@ -73,5 +74,6 @@ int 	fill_the_exec_struct(void)
 	if (cmd)
 		cmd = add_to_exec_list(NULL, cmd, 0);
 	lstadd_exec_back(v_exec(), cmd);
+	is_arg_of_cmd(0);
 	return 1;
 }

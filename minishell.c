@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/01 18:38:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 12:13:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,24 @@ void	handle_sig_int(int flag)
 	}
 	else if (flag == 1)
 		write(1, "\n", 1);
+}
+
+int	is_error(int flag)
+{
+	static int	i;
+
+	if(flag == 0)
+		i = 0;
+	else if(flag == 1)
+		i = 1;
+	return i;
+}
+
+void   print_error_to_stderr(char *s1, char *s2, char *s3, int fd)
+{
+    ft_putstr_fd(s1, fd);
+    ft_putstr_fd(s2, fd);
+    ft_putstr_fd(s3, fd);
 }
 
 int	main(int argc, char const *argv[], char **env)

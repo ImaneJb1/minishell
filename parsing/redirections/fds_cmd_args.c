@@ -16,23 +16,35 @@ int	count_args(t_cmd *cmd)
 	return i;
 }
 
-void fill_cmd(t_cmd *token, t_exec **cmd)
+int	is_arg_of_cmd(int flag)
 {
-	static int i = 0;
-	if(token->type & CMD)
+	static int i;
+
+	if(flag == 0)
+		i = 0;
+	else if(flag == 1)
+		i = 1;
+	return i;
+}
+
+void	fill_cmd(t_cmd *token, t_exec **cmd)
+{
+	if((token->type & CMD) && !is_arg_of_cmd(2))
 	{
+		is_arg_of_cmd(1);
 		*cmd = add_to_exec_list(token->content, *cmd, 1);
 		(*cmd)->args = ft_malloc(sizeof(char *) * (count_args(token) + 1));
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
 		fill_path(*cmd);
-		i++;
 	}
 }
 
 void	fill_args(t_cmd *token, t_exec **cmd)
 {
-	if(token->type & CMD_ARG)
+	if((token->type & CMD_ARG) && is_arg_of_cmd(2))
+	{
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
+	}
 }
 
 void    fill_fds_into_exec(t_cmd *token, t_exec **node)

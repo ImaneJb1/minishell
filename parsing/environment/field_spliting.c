@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_spliting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 16:50:13 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:01:47 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,16 @@ void	split_the_field(t_cmd *cmd)
 		if(flag == 0)
 		{
 			node->type = CMD;
+			node->type |= FIELD;
+			node->type |= CMD_ARG;
 			if(ft_strchr(node->content, '/'))
-			node->type |= PATH;	
+				node->type |= PATH;	
 		}
 		else
+		{
 			node->type = CMD_ARG;
+			node->type |= FIELD;
+		}
 		flag = 1;
 		lst_add_one_cmd_by_node(cmd, node);
 		ft_free(data->str);

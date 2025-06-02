@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 11:35:37 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:59:03 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include "../minishell.h"
 // # include <sys/wait.h>
 
+int	is_arg_of_cmd(int flag);
+
 //      main parsing fuctions
-int inside_child(int flag);
+int         inside_child(int flag);
 int         heredoc_exit_with_signal(int flag);
 
 void		remove_quotes(void);

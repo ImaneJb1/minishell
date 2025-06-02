@@ -9,11 +9,11 @@ void    change_oldpwd_var(char *oldpwd)
     {
         if (ft_strcmp(env->key, "OLDPWD") == 0)
         {
-            ft_free(env->value);
+            // printf("oldpwddddddddddd=%s\n", env->value);
             env->value = ft_strdup(oldpwd);
+            // printf("oldp1=%s\n", env->value);
             break;
         }
         env = env->next;
     }
-    
 }
