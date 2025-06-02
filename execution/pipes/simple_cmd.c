@@ -62,5 +62,4 @@ void	simple_cmd(void)
 
 	cmd = *v_exec();
 	execute_simple_cmd(cmd);
-	
 }

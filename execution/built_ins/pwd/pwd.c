@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:50:27 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/05/26 18:05:41 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:12:01 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@ void	pwd(t_exec *node)
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 		printf("%s\n", cwd);
 	else
+	{
+		update_exit_status(1);
 		perror("getcwd() error\n");
+	}
 }
