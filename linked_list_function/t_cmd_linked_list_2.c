@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_cmd_linked_list_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 16:48:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:06:47 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	lst_add_one_cmd_by_node(t_cmd *cur, t_cmd *new)
 
 void	lst_del_one_cmd_by_node(t_cmd *cur)
 {
-	t_cmd	*tmp;
+	// t_cmd	*tmp;
 
 	if (!*v_cmd())
 		return ;
@@ -77,7 +77,6 @@ void	lst_del_one_cmd_by_node(t_cmd *cur)
 		*v_cmd() = NULL;
 		return ;
 	}
-	tmp = cur;
 	if (cur->prev)
 	{
 		(cur->prev)->next = cur->next;
@@ -89,7 +88,7 @@ void	lst_del_one_cmd_by_node(t_cmd *cur)
 		*v_cmd() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-	ft_free(tmp);
+	// ft_free(tmp);
 }
 
 void	index_the_cmd_list(void)

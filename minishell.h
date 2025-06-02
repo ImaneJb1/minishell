@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 15:30:31 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:25:01 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef enum s_type
 	CMD_ARG = 1 << 10,  // 1024
 	PATH = 1 << 11,
 	VARIABLE = 1 << 12,
-	DELIMITER = 1 << 13
+	DELIMITER = 1 << 13,
+	FIELD = 1 << 14
 }					t_type;
 
 typedef struct s_tokens
@@ -138,6 +139,9 @@ typedef struct s_env
 	struct s_env	*next;
 	struct s_env	*prev;
 }					t_env;
+
+int	is_error(int flag);
+void   print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
 
 void	free_exit(int status);
 void    update_exit_status(int status);

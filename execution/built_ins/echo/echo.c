@@ -8,6 +8,8 @@ bool    is_dash_n(char *args)
 
     if(args && *args != '-')
         return(FALSE);
+    if(args[i] == 0)
+        return(FALSE);
     while(args[i] == 'n')
         i++;
     if(args[i] == 0)

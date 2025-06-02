@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:51:24 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 09:23:34 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:11:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ char    *expand_here_doc_value(char *str, int *i)
     string = NULL;
     while (str[*i])
     {
-        if((str[*i] == '$' && str[(*i) + 1] == '$') && ((*i) += 2))
+        if((str[*i] == '$' && str[(*i) + 1] == '$'))
+        {
             string = ft_strjoin(string, "$$");
+            (*i) += 2;
+        }
         else if(str[*i] == '$' && is_valid(str[(*i) + 1]))
             string = expand_heredoc_string(string, str, i);
         else
@@ -56,8 +59,13 @@ void    check_expand_and_put_in_file(t_data *data, int fd)
         else
             data->content = join_str_char(data->content, data->str[data->i++]);
     }
+    if(data->str)
+    {
+        ft_free(data->str);
+        data->str = NULL;
+    }
     ft_putstr_fd(join_str_char(data->content, '\n'), fd);
-    ft_free(data->content);
+    // ft_free(data->content);
 }
 
 

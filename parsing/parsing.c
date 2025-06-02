@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 18:26:59 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:45:38 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	expand_variable_value(void)
 			change_var_value(head);
 		head = head->next;
 	}
+	field_spliting();
 }
 
 int	syntax_error(char	*flag)
@@ -61,19 +62,6 @@ int	syntax_error(char	*flag)
 		i = 1;
 	return i;
 }
-
-// int after_pipe(char	*flag)
-// {
-// 	static int i;
-	
-// 	if(flag == NULL)
-// 		return i;
-// 	if(ft_strcmp("no", flag) == 0)
-// 		i = 0;
-// 	if(ft_strcmp("yes", flag) == 0)
-// 		i = 1;
-// 	return i;
-// }
 
 int	syntax_error_index(int	flag)
 {
@@ -92,15 +80,13 @@ int    parsing(char *str)
    	creat_the_cmd_list(str);
 	if(is_valid_syntax() == FALSE)
 	{
-		exit_status = 2;
-		update_exit_status(exit_status);
+		update_exit_status(2);
     	lstclear_cmd();
 		return (0);
 	}
     expand_variable_value();
-	field_spliting();
 	remove_quotes();
-	// print_parsing();
+	print_parsing();
 	if(!fill_the_exec_struct())
 	{
 		lstclear_cmd();

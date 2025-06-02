@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:09:51 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 15:09:56 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:36:30 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 bool	if_its_appfile(t_cmd *ptr)
 {
-	if ((ptr->type & FILE_NAME) && (ptr->next && (ptr->prev->type & APPEND)))
-		return (TRUE);
-	return (FALSE);
+    if((ptr->type & FILE_NAME) && (ptr->prev && (ptr->prev->type & APPEND)))
+        return(TRUE);
+    return(FALSE);
 }
 
 void	open_fd_app(t_cmd *token, int *fd)
