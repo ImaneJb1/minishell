@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:30:04 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:00:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:28:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ char    **env_to_arr(void)
     {
         str = ft_strdup(env_list->key);
         str = join_str_char(str, '=');
-        str = ft_strjoin(str, env_list->value);
-        env_array[i++] = str;
+        env_array[i++] = ft_strjoin(str, env_list->value);
         ft_free(str);
         str = NULL;
         env_list = env_list->next;

@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 13:10:07 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:33:00 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void    change_directory(char *path)
     oldpwd = get_pwd(); // store the old one
     if(chdir(path) < 0)   // change the wd
     {
+        printf("failed\n");
         if(ft_strcmp(path, "-") == 0)
-        {
             cd_back(oldpwd);
-        }
         else if(!path || ft_strcmp(path, "~") == 0)
         {
             cd_home(oldpwd);

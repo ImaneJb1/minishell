@@ -10,7 +10,7 @@ void	main_execution(void)
 	if(!cmd)
 		return ;
 	if(length == 1)
-		simple_cmd();
+		execute_simple_cmd(cmd);
 	else
 		pipes();
 }

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:55:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/26 14:23:55 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:49:54 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	creat_the_cmd_list(char *line)
 	if(!line || !*line)
 		return;
 	str = separat_with_one_space(line);
+	free(line);
 	static void (*list[])(char *str, int *i) = {
 		is_arg, is_double_quote, is_singl_quote,
 		is_pipe, is_redir_out_append, is_heredoc,

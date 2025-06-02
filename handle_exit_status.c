@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_exit_status.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 17:16:32 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/02 14:41:53 by ijoubair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void    update_exit_status(int status)
@@ -5,6 +17,7 @@ void    update_exit_status(int status)
     t_env   *env;
 
     env = *v_env();
+    exit_status = status;
     while (env)
     {
         if(ft_strcmp(env->key, "?") == 0)
@@ -18,6 +31,6 @@ void    update_exit_status(int status)
 
 void	free_exit(int status)
 {
-	update_exit_status(status);
+    update_exit_status(status);
 	ft_exit(status);
 }

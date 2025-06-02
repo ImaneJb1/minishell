@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/01 14:16:53 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/01 19:57:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <sys/types.h>
+// # include <dirent.h>
+# include <sys/wait.h>
+# include <signal.h>
 // # include "execution/execution.h" 
 // # include "./parsing/parsing.h"
 extern int exit_status;
@@ -69,6 +71,7 @@ typedef struct s_data
 	int				pid;
 	int				count;
 	int				flag;
+	int				status;
 	int				fd;
 	char			c;
 	char			*key;
@@ -142,6 +145,10 @@ void	main_execution(void);
 void		pipes(void);
 
 void				print_parsing(void);
+
+
+// 		signels
+void handle_sig_int(int signum);
 
 //		globale
 t_cmd				**v_cmd(void);

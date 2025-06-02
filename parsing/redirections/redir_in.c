@@ -18,8 +18,7 @@ void    open_fd_in(t_cmd *token, int *fd)
         if(*fd < 0)
         {
             perror(token->content);
-            exit_status = errno;
-            update_exit_status(exit_status);
+            update_exit_status(1);
         }
     }
 }

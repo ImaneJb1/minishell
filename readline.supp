@@ -1,0 +1,28 @@
+{
+   readline_leak_1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:xmalloc
+   fun:rl_make_bare_keymap
+   fun:rl_generic_bind
+   ...
+   fun:readline
+}
+
+{
+   readline_leak_2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:xmalloc
+   ...
+   fun:rl_parse_and_bind
+   fun:readline
+}
+{
+   readline_definitely_lost
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:xmalloc
+   fun:readline_internal_teardown
+   fun:readline
+}

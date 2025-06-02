@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:50:27 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 13:12:01 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:30:18 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	pwd(t_exec *node)
 	else
 	{
 		update_exit_status(1);
-		perror("getcwd() error\n");
+		perror("");
 	}
 }
