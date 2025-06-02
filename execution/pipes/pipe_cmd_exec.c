@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/01 19:56:58 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 10:13:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	print_errors(t_exec *cmd)
 
 void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 {
-	
-	
 	builtin(cmd);
 	if (opendir(cmd->cmd))
 	{

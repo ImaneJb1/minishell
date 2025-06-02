@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 11:51:16 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:00:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void		export(t_exec *node);
 void		export_arg(char *arg);
 char		*get_var_value(char *str, int i);
 t_env		*is_existe_in_env(char *key);
-char		*is_valid_key(char *str, int *i);
-void		add_var_node(t_env **node, char *new_value);
+char		*the_key(char *str, int *i);
+void		add_var_node(t_env **node, char *new_value, char c);
 void		appand_var(t_env **node, char *new_value);
 
 //      unset

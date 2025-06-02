@@ -25,11 +25,11 @@ bool	handle_export_unset(t_exec *cmd)
 		if(ft_strcmp(arr[i].cmd, cmd->cmd) == 0)
 		{
 			arr[i].func(cmd);
-			return(TRUE);
+			return (TRUE);
 		}
 		i++;
 	}
-	return(FALSE);
+	return (FALSE);
 }
 
 void	signal_msg_and_exit_status(int status)

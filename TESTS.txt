@@ -54,16 +54,16 @@ remove PATH from env and test echo with and without path
 >> ls
 ==>valgrind shows a segfault
 
-2) export ==
+2) export == // Done
 
-3) export a b c d e
+3) export a b c d e // Done
 
-4) export a a a a
+4) export a a a a // Done
 
-5) export a=
+5) export a= // Done
 env => this should display a
 
-6) export number=
+6) export number= // Done
 export special=
 
 
@@ -77,15 +77,15 @@ export special=
 [SEGFAULT]
 
 10) expansion error when a var is not a exported variable
-[EXMPLE: echo $lkjdsfffffffffffffffffffa]
+[EXMPLE: echo $lkjdsfffffffffffffffffffa] // Done
 
-11) ambigious redirect
+11) ambigious redirect  
 
 
 12) issue in export
-export b=$a => minishell: b=1: command not found
+export b=$a => minishell: b=1: command not found // Done
 
 
-13)  echo - -n -n -n -nnnnnnnnnnnnnnnn
+13)  echo - -n -n -n -nnnnnnnnnnnnnnnn //done
 
-14) Ctl + c
+14) Ctl + c //done

@@ -2,7 +2,7 @@
 
 bool    if_its_appfile(t_cmd *ptr)
 {
-    if((ptr->type & FILE_NAME) && (ptr->next && (ptr->prev->type & APPEND)))
+    if((ptr->type & FILE_NAME) && (ptr->prev && (ptr->prev->type & APPEND)))
         return(TRUE);
     return(FALSE);
 }
