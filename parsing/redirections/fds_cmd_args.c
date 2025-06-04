@@ -16,7 +16,7 @@ int	count_args(t_cmd *cmd)
 	return i;
 }
 
-int	is_arg_of_cmd(int flag)
+int	not_first_cmd(int flag)
 {
 	static int i;
 
@@ -29,9 +29,9 @@ int	is_arg_of_cmd(int flag)
 
 void	fill_cmd(t_cmd *token, t_exec **cmd)
 {
-	if((token->type & CMD) && !is_arg_of_cmd(2))
+	if((token->type & CMD) && !not_first_cmd(2))
 	{
-		is_arg_of_cmd(1);
+		not_first_cmd(1);
 		*cmd = add_to_exec_list(token->content, *cmd, 1);
 		(*cmd)->args = ft_malloc(sizeof(char *) * (count_args(token) + 1));
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
@@ -41,10 +41,21 @@ void	fill_cmd(t_cmd *token, t_exec **cmd)
 
 void	fill_args(t_cmd *token, t_exec **cmd)
 {
-	if((token->type & CMD_ARG) && is_arg_of_cmd(2))
+	if((token->type & CMD_ARG) && not_first_cmd(2))
 	{
 		*cmd = add_to_exec_list(token->content, *cmd, 2);
 	}
+}
+
+int is_redirection(t_cmd *cur)
+{
+    if(cur->type & REDIR_IN)
+        return 1;
+    if(cur->type & REDIR_OUT)
+        return 1;
+    if(cur->type & APPEND)
+        return 1;
+    return 0;
 }
 
 void    fill_fds_into_exec(t_cmd *token, t_exec **node)

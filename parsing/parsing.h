@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 14:59:03 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:22:09 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include "../minishell.h"
 // # include <sys/wait.h>
 
-int	is_arg_of_cmd(int flag);
 
+int is_redirection(t_cmd *cur);
+int is_ambiguous(t_cmd *cur);
+int	not_first_cmd(int flag);
+int	field_count_arg(int flag);
 //      main parsing fuctions
 int         inside_child(int flag);
 int         heredoc_exit_with_signal(int flag);

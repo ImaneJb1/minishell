@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 11:58:08 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:00:21 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	lst_add_one_cmd_by_node(t_cmd *cur, t_cmd *new)
 
 void	lst_del_one_cmd_by_node(t_cmd *cur)
 {
-	t_cmd	*tmp;
-
 	if (!*v_cmd())
 		return ;
 	if (!(*v_cmd())->next)
@@ -77,7 +75,6 @@ void	lst_del_one_cmd_by_node(t_cmd *cur)
 		*v_cmd() = NULL;
 		return ;
 	}
-	tmp = cur;
 	if (cur->prev)
 	{
 		(cur->prev)->next = cur->next;

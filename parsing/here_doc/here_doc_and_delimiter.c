@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 14:16:25 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:29:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	heredoc_parent_process(t_data	*data)
 	if (WIFEXITED(data->status))
 	{
 		if(WEXITSTATUS(data->status) == 130)
-			heredoc_exit_with_signal(1);
+			is_error(1);
 		update_exit_status(WEXITSTATUS(data->status));
 	}
 	inside_child(0);
