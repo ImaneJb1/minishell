@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:51:24 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 14:11:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:48:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void    check_expand_and_put_in_file(t_data *data, int fd)
         data->str = NULL;
     }
     ft_putstr_fd(join_str_char(data->content, '\n'), fd);
-    // ft_free(data->content);
 }
 
 

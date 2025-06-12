@@ -26,8 +26,8 @@ char	*find_path(t_exec *cmd, char *path)
 	i = 0;
 	while(all_paths[i])
 	{
-		tmp = ft_strjoin("/", cmd->cmd); //tmp = /ls
-		path = ft_strjoin(all_paths[i], tmp); //path = /usr/bin/ls
+		tmp = ft_strjoin("/", cmd->cmd);
+		path = ft_strjoin(all_paths[i], tmp);
 		if(access(path, F_OK | X_OK) == 0)
 			return(path);
 		i++;

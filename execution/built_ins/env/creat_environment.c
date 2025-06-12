@@ -73,6 +73,11 @@ void	env(t_exec	*node)
 
 	if(!node)
 		return ;
+	// if(lstsize_exec() > 1)
+	// {
+	// 	is_error(1);
+	// 	return ;
+	// }
 	env = *v_env();
 	while(env)
 	{

@@ -19,7 +19,7 @@ void exit_func(t_exec *node)
 	if(!node->args)
 	{
 		ft_free_all();
-		free_exit(0); // exit status of the last command
+		free_exit(0);
 	}
 	else if(node->args[1] && !node->args[2])
 	{

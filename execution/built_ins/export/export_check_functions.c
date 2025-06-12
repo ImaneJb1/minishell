@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 11:02:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 12:13:46 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:02:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int key_is_valid(char c)
         flag = 1;
         return 1;
     }
-    else if(is_digit(c) && flag == 1)
+    else if(ft_isdigit(c) && flag == 1)
         return 1;
     return 0;
 }

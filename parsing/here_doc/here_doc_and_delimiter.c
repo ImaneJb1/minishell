@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 14:16:25 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:51:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 		data->str = readline("  >> ");
 		if (!data->str)
 		{
-			print_error_to_stderr("Minishell: warning: here-document delimited by end-of-file (wanted `", 
+			print_error_to_stderr("Minishell: warning: here-document delimited by end-of-file (wanted `",
 				del->content, "')\n", STDERR_FILENO);
 			ft_exit(0);
 		}
@@ -64,45 +64,12 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 			break ;
 		check_expand_and_put_in_file(data, *fd);
 	}
-	if(data->str)
+	if (data->str)
 		ft_free(data->str);
 	close(*fd);
 }
 
-int	heredoc_exit_with_signal(int flag)
-{
-	static int	save_flag;
-
-	if (flag == 1)
-		save_flag = 1;
-	if (flag == 0)
-		save_flag = 0;
-	return (save_flag);
-}
-
-int	inside_child(int flag)
-{
-	static int	i;
-
-	if (flag == 1)
-		i = 1;
-	else if (flag == 0)
-		i = 0;
-	return (i);
-}
-
-void	sigint_in_heredoc_child(int num)
-{
-	(void)num;
-	
-	ft_exit(130);
-	// ft_free_all();
-	// signal(SIGINT, SIG_DFL);
-	// kill(getpid(), SIGINT);
-	
-}
-
-void	heredoc_child_process(t_cmd *token, t_data	*data, int	*fd)
+void	heredoc_child_process(t_cmd *token, t_data *data, int *fd)
 {
 	signal(SIGINT, sigint_in_heredoc_child);
 	get_delimiter(&token);
@@ -110,20 +77,14 @@ void	heredoc_child_process(t_cmd *token, t_data	*data, int	*fd)
 	free_exit(0);
 }
 
-void	heredoc_parent_process(t_data	*data)
+void	heredoc_parent_process(t_data *data)
 {
 	inside_child(1);
 	waitpid(data->pid, &data->status, 0);
-	// if (WIFSIGNALED(data->status))
-	// {
-	// 	update_exit_status((128 + WTERMSIG(data->status)));
-	// 	heredoc_exit_with_signal(1);
-	// }
-	// printf("is true = %d     exit status = %d\n",WIFEXITED(data->status), WEXITSTATUS(data->status));
 	if (WIFEXITED(data->status))
 	{
-		if(WEXITSTATUS(data->status) == 130)
-			heredoc_exit_with_signal(1);
+		if (WEXITSTATUS(data->status) == 130)
+			is_error(1);
 		update_exit_status(WEXITSTATUS(data->status));
 	}
 	inside_child(0);

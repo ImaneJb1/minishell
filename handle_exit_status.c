@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:16:32 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 18:31:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:39:43 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void    update_exit_status(int status)
             break;
         env = env->next;
     }
-    // ft_free(env->value);
     env->value = NULL;
     env->value = ft_strdup(ft_itoa(status));
 }

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 14:34:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:13:19 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/types.h>
-// # include <dirent.h>
 # include <sys/wait.h>
 # include <signal.h>
-// # include "execution/execution.h" 
-// # include "./parsing/parsing.h"
-extern int exit_status;
+
 
 # ifndef TRUE
 #  define TRUE 1
@@ -38,31 +35,35 @@ extern int exit_status;
 #  define FALSE 0
 # endif
 
+extern int exit_status;
+
 // 		enums type
 typedef enum s_type
 {
-	PIPE = 1 << 0,      // 1
-	FILE_NAME = 1 << 1, // 2
-	CMD = 1 << 2,       // 4
-	HERE_DOC = 1 << 3,  // 8
-	REDIR_IN = 1 << 4,  // 16
-	REDIR_OUT = 1 << 5, // 32
-	APPEND = 1 << 6,    // 64
-	WORD = 1 << 7,      // 128
-	DOUBLE_Q = 1 << 8,  // 256
-	SINGLE_Q = 1 << 9,  // 512
-	CMD_ARG = 1 << 10,  // 1024
+	PIPE = 1 << 0,
+	FILE_NAME = 1 << 1,
+	CMD = 1 << 2,
+	HERE_DOC = 1 << 3,
+	REDIR_IN = 1 << 4,
+	REDIR_OUT = 1 << 5,
+	APPEND = 1 << 6,
+	WORD = 1 << 7,
+	DOUBLE_Q = 1 << 8,
+	SINGLE_Q = 1 << 9,
+	CMD_ARG = 1 << 10,
 	PATH = 1 << 11,
 	VARIABLE = 1 << 12,
 	DELIMITER = 1 << 13,
 	FIELD = 1 << 14
 }					t_type;
 
+
 typedef struct s_tokens
 {
 	char			*input;
 	t_type			type;
 }					t_tokens;
+
 
 typedef struct s_data
 {
@@ -85,20 +86,6 @@ typedef struct s_data
 	char			**args;
 }					t_data;
 
-typedef struct s_pipe
-{
-	int				write;
-	int				read;
-	int				index;
-	struct s_pipe	*next;
-	struct s_pipe	*prev;
-}					t_pipe;
-
-// typedef enum s_execute_type
-// {
-// 	builtin_cmd,
-// 	non_builtin_cmd
-// }	t_execute_type;
 
 typedef struct s_exec
 {
@@ -111,6 +98,7 @@ typedef struct s_exec
 	struct s_exec	*prev;
 }					t_exec;
 
+
 typedef struct s_cmd
 {
 	char			*content;
@@ -119,9 +107,9 @@ typedef struct s_cmd
 	int				index;
 	t_type			type;
 	struct s_cmd	*next;
-
 	struct s_cmd	*prev;
 }					t_cmd;
+
 
 typedef enum s_env_type
 {
@@ -129,6 +117,7 @@ typedef enum s_env_type
 	local,
 	special
 }	t_env_type;
+
 
 typedef struct s_env
 {
@@ -140,29 +129,36 @@ typedef struct s_env
 	struct s_env	*prev;
 }					t_env;
 
-int	is_error(int flag);
-void   print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
-
-void	free_exit(int status);
-void    update_exit_status(int status);
-void	main_execution(void);
-void		pipes(void);
-
-void				print_parsing(void);
-
-
-// 		signels
-void handle_sig_int(int signum);
 
 //		globale
 t_cmd				**v_cmd(void);
 t_exec				**v_exec(void);
-t_pipe				**v_pipe(void);
 t_env				**v_env(void);
 
-t_data				*init_data(void);
-// void				add_to_exec_list(char *str, t_exec *cur, int flag);
+
+// 		errors and exit
+int					is_error(int flag);
+int					handle_exec_error(void);
+void   				print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
+void				free_exit(int status);
+
+
+// 		parsing function
 int					parsing(char *str);
 void				create_environment(char **env);
+
+
+// 		execution functions
+void    			update_exit_status(int status);
+void				main_execution(void);
+void				pipes(void);
+
+
+// 		signels
+void				handle_sig_int(int signum);
+void				sigint_in_heredoc_child(int num);
+
+// !! REMOVE !!
+void				print_parsing(void);
 
 #endif

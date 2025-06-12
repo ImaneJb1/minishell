@@ -6,18 +6,18 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 12:07:00 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:33:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"	
 #include "../execution/built_ins/built_in.h"
+#include "parsing.h"
 
 t_data	*init_data(void)
 {
-	t_data *data;
+	t_data	*data;
 
-	data = ft_malloc(sizeof(t_data ));
+	data = ft_malloc(sizeof(t_data));
 	data->i = 0;
 	data->j = 0;
 	data->x = 0;
@@ -33,65 +33,26 @@ t_data	*init_data(void)
 	data->content = NULL;
 	data->command = NULL;
 	data->args = NULL;
-	return data;
+	return (data);
 }
 
-void	expand_variable_value(void)
+int	parsing(char *str)
 {
-	t_cmd	*head;
-
-	head = *v_cmd();
-	while (head)
-	{
-		if ((head->type & VARIABLE) && !(head->type & DELIMITER))
-			change_var_value(head);
-		head = head->next;
-	}
-	field_spliting();
-}
-
-int	syntax_error(char	*flag)
-{
-	static int i;
-
-	if(flag == NULL)
-		return i;
-	if(ft_strcmp("no", flag) == 0)
-		i = 0;
-	if(ft_strcmp("yes", flag) == 0)
-		i = 1;
-	return i;
-}
-
-int	syntax_error_index(int	flag)
-{
-	static int i;
-
-	if(flag == 0)
-		return i;
-	else
-		i = flag;
-	return i;
-}
-
-
-int    parsing(char *str)
-{
-   	creat_the_cmd_list(str);
-	if(is_valid_syntax() == FALSE)
+	creat_the_cmd_list(str);
+	if (is_valid_syntax() == FALSE)
 	{
 		update_exit_status(2);
-    	lstclear_cmd();
+		lstclear_cmd();
 		return (0);
 	}
-    expand_variable_value();
+	expand_variable_value();
 	remove_quotes();
 	// print_parsing();
-	if(!fill_the_exec_struct())
+	if (!fill_the_exec_struct())
 	{
 		lstclear_cmd();
-		return 0;
+		return (0);
 	}
 	lstclear_cmd();
-	return 1;
+	return (1);
 }

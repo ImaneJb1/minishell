@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:53:48 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/28 15:13:56 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:02:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_double_quote(char c, int j)
 
 int is_valid(char c)
 {
-	if(is_digit(c) || is_alpha(c) || c == '_')
+	if(ft_isdigit(c) || is_alpha(c) || c == '_')
 		return 1;
 	return 0;
 }

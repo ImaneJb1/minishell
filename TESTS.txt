@@ -89,3 +89,10 @@ export b=$a => minishell: b=1: command not found // Done
 13)  echo - -n -n -n -nnnnnnnnnnnnnnnn //done
 
 14) Ctl + c //done
+
+
+15) filed spliting $a ==> (a="b1  ")
+
+16)  fix exit  
+
+17) >> $fdg cat ==> call it multiple times (invalid write )

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 11:58:08 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:47:31 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,7 @@ void	lstclear_cmd(void)
 	*v_cmd() = NULL;
 }
 
-// t_cmd	*find_cmd_by_index(int index)
-// {
-// 	t_cmd	*cur;
-
-// 	cur = *v_cmd();
-// 	while (cur)
-// 	{
-// 		if (cur->index == index)
-// 			break ;
-// 		cur = cur->next;
-// 	}
-// 	return (cur);
-// }
-
-void	lst_add_one_cmd_by_node(t_cmd *cur, t_cmd *new)
+void	lst_add_one_cmd(t_cmd *cur, t_cmd *new)
 {
 	t_cmd	*next;
 
@@ -66,7 +52,7 @@ void	lst_add_one_cmd_by_node(t_cmd *cur, t_cmd *new)
 	}
 }
 
-void	lst_del_one_cmd_by_node(t_cmd *cur)
+void	lst_del_one_cmd(t_cmd *cur)
 {
 	t_cmd	*tmp;
 
@@ -92,19 +78,3 @@ void	lst_del_one_cmd_by_node(t_cmd *cur)
 	// ft_free(tmp);
 }
 
-void	index_the_cmd_list(void)
-{
-	int		i;
-	t_cmd	*cur;
-
-	i = 0;
-	cur = *v_cmd();
-	if (!cur)
-		return ;
-	while (cur)
-	{
-		cur->index = i;
-		cur = cur->next;
-		i++;
-	}
-}

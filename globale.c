@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 10:23:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:38:06 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,4 @@ t_env   **v_env(void)
     static t_exec *exec;
 
     return &exec;
-}
-
-t_pipe  **v_pipe(void)
-{
-    static  t_pipe *pipe;
-
-    return &pipe;
 }

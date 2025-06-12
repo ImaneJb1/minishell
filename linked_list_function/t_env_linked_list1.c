@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 17:18:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:48:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ void	lstadd_env_back(t_env **lst, t_env *new)
 		last->next = new;
 		new->prev = last;
 	}
-}
-
-void	lstadd_env_front(t_env **lst, t_env *new)
-{
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
 }
 
 t_env	*lstlast_env(void)

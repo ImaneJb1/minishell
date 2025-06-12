@@ -6,13 +6,13 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 11:57:36 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:02:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-char	*expand_the_value( char *command, t_data *data)
+char	*expand_the_value(char *command, t_data *data)
 {
 	data->j = 0;
 	data->value = get_value_from_env(data->key);
@@ -25,13 +25,15 @@ char	*expand_the_value( char *command, t_data *data)
 
 void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 {
-	while (cur->content[*i] && (is_valid(cur->content[*i]) || cur->content[*i] == '?'))
+	while (cur->content[*i] && (is_valid(cur->content[*i])
+			|| cur->content[*i] == '?'))
 	{
 		data->flag = 1;
-		if (cur->content[*i - 1] == '$' && (is_digit(cur->content[*i]) || cur->content[*i] == '?'))
+		if (cur->content[*i - 1] == '$' && (ft_isdigit(cur->content[*i])
+				|| cur->content[*i] == '?'))
 		{
 			data->key = join_str_char(data->key, cur->content[(*i)++]);
-			break;
+			break ;
 		}
 		data->key = join_str_char(data->key, cur->content[(*i)++]);
 		if (!data->key)
@@ -41,53 +43,16 @@ void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 
 char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = init_data();
 	(*i)++;
-	// if(cur->content[*i] == '?' && (*i)++)e
-		// return (command = ft_strjoin(command, ft_itoa(exit_status)));
 	fill_the_key(cur, i, data);
 	data->i = (*i);
-	if(x == 0 || data->flag == 1)
+	if (x == 0 || data->flag == 1)
 		command = expand_the_value(command, data);
 	else if (cur->content[*i])
 		return (join_str_char(command, cur->content[*i]));
-	return command;
-}
-int check(char *content, t_data **data, int j)
-{
-	if (j == 0 && content[(*data)->i] == '\'')
-	{
-		(*data)->command = inside_quote((*data)->command, content, &(*data)->i,'\'');
-		return 1;
-	}
-	else if ((content[(*data)->i] == '$' && content[(*data)->i + 1] == '$'))
-	{
-		(*data)->command = ft_strjoin((*data)->command, "$$");
-		(*data)->i += 2;
-		return 1;
-	}
-	return 0;
+	return (command);
 }
 
-void	change_var_value(t_cmd *cur)
-{
-	t_data *data;
-
-	data = init_data();
-	while (cur && cur->content && cur->content[data->i])
-	{
-		data->flag = check_double_quote(cur->content[data->i], data->flag);
-		if(check(cur->content, &data, data->flag))
-			continue;
-		else if (is_var_inside_quote(cur->content, data->i, data->flag))
-			data->command = add_var_string(data->command, cur, &data->i, data->flag);
-		else
-			data->command = join_str_char(data->command, cur->content[data->i++]);
-	}
-	if(!data->command)
-		lst_del_one_cmd_by_node(cur);
-	else
-		cur->content = data->command;
-}

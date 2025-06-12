@@ -6,13 +6,12 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 12:13:55 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:26:34 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution/built_ins/built_in.h"
 #include "minishell.h"
-// #include "./execution/built_ins/built_in.h"
 #include "./parsing/parsing.h"
 
 int		exit_status;
@@ -30,6 +29,8 @@ void	print_parsing(void)
 		printf("[%s] = ", ptr->content);
 		if (ptr->type & WORD)
 			printf("WORD ");
+		if (ptr->type & FIELD)
+			printf("FIELD ");
 		if (ptr->type & FILE_NAME)
 			printf("FILE_NAME ");
 		if (ptr->type & CMD)
@@ -64,37 +65,13 @@ void	print_parsing(void)
 	printf("----------------------------------------------\n");
 }
 
-void	handle_sig_int(int flag)
-{
-	flag = inside_child(2);
-	if (flag == 0)
-	{
-		rl_replace_line("", 0);
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_redisplay();
-		update_exit_status(130);
-	}
-	else if (flag == 1)
-		write(1, "\n", 1);
-}
 
-int	is_error(int flag)
-{
-	static int	i;
 
-	if(flag == 0)
-		i = 0;
-	else if(flag == 1)
-		i = 1;
-	return i;
-}
-
-void   print_error_to_stderr(char *s1, char *s2, char *s3, int fd)
+void	create_env_and_handle_signals(char	**env)
 {
-    ft_putstr_fd(s1, fd);
-    ft_putstr_fd(s2, fd);
-    ft_putstr_fd(s3, fd);
+	signal(SIGINT, handle_sig_int);
+	signal(SIGQUIT, SIG_IGN);
+	create_environment(env);
 }
 
 int	main(int argc, char const *argv[], char **env)
@@ -103,23 +80,23 @@ int	main(int argc, char const *argv[], char **env)
 
 	(void)argv;
 	(void)argc;
-	signal(SIGINT, handle_sig_int);
-	signal(SIGQUIT, SIG_IGN);
-	create_environment(env);
+	create_env_and_handle_signals(env);
 	while (1)
 	{
 		str = readline("Minishell $>: ");
 		if (!str)
-			ft_exit(exit_status);
+			(free(str), clear_history(), ft_exit(exit_status));
 		if (!*str)
+		{
+			free(str);
 			continue ;
+		}
 		add_history(str);
 		if (!parsing(str))
 		{
 			lstclear_exec();
 			continue ;
 		}
-		
 		main_execution();
 		lstclear_exec();
 	}
