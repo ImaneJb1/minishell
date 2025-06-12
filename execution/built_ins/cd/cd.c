@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/01 20:20:04 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/12 19:02:21 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ void    change_directory(char *path)
 
 void    cd(t_exec *node)
 {
-    char *command;
     int num_args;
 
-    command = node->cmd;
     num_args = strlen_2d_array(node->args);
     num_args -= 1;
     if(num_args > 1)
