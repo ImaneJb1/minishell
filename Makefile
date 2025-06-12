@@ -1,5 +1,4 @@
 NAME = mini
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 

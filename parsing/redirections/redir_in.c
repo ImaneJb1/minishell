@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:00 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 15:11:02 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:41:42 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	open_fd_in(t_cmd *token, int *fd)
 		if (*fd < 0)
 		{
 			perror(token->content);
+			ft_free_all();
 			update_exit_status(1);
 		}
 	}

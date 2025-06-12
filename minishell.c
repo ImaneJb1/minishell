@@ -110,7 +110,6 @@ int	main(int argc, char const *argv[], char **env)
 			lstclear_exec();
 			continue ;
 		}
-		
 		main_execution();
 		lstclear_exec();
 	}
