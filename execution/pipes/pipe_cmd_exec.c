@@ -6,7 +6,7 @@
 /*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/05 21:50:29 by imane            ###   ########.fr       */
+/*   Updated: 2025/06/12 19:27:45 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_errors(t_exec *cmd)
     } 
 	else
 	{
-        perror("execve");
+        perror("");
         ft_exit(1);
     }
 }
@@ -92,12 +92,14 @@ void	execute_last_command(t_exec *cmd, int *fd)
 	close(fd[0]);
 	if (cmd->fd_in != STDIN_FILENO)
 	{
-		dup2(cmd->fd_in, STDIN_FILENO);
+		if (dup2(cmd->fd_in, STDIN_FILENO) < 0)
+			free_exit(1);
 		close(cmd->fd_in);
 	}
-	if (cmd->fd_out != STDOUT_FILENO)
+	if (cmd->fd_out != 1)
 	{
-		dup2(cmd->fd_out, STDOUT_FILENO);
+		if(dup2(cmd->fd_out, STDOUT_FILENO) < 0)
+			free_exit(1);
 		close(cmd->fd_out);
 	}
 	execution(cmd);
