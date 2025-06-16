@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/01 20:20:04 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:16:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,3 @@ void    cd(t_exec *node)
     }
     change_directory(node->args[1]);
 }
-
-// int main(int argc, char **argv, char **env)
-// {
-//     create_environment(env);
-//     for(int i = 0; env[i]; i++)
-//         printf("%s\n", env[i]);
-//     change_directory(argv[1]);
-//     int i = 0;
-//     while(env[i])
-//     {
-//         if(ft_strnstr(env[i]," OLDPWD") >= 0 || ft_strnstr(env[i], "PWD") >= 0)
-//             printf("%s\n", env[i]);
-//         i++;
-//     }
-// }

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 15:50:55 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:22:00 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_exec	*new_exec_node(void)
 	if (!elem)
 		return (NULL);
 	elem->cmd = NULL;
-    elem->args = NULL;
-    elem->fd_in = 0;
-    elem->fd_out = 1;
+	elem->args = NULL;
+	elem->fd_in = 0;
+	elem->fd_out = 1;
 	elem->next = NULL;
 	elem->prev = NULL;
 	return (elem);
@@ -47,7 +47,7 @@ void	lstadd_exec_back(t_exec **lst, t_exec *new)
 
 t_exec	*lstlast_exec(void)
 {
-	t_exec *lst;
+	t_exec	*lst;
 
 	lst = *v_exec();
 	if (lst == NULL)

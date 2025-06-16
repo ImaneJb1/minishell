@@ -39,32 +39,38 @@ char	*split_env_value(char *line, int *i)
 	return (value);
 }
 
+static	void	add_to_env_list(char **env, int i)
+{
+	t_env	*node;
+	char	*key;
+	char	*value;
+	int		j;
+
+	j = 0;
+	key = NULL;
+	value = NULL;
+	key = split_env_key(env[i], &j);
+	value = split_env_value(env[i], &j);
+	node = new_env_node(key, value);
+	node->type = global;
+	lstadd_env_back(v_env(), node);
+}
+
 void	create_environment(char **env)
 {
 	int		i;
-	int		j;
-	char	*key;
-	char	*value;
 	t_env	*node;
 
 	i = 0;
-	key = NULL;
-	value = NULL;
-	if (!env || !(*env))
-		return ;
-	while (env[i])
-	{
-		j = 0;
-		key = split_env_key(env[i], &j);
-		value = split_env_value(env[i], &j);
-		node = new_env_node(key, value);
-		node->type = global;
-		lstadd_env_back(v_env(), node);
-		i++;
-	}
 	node = new_env_node("?", "0");
 	node->type = special;
 	lstadd_env_back(v_env(), node);
+	while (env[i])
+	{
+		if(env[i][0] != '?')
+			add_to_env_list(env, i);
+		i++;
+	}
 }
 
 void	env(t_exec	*node)
@@ -73,11 +79,6 @@ void	env(t_exec	*node)
 
 	if(!node)
 		return ;
-	// if(lstsize_exec() > 1)
-	// {
-	// 	is_error(1);
-	// 	return ;
-	// }
 	env = *v_env();
 	while(env)
 	{

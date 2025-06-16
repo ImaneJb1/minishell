@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 16:51:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:43:41 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 		data->str = readline("  >> ");
 		if (!data->str)
 		{
-			print_error_to_stderr("Minishell: warning: here-document delimited by end-of-file (wanted `",
-				del->content, "')\n", STDERR_FILENO);
+			print_error_to_stderr("Minishell: warning: here-document \
+			delimited by end-of-file (wanted `", del->content, "')\n",
+				STDERR_FILENO);
 			ft_exit(0);
 		}
 		if (ft_strcmp(del->content, data->str) == 0)

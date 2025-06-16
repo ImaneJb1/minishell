@@ -15,4 +15,5 @@ void	identify_all_types(void)
 	identify_single_q();    
 	identify_path();
 	identify_var();
+	count_heredoc(0);
 }

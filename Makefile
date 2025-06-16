@@ -1,8 +1,8 @@
-NAME = mini
+NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 # ===================== GARBAGE COLLECTOR =====================
 GARBAGE_COLLECTOR = garbage_collector/ft_calloc.c garbage_collector/ft_exit.c \
@@ -11,10 +11,10 @@ GARBAGE_COLLECTOR = garbage_collector/ft_calloc.c garbage_collector/ft_exit.c \
 # ===================== HELPER FUNCTIONS ======================
 HELPER_FUNCTIONS = helper_functions/ft_str_join.c helper_functions/ft_strdup.c \
 	helper_functions/ft_strlen.c helper_functions/join_str_char.c helper_functions/is_alpha.c \
-	helper_functions/separate_with_one_space.c helper_functions/strcmp.c helper_functions/strnstr_index.c \
+	helper_functions/separate_with_one_space.c helper_functions/strcmp.c helper_functions/ft_atoi.c \
 	helper_functions/ft_isdigit.c helper_functions/ft_itoa.c helper_functions/ft_putstr_fd.c \
 	helper_functions/ft_split.c helper_functions/ft_substr.c helper_functions/strlen_2d_array.c \
-	helper_functions/ft_strchr.c helper_functions/ft_atoi.c
+	helper_functions/ft_strchr.c 
 
 # ===================== PARSING ===============================
 PARSING_TOKEN_IDENTIFY = parsing/tokenizing/identify_types/all_enums.c \
@@ -30,10 +30,11 @@ PARSING_SYNTAX = parsing/syntax_error/is_valid_syntax.c parsing/syntax_error/han
 	parsing/syntax_error/special_tokens.c parsing/syntax_error/heredoc_error.c
 
 PARSING_ENV = parsing/environment/get_vriable_value.c parsing/environment/expansion.c \
-	parsing/environment/variable_checkers.c parsing/environment/field_spliting.c
+	parsing/environment/variable_checkers.c parsing/environment/field_spliting.c \
+	parsing/environment/field_spliting_helpers.c
 
 PARSING_REDIR = parsing/redirections/append.c parsing/redirections/fds_cmd_args.c \
-	parsing/redirections/redir_in.c parsing/redirections/redir_out.c
+	parsing/redirections/redir_in.c parsing/redirections/redir_out.c parsing/redirections/redirections_heplers.c 
 
 PARSING_HEREDOC = parsing/here_doc/here_doc_and_delimiter.c parsing/here_doc/here_doc_helpers.c \
 	parsing/here_doc/here_doc_checkers.c
@@ -72,7 +73,7 @@ EXECUTION_PIPES = execution/env_to_arr.c execution/pipes/pipe_cmd_exec.c \
 EXECUTION = execution/execution.c $(EXECUTION_BUILTINS) $(EXECUTION_PIPES)
 
 # ===================== MAIN ================================
-SRC = minishell.c globale.c handle_exit_status.c path.c handle_errors.c handle_signals.c \
+SRC = minishell.c globale.c handle_exit_status.c handle_errors.c handle_signals.c \
 	$(GARBAGE_COLLECTOR) $(HELPER_FUNCTIONS) $(PARSING) $(BUILT_IN) $(EXECUTION)
 
 OBJ = $(SRC:.c=.o)

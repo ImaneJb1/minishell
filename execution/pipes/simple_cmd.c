@@ -47,7 +47,8 @@ void	signal_msg_and_exit_status(int status)
 void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 {
 	int	status;
-	
+
+	is_paht_empty(0);
 	if(cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if(cmd->fd_out != 1)
@@ -92,11 +93,3 @@ void	execute_simple_cmd(t_exec *cmd)
 		signal(SIGINT, handle_sig_int);
 	}
 }
-
-// void	simple_cmd(void)
-// {
-// 	t_exec	*cmd;
-
-// 	cmd = *v_exec();
-// 	execute_simple_cmd(cmd);
-// }

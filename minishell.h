@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 17:13:19 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:24:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <signal.h>
-
+# include <unistd.h>
 
 # ifndef TRUE
 #  define TRUE 1
@@ -35,7 +34,7 @@
 #  define FALSE 0
 # endif
 
-extern int exit_status;
+extern int			g_exit_status;
 
 // 		enums type
 typedef enum s_type
@@ -57,13 +56,11 @@ typedef enum s_type
 	FIELD = 1 << 14
 }					t_type;
 
-
 typedef struct s_tokens
 {
 	char			*input;
 	t_type			type;
 }					t_tokens;
-
 
 typedef struct s_data
 {
@@ -86,7 +83,6 @@ typedef struct s_data
 	char			**args;
 }					t_data;
 
-
 typedef struct s_exec
 {
 	char			*path;
@@ -97,7 +93,6 @@ typedef struct s_exec
 	struct s_exec	*next;
 	struct s_exec	*prev;
 }					t_exec;
-
 
 typedef struct s_cmd
 {
@@ -110,14 +105,12 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }					t_cmd;
 
-
 typedef enum s_env_type
 {
 	global,
 	local,
 	special
-}	t_env_type;
-
+}					t_env_type;
 
 typedef struct s_env
 {
@@ -129,30 +122,27 @@ typedef struct s_env
 	struct s_env	*prev;
 }					t_env;
 
+int					is_paht_empty(int flag);
 
 //		globale
 t_cmd				**v_cmd(void);
 t_exec				**v_exec(void);
 t_env				**v_env(void);
 
-
 // 		errors and exit
 int					is_error(int flag);
 int					handle_exec_error(void);
-void   				print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
+void				print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
 void				free_exit(int status);
-
 
 // 		parsing function
 int					parsing(char *str);
 void				create_environment(char **env);
 
-
 // 		execution functions
-void    			update_exit_status(int status);
+void				update_exit_status(int status);
 void				main_execution(void);
 void				pipes(void);
-
 
 // 		signels
 void				handle_sig_int(int signum);

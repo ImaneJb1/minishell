@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:31:52 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 16:31:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:35:32 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,22 @@ int	check(char *content, t_data **data, int j)
 
 void	change_var_value(t_cmd *cur)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = init_data();
 	while (cur && cur->content && cur->content[data->i])
 	{
 		data->flag = check_double_quote(cur->content[data->i], data->flag);
-		if(check(cur->content, &data, data->flag))
-			continue;
+		if (check(cur->content, &data, data->flag))
+			continue ;
 		else if (is_var_inside_quote(cur->content, data->i, data->flag))
-			data->command = add_var_string(data->command, cur, &data->i, data->flag);
+			data->command = add_var_string(data->command, cur, &data->i,
+					data->flag);
 		else
-			data->command = join_str_char(data->command, cur->content[data->i++]);
+			data->command = join_str_char(data->command,
+					cur->content[data->i++]);
 	}
-	if(!data->command)
+	if (!data->command)
 		lst_del_one_cmd(cur);
 	else
 		cur->content = data->command;

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 10:13:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:56:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_errors(t_exec *cmd)
 	{
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
-		if(ft_strchr(cmd->cmd,'/'))
+		if(ft_strchr(cmd->cmd,'/') || is_paht_empty(0))
 			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		else
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
@@ -38,7 +38,7 @@ void	print_errors(t_exec *cmd)
     }
 }
 
-void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
+void	execution(t_exec *cmd)
 {
 	builtin(cmd);
 	if (opendir(cmd->cmd))
@@ -46,7 +46,7 @@ void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 		print_cmd_error(cmd->cmd, "is a directory");
 		ft_exit(126);
 	}
-	execve(cmd->path, cmd->args, env_to_arr()); //   cat => /cat => /usr/bin/cat => access(path, F_OK | X_OK)
+	execve(cmd->path, cmd->args, env_to_arr());
 	print_errors(cmd);
 }
 
@@ -90,7 +90,6 @@ void	execute_middle_command(t_exec *cmd, int *fd)
 
 void	execute_last_command(t_exec *cmd, int *fd)
 {
-	// dprintf(2, "*******************last*****************\n");
 	close(fd[1]);
 	close(fd[0]);
 	if (cmd->fd_in != 0)

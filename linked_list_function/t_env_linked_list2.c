@@ -6,29 +6,28 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 17:17:58 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 15:50:23 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:21:57 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
 
-void	lst_del_one_env_by_node(t_env	*cur)
+void	lst_del_one_env_by_node(t_env *cur)
 {
-	
 	t_env	*tmp;
 
-	if(!*v_env())
+	if (!*v_env())
 		return ;
-	if(!(*v_env())->next)
+	if (!(*v_env())->next)
 	{
 		*v_env() = NULL;
 		return ;
 	}
 	tmp = cur;
-	if(cur->prev)
+	if (cur->prev)
 	{
 		(cur->prev)->next = cur->next;
-		if(cur->next)
+		if (cur->next)
 			(cur->next)->prev = cur->prev;
 	}
 	else
@@ -38,4 +37,3 @@ void	lst_del_one_env_by_node(t_env	*cur)
 	}
 	ft_free(tmp);
 }
-

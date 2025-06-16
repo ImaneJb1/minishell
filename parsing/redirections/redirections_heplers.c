@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc_checkers.c                                :+:      :+:    :+:   */
+/*   redirections_heplers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 16:50:06 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 14:42:33 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/06/16 14:52:57 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/16 14:59:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-int	heredoc_exit_with_signal(int flag)
+int	is_redirection(t_cmd *cur)
 {
-	static int	save_flag;
-
-	if (flag == 1)
-		save_flag = 1;
-	if (flag == 0)
-		save_flag = 0;
-	return (save_flag);
+	if (cur->type & REDIR_IN)
+		return (1);
+	if (cur->type & REDIR_OUT)
+		return (1);
+	if (cur->type & APPEND)
+		return (1);
+	return (0);
 }
 
-int	inside_child(int flag)
+int	not_first_cmd(int flag)
 {
 	static int	i;
 
-	if (flag == 1)
+	if (flag == 0)
+		i = 0;
+	else if (flag == 1)
 		i = 1;
-	else if (flag == 0)
-		i = 0;
 	return (i);
 }
 
-int	count_heredoc(int flag)
+int	check_redir(t_cmd *cur, t_type type1, t_type type2)
 {
-	static int	i;
-
-	if (flag == 1)
-		i += flag;
-	if (flag == 0)
-		i = 0;
-	return (i);
+	if (cur->type & type1)
+	{
+		if (cur->prev && (cur->prev->type & type2))
+			return (1);
+	}
+	return (0);
 }

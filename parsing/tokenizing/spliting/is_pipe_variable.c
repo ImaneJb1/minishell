@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:53:42 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/13 11:25:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:18:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	is_var(char *str, int *i)
 		add_to_cmd_list(str[(*i)++], 1);
 		while (str[*i] && !ft_strchr(" |<>", str[*i]))
 		{
-			if(str[*i] == '\"')
+			if (str[*i] == '\"')
 				protect_double_quotes(str, i);
-			else if(str[*i] == '\'')
+			else if (str[*i] == '\'')
 				protect_singl_quotes(str, i);
 			else
 				add_to_cmd_list(str[(*i)++], 1);

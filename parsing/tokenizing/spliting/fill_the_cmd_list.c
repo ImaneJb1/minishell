@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:55:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 16:33:55 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:34:17 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,25 @@ void	add_to_cmd_list(char ch, int flag)
 
 void	creat_the_cmd_list(char *line)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int			i;
+	int			j;
+	char		*str;
+	static void	(*list[])(char *str, int *i) = {
+		is_arg, is_double_quote, is_singl_quote, is_pipe, is_redir_out_append,
+		is_heredoc, is_redir_in, is_redir_out, is_var};
 
 	i = 0;
 	str = NULL;
-	if(!line || !*line)
-		return;
+	if (!line || !*line)
+		return ;
 	str = separat_with_one_space(line);
 	free(line);
-	static void (*list[])(char *str, int *i) = {
-		is_arg, is_double_quote, is_singl_quote,
-		is_pipe, is_redir_out_append, is_heredoc,
-		is_redir_in, is_redir_out, is_var};
- 	while (str[i])
+	while (str[i])
 	{
 		j = 0;
 		if (str[i] == ' ' && i++)
 			add_to_cmd_list(0, 0);
-		while(j < 9)
+		while (j < 9)
 			list[j++](str, &i);
 	}
 	identify_all_types();

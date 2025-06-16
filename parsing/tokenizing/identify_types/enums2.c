@@ -61,6 +61,12 @@ void    identify_delimiter(void)
     {
         if(ptr->prev && (ptr->prev->type & HERE_DOC))
         {
+            count_heredoc(1);
+		    if(count_heredoc(2) > 16)
+		    {
+		    	ft_putstr_fd("minishell: maximum here-document count exceeded\n", 2);
+		    	ft_exit(g_exit_status);
+		    } 
             if(ptr->type & WORD)
                 ptr->type |= DELIMITER;
         }

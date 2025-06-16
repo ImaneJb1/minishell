@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 15:47:31 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:58:04 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	lst_add_one_cmd(t_cmd *cur, t_cmd *new)
 	if (!cur || !cur->next)
 	{
 		lstadd_cmd_back(v_cmd(), new);
-		// cur->prev = new;
-		// new->next = cur;
 	}
 	else
 	{
@@ -47,8 +45,6 @@ void	lst_add_one_cmd(t_cmd *cur, t_cmd *new)
 		new->prev = cur;
 		new->next = next;
 		next->prev = new;
-		// new->next = cur;
-		// new->prev = cur->prev;
 	}
 }
 
@@ -75,6 +71,4 @@ void	lst_del_one_cmd(t_cmd *cur)
 		*v_cmd() = cur->next;
 		(cur->next)->prev = NULL;
 	}
-	// ft_free(tmp);
 }
-

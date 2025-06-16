@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 17:02:18 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:35:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,3 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 		return (join_str_char(command, cur->content[*i]));
 	return (command);
 }
-

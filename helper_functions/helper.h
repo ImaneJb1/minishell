@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 01:42:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 17:17:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:20:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../garbage_collector/garbage_collector.h"
 # include "../minishell.h"
 
-int		ft_strnstr(char *haystack, char *needle);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putstr_fd(char *s, int fd);
@@ -32,5 +31,5 @@ char	**ft_split(char *s, char c);
 void	skip_space(char *str, int *i);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int		ft_isdigit(int c);
-int	    ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 #endif

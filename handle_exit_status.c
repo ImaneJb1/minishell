@@ -6,26 +6,26 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:16:32 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 15:39:43 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:24:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    update_exit_status(int status)
+void	update_exit_status(int status)
 {
-    t_env   *env;
+	t_env	*env;
 
-    env = *v_env();
-    exit_status = status;
-    while (env)
-    {
-        if(ft_strcmp(env->key, "?") == 0)
-            break;
-        env = env->next;
-    }
-    env->value = NULL;
-    env->value = ft_strdup(ft_itoa(status));
+	env = *v_env();
+	g_exit_status = status;
+	while (env)
+	{
+		if (ft_strcmp(env->key, "?") == 0)
+			break ;
+		env = env->next;
+	}
+	env->value = NULL;
+	env->value = ft_strdup(ft_itoa(status));
 }
 
 void	free_exit(int status)

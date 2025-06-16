@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 17:15:54 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:54:54 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void		remove_quotes(void);
 
 //      check_functions
 int			not_first_cmd(int flag);
-int			field_count_arg(int flag);
 int			inside_child(int flag);
 int			heredoc_exit_with_signal(int flag);
 
@@ -90,7 +89,10 @@ char		*get_value_from_env(char *key);
 char	    *add_var_string(char *command, t_cmd *cur, int *i, int x);
 char	    *expand_the_value(char *command, t_data *data);
 void		field_spliting(void);
-
+int         is_not_field(char *content);
+int         len_of_word(char *str, int j);
+void        skip_quotes(char *str, int *i);
+int         field_count_arg(int flag);
 
 // 		syntax error
 bool		is_valid_syntax(void);
@@ -104,7 +106,7 @@ int			here_doc_error(t_cmd *ptr);
 t_tokens	*init_redir_array(void);
 
 
-// error printers
+//      error printers
 void		print_error_with_token(char *message, char *token);
 void		print_error(char *s);
 void		print_cmd_error(char *command, char *message);
@@ -117,6 +119,7 @@ void		open_fd_out(t_cmd *token, int *fd);
 void		open_fd_app(t_cmd *token, int *fd);
 void		fill_fds_into_exec(t_cmd *token, t_exec **node);
 int			is_redirection(t_cmd *cur);
+int         check_redir(t_cmd *cur, t_type type1, t_type type2);
 // int			is_ambiguous(t_cmd *cur);
 
 
@@ -127,5 +130,6 @@ void		get_delimiter(t_cmd **cmd);
 void		check_expand_and_put_in_file(t_data *data, int fd);
 char		*expand_heredoc_string(char *string, char *str, int *i);
 char		*expand_here_doc_value(char *str, int *i);
+int	        count_heredoc(int flag);
 
 #endif

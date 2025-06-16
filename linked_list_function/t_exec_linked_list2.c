@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:32:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 15:52:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:22:04 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	lstclear_exec(void)
 		return ;
 	while (cur)
 	{
-        next = cur->next;
-		if(cur->cmd)
+		next = cur->next;
+		if (cur->cmd)
 			ft_free(cur->cmd);
-		if(cur->args)
+		if (cur->args)
 		{
-        	ft_free(cur->args);
+			ft_free(cur->args);
 			cur->args = NULL;
 		}
 		ft_free(cur);
