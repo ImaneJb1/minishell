@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 14:06:52 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:53:48 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int	fill_the_exec_struct(void)
 		return (0);
 	lstadd_exec_back(v_exec(), cmd);
 	not_first_cmd(0);
+	field_count_arg(0);
 	return (1);
 }

@@ -115,3 +115,10 @@ minishell: minqi1shell: mivn2ishell: e1: No such file or directory
 
 
 19) cd parsing/  ==> (invalid read)
+
+
+20) export a=1 b=2 c=3 d=4
+Minishell $>: $f|$a|$b ==>(not like bash)
+
+
+21) ls > $a | ls (a="f 1") ==> (not like bash)
