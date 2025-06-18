@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 12:13:55 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:22:09 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	print_parsing(void)
 		printf("[%s] = ", ptr->content);
 		if (ptr->type & WORD)
 			printf("WORD ");
+        if (ptr->type & FIELD)
+			printf("FIELD ");
 		if (ptr->type & FILE_NAME)
 			printf("FILE_NAME ");
 		if (ptr->type & CMD)
@@ -119,7 +121,6 @@ int	main(int argc, char const *argv[], char **env)
 			lstclear_exec();
 			continue ;
 		}
-		
 		main_execution();
 		lstclear_exec();
 	}

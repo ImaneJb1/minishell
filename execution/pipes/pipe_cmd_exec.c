@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 10:13:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:21:07 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_errors(t_exec *cmd)
     } 
 	else
 	{
-        perror("execve");
+        perror("");
         ft_exit(1);
     }
 }
@@ -53,18 +53,17 @@ void	execution(t_exec *cmd) // HADI KHDAMA BIHA F SIMPLE COMMAND
 void	execute_first_command(t_exec *cmd, int *fd)
 {
 	close(fd[0]);
-	if (cmd->fd_in != 0)
+	dup2(fd[1], STDOUT_FILENO);
+	if (cmd->fd_in != STDIN_FILENO)
 	{
-		dup2(cmd->fd_in, 0); 
+		dup2(cmd->fd_in, STDIN_FILENO); 
 		close(cmd->fd_in);
 	}
-	if (cmd->fd_out != 1)
+	if (cmd->fd_out != STDOUT_FILENO)
 	{
-		dup2(cmd->fd_out, 1);
+		dup2(cmd->fd_out, STDOUT_FILENO);
 		close(cmd->fd_out);
 	}
-	else
-		dup2(fd[1], 1);
 	close(fd[1]);
 	execution(cmd);
 }
@@ -72,35 +71,35 @@ void	execute_first_command(t_exec *cmd, int *fd)
 void	execute_middle_command(t_exec *cmd, int *fd)
 {
 	close(fd[0]);
-	if (cmd->fd_in != 0)
+	dup2(fd[1], STDOUT_FILENO);
+	if (cmd->fd_in != STDIN_FILENO)
 	{
-		dup2(cmd->fd_in, 0);
+		dup2(cmd->fd_in, STDIN_FILENO);
 		close(cmd->fd_in);
 	}
-	if (cmd->fd_out != 1)
+	if (cmd->fd_out != STDOUT_FILENO)
 	{
-		dup2(cmd->fd_out, 1);
+		dup2(cmd->fd_out, STDOUT_FILENO);
 		close(cmd->fd_out);
 	}
-	else
-		dup2(fd[1], 1);
 	close(fd[1]);
 	execution(cmd);
 }
 
 void	execute_last_command(t_exec *cmd, int *fd)
 {
-	// dprintf(2, "*******************last*****************\n");
 	close(fd[1]);
 	close(fd[0]);
-	if (cmd->fd_in != 0)
+	if (cmd->fd_in != STDIN_FILENO)
 	{
-		dup2(cmd->fd_in, 0);
+		if (dup2(cmd->fd_in, STDIN_FILENO) < 0)
+			free_exit(1);
 		close(cmd->fd_in);
 	}
 	if (cmd->fd_out != 1)
 	{
-		dup2(cmd->fd_out, 1);
+		if(dup2(cmd->fd_out, STDOUT_FILENO) < 0)
+			free_exit(1);
 		close(cmd->fd_out);
 	}
 	execution(cmd);

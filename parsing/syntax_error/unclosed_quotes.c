@@ -1,29 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unclosed_quotes.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/02 15:12:05 by ijoubair          #+#    #+#             */
+/*   Updated: 2025/06/02 15:12:55 by ijoubair         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../parsing.h"
 
 int	check_unclosed_quotes(t_cmd *ptr)
 {
-	int	i;
-	char quote;
-	char *str;
+	int		i;
+	char	quote;
+	char	*str;
 
 	str = ptr->content;
 	quote = 0;
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == '\'' || str[i] == '"')
+		if (str[i] == '\'' || str[i] == '"')
 		{
-			if(quote == 0)
+			if (quote == 0)
 				quote = str[i];
 			else if (quote == str[i])
 				quote = 0;
 		}
 		i++;
 	}
-	if(quote != 0)
+	if (quote != 0)
 		print_error("Syntax error unclosed quotes\n");
-	return(quote);
+	return (quote);
 }
 
 // int	check_unclosed_quotes(t_cmd	*ptr)
@@ -52,10 +63,11 @@ int	check_unclosed_quotes(t_cmd *ptr)
 
 // bool	is_valid_syntax(void)
 // {
-// 	if(check_pipe_syntax() < 0 || check_unclosed_quotes() < 0  || unexpected_token() < 0 || redir_errors() < 0 || if_special_at_end() < 0)
+// 	if(check_pipe_syntax() < 0 || check_unclosed_quotes() < 0 
+		// || unexpected_token() < 0 || redir_errors() < 0
+		// || if_special_at_end() < 0)
 // 	{
 // 		return(FALSE);
 // 	}
 // 	return(TRUE);
 // }
-

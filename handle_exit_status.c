@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_exit_status.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 17:16:32 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 18:31:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:41:53 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void    update_exit_status(int status)
 
 void	free_exit(int status)
 {
-	update_exit_status(status);
+    update_exit_status(status);
 	ft_exit(status);
 }

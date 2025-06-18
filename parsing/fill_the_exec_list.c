@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 15:09:07 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:23:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,4 @@ int 	fill_the_exec_struct(void)
 	is_arg_of_cmd(0);
 	return 1;
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:31:55 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/01 19:53:30 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:31:50 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXECUTION_H
 
 # include "../linked_list_function/linked_list.h"
-// # include "../minishell.h"
+# include "../minishell.h"
 #include "./built_ins/built_in.h"
 #include <sys/types.h>
 #include <sys/wait.h>
