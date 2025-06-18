@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:20:57 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/12 17:22:22 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:05:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,18 @@
 #  define PATH_MAX 4096
 # endif
 
-
 typedef struct s_buitlin
 {
 	char	*cmd;
 	void	(*func)(t_exec *);
 }			t_buitin;
 
-
 void		builtin(t_exec *cmd);
-void 		exit_func(t_exec *node);
-void    	exit_status_case(char *arg);
-
+void		exit_func(t_exec *node);
+void		exit_status_case(char *arg);
 
 //      env
 void		env(t_exec *node);
-
 
 //      export
 void		export(t_exec *node);
@@ -47,11 +43,9 @@ char		*the_key(char *str, int *i);
 void		add_var_node(t_env **node, char *new_value, char c);
 void		appand_var(t_env **node, char *new_value);
 
-
 //      unset
 void		delete_from_env(char *key);
 void		unset(t_exec *node);
-
 
 //		cd && pwd
 void		change_directory(char *path);
@@ -62,10 +56,8 @@ void		cd_home(char *oldpwd);
 void		cd_back(char *oldpwd);
 void		cd(t_exec *node);
 
-
 //		pwd
 void		pwd(t_exec *node);
-
 
 //		echo
 void		echo(t_exec *node);

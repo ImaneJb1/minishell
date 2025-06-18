@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_environment.c                                :+:      :+:    :+:   */
+/*   creat_environment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 19:23:22 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/27 17:25:02 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/06/18 16:16:10 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/18 16:16:32 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*split_env_value(char *line, int *i)
 	return (value);
 }
 
-static	void	add_to_env_list(char **env, int i)
+static void	add_to_env_list(char **env, int i)
 {
 	t_env	*node;
 	char	*key;
@@ -67,22 +67,22 @@ void	create_environment(char **env)
 	lstadd_env_back(v_env(), node);
 	while (env[i])
 	{
-		if(env[i][0] != '?')
+		if (env[i][0] != '?')
 			add_to_env_list(env, i);
 		i++;
 	}
 }
 
-void	env(t_exec	*node)
+void	env(t_exec *node)
 {
 	t_env	*env;
 
-	if(!node)
+	if (!node)
 		return ;
 	env = *v_env();
-	while(env)
+	while (env)
 	{
-		if(env->type == global)
+		if (env->type == global)
 		{
 			ft_putstr_fd(env->key, node->fd_out);
 			ft_putstr_fd("=", node->fd_out);

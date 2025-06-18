@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 15:24:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:24:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ int					is_error(int flag);
 int					handle_exec_error(void);
 void				print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
 void				free_exit(int status);
+void				print_execve_errors(t_exec *cmd);
+int					fd_error(t_exec *cmd);
 
 // 		parsing function
 int					parsing(char *str);

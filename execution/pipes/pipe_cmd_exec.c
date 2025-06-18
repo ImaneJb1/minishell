@@ -6,37 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/15 17:56:24 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:26:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
-
-void	print_errors(t_exec *cmd)
-{
-	if (errno == EACCES)
-	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
-		ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
-        ft_exit(126);
-    } 
-	else if (errno == ENOENT)
-	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
-		if(ft_strchr(cmd->cmd,'/') || is_paht_empty(0))
-			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-		else
-			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-        ft_exit(127);  
-    } 
-	else
-	{
-        perror("execve");
-        ft_exit(1);
-    }
-}
 
 void	execution(t_exec *cmd)
 {
@@ -47,7 +21,7 @@ void	execution(t_exec *cmd)
 		ft_exit(126);
 	}
 	execve(cmd->path, cmd->args, env_to_arr());
-	print_errors(cmd);
+	print_execve_errors(cmd);
 }
 
 void	execute_first_command(t_exec *cmd, int *fd)
@@ -55,7 +29,7 @@ void	execute_first_command(t_exec *cmd, int *fd)
 	close(fd[0]);
 	if (cmd->fd_in != 0)
 	{
-		dup2(cmd->fd_in, 0); 
+		dup2(cmd->fd_in, 0);
 		close(cmd->fd_in);
 	}
 	if (cmd->fd_out != 1)

@@ -2,28 +2,28 @@
 
 bool	is_numeric_arg(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(arg[i])
+	while (arg[i])
 	{
-		if(ft_isdigit(arg[i]) == 0)
-			return(FALSE);
+		if (ft_isdigit(arg[i]) == 0)
+			return (FALSE);
 		i++;
 	}
-	return(TRUE);
+	return (TRUE);
 }
 
-void exit_func(t_exec *node)
+void	exit_func(t_exec *node)
 {
-	if(!node->args)
+	if (!node->args)
 	{
 		ft_free_all();
 		free_exit(0);
 	}
-	else if(node->args[1] && !node->args[2])
+	else if (node->args[1] && !node->args[2])
 	{
-		if(is_numeric_arg(node->args[1]))
+		if (is_numeric_arg(node->args[1]))
 			free_exit(ft_atoi(node->args[1]));
 		else
 		{

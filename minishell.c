@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 15:24:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:23:09 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,6 @@
 #include "minishell.h"
 
 int		g_exit_status;
-
-void	print_parsing(void)
-{
-	t_cmd	*ptr;
-
-	ptr = *v_cmd();
-	printf("----------------------------------------------\n");
-	printf("                    PARSING                   \n");
-	printf("----------------------------------------------\n");
-	while (ptr)
-	{
-		printf("[%s] = ", ptr->content);
-		if (ptr->type & WORD)
-			printf("WORD ");
-		if (ptr->type & FIELD)
-			printf("FIELD ");
-		if (ptr->type & FILE_NAME)
-			printf("FILE_NAME ");
-		if (ptr->type & CMD)
-			printf("CMD ");
-		if (ptr->type & CMD_ARG)
-			printf("CMD_ARG ");
-		if (ptr->type & DOUBLE_Q)
-			printf("DOUBLE_Q ");
-		if (ptr->type & SINGLE_Q)
-			printf("SINGLE_Q ");
-		if (ptr->type & PIPE)
-			printf("PIPE ");
-		if (ptr->type & HERE_DOC)
-			printf("HERE_DOC ");
-		if (ptr->type & REDIR_IN)
-			printf("REDIR_IN ");
-		if (ptr->type & REDIR_OUT)
-			printf("REDIR_OUT ");
-		if (ptr->type & APPEND)
-			printf("APPEND ");
-		if (ptr->type & PATH)
-			printf("PATH ");
-		if (ptr->type & VARIABLE)
-			printf("VARIABLE");
-		if (ptr->type & DELIMITER)
-			printf("DELIMITER");
-		printf("  (%d) ", ptr->index);
-		ptr = ptr->next;
-		printf("\n");
-	}
-	printf("----------------------------------------------\n");
-	printf("----------------------------------------------\n");
-}
 
 void	create_env_and_handle_signals(char **env)
 {
@@ -110,8 +61,8 @@ int	main(int argc, char const *argv[], char **env)
 
 /********************      main for tester         ********************/
 
-char	*get_next_line(int fd);
-char	*ft_strtrim(const char *s1, const char *set);
+// char	*get_next_line(int fd);
+// char	*ft_strtrim(const char *s1, const char *set);
 
 // int	main(int argc, char const *argv[], char **env)
 // {
@@ -170,77 +121,77 @@ char	*ft_strtrim(const char *s1, const char *set);
 // 	}
 // }
 
-char	*get_next_line(int fd)
-{
-	char	*line;
-	char	buf;
-	int		i;
-	int		size;
-	char	*tmp;
+// char	*get_next_line(int fd)
+// {
+// 	char	*line;
+// 	char	buf;
+// 	int		i;
+// 	int		size;
+// 	char	*tmp;
 
-	line = NULL;
-	i = 0;
-	size = 1024;
-	line = malloc(size);
-	if (!line)
-		return (NULL);
-	while (read(fd, &buf, 1) > 0)
-	{
-		line[i++] = buf;
-		if (buf == '\n')
-			break ;
-		if (i >= size - 1)
-		{
-			size *= 2;
-			tmp = malloc(size);
-			if (!tmp)
-				return (free(line), NULL);
-			for (int j = 0; j < i; j++)
-				tmp[j] = line[j];
-			free(line);
-			line = tmp;
-		}
-	}
-	line[i] = '\0';
-	if (i == 0)
-		return (free(line), NULL);
-	return (line);
-}
+// 	line = NULL;
+// 	i = 0;
+// 	size = 1024;
+// 	line = malloc(size);
+// 	if (!line)
+// 		return (NULL);
+// 	while (read(fd, &buf, 1) > 0)
+// 	{
+// 		line[i++] = buf;
+// 		if (buf == '\n')
+// 			break ;
+// 		if (i >= size - 1)
+// 		{
+// 			size *= 2;
+// 			tmp = malloc(size);
+// 			if (!tmp)
+// 				return (free(line), NULL);
+// 			for (int j = 0; j < i; j++)
+// 				tmp[j] = line[j];
+// 			free(line);
+// 			line = tmp;
+// 		}
+// 	}
+// 	line[i] = '\0';
+// 	if (i == 0)
+// 		return (free(line), NULL);
+// 	return (line);
+// }
 
-int	is_in_set(char c, const char *set)
-{
-	while (*set)
-	{
-		if (*set == c)
-			return (1);
-		set++;
-	}
-	return (0);
-}
+// int	is_in_set(char c, const char *set)
+// {
+// 	while (*set)
+// 	{
+// 		if (*set == c)
+// 			return (1);
+// 		set++;
+// 	}
+// 	return (0);
+// }
 
-char	*ft_strtrim(const char *s1, const char *set)
-{
-	size_t	start;
-	size_t	end;
-	size_t	len;
-	char	*trimmed;
+// char	*ft_strtrim(const char *s1, const char *set)
+// {
+// 	size_t	start;
+// 	size_t	end;
+// 	size_t	len;
+// 	char	*trimmed;
 
-	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	while (s1[start] && is_in_set(s1[start], set))
-		start++;
-	end = start;
-	while (s1[end])
-		end++;
-	while (end > start && is_in_set(s1[end - 1], set))
-		end--;
-	len = end - start;
-	trimmed = malloc(len + 1);
-	if (!trimmed)
-		return (NULL);
-	for (size_t i = 0; i < len; i++)
-		trimmed[i] = s1[start + i];
-	trimmed[len] = '\0';
-	return (trimmed);
-}
+// 	if (!s1 || !set)
+// 		return (NULL);
+// 	start = 0;
+// 	while (s1[start] && is_in_set(s1[start], set))
+// 		start++;
+// 	end = start;
+// 	while (s1[end])
+// 		end++;
+// 	while (end > start && is_in_set(s1[end - 1], set))
+// 		end--;
+// 	len = end - start;
+// 	trimmed = malloc(len + 1);
+// 	if (!trimmed)
+// 		return (NULL);
+// 	for (size_t i = 0; i < len; i++)
+// 		trimmed[i] = s1[start + i];
+// 	trimmed[len] = '\0';
+// 	return (trimmed);
+// }

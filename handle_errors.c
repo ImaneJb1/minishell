@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/17 17:59:30 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:26:21 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,37 @@ void	print_error_to_stderr(char *s1, char *s2, char *s3, int fd)
 	ft_putstr_fd(s3, fd);
 }
 
+int	fd_error(t_exec *cmd)
+{
+	if (cmd->fd_in < 0)
+		return (1);
+	if (cmd->fd_out < 0)
+		return (1);
+	return (0);
+}
 
+void	print_execve_errors(t_exec *cmd)
+{
+	if (errno == EACCES)
+	{
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
+		ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
+		ft_exit(126);
+	}
+	else if (errno == ENOENT)
+	{
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
+		if (ft_strchr(cmd->cmd, '/') || is_paht_empty(0))
+			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		else
+			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+		ft_exit(127);
+	}
+	else
+	{
+		perror("execve");
+		ft_exit(1);
+	}
+}
