@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/18 18:21:07 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:37:01 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_errors(t_exec *cmd)
 		if(ft_strchr(cmd->cmd,'/'))
 			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		else
-			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+			dprintf(2,": command not found\n" );
         ft_exit(127);  
     } 
 	else
