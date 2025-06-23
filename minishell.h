@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 16:24:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 22:55:12 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 
 extern int			g_exit_status;
 
-// 		enums type
 typedef enum s_type
 {
 	PIPE = 1 << 0,
@@ -53,7 +52,6 @@ typedef enum s_type
 	PATH = 1 << 11,
 	VARIABLE = 1 << 12,
 	DELIMITER = 1 << 13,
-	FIELD = 1 << 14
 }					t_type;
 
 typedef struct s_tokens
@@ -132,7 +130,7 @@ t_env				**v_env(void);
 // 		errors and exit
 int					is_error(int flag);
 int					handle_exec_error(void);
-void				print_error_to_stderr(char *s1, char *s2, char *s3, int fd);
+void				print_msg_to_fd(char *s1, char *s2, char *s3, int fd);
 void				free_exit(int status);
 void				print_execve_errors(t_exec *cmd);
 int					fd_error(t_exec *cmd);

@@ -17,7 +17,7 @@ void	dup_and_close(t_exec *cmd)
 bool	handle_export_unset(t_exec *cmd)
 {
 	int				i;
-	static t_buitin	arr[5] = {{"cd", cd}, {"pwd", pwd},
+	static t_buitin	arr[5] = {{"cd", cd}, {"echo", echo}, {"pwd", pwd},
 	{"exit", exit_func}, {"export", export}, {"unset", unset}};
 
 	i = 0;

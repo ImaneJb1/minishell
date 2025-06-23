@@ -88,7 +88,6 @@ export b=$a => minishell: b=1: command not found // Done
 
 13)  echo - -n -n -n -nnnnnnnnnnnnnnnn //done
 
-<<<<<<< HEAD
 14) Ctl + c //done
 
 
@@ -123,6 +122,5 @@ Minishell $>: $f|$a|$b ==>(not like bash)
 
 
 21) ls > $a | ls (a="f 1") ==> (not like bash)
-=======
-14) Ctl + c //done
->>>>>>> imane3
+
+22) echo zz > a vv > b

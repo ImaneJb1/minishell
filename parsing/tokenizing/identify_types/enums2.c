@@ -64,8 +64,8 @@ void	identify_delimiter(void)
 			count_heredoc(1);
 			if (count_heredoc(2) > 16)
 			{
-				ft_putstr_fd("minishell: maximum here-document \
-                    count exceeded\n", 2);
+				ft_putstr_fd("minishell: maximum here-document count exceeded\n"\
+				, 2);
 				ft_exit(g_exit_status);
 			}
 			if (ptr->type & WORD)

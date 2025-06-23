@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 11:02:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 16:15:00 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 18:43:11 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*the_key(char *str, int *i)
 		return (key);
 	else if (key && (str[*i] == '+' && str[(*i) + 1] == '='))
 		return (key);
-	print_error_to_stderr("Minishell: export: `", str,
+	print_msg_to_fd("Minishell: export: `", str,
 		"': not a valid identifier\n", STDERR_FILENO);
 	update_exit_status(1);
 	return (NULL);
