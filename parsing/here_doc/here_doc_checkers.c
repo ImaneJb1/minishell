@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_unset.c                                        :+:      :+:    :+:   */
+/*   here_doc_checkers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 18:03:36 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 16:16:59 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/06/12 16:50:06 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/16 14:42:33 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../built_in.h"
+#include "../parsing.h"
 
-void	delete_from_env(char *key)
+int	heredoc_exit_with_signal(int flag)
 {
-	t_env	*env;
+	static int	save_flag;
 
-	env = *v_env();
-	while (env)
-	{
-		if (ft_strcmp(env->key, key) == 0)
-		{
-			lst_del_one_env_by_node(env);
-			return ;
-		}
-		env = env->next;
-	}
+	if (flag == 1)
+		save_flag = 1;
+	if (flag == 0)
+		save_flag = 0;
+	return (save_flag);
 }
 
-void	unset(t_exec *node)
+int	inside_child(int flag)
 {
-	int	i;
+	static int	i;
 
-	i = 0;
-	while (node->args[++i])
-		delete_from_env(node->args[i]);
+	if (flag == 1)
+		i = 1;
+	else if (flag == 0)
+		i = 0;
+	return (i);
+}
+
+int	count_heredoc(int flag)
+{
+	static int	i;
+
+	if (flag == 1)
+		i += flag;
+	if (flag == 0)
+		i = 0;
+	return (i);
 }

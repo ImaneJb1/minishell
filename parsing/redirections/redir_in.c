@@ -6,30 +6,33 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:00 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:06:25 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:25:51 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-// int	infile_index(int flag)
-// {
-// 	static	int i;
-
-// 	if(flag == 1)
-// 		i++;
-// 	else if()
-// }
-
-// void	function(t_exec	*)
-// {
-// 	static int i;
-// 	open_fd_out(strct->&fd[i]); 
-// }
+static int	is_ambiguous_redir_in(t_cmd *cur)
+{
+	if ((cur->prev && (cur->prev->type & REDIR_IN)) && !(cur->type & FILE_NAME))
+		return (1);
+	else if (check_redir(cur, FILE_NAME, REDIR_IN))
+	{
+		if (field_count_arg(2) > 1)
+			return (1);
+	}
+	return (0);
+}
 
 bool	if_its_infile(t_cmd *ptr)
 {
-	if ((ptr->type & FILE_NAME) && ((ptr->prev && ptr->prev->type & REDIR_IN)))
+	if (is_ambiguous_redir_in(ptr))
+	{
+		is_error(1);
+		ft_putstr_fd("bash: ambiguous redirect\n", STDERR_FILENO);
+		return (FALSE);
+	}
+	if (check_redir(ptr, FILE_NAME, REDIR_IN))
 		return (TRUE);
 	return (FALSE);
 }

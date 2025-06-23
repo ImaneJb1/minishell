@@ -32,7 +32,7 @@ void	exit_func(t_exec *node)
 		}
 		else
 		{
-			write(1, "exit: ", 6);
+			print_msg_to_fd("exit\n", "minishell: ", "exit: ", 1);
 			print_cmd_error(node->args[1], "numeric argument required");
 			free_exit(2);
 		}

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 18:22:52 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:29:19 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	appand_var(t_env **node, char *new_value)
 {
-	char	*appand_value;
-
-	appand_value = NULL;
 	(*node)->type = global;
 	(*node)->value = ft_strjoin((*node)->value, new_value);
 }
@@ -86,6 +83,7 @@ void	print_export_var(t_exec *node)
 		env = env->next;
 	}
 }
+
 void	export(t_exec *node)
 {
 	int	index;

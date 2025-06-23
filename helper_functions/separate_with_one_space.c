@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   separate_with_one_space.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/16 15:21:18 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/16 15:21:19 by imeslaki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "helper.h"
 
 void	skip_space(char *str, int *i)
@@ -31,7 +43,7 @@ char	*separat_with_one_space(char *str)
 	char	*string;
 	char	ch;
 
-	int(i), (j) = 0;
+	int (i), (j) = 0;
 	i = 0;
 	string = ft_malloc(ft_strlen(str) + 1);
 	skip_space(str, (&i));

@@ -1,36 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_error.c                                    :+:      :+:    :+:   */
+/*   redirections_heplers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/02 15:11:46 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:14:20 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/06/16 14:52:57 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/16 14:59:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-t_tokens	*init_redir_array(void)
+int	is_redirection(t_cmd *cur)
 {
-	static t_tokens	token[] = {
-	{"<", REDIR_IN}, {"<<", HERE_DOC}, {">", REDIR_OUT}, {">>", APPEND}};
-
-	return (token);
+	if (cur->type & REDIR_IN)
+		return (1);
+	if (cur->type & REDIR_OUT)
+		return (1);
+	if (cur->type & APPEND)
+		return (1);
+	return (0);
 }
 
-int	here_doc_error(t_cmd *ptr)
+int	not_first_cmd(int flag)
 {
-	if (ptr)
+	static int	i;
+
+	if (flag == 0)
+		i = 0;
+	else if (flag == 1)
+		i = 1;
+	return (i);
+}
+
+int	check_redir(t_cmd *cur, t_type type1, t_type type2)
+{
+	if (cur->type & type1)
 	{
-		if ((ptr->type & HERE_DOC) && (ptr->next
-				&& !(ptr->next->type & DELIMITER)))
-		{
-			print_error_token("Syntax error near unexpected token ",
-				ptr->next->content);
-			return (-1);
-		}
+		if (cur->prev && (cur->prev->type & type2))
+			return (1);
 	}
 	return (0);
 }

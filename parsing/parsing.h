@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 18:21:59 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:15:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
-// # include <sys/wait.h>
 
-int	is_arg_of_cmd(int flag);
-
-//      main parsing fuctions
-int         inside_child(int flag);
-int         heredoc_exit_with_signal(int flag);
-
+t_data		*init_data(void);
 void		remove_quotes(void);
+
+//      check_functions
+int			not_first_cmd(int flag);
+int			inside_child(int flag);
+int			heredoc_exit_with_signal(int flag);
 
 //      fill exec list
 void		creat_the_cmd_list(char *line);
@@ -31,14 +30,12 @@ void		add_to_cmd_list(char ch, int flag);
 char		*unquoted_one_cmd(char *str);
 
 //      fill exec list path
-void				fill_path(t_exec *cmd);
-int		fill_the_exec_struct(void);
+void		fill_path(t_exec *cmd);
+int			fill_the_exec_struct(void);
 t_exec		*add_to_exec_list(char *str, t_exec *cur, int flag);
 void		fill_cmd(t_cmd *token, t_exec **cmd);
 int			count_args(t_cmd *cmd);
 void		fill_args(t_cmd *token, t_exec **cmd);
-
-// t_exec				   *check_cmd(t_cmd **cmd, t_exec *list);
 
 //		operations functions
 void		is_pipe(char *str, int *i);
@@ -81,7 +78,13 @@ char		*inside_quote(char *command, char *content, int *i, char c);
 int			is_var_inside_quote(char *c, int i, int j);
 int			check_double_quote(char c, int j);
 char		*get_value_from_env(char *key);
+char		*add_var_string(char *command, t_cmd *cur, int *i, int x);
+char		*expand_the_value(char *command, t_data *data);
 void		field_spliting(void);
+int			is_not_field(char *content);
+int			len_of_word(char *str, int j);
+void		skip_quotes(char *str, int *i);
+int			field_count_arg(int flag);
 
 // 		syntax error
 bool		is_valid_syntax(void);
@@ -96,6 +99,7 @@ t_tokens	*init_redir_array(void);
 
 // error printers
 void		print_error_token(char *message, char *token);
+//      error printers
 void		print_error(char *s);
 void		print_cmd_error(char *command, char *message);
 void		print_error_token(char *message, char *token);
@@ -105,6 +109,9 @@ void		open_fd_in(t_cmd *token, int *fd);
 void		open_fd_out(t_cmd *token, int *fd);
 void		open_fd_app(t_cmd *token, int *fd);
 void		fill_fds_into_exec(t_cmd *token, t_exec **node);
+int			is_redirection(t_cmd *cur);
+int			check_redir(t_cmd *cur, t_type type1, t_type type2);
+// int			is_ambiguous(t_cmd *cur);
 
 //      open_fd_heredoc
 void		open_fd_heredoc(t_cmd *token, int *fd);
@@ -113,5 +120,6 @@ void		get_delimiter(t_cmd **cmd);
 void		check_expand_and_put_in_file(t_data *data, int fd);
 char		*expand_heredoc_string(char *string, char *str, int *i);
 char		*expand_here_doc_value(char *str, int *i);
+int			count_heredoc(int flag);
 
 #endif

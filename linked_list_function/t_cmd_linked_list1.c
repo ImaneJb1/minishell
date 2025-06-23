@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:06:29 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 17:26:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:21:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,9 @@ void	lstadd_cmd_back(t_cmd **lst, t_cmd *new)
 	}
 }
 
-void	lstadd_cmd_front(t_cmd **lst, t_cmd *new)
-{
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
-}
-
 t_cmd	*lstlast_cmd(void)
 {
-	t_cmd *lst;
+	t_cmd	*lst;
 
 	lst = *v_cmd();
 	if (lst == NULL)
@@ -61,19 +53,4 @@ t_cmd	*lstlast_cmd(void)
 		lst = lst->next;
 	}
 	return (lst);
-}
-
-int	lstsize_cmd(t_cmd *lst)
-{
-	int		i;
-	t_cmd	*tmp;
-
-	tmp = lst;
-	i = 0;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	return (i);
 }

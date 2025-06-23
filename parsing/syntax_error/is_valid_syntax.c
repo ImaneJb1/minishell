@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_syntax.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:50 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 15:16:57 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:14:52 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-int	check_syntax(t_cmd *ptr)
+static int	check_syntax(t_cmd *ptr)
 {
 	if (check_pipe_syntax(ptr) < 0)
 		return (1);
@@ -34,9 +34,7 @@ bool	is_valid_syntax(void)
 	ptr = *v_cmd();
 	while (ptr)
 	{
-		if (check_pipe_syntax(ptr) < 0 || check_unclosed_quotes(ptr) != 0
-			|| here_doc_error(ptr) < 0 || redir_errors(ptr) < 0
-			|| if_special_at_end(ptr) < 0)
+		if (check_syntax(ptr))
 			return (FALSE);
 		ptr = ptr->next;
 	}

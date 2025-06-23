@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:31:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/02 14:31:48 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:32:03 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	dup_and_close(t_exec *cmd)
 
 bool	handle_export_unset(t_exec *cmd)
 {
-	static t_buitin	arr[5] = {{"cd", cd}, {"pwd", pwd}, {"exit", exit_func},
-			{"export", export}, {"unset", unset}};
 	int				i;
+	static t_buitin	arr[6] = {{"cd", cd}, {"echo", echo}, {"pwd", pwd},
+	{"exit", exit_func}, {"export", export}, {"unset", unset}};
 
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 	{
 		if (ft_strcmp(arr[i].cmd, cmd->cmd) == 0)
 		{
@@ -61,6 +61,7 @@ void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 {
 	int	status;
 
+	is_paht_empty(0);
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
@@ -72,15 +73,6 @@ void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 	else if (WIFEXITED(status))
 		update_exit_status(WEXITSTATUS(status));
 	inside_child(0);
-}
-
-int	fd_error(t_exec *cmd)
-{
-	if (cmd->fd_in < 0)
-		return (1);
-	if (cmd->fd_out < 0)
-		return (1);
-	return (0);
 }
 
 void	execute_simple_cmd(t_exec *cmd)

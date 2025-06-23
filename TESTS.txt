@@ -89,3 +89,38 @@ export b=$a => minishell: b=1: command not found // Done
 13)  echo - -n -n -n -nnnnnnnnnnnnnnnn //done
 
 14) Ctl + c //done
+
+
+15) filed spliting $a ==> (a="b1  ")
+
+16)  fix exit  
+
+17) >> $fdg cat ==> call it multiple times (invalid write )
+
+18) when run env -i ./mini and inside the program run this command sl|sl
+it print this 
+: Minishell $>: sl|sl
+minishelmli:n isslh:e lNlo:  ssulc:h  Nfoi lseu cohr  fdiilree cotro rdyi
+rectory
+Minishell $>: sl|sl
+mmiinniisshheellll::  ssll::  NNoo  ssuucchh  ffiillee  oorr  ddiirreeccttoorryy
+
+
+
+ $a |$b |$c |$d ==> (a b c d are variables in  env)
+minishell: f2: No such file or directory
+minishell: minqi1shell: mivn2ishell: e1: No such file or directory
+: No such file or directory
+: No such file or directory
+
+
+19) cd parsing/  ==> (invalid read)
+
+
+20) export a=1 b=2 c=3 d=4
+Minishell $>: $f|$a|$b ==>(not like bash)
+
+
+21) ls > $a | ls (a="f 1") ==> (not like bash)
+
+22) echo zz > a vv > b

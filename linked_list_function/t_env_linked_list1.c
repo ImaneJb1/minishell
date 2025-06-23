@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/31 17:18:48 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:21:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_env	*new_env_node(char *key, char *value)
 	if (!elem)
 		return (NULL);
 	elem->key = ft_strdup(key);
-    elem->value = ft_strdup(value);
+	elem->value = ft_strdup(value);
 	elem->next = NULL;
 	elem->prev = NULL;
 	return (elem);
@@ -42,17 +42,9 @@ void	lstadd_env_back(t_env **lst, t_env *new)
 	}
 }
 
-void	lstadd_env_front(t_env **lst, t_env *new)
-{
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
-}
-
 t_env	*lstlast_env(void)
 {
-	t_env *lst;
+	t_env	*lst;
 
 	lst = *v_env();
 	if (lst == NULL)
@@ -68,7 +60,7 @@ int	lstsize_env(void)
 {
 	int		i;
 	t_env	*tmp;
-	t_env 	*lst;
+	t_env	*lst;
 
 	lst = *v_env();
 	tmp = lst;

@@ -6,24 +6,26 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/18 18:22:57 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:55:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_in.h"
 
-void    change_directory(char *path)
+void	change_directory(char *path)
 {
     char *oldpwd;
     oldpwd = get_pwd();
-    printf("oldpwd = %s\n", oldpwd); // store the old one
-    if(chdir(path) < 0)   // change the wd
+    printf("path = %s\n", path); // store the old one
+    if(path == NULL || chdir(path) < 0)   // change the wd
     {
         if(ft_strcmp(path, "-") == 0)
             cd_back(oldpwd);
         else if(!path || ft_strcmp(path, "~") == 0)
         {
             cd_home(oldpwd);
+            printf("home\n");
+            return;
         }   
         else
         {
@@ -33,12 +35,13 @@ void    change_directory(char *path)
     }
     else
     {
+        printf("chkadir tma1\n");
         change_pwd_var();
         change_oldpwd_var(oldpwd);
     }
 }
 
-void    cd(t_exec *node)
+void	cd(t_exec *node)
 {
     int num_args;
 
@@ -51,18 +54,3 @@ void    cd(t_exec *node)
     }
     change_directory(node->args[1]);
 }
-
-// int main(int argc, char **argv, char **env)
-// {
-//     create_environment(env);
-//     for(int i = 0; env[i]; i++)
-//         printf("%s\n", env[i]);
-//     change_directory(argv[1]);
-//     int i = 0;
-//     while(env[i])
-//     {
-//         if(ft_strnstr(env[i]," OLDPWD") >= 0 || ft_strnstr(env[i], "PWD") >= 0)
-//             printf("%s\n", env[i]);
-//         i++;
-//     }
-// }

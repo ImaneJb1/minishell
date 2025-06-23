@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   globale.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/02 15:08:47 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:16:07 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,4 @@ t_exec	**v_exec(void)
 	static t_exec	*exec;
 
 	return (&exec);
-}
-
-t_pipe	**v_pipe(void)
-{
-	static t_pipe	*pipe;
-
-	return (&pipe);
 }

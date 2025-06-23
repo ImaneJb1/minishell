@@ -6,35 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 18:22:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:22:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-
-int	len_of_word(char *str, int j)
-{
-	t_data	*data;
-
-	data = init_data();
-	while (str[j] && !ft_strchr(" \t", str[j]))
-	{
-		if (ft_strchr("\"\'", str[j]))
-		{
-			data->c = str[j++];
-			data->count++;
-			while (str[j] && str[j] != data->c)
-			{
-				data->count++;
-				j++;
-			}
-			data->c = 0;
-		}
-		data->count++;
-		j++;
-	}
-	return (data->count);
-}
 
 char	*node_content(char *str, int *i)
 {
@@ -63,71 +39,32 @@ char	*node_content(char *str, int *i)
 	return (word);
 }
 
-void	skip_quotes(char *str, int *i)
+void	add_types(t_cmd **node, int *flag, t_type type)
 {
-	char	c;
-
-	if (ft_strchr("\'\"", str[*i]))
+	if (*flag == 0)
 	{
-		c = str[*i];
-		(*i)++;
-		while (str[*i] && str[*i] != c)
-			(*i)++;
-		if (str[*i] == c)
-			(*i)++;
+		field_count_arg(1);
+		(*node)->type |= type;
+		(*node)->type |= CMD;
+		(*node)->type |= CMD_ARG;
+		if (ft_strchr((*node)->content, '/'))
+			(*node)->type |= PATH;
 	}
-}
-int	is_not_field(char *content)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strchr(" \t", content[i]))
-		return (0);
-	while (content[i])
+	else
 	{
-		// skip_quotes(content, &i);
-		while (content[i] && !ft_strchr(" \t\'\"", content[i]))
-			i++;
-		skip_quotes(content, &i);
-		if (!content[i])
-			return (1);
-		if (ft_strchr(" \t", content[i]))
-			return (0);
+		field_count_arg(1);
+		(*node)->type = CMD_ARG;
 	}
-	return (0);
+	*flag = 1;
 }
-
-// int		is_not_field(char const *s, char *c)
-// {
-// 	int	i;
-// 	int	count;
-
-// 	i = 0;
-// 	count = 0;
-// 	if(ft_strchr(c, s[i]))
-// 		return (1);
-// 	while (s && s[i])
-// 	{
-// 		while (s[i] && ft_strchr(c, s[i]))
-// 			i++;
-// 		if (s[i])
-// 		{
-// 			count++;
-// 			while (s[i] && !ft_strchr(c, s[i]))
-// 				i++;
-// 		}
-// 	}
-// 	return (count);
-// }
 
 void	split_the_field(t_cmd *cmd)
 {
 	t_data	*data;
 	t_cmd	*cur;
 	t_cmd	*node;
-	int		flag;	
-	t_type type;
+	t_type	type;
+	int		flag;
 
 	flag = 0;
 	node = NULL;
@@ -141,25 +78,12 @@ void	split_the_field(t_cmd *cmd)
 	{
 		data->str = node_content(data->content, &data->i);
 		node = new_cmd_node(ft_strdup(data->str));
-		if (flag == 0)
-		{
-			node->type = CMD;
-			node->type |= FIELD;
-			node->type |= CMD_ARG;
-			if(ft_strchr(node->content, '/'))
-				node->type |= PATH;	
-		}
-		else
-		{
-			node->type = CMD_ARG;
-			node->type |= FIELD;
-		}
-		flag = 1;
-		lst_add_one_cmd_by_node(cmd, node);
+		add_types(&node, &flag, type);
+		lst_add_one_cmd(cmd, node);
 		ft_free(data->str);
 		cmd = cmd->next;
 	}
-	lst_del_one_cmd_by_node(cur);
+	lst_del_one_cmd(cur);
 }
 
 void	field_spliting(void)

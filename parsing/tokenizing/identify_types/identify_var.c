@@ -2,29 +2,29 @@
 
 bool	is_dollar_sign(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == '$')
+		if (str[i] == '$')
 		{
-			if(str[i + 1] && str[i + 1] != ' ')
-				return(TRUE);
+			if (str[i + 1] && str[i + 1] != ' ')
+				return (TRUE);
 		}
 		i++;
 	}
-	return(FALSE);
+	return (FALSE);
 }
 
 void	identify_var(void)
 {
-	t_cmd *ptr;
+	t_cmd	*ptr;
 
 	ptr = *v_cmd();
-	while(ptr)
+	while (ptr)
 	{
-		if(is_dollar_sign(ptr->content))
+		if (is_dollar_sign(ptr->content))
 			ptr->type |= VARIABLE;
 		ptr = ptr->next;
 	}
