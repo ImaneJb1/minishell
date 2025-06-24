@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:00 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:25:51 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:42:38 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	open_fd_in(t_cmd *token, int *fd)
 		if (*fd < 0)
 		{
 			perror(token->content);
-			is_error(1);
 			update_exit_status(1);
 		}
 	}

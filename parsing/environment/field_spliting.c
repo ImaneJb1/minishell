@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:22:20 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 21:48:13 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,29 @@ char	*node_content(char *str, int *i)
 	skip_space(str, i);
 	return (word);
 }
+void	add_quate_if_exist(t_cmd **node)
+{
+	int i;
 
+	i = 0;
+	while ((*node)->content[i])
+	{
+		if((*node)->content[i] == '\'')
+		{
+			(*node)->type |= SINGLE_Q;
+			return ;
+		}
+		else if((*node)->content[i] == '\"')
+		{
+			(*node)->type |= DOUBLE_Q;
+			return ;
+		}		
+		i++;
+	}
+}
 void	add_types(t_cmd **node, int *flag, t_type type)
 {
+	add_quate_if_exist(node);
 	if (*flag == 0)
 	{
 		field_count_arg(1);
@@ -53,7 +73,7 @@ void	add_types(t_cmd **node, int *flag, t_type type)
 	else
 	{
 		field_count_arg(1);
-		(*node)->type = CMD_ARG;
+		(*node)->type |= CMD_ARG;
 	}
 	*flag = 1;
 }

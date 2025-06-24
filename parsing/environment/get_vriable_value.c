@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 22:30:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 21:51:41 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*expand_the_value(char *command, t_data *data)
 	while (data->value[data->j])
 	{
 		command = join_str_char(command, data->value[data->j]);
-		index_the_char(1, len);
+		index_the_char(1, len, 0);
 		len++;
 		data->j++;
 	}
@@ -34,7 +34,7 @@ char	*expand_the_value(char *command, t_data *data)
 void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 {
 	while (cur->content[*i] && (is_valid(cur->content[*i])
-			|| cur->content[*i] == '?'))
+			|| (cur->content[*i] == '?' && cur->content[*i - 1] == '$')))
 	{
 		data->flag = 1;
 		if (cur->content[*i - 1] == '$' && (ft_isdigit(cur->content[*i])
@@ -66,12 +66,12 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 	(*i)++;
 	fill_the_key(cur, i, data);
 	data->i = (*i);
-	this_is_i(1, *i);
+	// this_is_i(1, *i);
 	if (x == 0 || data->flag == 1)
 		command = expand_the_value(command, data);
 	else if (cur->content[*i])
 	{
-		index_the_char(0, *i);
+		index_the_char(0, *i, 0);
 		return (join_str_char(command, cur->content[*i]));
 	}
 	return (command);

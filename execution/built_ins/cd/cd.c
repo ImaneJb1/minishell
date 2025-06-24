@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 23:20:46 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:11:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	change_directory(char *path)
 {
     char *oldpwd;
     oldpwd = get_pwd();
-    printf("path = %s\n", path);
     if(path == NULL || chdir(path) < 0)
     {
         if(ft_strcmp(path, "-") == 0)
@@ -24,12 +23,12 @@ void	change_directory(char *path)
         else if(!path || ft_strcmp(path, "~") == 0)
         {
             cd_home(oldpwd);
-            printf("home\n");
             return;
         }   
         else
         {
             update_exit_status(1);
+            print_proc_error("minishell :", "cd: ", NULL, 2);
             perror(path);
         }
     }

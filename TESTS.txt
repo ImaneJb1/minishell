@@ -126,3 +126,37 @@ Minishell $>: $f|$a|$b ==>(not like bash)
 22) echo zz > a vv > b
 
 23) export a="$a"$a ==>abort
+
+24) ls|cat Makefile| < wc -l ==>exit status
+
+25) echo segfault < "<<<" << amazing
+
+26) exit 42 42 42 42 42 ==> exit status
+
+27) pwd
+/home/imeslaki/Desktop/minishell
+cd /Users
+minishell :cd: /Users: No such file or directory
+pwd
+/home/imeslaki/Desktop/minishell
+echo $?
+1
+==>exit status
+
+28) exit -12560 ==> error msg and exit status
+
+29) exit +1
+exit
+minishell: exit: +1: numeric argument required  ==> not error but it print error
+
+30) exit 0 0 ==> exit status
+
+31) exit "" ==> exit status
+
+32) exit "-100" ==> exit status
+
+33) export --TEST=123 ==>exit status
+
+34) >tmp_out | echo 1 ==> error in pipe
+
+35) ..

@@ -9,7 +9,6 @@ void	cd_home(char *oldpwd)
 		perror("");
 	else
 	{
-		printf("chkadir tma\n");
 		change_pwd_var();
 		change_oldpwd_var(oldpwd);
 	}
@@ -20,10 +19,13 @@ void	cd_back(char *oldpwd)
 	char	*prev_wd;
 
 	prev_wd = get_value_from_env("OLDPWD");
+		
 	if (prev_wd == NULL || chdir(prev_wd) < 0)
 		perror("");
 	else
 	{
+		if(prev_wd)
+			print_msg_to_fd(prev_wd, "\n", NULL, 1);
 		change_pwd_var();
 		change_oldpwd_var(oldpwd);
 	}

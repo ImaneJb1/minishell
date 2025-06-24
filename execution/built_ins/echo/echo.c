@@ -28,7 +28,7 @@ void	echo(t_exec *node)
 		write(node->fd_out, "\n", 1);
 		return ;
 	}
-	exit_status_case(node->args[1]);
+	// exit_status_case(node->args[1]);
 	while (node->args && node->args[i])
 	{
 		if ((is_dash_n(node->args[i]) == FALSE)

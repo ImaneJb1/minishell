@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 00:28:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:55:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ int	handle_exec_error(void)
 
 void	print_msg_to_fd(char *s1, char *s2, char *s3, int fd)
 {
-	ft_putstr_fd(s1, fd);
-	ft_putstr_fd(s2, fd);
-	ft_putstr_fd(s3, fd);
+	if(s1)
+		ft_putstr_fd(s1, fd);
+	if(s2)
+		ft_putstr_fd(s2, fd);
+	if(s3)
+		ft_putstr_fd(s3, fd);
 }
 
 int	fd_error(t_exec *cmd)

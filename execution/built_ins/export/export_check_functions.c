@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 11:02:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 18:43:11 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 21:16:24 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,27 @@ int	key_is_valid(char c)
 	return (0);
 }
 
+void	print_export_errors(char	*str)
+{
+	char *result;
+
+	if(str && *str == '-')
+	{
+		result = join_str_char(NULL, str[0]);
+		result = join_str_char(result, str[1]);
+		print_msg_to_fd("bash: export: ", result, 
+		": invalid option\
+		\nexport: usage: export [-fn] [name[=value] ...] or export -p\n"
+		, 2);
+		update_exit_status(2);
+		ft_free(result);
+		return ;
+	}
+	print_msg_to_fd("Minishell: export: `", str,
+		"': not a valid identifier\n", STDERR_FILENO);
+	update_exit_status(1);
+}
+
 char	*the_key(char *str, int *i)
 {
 	char	*key;
@@ -68,7 +89,7 @@ char	*the_key(char *str, int *i)
 	key = NULL;
 	if (!str || !*str)
 		return (NULL);
-	while (key_is_valid(str[*i]))
+	while (key_is_valid(str[*i]) || (*i != 0 && isdigit(str[*i])))
 	{
 		key = join_str_char(key, str[*i]);
 		(*i)++;
@@ -77,8 +98,6 @@ char	*the_key(char *str, int *i)
 		return (key);
 	else if (key && (str[*i] == '+' && str[(*i) + 1] == '='))
 		return (key);
-	print_msg_to_fd("Minishell: export: `", str,
-		"': not a valid identifier\n", STDERR_FILENO);
-	update_exit_status(1);
+	print_export_errors(str);
 	return (NULL);
 }
