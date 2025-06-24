@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 23:20:46 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:47:24 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	change_directory(char *path)
 {
     char *oldpwd;
     oldpwd = get_pwd();
-    printf("path = %s\n", path);
     if(path == NULL || chdir(path) < 0)
     {
         if(ft_strcmp(path, "-") == 0)

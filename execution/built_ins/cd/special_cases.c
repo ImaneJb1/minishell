@@ -9,7 +9,6 @@ void	cd_home(char *oldpwd)
 		perror("");
 	else
 	{
-		printf("chkadir tma\n");
 		change_pwd_var();
 		change_oldpwd_var(oldpwd);
 	}

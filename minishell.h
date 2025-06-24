@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 00:29:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:21:12 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,12 @@ typedef struct s_exec
 {
 	char			*path;
 	char			*cmd;
+	int				pid;
 	char			**args;
 	int				fd_in;
 	int				fd_out;
+	int				*fdout_arr;
+	int				*fdin_arr;
 	struct s_exec	*next;
 	struct s_exec	*prev;
 }					t_exec;
@@ -121,7 +124,7 @@ typedef struct s_env
 	struct s_env	*prev;
 }					t_env;
 
-int					is_paht_empty(int flag);
+int					is_path_empty(int flag);
 
 //		globale
 t_cmd				**v_cmd(void);

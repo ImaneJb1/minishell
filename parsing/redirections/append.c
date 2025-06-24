@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:45:08 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:25:24 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:39:45 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,19 @@ bool	if_its_appfile(t_cmd *ptr)
 	return (FALSE);
 }
 
-void	open_fd_app(t_cmd *token, int *fd)
+void	open_fd_app(t_cmd *token, t_exec **node)
 {
+	int *fd;
+
+	fd = &(*node)->fd_out;
 	if (if_its_appfile(token))
 	{
 		*fd = open(token->content, O_RDWR | O_CREAT | O_APPEND, 0666);
 		if (*fd < 0)
+		{
 			perror(token->content);
+			
+		}
+		fill_fdout_arr(*node);
 	}
 }

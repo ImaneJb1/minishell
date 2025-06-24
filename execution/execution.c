@@ -7,7 +7,7 @@ void	main_execution(void)
 
 	length = lstsize_exec();
 	cmd = *v_exec();
-	if (!cmd || !cmd->cmd)
+	if (!cmd )
 		return ;
 	if (length == 1)
 		execute_simple_cmd(cmd);

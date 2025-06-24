@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_and_delimiter.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:26:51 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:53:30 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	open_fd_heredoc(t_cmd *token, int *fd)
 	t_data		*data;
 	char		*fd_file_name;
 	static int	here_num;
-
+	
 	data = init_data();
 	fd_file_name = NULL;
 	if (token->type & DELIMITER)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 00:28:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:24:00 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	print_execve_errors(t_exec *cmd)
 		print_proc_error("minishell: ", cmd->cmd, ": Permission denied\n", 2);
 	else if (errno == ENOENT)
 	{
-		if (ft_strchr(cmd->cmd, '/') || is_paht_empty(0))
+		if (ft_strchr(cmd->cmd, '/') || is_path_empty(0))
 			print_proc_error("minishell: ", cmd->cmd, ": No such file or directory\n", 2);
 		else
 			print_proc_error("minishell: ", cmd->cmd, ": command not found\n", 2);

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   redir_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:00 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:25:51 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:17:23 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+
+// void	fill_fdin_arr(t_exec *node)
+// {
+// 	static int i;
+
+// 	node->fdin_arr[i] = node->fd_in;
+// 	print_array(node->fdin_arr);
+// 	i++;
+// }
 
 static int	is_ambiguous_redir_in(t_cmd *cur)
 {
@@ -47,7 +56,6 @@ void	open_fd_in(t_cmd *token, int *fd)
 		if (*fd < 0)
 		{
 			perror(token->content);
-			is_error(1);
 			update_exit_status(1);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fds_cmd_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:10:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:25:36 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:13:28 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	fill_args(t_cmd *token, t_exec **cmd)
 
 void	fill_fds_into_exec(t_cmd *token, t_exec **node)
 {
-	open_fd_heredoc(token, &(*node)->fd_in);
+	open_fd_heredoc(token, &(*node)->fd_in); // here
+	open_fd_out(token, node);
 	open_fd_in(token, &(*node)->fd_in);
-	open_fd_out(token, &(*node)->fd_out);
-	open_fd_app(token, &(*node)->fd_out);
+	open_fd_app(token, node);
 }

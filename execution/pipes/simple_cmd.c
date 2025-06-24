@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:31:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:32:03 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:48:08 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 {
 	int	status;
 
-	is_paht_empty(0);
+	is_path_empty(0);
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
@@ -73,6 +73,23 @@ void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 	else if (WIFEXITED(status))
 		update_exit_status(WEXITSTATUS(status));
 	inside_child(0);
+}
+
+void	stdout_case(t_exec *cmd)
+{
+	int i;
+	int fdstdout;
+
+	i = 0;
+	fdstdout = dup(1);
+	while(cmd->fdout_arr[i] != 1)
+	{
+		dup2(cmd->fdout_arr[i], 1);
+		close(cmd->fdout_arr[i]);
+		i++;
+	}
+	dup2(fdstdout, 1);
+	close(fdstdout);
 }
 
 void	execute_simple_cmd(t_exec *cmd)
@@ -89,6 +106,7 @@ void	execute_simple_cmd(t_exec *cmd)
 		{
 			signal(SIGQUIT, SIG_DFL);
 			signal(SIGINT, SIG_DFL);
+			stdout_case(cmd);
 			dup_and_close(cmd);
 			execution(cmd);
 		}
@@ -97,10 +115,3 @@ void	execute_simple_cmd(t_exec *cmd)
 	}
 }
 
-void	simple_cmd(void)
-{
-	t_exec	*cmd;
-
-	cmd = *v_exec();
-	execute_simple_cmd(cmd);
-}
