@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:57 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:13:18 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:27:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	print_error_token(char *message, char *token)
 {
 	print_error(message);
-	write(1, "\'", 2);
+	write(2, "\'", 1);
 	print_error(token);
-	write(1, "\'", 2);
-	write(1, "\n", 2);
+	write(2, "\'", 1);
+	write(2, "\n", 1);
 }
 
 void	print_error(char *s)

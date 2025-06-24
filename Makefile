@@ -2,7 +2,7 @@ NAME = minishell
 
 CC = cc
 
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # ===================== GARBAGE COLLECTOR =====================
 GARBAGE_COLLECTOR = garbage_collector/ft_calloc.c garbage_collector/ft_exit.c \
@@ -14,7 +14,7 @@ HELPER_FUNCTIONS = helper_functions/ft_str_join.c helper_functions/ft_strdup.c \
 	helper_functions/separate_with_one_space.c helper_functions/strcmp.c helper_functions/ft_atoi.c \
 	helper_functions/ft_isdigit.c helper_functions/ft_itoa.c helper_functions/ft_putstr_fd.c \
 	helper_functions/ft_split.c helper_functions/ft_substr.c helper_functions/strlen_2d_array.c \
-	helper_functions/ft_strchr.c 
+	helper_functions/ft_strchr.c helper_functions/join_int.c
 
 # ===================== PARSING ===============================
 PARSING_TOKEN_IDENTIFY = parsing/tokenizing/identify_types/all_enums.c \
@@ -85,10 +85,10 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -lreadline -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

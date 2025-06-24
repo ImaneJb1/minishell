@@ -30,6 +30,6 @@ void	change_pwd_var(void)
 	char	*pwd;
 
 	pwd = get_pwd();
-	printf("pwd === %s\n", pwd);
+	printf("pwd = %s\n", pwd);
 	change_node_pwd(pwd);
 }

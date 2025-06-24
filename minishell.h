@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:18:10 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:29:32 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_data
 	int				flag;
 	int				status;
 	int				fd;
+	int				*index;
 	char			c;
 	char			*key;
 	char			*value;
@@ -97,7 +98,7 @@ typedef struct s_cmd
 	char			*content;
 	int				fd_in;
 	int				fd_out;
-	int				index;
+	int				*index;
 	t_type			type;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
@@ -126,6 +127,7 @@ int					is_paht_empty(int flag);
 t_cmd				**v_cmd(void);
 t_exec				**v_exec(void);
 t_env				**v_env(void);
+int					**v_array_index(int free_static);
 
 // 		errors and exit
 int					is_error(int flag);
@@ -134,6 +136,7 @@ void				print_msg_to_fd(char *s1, char *s2, char *s3, int fd);
 void				free_exit(int status);
 void				print_execve_errors(t_exec *cmd);
 int					fd_error(t_exec *cmd);
+void				print_proc_error(char *s1, char *s2, char *s3, int fd);
 
 // 		parsing function
 int					parsing(char *str);

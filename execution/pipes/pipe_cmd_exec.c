@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:10:42 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:33:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	execution(t_exec *cmd)
 	builtin(cmd);
 	if (opendir(cmd->cmd))
 	{
-		print_cmd_error(cmd->cmd, "is a directory");
+		print_proc_error(cmd->cmd, ": ",  "is a directory\n", 2);
 		ft_exit(126);
 	}
 	execve(cmd->path, cmd->args, env_to_arr());

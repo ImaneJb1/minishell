@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:15:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:00:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
 
+int	this_is_i(int set, int value);
 t_data		*init_data(void);
 void		remove_quotes(void);
 

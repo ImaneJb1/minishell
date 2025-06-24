@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:16:07 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:09:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,16 @@ t_exec	**v_exec(void)
 	static t_exec	*exec;
 
 	return (&exec);
+}
+
+int	**v_array_index(int	free_static)
+{
+	static int *index;
+
+	if(free_static)
+	{
+		ft_free(index);
+		index = NULL;
+	}
+	return &index;
 }

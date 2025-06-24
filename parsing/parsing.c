@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:34:29 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:11:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	parsing(char *str)
 	}
 	expand_variable_value();
 	remove_quotes();
+	v_array_index(1);
 	if(!fill_the_exec_struct())
 	{
 		add_to_exec_list(NULL, NULL, 0);

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/17 19:07:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:30:41 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 char	*expand_the_value(char *command, t_data *data)
 {
+	int len;
+
 	data->j = 0;
 	data->value = get_value_from_env(data->key);
 	if (!data->value)
 		return (command);
+	len = ft_strlen(command);
 	while (data->value[data->j])
-		command = join_str_char(command, data->value[data->j++]);
+	{
+		command = join_str_char(command, data->value[data->j]);
+		index_the_char(1, len);
+		len++;
+		data->j++;
+	}
 	return (command);
 }
 
@@ -41,6 +49,15 @@ void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 	}
 }
 
+int	this_is_i(int set, int value)
+{
+	static int val;
+
+	if(set == 1)
+		val = value;
+	return val;
+}
+
 char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 {
 	t_data	*data;
@@ -49,9 +66,13 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 	(*i)++;
 	fill_the_key(cur, i, data);
 	data->i = (*i);
+	this_is_i(1, *i);
 	if (x == 0 || data->flag == 1)
 		command = expand_the_value(command, data);
 	else if (cur->content[*i])
+	{
+		index_the_char(0, *i);
 		return (join_str_char(command, cur->content[*i]));
+	}
 	return (command);
 }

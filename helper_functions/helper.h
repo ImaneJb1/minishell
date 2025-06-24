@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 01:42:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 15:20:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:27:09 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	skip_space(char *str, int *i);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+void    index_the_char(int index, int i);
 #endif

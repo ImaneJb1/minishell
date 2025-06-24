@@ -124,3 +124,5 @@ Minishell $>: $f|$a|$b ==>(not like bash)
 21) ls > $a | ls (a="f 1") ==> (not like bash)
 
 22) echo zz > a vv > b
+
+23) export a="$a"$a ==>abort

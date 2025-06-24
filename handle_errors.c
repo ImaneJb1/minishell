@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 18:43:11 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:28:39 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,26 @@ int	fd_error(t_exec *cmd)
 	return (0);
 }
 
+void	print_proc_error(char *s1, char *s2, char *s3, int fd)
+{
+	char *result;
+
+	(void)fd;
+	result = ft_strjoin(s1, s2);
+	result = ft_strjoin(result, s3);
+	write(fd, result, ft_strlen(result));
+}
+
 void	print_execve_errors(t_exec *cmd)
 {
 	if (errno == EACCES)
-	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
-		ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
-		ft_exit(126);
-	}
+		print_proc_error("minishell: ", cmd->cmd, ": Permission denied\n", 2);
 	else if (errno == ENOENT)
 	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(cmd->cmd, STDERR_FILENO);
 		if (ft_strchr(cmd->cmd, '/') || is_paht_empty(0))
-			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+			print_proc_error("minishell: ", cmd->cmd, ": No such file or directory\n", 2);
 		else
-			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+			print_proc_error("minishell: ", cmd->cmd, ": command not found\n", 2);
 		ft_exit(127);
 	}
 	else
