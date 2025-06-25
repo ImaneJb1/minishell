@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_cmd_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:54:47 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/24 17:41:22 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:14:24 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	execution(t_exec *cmd)
 
 void	execute_first_command(t_exec *cmd, int *fd)
 {
-	if(cmd->fdin_arr[0] < 0 || cmd->fdout_arr < 0)
-		ft_exit(1);
+	// if(cmd->fdin_arr[0] < 0 || cmd->fdout_arr[0] < 0)
+	// 	ft_exit(1);
 	close(fd[0]);
 	dup2(fd[1], STDOUT_FILENO);
 	if (cmd->fd_in != STDIN_FILENO)
@@ -46,8 +46,8 @@ void	execute_first_command(t_exec *cmd, int *fd)
 
 void	execute_middle_command(t_exec *cmd, int *fd)
 {
-	if(cmd->fdin_arr[0] < 0 || cmd->fdout_arr < 0)
-		ft_exit(1);
+	// if(cmd->fdin_arr[0] < 0 || cmd->fdout_arr[0] < 0)
+	// 	ft_exit(1);
 	close(fd[0]);
 	dup2(fd[1], STDOUT_FILENO);
 	if (cmd->fd_in != STDIN_FILENO)
@@ -68,8 +68,10 @@ void	execute_last_command(t_exec *cmd, int *fd)
 {
 	close(fd[1]);
 	close(fd[0]);
-	if(cmd->fdin_arr[0] < 0 || cmd->fdout_arr < 0)
-		ft_exit(1);
+	// if(cmd->fdin_arr[0] < 0 || cmd->fdout_arr[0] < 0)
+	// {
+	// 	ft_exit(1);
+	// }
 	if (cmd->fd_in != STDIN_FILENO)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) < 0)

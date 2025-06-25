@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 16:16:58 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:16:37 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void		print_error_token(char *message, char *token);
 
 //      redirections
 void		open_fd_in(t_cmd *token, int *fd);
-void		open_fd_out(t_cmd *token, t_exec **node);
-void		open_fd_app(t_cmd *token, t_exec **node);
+int		open_fd_out(t_cmd *token, t_exec **node);
+int		open_fd_app(t_cmd *token, t_exec **node);
 void		fill_fds_into_exec(t_cmd *token, t_exec **node);
 int			is_redirection(t_cmd *cur);
 int			check_redir(t_cmd *cur, t_type type1, t_type type2);

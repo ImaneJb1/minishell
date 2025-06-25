@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 17:21:12 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:55:54 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ t_cmd				**v_cmd(void);
 t_exec				**v_exec(void);
 t_env				**v_env(void);
 int					**v_array_index(int free_static);
+int					open_failure(int);
 
 // 		errors and exit
 int					is_error(int flag);

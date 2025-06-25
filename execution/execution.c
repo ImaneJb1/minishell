@@ -10,7 +10,14 @@ void	main_execution(void)
 	if (!cmd )
 		return ;
 	if (length == 1)
+	{
+		open_failure(0);
 		execute_simple_cmd(cmd);
+
+	}
 	else
+	{
+		open_failure(0);
 		pipes();
+	}
 }

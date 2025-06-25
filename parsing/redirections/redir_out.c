@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:45:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 16:21:56 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:24:21 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	if_its_outfile(t_cmd *ptr)
 	return (FALSE);
 }
 
-void	open_fd_out(t_cmd *token,  t_exec **node)
+int	open_fd_out(t_cmd *token,  t_exec **node)
 {
 	int *fd;
 
@@ -63,7 +63,11 @@ void	open_fd_out(t_cmd *token,  t_exec **node)
 	{
 		*fd = open(token->content, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		if (*fd < 0)
+		{
 			perror(token->content);
+			return(-1);
+		}
 		fill_fdout_arr(*node);
 	}
+	return(0);
 }

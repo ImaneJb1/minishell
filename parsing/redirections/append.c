@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:45:08 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 16:39:45 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:16:17 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	if_its_appfile(t_cmd *ptr)
 	return (FALSE);
 }
 
-void	open_fd_app(t_cmd *token, t_exec **node)
+int	open_fd_app(t_cmd *token, t_exec **node)
 {
 	int *fd;
 
@@ -48,8 +48,9 @@ void	open_fd_app(t_cmd *token, t_exec **node)
 		if (*fd < 0)
 		{
 			perror(token->content);
-			
+			return(-1);
 		}
 		fill_fdout_arr(*node);
 	}
+	return(0);
 }

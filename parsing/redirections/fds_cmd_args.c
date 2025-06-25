@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fds_cmd_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:10:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/24 16:13:28 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:16:41 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,14 @@ void	fill_args(t_cmd *token, t_exec **cmd)
 
 void	fill_fds_into_exec(t_cmd *token, t_exec **node)
 {
+	int failure;
+	
+	failure = open_failure(-1);
 	open_fd_heredoc(token, &(*node)->fd_in); // here
-	open_fd_out(token, node);
 	open_fd_in(token, &(*node)->fd_in);
-	open_fd_app(token, node);
+	if(failure == 0)
+	{
+		if(open_fd_out(token, node) < 0 || open_fd_app(token, node) < 0)
+			open_failure(1);
+	}
 }

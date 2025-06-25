@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   globale.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 22:09:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:10:21 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ int	**v_array_index(int	free_static)
 		index = NULL;
 	}
 	return &index;
+}
+
+int	open_failure(int num)
+{
+	static int failure;
+	if(num == 0)
+		failure = 0;
+	if(num == 1)
+		failure = 1;
+	return(failure);
 }

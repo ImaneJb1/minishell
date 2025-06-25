@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 23:23:18 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:59:00 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,9 @@ int	main(int argc, char const *argv[], char **env)
 	create_env_and_handle_signals(env);
 	while (1)
 	{
-		// str = get_next_line(0);
 		str = readline("Minishell $>: ");
 		if (!str)
 			handle_ctr_d(str);
-		// str[ft_strlen(str) - 1] = '\0';
 		if (!*str)
 		{
 			free(str);
