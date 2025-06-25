@@ -13,7 +13,6 @@ void	main_execution(void)
 	{
 		open_failure(0);
 		execute_simple_cmd(cmd);
-
 	}
 	else
 	{

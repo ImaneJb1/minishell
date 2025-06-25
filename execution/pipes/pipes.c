@@ -24,6 +24,22 @@ void	wait_func(int saved_stdin)
 	dup2(saved_stdin, 0);
 	update_exit_status(g_exit_status);
 }
+void	stdout_case_pipe(t_exec *cmd)
+{
+	int i;
+	int *fdstdout;
+
+	fdstdout = stdout_fd();
+	i = 0;
+	while(cmd->fdout_arr[i] != 1)
+	{ 
+		if(cmd->fdout_arr[i] != cmd->fd_out)
+			close(cmd->fdout_arr[i]);
+		i++;
+	}
+	dup2(*fdstdout, 1); // 1 -> terminal
+	close(*fdstdout);
+}
 
 void	pipes(void)
 {
@@ -38,6 +54,7 @@ void	pipes(void)
 		if (pipe(fd) < 0)
 			perror("");
 		cmd->pid = fork();
+		stdout_case(cmd); 
 		if (cmd->pid == 0)
 			execute_commands(cmd, fd);
 		dup2(fd[0], 0);

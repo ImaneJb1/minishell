@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 15:55:48 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/25 17:17:43 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	print_array(int *array);
 
 int	parsing(char *str)
 {
+	int *fd;
+	fd = stdout_fd();
+	*fd = dup(1);
 	creat_the_cmd_list(str);
 	if (is_valid_syntax() == FALSE)
 	{

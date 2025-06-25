@@ -6,7 +6,7 @@
 /*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/25 11:55:54 by imane            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:27:42 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ t_exec				**v_exec(void);
 t_env				**v_env(void);
 int					**v_array_index(int free_static);
 int					open_failure(int);
+int 				*stdout_fd(void);
 
 // 		errors and exit
 int					is_error(int flag);
@@ -154,8 +155,8 @@ void				pipes(void);
 // 		signels
 void				handle_sig_int(int signum);
 void				sigint_in_heredoc_child(int num);
+// handle special case
+void	stdout_case(t_exec *cmd);
 
-// !! REMOVE !!
-void				print_parsing(void);
 
 #endif

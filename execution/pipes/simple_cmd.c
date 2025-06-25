@@ -6,7 +6,7 @@
 /*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:31:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/25 11:26:36 by imane            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:30:48 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 void	stdout_case(t_exec *cmd)
 {
 	int i;
-	int fdstdout;
+	int *fdstdout;
 
+	fdstdout = stdout_fd();
 	i = 0;
-	fdstdout = dup(1);
 	while(cmd->fdout_arr[i] != 1)
-	{
-		dup2(cmd->fdout_arr[i], 1);
-		close(cmd->fdout_arr[i]);
+	{ 
+		if(cmd->fdout_arr[i] != cmd->fd_out)
+			close(cmd->fdout_arr[i]);
 		i++;
 	}
-	dup2(fdstdout, 1);
-	close(fdstdout);
+	dup2(*fdstdout, 1); // 1 -> terminal
+	close(*fdstdout);
 }
 
 void	execute_simple_cmd(t_exec *cmd)
@@ -102,11 +102,11 @@ void	execute_simple_cmd(t_exec *cmd)
 	{
 		signal(SIGINT, SIG_IGN);
 		pid = fork();
+		stdout_case(cmd);
 		if (pid == 0)
 		{
 			signal(SIGQUIT, SIG_DFL);
 			signal(SIGINT, SIG_DFL);
-			stdout_case(cmd);
 			dup_and_close(cmd);
 			execution(cmd);
 		}

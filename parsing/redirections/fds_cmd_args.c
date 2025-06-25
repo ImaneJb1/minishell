@@ -6,7 +6,7 @@
 /*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:10:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/25 12:16:41 by imane            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:06:33 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,9 @@ void	fill_fds_into_exec(t_cmd *token, t_exec **node)
 	{
 		if(open_fd_out(token, node) < 0 || open_fd_app(token, node) < 0)
 			open_failure(1);
+		else
+		{
+			dup2((*node)->fd_out, 1);
+		}
 	}
 }
