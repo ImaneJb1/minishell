@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 16:11:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 19:12:52 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	handle_exec_error(void)
 	not_first_cmd(0);
 	is_error(0);
 	field_count_arg(0);
+	is_error_and_pipe(0);
 	return (0);
 }
 
@@ -44,6 +45,8 @@ void	print_msg_to_fd(char *s1, char *s2, char *s3, int fd)
 
 int	fd_error(t_exec *cmd)
 {
+	if(open_failure(-1) == 1)
+		return(1);
 	if (cmd->fd_in < 0)
 		return (1);
 	if (cmd->fd_out < 0)

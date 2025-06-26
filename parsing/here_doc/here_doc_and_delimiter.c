@@ -6,16 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 15:46:12 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 19:14:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-
-
-char	*get_next_line(int fd);
-
-
 
 void	get_delimiter(t_cmd **cmd)
 {
@@ -58,9 +53,7 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 		data->flag = 1;
 	while (1)
 	{
-		// data->str = readline("  >> ");
-		data->str = get_next_line(0);
-		data->str[ft_strlen(data->str) - 1] = 0;
+		data->str = readline("  >> ");
 		if (!data->str)
 		{
 			print_msg_to_fd("Minishell: warning: here-document \

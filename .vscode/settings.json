@@ -30,6 +30,7 @@
         "stddef.h": "c",
         "dirent.h": "c",
         "string.h": "c",
-        "limits.h": "c"
+        "limits.h": "c",
+        "signal.h": "c"
     }
 }

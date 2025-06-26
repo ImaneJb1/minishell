@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:10:29 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/26 14:25:29 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:06:56 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	fill_fds_into_exec(t_cmd *token, t_exec **node)
 	
 	failure = open_failure(-1);
 	open_fd_heredoc(token, &(*node)->fd_in);
-	open_fd_in(token, &(*node)->fd_in);
 	if(failure == 0)
 	{
-		if(open_fd_out(token, node) < 0 || open_fd_app(token, node) < 0)
+		if(open_fd_out(token, node) < 0 || open_fd_app(token, node) < 0 || 
+		open_fd_in(token, &(*node)->fd_in) < 0)
 			open_failure(1);
 	}
 }

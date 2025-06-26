@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:00 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/26 15:46:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:10:19 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ bool	if_its_infile(t_cmd *ptr)
 	return (FALSE);
 }
 
-void	open_fd_in(t_cmd *token, int *fd)
+int	open_fd_in(t_cmd *token, int *fd)
 {
 	if (!token)
-		return ;
+		return(0);
 	if (if_its_infile(token))
 	{
 		*fd = open(token->content, O_RDONLY, 0666);
@@ -49,6 +49,8 @@ void	open_fd_in(t_cmd *token, int *fd)
 			print_error(NULL);
 			perror(token->content);
 			update_exit_status(1);
+			return(-1);
 		}
 	}
+	return(0);
 }

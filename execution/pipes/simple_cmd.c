@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:31:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/26 14:22:18 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:47:58 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	execute_simple_cmd(t_exec *cmd)
 		return ;
 	else
 	{
+		open_failure(0);
 		signal(SIGINT, SIG_IGN);
 		pid = fork();
 		if (pid == 0)
