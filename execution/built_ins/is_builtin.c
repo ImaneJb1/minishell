@@ -12,7 +12,7 @@ void	builtin(t_exec *cmd)
 		if (ft_strcmp(arr[i].cmd, cmd->cmd) == 0)
 		{
 			arr[i].func(cmd);
-			free_exit(0);
+			free_exit(g_exit_status);
 		}
 		i++;
 	}

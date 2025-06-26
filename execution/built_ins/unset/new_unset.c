@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:03:36 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 16:16:59 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:08:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	unset(t_exec *node)
 	int	i;
 
 	i = 0;
+	update_exit_status(0);
 	while (node->args[++i])
 		delete_from_env(node->args[i]);
 }

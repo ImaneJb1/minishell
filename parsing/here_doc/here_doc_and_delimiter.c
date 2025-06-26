@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/25 15:03:26 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:46:12 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 	data = init_data();
 	*fd = open(info->word, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (*fd < 0)
-		return (perror(info->word));
+		return (print_error(NULL), perror(info->word));
 	if (!(del->type & (SINGLE_Q | DOUBLE_Q)))
 		data->flag = 1;
 	while (1)
 	{
 		// data->str = readline("  >> ");
 		data->str = get_next_line(0);
+		data->str[ft_strlen(data->str) - 1] = 0;
 		if (!data->str)
 		{
 			print_msg_to_fd("Minishell: warning: here-document \
@@ -102,7 +103,7 @@ void	open_fd_heredoc(t_cmd *token, int *fd)
 	t_data		*data;
 	char		*fd_file_name;
 	static int	here_num;
-
+	
 	data = init_data();
 	fd_file_name = NULL;
 	if (token->type & DELIMITER)
@@ -110,7 +111,7 @@ void	open_fd_heredoc(t_cmd *token, int *fd)
 		data->word = ft_strjoin("/tmp/", ft_itoa(here_num++));
 		*fd = open(data->word, O_CREAT | O_RDWR | O_TRUNC, 0666);
 		if (*fd < 0)
-			return (perror(fd_file_name));
+			return (print_error(NULL), perror(fd_file_name));
 		data->pid = fork();
 		if (data->pid == 0)
 			heredoc_child_process(token, data, fd);

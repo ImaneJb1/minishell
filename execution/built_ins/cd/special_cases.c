@@ -6,7 +6,7 @@ void	cd_home(char *oldpwd)
 
 	home = get_value_from_env("HOME");
 	if (chdir(home) < 0)
-		perror("");
+		perror("minishell :");
 	else
 	{
 		change_pwd_var();
@@ -21,7 +21,7 @@ void	cd_back(char *oldpwd)
 	prev_wd = get_value_from_env("OLDPWD");
 		
 	if (prev_wd == NULL || chdir(prev_wd) < 0)
-		perror("");
+		perror("minishell: ");
 	else
 	{
 		if(prev_wd)

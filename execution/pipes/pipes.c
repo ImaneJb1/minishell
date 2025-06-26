@@ -9,31 +9,41 @@ void	exit_status_case(char *arg)
 	}
 }
 
+void	wait_func(int saved_stdin)
+{
+	int		status;
+	t_exec	*cmd;
+	
+	cmd = *v_exec();
+	while (cmd)
+	{
+		waitpid(cmd->pid, &status, 0);
+		cmd = cmd->next;
+	}
+	g_exit_status = WEXITSTATUS(status);
+	dup2(saved_stdin, 0);
+	update_exit_status(g_exit_status);
+}
+
 void	pipes(void)
 {
 	t_exec	*cmd;
 	int		fd[2];
-	int		pid;
 	int		saved_stdin;
-	int		status;
 
 	saved_stdin = dup(0);
 	cmd = *v_exec();
 	while (cmd)
 	{
 		if (pipe(fd) < 0)
-			perror("");
-		pid = fork();
-		if (pid == 0)
+			perror("minishell :");
+		cmd->pid = fork();
+		if (cmd->pid == 0)
 			execute_commands(cmd, fd);
 		dup2(fd[0], 0);
 		close(fd[0]);
 		close(fd[1]);
 		cmd = cmd->next;
 	}
-	while (wait(&status) > 0)
-		;
-	dup2(saved_stdin, 0);
-	g_exit_status = WEXITSTATUS(status);
-	update_exit_status(g_exit_status);
+	wait_func(saved_stdin);
 }

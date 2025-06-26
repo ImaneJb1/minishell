@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:31:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/23 17:32:03 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:22:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parent_proccess_in_simple_cmd(t_exec *cmd, int pid)
 {
 	int	status;
 
-	is_paht_empty(0);
+	is_path_empty(0);
 	if (cmd->fd_in != 0)
 		close(cmd->fd_in);
 	if (cmd->fd_out != 1)
@@ -97,10 +97,3 @@ void	execute_simple_cmd(t_exec *cmd)
 	}
 }
 
-void	simple_cmd(void)
-{
-	t_exec	*cmd;
-
-	cmd = *v_exec();
-	execute_simple_cmd(cmd);
-}

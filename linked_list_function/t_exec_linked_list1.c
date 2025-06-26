@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   t_exec_linked_list1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 15:22:00 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:45:52 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
+
+void	fill_arr(int *arr, int num, int size)
+{
+	int i;
+
+	i = 0;
+	while(i < size)
+	{
+		arr[i] = num;
+		i++;
+	}
+}
 
 t_exec	*new_exec_node(void)
 {
@@ -23,6 +35,10 @@ t_exec	*new_exec_node(void)
 	elem->args = NULL;
 	elem->fd_in = 0;
 	elem->fd_out = 1;
+	elem->fdin_arr = ft_malloc(sizeof(int) * 100);
+	fill_arr(elem->fdin_arr, 0, 100);
+	elem->fdout_arr = ft_malloc(sizeof(int) * 100);
+	fill_arr(elem->fdout_arr, 1, 100);
 	elem->next = NULL;
 	elem->prev = NULL;
 	return (elem);

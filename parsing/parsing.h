@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:28:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 22:00:27 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:16:37 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../linked_list_function/linked_list.h"
 # include "../minishell.h"
 
-int	this_is_i(int set, int value);
+int			this_is_i(int set, int value);
 t_data		*init_data(void);
 void		remove_quotes(void);
 
@@ -107,8 +107,8 @@ void		print_error_token(char *message, char *token);
 
 //      redirections
 void		open_fd_in(t_cmd *token, int *fd);
-void		open_fd_out(t_cmd *token, int *fd);
-void		open_fd_app(t_cmd *token, int *fd);
+int		open_fd_out(t_cmd *token, t_exec **node);
+int		open_fd_app(t_cmd *token, t_exec **node);
 void		fill_fds_into_exec(t_cmd *token, t_exec **node);
 int			is_redirection(t_cmd *cur);
 int			check_redir(t_cmd *cur, t_type type1, t_type type2);
@@ -123,4 +123,6 @@ char		*expand_heredoc_string(char *string, char *str, int *i);
 char		*expand_here_doc_value(char *str, int *i);
 int			count_heredoc(int flag);
 
+// fill fd arr
+void		fill_fdout_arr(t_exec *node);
 #endif

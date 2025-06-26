@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 22:52:14 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/24 19:11:58 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:34:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	cd(t_exec *node)
 
     num_args = strlen_2d_array(node->args);
     num_args -= 1;
+	update_exit_status(0);
     if(num_args > 1)
     {
-        perror("cd : too many argument"); 
+        print_error("cd : too many argument\n");
+    	update_exit_status(1);
         return;
     }
     change_directory(node->args[1]);

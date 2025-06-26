@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 16:16:10 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 16:16:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:03:45 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ void	env(t_exec *node)
 	if (!node)
 		return ;
 	env = *v_env();
+	if(node->args[1])
+	{
+		update_exit_status(1);
+		return(print_error("too many argument\n"));
+	}
 	while (env)
 	{
 		if (env->type == global)
@@ -91,4 +96,5 @@ void	env(t_exec *node)
 		}
 		env = env->next;
 	}
+	update_exit_status(0);
 }

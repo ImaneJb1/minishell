@@ -23,12 +23,12 @@ void	echo(t_exec *node)
 
 	i = 1;
 	flag = 0;
+	update_exit_status(0);
 	if (!node->args[i])
 	{
 		write(node->fd_out, "\n", 1);
 		return ;
 	}
-	// exit_status_case(node->args[1]);
 	while (node->args && node->args[i])
 	{
 		if ((is_dash_n(node->args[i]) == FALSE)

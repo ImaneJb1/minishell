@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:46:05 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/23 17:29:19 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:25:30 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	print_export_var(t_exec *node)
 		}
 		env = env->next;
 	}
+	update_exit_status(0);
 }
 
 void	export(t_exec *node)
@@ -97,6 +98,7 @@ void	export(t_exec *node)
 		print_export_var(node);
 	else if (count > 1)
 	{
+		update_exit_status(0);
 		while (node->args[index])
 			export_arg(node->args[index++]);
 	}

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:02 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/18 16:03:26 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:47:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*ft_calloc_without_save(size_t n, size_t type_size)
 	mem = malloc(full_size);
 	if (!mem)
 	{
-		perror("Error memory allocation");
+		perror("minishell: ");
 		ft_exit(1);
 		return (NULL);
 	}

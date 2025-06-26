@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:10:19 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 18:24:24 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:13:23 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ int	**v_array_index(int	free_static)
 		index = NULL;
 	}
 	return &index;
+}
+
+int	open_failure(int num)
+{
+	static int failure;
+	if(num == 0)
+		failure = 0;
+	if(num == 1)
+		failure = 1;
+	return(failure);
 }

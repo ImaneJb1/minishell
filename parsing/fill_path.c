@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:00:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/16 15:00:39 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:24:00 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*find_path(t_exec *cmd, char *path)
 	return (cmd->cmd);
 }
 
-int	is_paht_empty(int flag)
+int	is_path_empty(int flag)
 {
 	static int	i;
 
@@ -64,7 +64,7 @@ void	fill_path(t_exec *cmd)
 
 	paths = get_env_path();
 	if (paths == NULL)
-		is_paht_empty(1);
+		is_path_empty(1);
 	if (ft_strchr(cmd->cmd, '/') == NULL)
 	{
 		paths = find_path(cmd, paths);
