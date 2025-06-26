@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 14:44:06 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:03:26 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	write_in_here_doc_file(t_cmd *del, t_data *info, int *fd)
 				STDERR_FILENO);
 			ft_exit(0);
 		}
-		data->str[ft_strlen(data->str) - 1] = '\0';
 		if (ft_strcmp(del->content, data->str) == 0)
 			break ;
 		check_expand_and_put_in_file(data, *fd);

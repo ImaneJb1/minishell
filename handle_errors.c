@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 17:55:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:00:16 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,19 @@ void	print_proc_error(char *s1, char *s2, char *s3, int fd)
 
 void	print_execve_errors(t_exec *cmd)
 {
+	if(open(cmd->cmd, O_RDWR) && !ft_strchr(cmd->cmd, '/'))
+	{
+		print_proc_error("minishell: ", cmd->cmd, ": command not found\n", 2);
+		ft_exit(127);
+	}
 	if (errno == EACCES)
+	{
 		print_proc_error("minishell: ", cmd->cmd, ": Permission denied\n", 2);
+		ft_exit(126);
+	}
 	else if (errno == ENOENT)
 	{
-		if (ft_strchr(cmd->cmd, '/') || is_paht_empty(0))
+		if (ft_strchr(cmd->cmd, '/') || is_paht_empty(2))
 			print_proc_error("minishell: ", cmd->cmd, ": No such file or directory\n", 2);
 		else
 			print_proc_error("minishell: ", cmd->cmd, ": command not found\n", 2);
