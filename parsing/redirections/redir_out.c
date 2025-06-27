@@ -6,27 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:45:00 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 15:46:45 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:06:14 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-
-void	print_array(int *array)
-{
-	for(int i = 0; array[i] != 1; i++)
-		printf("%d ", array[i]);
-	printf("\n");
-}
-
-void	fill_fdout_arr(t_exec *node)
-{
-	static int i;
-
-	node->fdout_arr[i] = node->fd_out;
-	// print_array(node->fdout_arr);
-	i++;
-}
 
 static int	is_ambiguous_redir_out(t_cmd *cur)
 {
@@ -46,7 +30,7 @@ bool	if_its_outfile(t_cmd *ptr)
 	if (is_ambiguous_redir_out(ptr))
 	{
 		is_error(1);
-		ft_putstr_fd("bash: ambiguous redirect\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: ambiguous redirect\n", STDERR_FILENO);
 		return (FALSE);
 	}
 	else if (check_redir(ptr, FILE_NAME, REDIR_OUT))
@@ -54,9 +38,9 @@ bool	if_its_outfile(t_cmd *ptr)
 	return (FALSE);
 }
 
-int	open_fd_out(t_cmd *token,  t_exec **node)
+int	open_fd_out(t_cmd *token, t_exec **node)
 {
-	int *fd;
+	int	*fd;
 
 	fd = &(*node)->fd_out;
 	if (if_its_outfile(token))
@@ -66,9 +50,8 @@ int	open_fd_out(t_cmd *token,  t_exec **node)
 		{
 			print_error(NULL);
 			perror(token->content);
-			return(-1);
+			return (-1);
 		}
-		fill_fdout_arr(*node);
 	}
-	return(0);
+	return (0);
 }

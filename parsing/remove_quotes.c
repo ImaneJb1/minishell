@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 21:22:01 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 15:24:14 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:04:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*unquoted_var_cmd(char *str, int *array)
 	command = ft_malloc(1);
 	while (str[i])
 	{
-		if(array && array[i] == 1)
+		if (array && array[i] == 1)
 			command = join_str_char(command, str[i++]);
 		else if (c == 0 && ft_strchr("\"\'", str[i]))
 			c = str[i++];
@@ -77,7 +77,7 @@ void	remove_quotes(void)
 	{
 		if ((cmd->type & (DOUBLE_Q | SINGLE_Q)) && !(cmd->type & VARIABLE))
 			cmd->content = unquoted_one_cmd(cmd->content);
-		else if((cmd->type & (DOUBLE_Q | SINGLE_Q) && (cmd->type & VARIABLE)))
+		else if ((cmd->type & (DOUBLE_Q | SINGLE_Q) && (cmd->type & VARIABLE)))
 			cmd->content = unquoted_var_cmd(cmd->content, cmd->index);
 		cmd = cmd->next;
 	}

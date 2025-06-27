@@ -6,82 +6,56 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:07:27 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 19:12:52 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:03:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "parsing/parsing.h"
 
-int	is_error(int flag)
-{
-	static int	i;
-
-	if (flag == 0)
-		i = 0;
-	else if (flag == 1)
-		i = 1;
-	return (i);
-}
-
-int	handle_exec_error(void)
-{
-	not_first_cmd(0);
-	is_error(0);
-	field_count_arg(0);
-	is_error_and_pipe(0);
-	return (0);
-}
-
 void	print_msg_to_fd(char *s1, char *s2, char *s3, int fd)
 {
-	if(s1)
+	if (s1)
 		ft_putstr_fd(s1, fd);
-	if(s2)
+	if (s2)
 		ft_putstr_fd(s2, fd);
-	if(s3)
+	if (s3)
 		ft_putstr_fd(s3, fd);
-}
-
-int	fd_error(t_exec *cmd)
-{
-	if(open_failure(-1) == 1)
-		return(1);
-	if (cmd->fd_in < 0)
-		return (1);
-	if (cmd->fd_out < 0)
-		return (1);
-	return (0);
 }
 
 void	print_proc_error(char *s1, char *s2, char *s3, int fd)
 {
-	char *result;
+	char	*result;
 
-	(void)fd;
 	result = ft_strjoin(s1, s2);
 	result = ft_strjoin(result, s3);
 	write(fd, result, ft_strlen(result));
 }
 
+void	file_errors(t_exec *cmd)
+{
+	if (open(cmd->cmd, O_RDWR) && !ft_strchr(cmd->cmd, '/'))
+	{
+		print_proc_error("minishell: ", cmd->cmd, ": command not found\n",
+			2);
+		ft_exit(127);
+	}
+	print_proc_error("minishell: ", cmd->cmd, ": Permission denied\n", 2);
+	ft_exit(126);
+}
+
 void	print_execve_errors(t_exec *cmd)
 {
 	if (errno == EACCES)
-	{
-		if(open(cmd->cmd, O_RDWR) && !ft_strchr(cmd->cmd, '/'))
-		{
-			print_proc_error("minishell: ", cmd->cmd, ": command not found\n", 2);
-			ft_exit(127);
-		}
-		print_proc_error("minishell: ", cmd->cmd, ": Permission denied\n", 2);
-		ft_exit(126);
-	}
+		file_errors(cmd);
 	else if (errno == ENOENT)
 	{
 		if (ft_strchr(cmd->cmd, '/') || is_path_empty(2))
-			print_proc_error("minishell: ", cmd->cmd, ": No such file or directory\n", 2);
+			print_proc_error("minishell: ", cmd->cmd,
+				": No such file or directory\n", 2);
 		else
-			print_proc_error("minishell: ", cmd->cmd, ": command not found\n", 2);
+			print_proc_error("minishell: ", cmd->cmd, ": command not found\n",
+				2);
 		ft_exit(127);
 	}
 	else

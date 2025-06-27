@@ -2,7 +2,7 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 # ===================== GARBAGE COLLECTOR =====================
 GARBAGE_COLLECTOR = garbage_collector/ft_calloc.c garbage_collector/ft_exit.c \
@@ -73,7 +73,7 @@ EXECUTION_PIPES = execution/env_to_arr.c execution/pipes/pipe_cmd_exec.c \
 EXECUTION = execution/execution.c $(EXECUTION_BUILTINS) $(EXECUTION_PIPES)
 
 # ===================== MAIN ================================
-SRC = minishell.c globale.c handle_exit_status.c handle_errors.c handle_signals.c \
+SRC = minishell.c globale.c handle_exit_status.c handle_errors.c handle_signals.c handle_errors2.c \
 	$(GARBAGE_COLLECTOR) $(HELPER_FUNCTIONS) $(PARSING) $(BUILT_IN) $(EXECUTION)
 
 OBJ = $(SRC:.c=.o)

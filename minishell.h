@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:29:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 19:13:04 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:57:51 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,6 @@ typedef struct s_cmd
 
 typedef enum s_env_type
 {
-
-int	is_error_and_pipe(int flag)
-{
-	static int	i;
-
-	if (flag == 0)
-		i = 0;
-	else if (flag == 1)
-		i = 1;
-	return (i);
-}
 	global,
 	local,
 	special
@@ -140,12 +129,10 @@ t_cmd				**v_cmd(void);
 t_exec				**v_exec(void);
 t_env				**v_env(void);
 int					**v_array_index(int free_static);
-int					open_failure(int);
+int					open_failure(int i);
 
 // 		errors and exit
 int					is_error(int flag);
-int					is_error_and_pipe(int flag);
-int					handle_exec_error(void);
 void				print_msg_to_fd(char *s1, char *s2, char *s3, int fd);
 void				free_exit(int status);
 void				print_execve_errors(t_exec *cmd);

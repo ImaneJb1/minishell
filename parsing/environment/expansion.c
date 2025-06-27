@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:31:52 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 19:01:46 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:21:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	check(char *content, t_data **data, int j)
 	return (0);
 }
 
-void	update_cmd_content(t_cmd	*cur, t_data	*data)
+void	update_cmd_content(t_cmd *cur, t_data *data)
 {
 	if (!data->command)
 	{
-		if(!(cur->prev) || (cur->prev && cur->prev->type & PIPE))
+		if (!(cur->prev) || (cur->prev && cur->prev->type & PIPE))
 		{
-			if(cur->next)
+			if (cur->next)
 				cur->next->type |= CMD;
 		}
 		lst_del_one_cmd(cur);
@@ -46,7 +46,7 @@ void	update_cmd_content(t_cmd	*cur, t_data	*data)
 	{
 		cur->content = data->command;
 		cur->index = ft_int_dup(*v_array_index(0), ft_strlen(cur->content));
-	}	
+	}
 }
 
 void	change_var_value(t_cmd *cur)
@@ -65,7 +65,8 @@ void	change_var_value(t_cmd *cur)
 		else
 		{
 			index_the_char(0, data->i, 0);
-			data->command = join_str_char(data->command, cur->content[data->i++]);
+			data->command = join_str_char(data->command,
+					cur->content[data->i++]);
 		}
 	}
 	update_cmd_content(cur, data);
@@ -82,9 +83,9 @@ void	expand_variable_value(void)
 		if ((head->type & VARIABLE) && !(head->type & DELIMITER))
 		{
 			change_var_value(head);
-			if(*v_array_index(0))
+			if (*v_array_index(0))
 				ft_free(*v_array_index(0));
-			index_the_char(0,0,1);
+			index_the_char(0, 0, 1);
 			*v_array_index(0) = NULL;
 		}
 		head = head->next;

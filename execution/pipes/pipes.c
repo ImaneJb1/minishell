@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 10:28:54 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/27 10:28:55 by imeslaki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
 void	exit_status_case(char *arg)
@@ -13,7 +25,7 @@ void	wait_func(int saved_stdin)
 {
 	int		status;
 	t_exec	*cmd;
-	
+
 	cmd = *v_exec();
 	while (cmd)
 	{

@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   identify_var.c                                     :+:      :+:    :+:   */
+/*   handle_errors2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 15:00:38 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/27 10:27:34 by imeslaki         ###   ########.fr       */
+/*   Created: 2025/06/27 10:58:21 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/27 11:01:42 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../parsing.h"
+#include "minishell.h"
+#include "parsing/parsing.h"
 
-bool	is_dollar_sign(char *str)
+int	fd_error(t_exec *cmd)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$')
-		{
-			if (str[i + 1] && str[i + 1] != ' ')
-				return (TRUE);
-		}
-		i++;
-	}
-	return (FALSE);
+	if (open_failure(-1) == 1)
+		return (1);
+	if (cmd->fd_in < 0)
+		return (1);
+	if (cmd->fd_out < 0)
+		return (1);
+	return (0);
 }
 
-void	identify_var(void)
+int	is_error(int flag)
 {
-	t_cmd	*ptr;
+	static int	i;
 
-	ptr = *v_cmd();
-	while (ptr)
-	{
-		if (is_dollar_sign(ptr->content))
-			ptr->type |= VARIABLE;
-		ptr = ptr->next;
-	}
+	if (flag == 0)
+		i = 0;
+	else if (flag == 1)
+		i = 1;
+	return (i);
+}
+
+int	handle_exec_error(void)
+{
+	not_first_cmd(0);
+	is_error(0);
+	field_count_arg(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 20:17:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 18:59:08 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:55:19 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,9 @@ size_t	ft_intlen(int *array)
 	return (i);
 }
 
-// int *init_array_index(char *str)
-// {
-//     // ft_
-    
-// }
-
-// void    index_the_char(int  value, int i)
-// {
-//     int *array;
-
-//     array = v_array_index();
-// 	array[i] = value;
-// }
-
 int	*ft_int_dup(int *array, int len)
 {
-	int i;
+	int	i;
 	int	*result;
 
 	i = 0;
@@ -51,38 +37,53 @@ int	*ft_int_dup(int *array, int len)
 		i++;
 	}
 	return (result);
-	
 }
 
-void    index_the_char(int  value, int i, int set)
+int	get_size(int set)
+{
+	static int	size;
+
+	if (set == 0)
+		size = 0;
+	if (set == 1)
+		size++;
+	return (size);
+}
+
+static int	reset_size(int set)
+{
+	if (set == 1)
+	{
+		get_size(0);
+		return (1);
+	}
+	return (0);
+}
+
+void	index_the_char(int value, int i, int set)
 {
 	int	*result;
-	static int size;
-    int **array;
-    int j;
+	int	**array;
+	int	j;
 
-    j = 0;
-	if(set == 1)
-	{
-		size = 0;
+	j = 0;
+	if (reset_size(set))
 		return ;
-	}
-    array = v_array_index(0); // echo '$?'
-	if (*array == NULL)		  // 0000 00
+	array = v_array_index(0);
+	if (*array == NULL)
 	{
 		*array = ft_malloc(sizeof(int));
 		(*array)[0] = value;
-		size++;
+		get_size(1);
 		return ;
 	}
-	result = ft_malloc((sizeof(int) * (size + 1)));
-	while (j < size && j < i)
+	result = ft_malloc((sizeof(int) * (get_size(2) + 1)));
+	while (j < get_size(2) && j < i)
 	{
 		result[j] = (*array)[j];
-	    j++;
+		j++;
 	}
 	result[j] = value;
-    *array = result;
-	size++;
-	return ;
+	*array = result;
+	get_size(1);
 }

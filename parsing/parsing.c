@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 14:21:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:28:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_data	*init_data(void)
 	data->args = NULL;
 	return (data);
 }
-void	print_array(int *array);
 
 int	parsing(char *str)
 {
@@ -49,7 +48,7 @@ int	parsing(char *str)
 	expand_variable_value();
 	remove_quotes();
 	v_array_index(1);
-	if(!fill_the_exec_struct())
+	if (!fill_the_exec_struct())
 	{
 		add_to_exec_list(NULL, NULL, 0);
 		lstclear_cmd();

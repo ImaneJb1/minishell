@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:11:00 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/26 18:10:19 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:06:10 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	if_its_infile(t_cmd *ptr)
 	if (is_ambiguous_redir_in(ptr))
 	{
 		is_error(1);
-		ft_putstr_fd("bash: ambiguous redirect\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: ambiguous redirect\n", STDERR_FILENO);
 		return (FALSE);
 	}
 	if (check_redir(ptr, FILE_NAME, REDIR_IN))
@@ -40,7 +40,7 @@ bool	if_its_infile(t_cmd *ptr)
 int	open_fd_in(t_cmd *token, int *fd)
 {
 	if (!token)
-		return(0);
+		return (0);
 	if (if_its_infile(token))
 	{
 		*fd = open(token->content, O_RDONLY, 0666);
@@ -49,8 +49,8 @@ int	open_fd_in(t_cmd *token, int *fd)
 			print_error(NULL);
 			perror(token->content);
 			update_exit_status(1);
-			return(-1);
+			return (-1);
 		}
 	}
-	return(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 11:02:39 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 21:16:24 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:06:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,23 @@ int	key_is_valid(char c)
 	return (0);
 }
 
-void	print_export_errors(char	*str)
+void	print_export_errors(char *str)
 {
-	char *result;
+	char	*result;
 
-	if(str && *str == '-')
+	if (str && *str == '-')
 	{
 		result = join_str_char(NULL, str[0]);
 		result = join_str_char(result, str[1]);
-		print_msg_to_fd("bash: export: ", result, 
-		": invalid option\
-		\nexport: usage: export [-fn] [name[=value] ...] or export -p\n"
-		, 2);
+		print_msg_to_fd("minishell: export: ", result, ": invalid option\
+		\nexport: usage: export [-fn] [name[=value] ...] or export -p\n",
+			2);
 		update_exit_status(2);
 		ft_free(result);
 		return ;
 	}
-	print_msg_to_fd("Minishell: export: `", str,
-		"': not a valid identifier\n", STDERR_FILENO);
+	print_msg_to_fd("Minishell: export: `", str, "': not a valid identifier\n",
+		STDERR_FILENO);
 	update_exit_status(1);
 }
 

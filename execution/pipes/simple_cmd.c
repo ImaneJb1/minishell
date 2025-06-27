@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:31:36 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/06/26 18:47:58 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:29:20 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,3 @@ void	execute_simple_cmd(t_exec *cmd)
 		signal(SIGINT, handle_sig_int);
 	}
 }
-

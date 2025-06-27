@@ -6,26 +6,17 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:53:48 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 19:00:44 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:18:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-char	*get_value_from_env(char *key)
+static char	*still_inside_quotes(char *command, char *content, int *i)
 {
-	t_env	*cur_env;
-
-	if (!v_env() || !(*v_env()) || !key)
-		return (NULL);
-	cur_env = *v_env();
-	while (cur_env)
-	{
-		if (ft_strcmp(cur_env->key, key) == 0)
-			return (ft_strdup(cur_env->value));
-		cur_env = cur_env->next;
-	}
-	return (NULL);
+	index_the_char(0, *i, 0);
+	command = join_str_char(command, content[(*i)++]);
+	return (command);
 }
 
 char	*inside_quote(char *command, char *content, int *i, char sp)
@@ -48,10 +39,7 @@ char	*inside_quote(char *command, char *content, int *i, char sp)
 			c = '\0';
 		}
 		else if (c != '\0')
-		{
-			index_the_char(0, *i, 0);
-			command = join_str_char(command, content[(*i)++]);
-		}
+			command = still_inside_quotes(command, content, i);
 		else
 			break ;
 	}

@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:20:25 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 19:12:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:05:49 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	is_ambiguous(t_exec *cmd, t_cmd *save_token)
 	cmd = add_to_exec_list(NULL, cmd, 0);
 	if (is_redirection(save_token))
 	{
-		ft_putstr_fd("bash: ambiguous redirect\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: ambiguous redirect\n", STDERR_FILENO);
 		return (0);
 	}
 	return (1);
@@ -92,4 +92,3 @@ int	fill_the_exec_struct(void)
 	field_count_arg(0);
 	return (1);
 }
-

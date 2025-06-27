@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:23:30 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 19:14:05 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:05:07 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	open_fd_heredoc(t_cmd *token, int *fd)
 	t_data		*data;
 	char		*fd_file_name;
 	static int	here_num;
-	
+
 	data = init_data();
 	fd_file_name = NULL;
 	if (token->type & DELIMITER)

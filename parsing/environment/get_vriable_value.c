@@ -6,15 +6,31 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:25:46 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 21:51:41 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:21:02 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
+char	*get_value_from_env(char *key)
+{
+	t_env	*cur_env;
+
+	if (!v_env() || !(*v_env()) || !key)
+		return (NULL);
+	cur_env = *v_env();
+	while (cur_env)
+	{
+		if (ft_strcmp(cur_env->key, key) == 0)
+			return (ft_strdup(cur_env->value));
+		cur_env = cur_env->next;
+	}
+	return (NULL);
+}
+
 char	*expand_the_value(char *command, t_data *data)
 {
-	int len;
+	int	len;
 
 	data->j = 0;
 	data->value = get_value_from_env(data->key);
@@ -49,15 +65,6 @@ void	fill_the_key(t_cmd *cur, int *i, t_data *data)
 	}
 }
 
-int	this_is_i(int set, int value)
-{
-	static int val;
-
-	if(set == 1)
-		val = value;
-	return val;
-}
-
 char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 {
 	t_data	*data;
@@ -66,7 +73,6 @@ char	*add_var_string(char *command, t_cmd *cur, int *i, int x)
 	(*i)++;
 	fill_the_key(cur, i, data);
 	data->i = (*i);
-	// this_is_i(1, *i);
 	if (x == 0 || data->flag == 1)
 		command = expand_the_value(command, data);
 	else if (cur->content[*i])

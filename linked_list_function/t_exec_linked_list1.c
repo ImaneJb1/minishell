@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_exec_linked_list1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:52:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/24 14:45:52 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:38:09 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	fill_arr(int *arr, int num, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		arr[i] = num;
 		i++;

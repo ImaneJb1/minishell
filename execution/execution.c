@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execution.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 10:37:25 by imeslaki          #+#    #+#             */
+/*   Updated: 2025/06/27 10:37:26 by imeslaki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
 
 void	main_execution(void)
@@ -7,7 +19,7 @@ void	main_execution(void)
 
 	length = lstsize_exec();
 	cmd = *v_exec();
-	if (!cmd )
+	if (!cmd)
 		return ;
 	if (length == 1)
 	{

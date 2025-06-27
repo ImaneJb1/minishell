@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:45:08 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/06/26 15:45:40 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:06:18 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	if_its_appfile(t_cmd *ptr)
 	if (is_ambiguous__redir_appand(ptr))
 	{
 		is_error(1);
-		ft_putstr_fd("bash: ambiguous redirect\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: ambiguous redirect\n", STDERR_FILENO);
 		return (FALSE);
 	}
 	if (check_redir(ptr, FILE_NAME, APPEND))
@@ -39,7 +39,7 @@ bool	if_its_appfile(t_cmd *ptr)
 
 int	open_fd_app(t_cmd *token, t_exec **node)
 {
-	int *fd;
+	int	*fd;
 
 	fd = &(*node)->fd_out;
 	if (if_its_appfile(token))
@@ -49,9 +49,8 @@ int	open_fd_app(t_cmd *token, t_exec **node)
 		{
 			print_error(NULL);
 			perror(token->content);
-			return(-1);
+			return (-1);
 		}
-		fill_fdout_arr(*node);
 	}
-	return(0);
+	return (0);
 }
