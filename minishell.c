@@ -3,122 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:31:31 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 12:01:28 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/26 19:12:21 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "./built_ins/built_in.h"
 #include "./parsing/parsing.h"
+#include "execution/built_ins/built_in.h"
+#include "minishell.h"
 
+int		g_exit_status;
 
-void print_parsing(void)
+void	create_env_and_handle_signals(char **env)
 {
-    t_cmd *ptr = *v_cmd();
-    printf("----------------------------------------------\n");
-    printf("                    PARSING                   \n");
-    printf("----------------------------------------------\n");
-    while(ptr)
+	signal(SIGINT, handle_sig_int);
+	signal(SIGQUIT, SIG_IGN);
+	create_environment(env);
+}
+
+void	handle_ctr_d(char *str)
+{
+	free(str);
+	clear_history();
+	ft_putstr_fd("exit\n", 1);
+	ft_exit(g_exit_status);
+}
+
+int	main(int argc, char const *argv[], char **env)
+{
+	char	*str;
+
+	(void)argv;
+	(void)argc;
+	create_env_and_handle_signals(env);
+	while (1)
 	{
-        printf("[%s] = ", ptr->content);
-        if (ptr->type & WORD)
-        printf("WORD ");
-        if (ptr->type & FILE_NAME)
-            printf("FILE_NAME ");
-        if (ptr->type & CMD)
-            printf("CMD ");
-        if (ptr->type & CMD_ARG)
-            printf("CMD_ARG ");
-        if (ptr->type & DOUBLE_Q)
-            printf("DOUBLE_Q "); 
-        if (ptr->type & SINGLE_Q)
-            printf("SINGLE_Q ");
-        if (ptr->type & PIPE)
-            printf("PIPE ");
-        if (ptr->type & HERE_DOC)
-            printf("HERE_DOC ");
-        if (ptr->type & REDIR_IN)
-            printf("REDIR_IN ");
-        if (ptr->type & REDIR_OUT)
-            printf("REDIR_OUT ");
-        if (ptr->type & APPEND)
-            printf("APPEND ");
-        if (ptr->type & PATH)
-            printf("PATH ");
-        if (ptr->type & VARIABLE)
-            printf("VARIABLE");
-        if (ptr->type & DELIMITER)
-            printf("DELIMITER");
-        printf("  (%d) ", ptr->index);
-		ptr = ptr->next;
-        printf("\n");
+		str = readline("Minishell $>: ");
+		if (!str)
+			handle_ctr_d(str);
+		if (!*str)
+		{
+			free(str);
+			continue ;
+		}
+		add_history(str);
+		if (!parsing(str))
+		{
+			lstclear_exec();
+			continue ;
+		}
+		main_execution();
+		lstclear_exec();
 	}
-    printf("----------------------------------------------\n");
-    printf("----------------------------------------------\n");
-}
-int is_built_in(void)
-{
-    t_exec *exec;
-    t_env *our_env;
-    
-    our_env = *v_env();
-    exec = *v_exec();
-    if(!v_exec() || !(*v_exec()))
-        return 0;
-    ft_free(*v_cmd());
-    *v_cmd() = NULL;  
-    export_built_in(exec->cmd, exec->args);
-    env_built_in(exec->cmd, exec->args);
-    unset(exec->cmd, exec->args);
-    return 1;
-}
-
-int main(int argc, char const *argv[], char **env)
-{
-    char *str;
-
-    creat_environment(env);
-    while(1)
-    {
-        str = readline("Minishell $>: ");
-        if(!str || !*str)
-            continue;
-        add_history(str);
-        if(!parsing(str))
-        {
-            ft_free(*v_exec());
-            *v_exec() = NULL;
-            continue;
-        }
-        if(!is_built_in())
-        {
-            ft_free(*v_exec());
-            *v_exec() = NULL;
-            continue;
-        }
-        t_exec *exec;
-	    exec = *v_exec();
- 	    while (exec)
-	    {
-            printf("--------------<<<<<<<<<<<<<<<<<<<<<---------------\n");
-	    	printf("(%s)  [", exec->cmd);
-            if( exec->args)
-	    	{
-                for(int i = 0; exec->args[i]; i++)
-                {
-                    if(i != 0)
-                        printf(" ");
-                    printf("%s", exec->args[i]);
-
-                }
-            }
-            printf("     {fdin = (%d) fdout = (%d) }", exec->fd_in, exec->fd_out);
-	    	printf("\n------------>>>>>>>>>>>>>>>>>>>>>>--------------------\n");
-	    	exec = exec->next;
-	    }
-        lstclear_exec();
-    }
 }

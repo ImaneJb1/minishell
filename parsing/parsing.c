@@ -6,86 +6,54 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 02:09:47 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 17:06:56 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:28:27 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"	
-#include "../built_ins/built_in.h"
+#include "../execution/built_ins/built_in.h"
+#include "parsing.h"
 
 t_data	*init_data(void)
 {
-	t_data *data;
+	t_data	*data;
 
-	data = ft_malloc(sizeof(t_data ));
+	data = ft_malloc(sizeof(t_data));
 	data->i = 0;
 	data->j = 0;
 	data->x = 0;
 	data->fd = 0;
 	data->count = 0;
+	data->pid = 0;
 	data->c = 0;
 	data->str = NULL;
 	data->del = NULL;
 	data->key = NULL;
+	data->word = NULL;
 	data->value = NULL;
 	data->content = NULL;
 	data->command = NULL;
 	data->args = NULL;
-	return data;
+	return (data);
 }
 
-void	creat_the_cmd_list(char *line)
+int	parsing(char *str)
 {
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	str = NULL;
-	if(!line || !*line)
-		return;
-	str = separat_with_one_space(line);
-	static void (*list[])(char *str, int *i) = {
-		is_arg, is_double_quote, is_singl_quote,
-		is_pipe, is_redir_out_append, is_heredoc,
-		is_redir_in, is_redir_out, is_var};
- 	while (str[i])
+	creat_the_cmd_list(str);
+	if (is_valid_syntax() == FALSE)
 	{
-		j = 0;
-		if (str[i] == ' ' && i++)
-			add_to_cmd_list(0, 0);
-		while(j < 9)
-			list[j++](str, &i);
+		update_exit_status(2);
+		lstclear_cmd();
+		return (0);
 	}
-	identify_all_types();
-	
-	index_the_cmd_list();
-}
-
-
-void	expand_variable_value(void)
-{
-	t_cmd	*head;
-
-	head = *v_cmd();
-	while (head)
-	{
-		if ((head->type & VARIABLE) && !(head->type & DELIMITER))
-			change_var_value(head);
-		head = head->next;
-	}
+	expand_variable_value();
 	remove_quotes();
-}
-
-int    parsing(char *str)
-{
-    creat_the_cmd_list(str);
-	print_parsing();
-	change_the_correct_del();
-    if(is_valid_syntax() == FALSE)
-        return (ft_free(*v_cmd()), *v_cmd() = NULL, 1);
-    expand_variable_value();
-	field_spliting();
-	fill_the_exec_struct();
-	return 1;
+	v_array_index(1);
+	if (!fill_the_exec_struct())
+	{
+		add_to_exec_list(NULL, NULL, 0);
+		lstclear_cmd();
+		return (0);
+	}
+	lstclear_cmd();
+	return (1);
 }

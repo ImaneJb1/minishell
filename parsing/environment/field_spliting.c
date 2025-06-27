@@ -6,79 +6,17 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:33:09 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 16:50:32 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:07:55 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../parsing.h"
+#include "../parsing.h"
 
-static int	ft_count(char const *s, char *c)
+char	*node_content(char *str, int *i)
 {
-	size_t	i;
-	size_t	count;
-	int		check;
-
-	count = 0;
-	i = 0;
-	check = 0;
-	while (s && s[i])
-	{
-		if (!ft_strchr(" \t", s[i]) && check == 0)
-		{
-			check = 1;
-			count++;
-		}
-		if (ft_strchr(" \t", s[i]))
-			check = 0;
-		i++;
-	}
-	return (count);
-}
-
-void    insert_into_list(t_cmd *cur, t_data *data)
-{
-    data->i = 0;
-    t_cmd *node;
-
-    node = cur;
-    while (data->args[data->i])
-    {
-        lst_add_one_cmd_by_node(cur, new_cmd_node(data->args[data->i]));
-        cur = cur->next;
-        data->i++;
-    }
-    lst_del_one_cmd_by_node(node);
-}
-
-int	len_of_word(char *str, int j)
-{
-	t_data	*data;
-
-	data = init_data();
-	while (str[j] && !ft_strchr(" \t", str[j]))
-	{
-		if(ft_strchr("\"\'", str[j]))
-		{
-			data->c = str[j++];
-			data->count++;
-			while (str[j] && str[j] != data->c)
-			{
-				data->count++;
-				j++;
-			}
-			data->c = 0;
-		}
-		data->count++;
-		j++;
-	}
-	return data->count;
-}
-
-char	*node_content(char	*str, int *i)
-{
-	char flag;
-	char *word;
-	int j;
+	char	flag;
+	char	*word;
+	int		j;
 
 	flag = 0;
 	skip_space(str, i);
@@ -87,7 +25,7 @@ char	*node_content(char	*str, int *i)
 	j = 0;
 	while (str[*i] && !ft_strchr(" \t", str[*i]))
 	{
-		if(ft_strchr("\"\'", str[*i]))
+		if (ft_strchr("\"\'", str[*i]))
 		{
 			flag = str[*i];
 			word[j++] = str[(*i)++];
@@ -97,30 +35,77 @@ char	*node_content(char	*str, int *i)
 		}
 		word[j++] = str[(*i)++];
 	}
-	// word = handl_dollar_sign_case();
 	skip_space(str, i);
-	return word;
+	return (word);
+}
+
+void	add_quate_if_exist(t_cmd **node)
+{
+	int	i;
+
+	i = 0;
+	while ((*node)->content[i])
+	{
+		if ((*node)->content[i] == '\'')
+		{
+			(*node)->type |= SINGLE_Q;
+			return ;
+		}
+		else if ((*node)->content[i] == '\"')
+		{
+			(*node)->type |= DOUBLE_Q;
+			return ;
+		}
+		i++;
+	}
+}
+
+void	add_types(t_cmd **node, int *flag, t_type type)
+{
+	add_quate_if_exist(node);
+	if (*flag == 0)
+	{
+		field_count_arg(1);
+		(*node)->type |= type;
+		(*node)->type |= CMD;
+		(*node)->type |= CMD_ARG;
+		if (ft_strchr((*node)->content, '/'))
+			(*node)->type |= PATH;
+	}
+	else
+	{
+		field_count_arg(1);
+		(*node)->type |= CMD_ARG;
+	}
+	*flag = 1;
 }
 
 void	split_the_field(t_cmd *cmd)
 {
-	t_data *data;
+	t_data	*data;
 	t_cmd	*cur;
 	t_cmd	*node;
+	t_type	type;
+	int		flag;
 
+	flag = 0;
 	node = NULL;
 	data = init_data();
 	data->content = cmd->content;
 	cur = cmd;
+	if (is_not_field(data->content))
+		return ;
+	type = cmd->type;
 	while (data->content[data->i])
 	{
 		data->str = node_content(data->content, &data->i);
 		node = new_cmd_node(ft_strdup(data->str));
-		lst_add_one_cmd_by_node(cmd, node);
+		add_types(&node, &flag, type);
+		lst_add_one_cmd(cmd, node);
 		ft_free(data->str);
 		cmd = cmd->next;
 	}
-	lst_del_one_cmd_by_node(cur);
+	lst_del_one_cmd(cur);
 }
 
 void	field_spliting(void)

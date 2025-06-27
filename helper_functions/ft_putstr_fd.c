@@ -6,12 +6,11 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:42:13 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 17:42:27 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:15:30 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "helper.h"
-
 
 void	ft_putstr_fd(char *s, int fd)
 {

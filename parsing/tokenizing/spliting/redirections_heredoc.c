@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_heredoc.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:56:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/05/21 10:51:25 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:18:32 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	is_redir_out_append(char *str, int *i)
 
 void	is_heredoc(char *str, int *i)
 {
-	if ( str[*i] == '<' && str[*i + 1] == '<')
+	if (str[*i] == '<' && str[*i + 1] == '<')
 	{
 		add_to_cmd_list(str[*i], 1);
 		add_to_cmd_list(str[*i + 1], 1);

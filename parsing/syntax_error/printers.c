@@ -1,15 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/02 15:11:57 by ijoubair          #+#    #+#             */
+/*   Updated: 2025/06/27 10:22:04 by imeslaki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../parsing.h"
 
-void    print_error_with_token(char *message, char *token)
+void	print_error_token(char *message, char *token)
 {
-    print_error(message);
-    write(1, "\'", 2);
-    print_error(token);
-    write(1, "\'", 2);
-    write(1, "\n", 2);
+	write(2, "minishell: ", 11);
+	write(2, message, ft_strlen(message));
+	write(2, "\'", 1);
+	write(2, token, ft_strlen(token));
+	write(2, "\'", 1);
+	write(2, "\n", 1);
 }
 
 void	print_error(char *s)
 {
-	write(2, s, ft_strlen(s));
+	write(2, "minishell: ", 11);
+	if (s)
+		write(2, s, ft_strlen(s));
+}
+
+void	print_cmd_error(char *command, char *message)
+{
+	write(2, "minishell: ", 11);
+	write(2, command, ft_strlen(command));
+	write(2, ":", 1);
+	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
 }

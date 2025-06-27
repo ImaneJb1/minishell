@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 01:47:33 by imeslaki          #+#    #+#             */
-/*   Updated: 2025/04/18 22:21:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:02:42 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,3 @@ void	save_mem(void *mem)
 	new->mem = mem;
 	add_mem(new);
 }
-
-
